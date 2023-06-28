@@ -3,25 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2E61C0D12A4C7EE6009C6552 /* GitBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E61C0D02A4C7EE6009C6552 /* GitBoardApp.swift */; };
-		2E61C0D32A4C7EE6009C6552 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E61C0D22A4C7EE6009C6552 /* Item.swift */; };
-		2E61C0D52A4C7EE6009C6552 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E61C0D42A4C7EE6009C6552 /* ContentView.swift */; };
 		2E61C0D72A4C7EE7009C6552 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E61C0D62A4C7EE7009C6552 /* Assets.xcassets */; };
 		2E61C0DB2A4C7EE7009C6552 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E61C0DA2A4C7EE7009C6552 /* Preview Assets.xcassets */; };
+		2E61C0E72A4C8A90009C6552 /* GitBoardKit in Resources */ = {isa = PBXBuildFile; fileRef = 2E61C0E62A4C8A90009C6552 /* GitBoardKit */; };
+		2E61C0EA2A4C8B21009C6552 /* GitBoardKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2E61C0E92A4C8B21009C6552 /* GitBoardKit */; };
+		2E61C0EC2A4D980F009C6552 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2E61C0EB2A4D980F009C6552 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2E61C0CD2A4C7EE6009C6552 /* GitBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E61C0D02A4C7EE6009C6552 /* GitBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitBoardApp.swift; sourceTree = "<group>"; };
-		2E61C0D22A4C7EE6009C6552 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		2E61C0D42A4C7EE6009C6552 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E61C0D62A4C7EE7009C6552 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E61C0D82A4C7EE7009C6552 /* GitBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GitBoard.entitlements; sourceTree = "<group>"; };
 		2E61C0DA2A4C7EE7009C6552 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2E61C0E62A4C8A90009C6552 /* GitBoardKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GitBoardKit; sourceTree = "<group>"; };
+		2E61C0EB2A4D980F009C6552 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E61C0EA2A4C8B21009C6552 /* GitBoardKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +40,8 @@
 		2E61C0C42A4C7EE6009C6552 = {
 			isa = PBXGroup;
 			children = (
+				2E61C0EB2A4D980F009C6552 /* README.md */,
+				2E61C0E62A4C8A90009C6552 /* GitBoardKit */,
 				2E61C0CF2A4C7EE6009C6552 /* GitBoard */,
 				2E61C0CE2A4C7EE6009C6552 /* Products */,
 			);
@@ -55,8 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				2E61C0D02A4C7EE6009C6552 /* GitBoardApp.swift */,
-				2E61C0D22A4C7EE6009C6552 /* Item.swift */,
-				2E61C0D42A4C7EE6009C6552 /* ContentView.swift */,
 				2E61C0D62A4C7EE7009C6552 /* Assets.xcassets */,
 				2E61C0D82A4C7EE7009C6552 /* GitBoard.entitlements */,
 				2E61C0D92A4C7EE7009C6552 /* Preview Content */,
@@ -88,6 +90,9 @@
 			dependencies = (
 			);
 			name = GitBoard;
+			packageProductDependencies = (
+				2E61C0E92A4C8B21009C6552 /* GitBoardKit */,
+			);
 			productName = GitBoard;
 			productReference = 2E61C0CD2A4C7EE6009C6552 /* GitBoard.app */;
 			productType = "com.apple.product-type.application";
@@ -116,6 +121,9 @@
 				Base,
 			);
 			mainGroup = 2E61C0C42A4C7EE6009C6552;
+			packageReferences = (
+				2E61C0E82A4C8B21009C6552 /* XCLocalSwiftPackageReference "GitBoardKit" */,
+			);
 			productRefGroup = 2E61C0CE2A4C7EE6009C6552 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,7 +138,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E61C0E72A4C8A90009C6552 /* GitBoardKit in Resources */,
 				2E61C0DB2A4C7EE7009C6552 /* Preview Assets.xcassets in Resources */,
+				2E61C0EC2A4D980F009C6552 /* README.md in Resources */,
 				2E61C0D72A4C7EE7009C6552 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,9 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E61C0D32A4C7EE6009C6552 /* Item.swift in Sources */,
 				2E61C0D12A4C7EE6009C6552 /* GitBoardApp.swift in Sources */,
-				2E61C0D52A4C7EE6009C6552 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +371,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		2E61C0E82A4C8B21009C6552 /* XCLocalSwiftPackageReference "GitBoardKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = GitBoardKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2E61C0E92A4C8B21009C6552 /* GitBoardKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GitBoardKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2E61C0C52A4C7EE6009C6552 /* Project object */;
 }
