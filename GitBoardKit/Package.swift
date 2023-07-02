@@ -21,15 +21,21 @@ let package = Package(
       targets: ["GitBoardUI"]
     ),
   ],
+  dependencies: [
+    .package(url: "https://github.com/nerdishbynature/octokit.swift", .upToNextMajor(from: "0.12.0")),
+  ],
   targets: [
     .target(
       name: "GitBoardUI",
       dependencies: [
-        .target(name: "GitBoardData")
+        .target(name: "GitBoardData"),
       ]
     ),
     .target(
-      name: "GitBoardData"
+      name: "GitBoardData",
+      dependencies: [
+        .product(name: "OctoKit", package: "octokit.swift"),
+      ]
     ),
   ]
 )
