@@ -12,19 +12,24 @@ let package = Package(
   products: [
     .library(
       name: "GitBoardData",
+      type: .dynamic,
       targets: ["GitBoardData"]
     ),
     .library(
       name: "GitBoardUI",
+      type: .dynamic,
       targets: ["GitBoardUI"]
     ),
   ],
   targets: [
     .target(
-      name: "GitBoardData"
+      name: "GitBoardUI",
+      dependencies: [
+        .target(name: "GitBoardData")
+      ]
     ),
     .target(
-      name: "GitBoardUI"
-    )
+      name: "GitBoardData"
+    ),
   ]
 )

@@ -3,12 +3,13 @@
 //
 
 import SwiftUI
+import GitBoardUI
 
 @main
 struct GitBoardApp: App {
   var body: some Scene {
     WindowGroup {
-      Text("ContentView")
+      ContentView()
     }
   }
 }
