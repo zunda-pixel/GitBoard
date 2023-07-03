@@ -24,6 +24,7 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/nerdishbynature/octokit.swift", branch: "main"),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image", .upToNextMajor(from: "2.1.1")),
+    .package(url: "https://github.com/evgenyneu/keychain-swift", .upToNextMajor(from: "20.0.0")),
   ],
   targets: [
     .target(
@@ -36,7 +37,8 @@ let package = Package(
       name: "GitBoardData",
       dependencies: [
         .product(name: "OctoKit", package: "octokit.swift"),
-        .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image")
+        .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image"),
+        .product(name: "KeychainSwift", package: "keychain-swift"),
       ]
     ),
   ]
