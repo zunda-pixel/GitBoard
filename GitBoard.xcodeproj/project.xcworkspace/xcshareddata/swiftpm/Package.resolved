@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nerdishbynature/octokit.swift",
       "state" : {
-        "revision" : "f762f1566f7cd0e683b9329f169c28ab6ef993cc",
-        "version" : "0.12.0"
+        "branch" : "main",
+        "revision" : "46c3e40791d4151eb74033ec2c9b9f280859857d"
       }
     },
     {
@@ -16,6 +16,24 @@
       "state" : {
         "revision" : "8b0258ea2a4345cbcac90509b764faacea12efb0",
         "version" : "3.2.1"
+      }
+    },
+    {
+      "identity" : "swiftformat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nicklockwood/SwiftFormat",
+      "state" : {
+        "revision" : "a8b32a96ec569d5ceec207f19ff411aea5c878f7",
+        "version" : "0.51.12"
+      }
+    },
+    {
+      "identity" : "swiftui-cached-async-image",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lorenzofiamingo/swiftui-cached-async-image",
+      "state" : {
+        "revision" : "467a3d17479887943ab917a379e62bbaff60ac8a",
+        "version" : "2.1.1"
       }
     }
   ],
