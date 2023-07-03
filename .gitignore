@@ -21,4 +21,4 @@ xcuserdata/
 # End of https://www.toptal.com/developers/gitignore/api/xcode
 
 DerivedData
-GitBoardKit/Sources/GitBoardData/Env++.swift
+GitBoardKit/Sources/GitBoardData/Env/LocalEnv.swift
