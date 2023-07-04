@@ -3,8 +3,8 @@
 //
 
 import SwiftUI
-import OctoKit
 import CachedAsyncImage
+import GitHubKit
 
 struct UserCell: View {
   let user: User
@@ -14,7 +14,7 @@ struct UserCell: View {
       let circleLineWidth: CGFloat = 3
       let profileImageSize: CGFloat = 60
       
-      CachedAsyncImage(url: URL(string: user.avatarURL!)!) { image in
+      CachedAsyncImage(url: user.avatarURL) { image in
         image.resizable()
       } placeholder: {
         Image(systemName: "person")
@@ -31,13 +31,13 @@ struct UserCell: View {
 
       VStack(alignment: .leading, spacing: 4) {
         HStack(alignment: .center, spacing: 5) {
-          if let name = user.name {
+          if let name = user.userName {
             Text(name)
             
-            Text(user.login!)
+            Text(user.userID)
               .foregroundStyle(.secondary)
           } else {
-            Text(user.login!)
+            Text(user.userID)
           }
         }
         
@@ -64,14 +64,52 @@ struct UserCell: View {
 struct UserCell_Preview: PreviewProvider {
   static var previews: some View {
     let user = User(
-      login: "zunda-pixel",
-      avatarURL: "https://avatars.githubusercontent.com/u/47569369?v=4",
-      name: "zunda",
-      company: "Apple",
+      id: 1234,
+      userID: "zunda-pixel",
+      userName: "zunda",
+      nodeID: "",
+      avatarURL: URL(string: "https://avatars.githubusercontent.com/u/47569369?v=4")!,
+      gravatarID: "",
+      url: URL(string: "https://github.com")!,
+      htmlURL: URL(string: "https://github.com")!,
+      followersURL: URL(string: "https://github.com")!,
+      followingURL: URL(string: "https://github.com")!,
+      subscriptionsURL: URL(string: "https://github.com")!,
+      organizationsURL: URL(string: "https://github.com")!,
+      reposURL: URL(string: "https://github.com")!,
+      eventsURL: URL(string: "https://github.com")!,
+      receivedEventsURL: URL(string: "https://github.com")!,
+      gistsURL: URL(string: "https://github.com")!,
+      starredURL: URL(string: "https://github.com")!,
+      publicRepoCount: 1,
+      totalPrivateRepoCount: 2,
+      ownedPrivateRepoCount: 3,
+      publicGistsCount: 2,
+      privateGistsCount: 3,
+      followerCount: 3,
+      followingCount: 4,
+      createdAt: .now,
+      updatedAt: .now,
+      bio: "bio",
+      email: "email",
       location: "Japan",
-      bio: "Hello GitHub",
-      createdAt: Date.now
+      hireable: true,
+      type: .user,
+      score: 1,
+      siteAdmin: true,
+      twitterUserName: "zunda_pixel",
+      company: "Apple",
+      diskUsage: 12312,
+      collaboratorCount: 0,
+      twoFactorAuthentication: false,
+      plan: .init(
+        name: "free",
+        space: 32,
+        collaboratorCount: 342,
+        privateRepoCount: 4234
+      )
     )
+    
     List {
       UserCell(user: user)
       UserCell(user: user)
