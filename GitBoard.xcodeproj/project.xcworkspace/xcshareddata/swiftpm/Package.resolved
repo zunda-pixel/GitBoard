@@ -1,39 +1,30 @@
 {
   "pins" : [
     {
+      "identity" : "githubkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zunda-pixel/GitHubKit",
+      "state" : {
+        "branch" : "add-search-api",
+        "revision" : "8119533402b90352763d3bcf9e3b49a94e803b8e"
+      }
+    },
+    {
+      "identity" : "httpmethod",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thii/HTTPMethod",
+      "state" : {
+        "revision" : "5cb356f4cdd00f1c79f52250f697a4007be22d55",
+        "version" : "0.1.0"
+      }
+    },
+    {
       "identity" : "keychain-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/evgenyneu/keychain-swift",
       "state" : {
         "revision" : "d108a1fa6189e661f91560548ef48651ed8d93b9",
         "version" : "20.0.0"
-      }
-    },
-    {
-      "identity" : "octokit.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nerdishbynature/octokit.swift",
-      "state" : {
-        "branch" : "main",
-        "revision" : "46c3e40791d4151eb74033ec2c9b9f280859857d"
-      }
-    },
-    {
-      "identity" : "requestkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nerdishbynature/RequestKit.git",
-      "state" : {
-        "revision" : "8b0258ea2a4345cbcac90509b764faacea12efb0",
-        "version" : "3.2.1"
-      }
-    },
-    {
-      "identity" : "swiftformat",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nicklockwood/SwiftFormat",
-      "state" : {
-        "revision" : "a8b32a96ec569d5ceec207f19ff411aea5c878f7",
-        "version" : "0.51.12"
       }
     },
     {
