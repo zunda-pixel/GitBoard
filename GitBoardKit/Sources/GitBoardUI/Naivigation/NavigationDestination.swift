@@ -1,5 +1,5 @@
 //
-//  navigationDestination.swift
+//  NavigationDestination.swift
 //
 
 import SwiftUI
