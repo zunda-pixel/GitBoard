@@ -10,7 +10,8 @@ final class NavigationRouter {
   var items: [Item] = []
   
   enum Item: Hashable {
-    case searchUser
+    case searchUsers
+    case searchRepositories
   }
 }
 
