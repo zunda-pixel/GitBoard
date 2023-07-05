@@ -1,0 +1,23 @@
+//
+//  KeychainSwift.swift
+//
+
+import Foundation
+import KeychainSwift
+import GitHubKit
+
+extension KeychainSwift {
+  public static var shared: KeychainSwift {
+    let keychain = KeychainSwift()
+    keychain.accessGroup = "\(Env.teamID)\(Env.appGroup)"
+    return keychain
+  }
+  
+  func getAccessToken(userID: User.ID) -> String {
+    self.get("accessToken-\(userID)")!
+  }
+  
+  public func setAccessToken(userID: User.ID, accessToken: String) {
+    self.set(accessToken, forKey: "accessToken-\(userID)")
+  }
+}
