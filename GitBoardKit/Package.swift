@@ -25,20 +25,22 @@ let package = Package(
     .package(url: "https://github.com/zunda-pixel/GitHubKit", branch: "add-search-api"),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image", .upToNextMajor(from: "2.1.1")),
     .package(url: "https://github.com/evgenyneu/keychain-swift", .upToNextMajor(from: "20.0.0")),
+    .package(url: "https://github.com/zunda-pixel/ToastView", branch: "main"),
   ],
   targets: [
     .target(
       name: "GitBoardUI",
       dependencies: [
         .target(name: "GitBoardData"),
+        .product(name: "ToastView", package: "ToastView"),
+        .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image"),
+        .product(name: "KeychainSwift", package: "keychain-swift"),
       ]
     ),
     .target(
       name: "GitBoardData",
       dependencies: [
         .product(name: "GitHubKit", package: "GitHubKit"),
-        .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image"),
-        .product(name: "KeychainSwift", package: "keychain-swift"),
       ]
     ),
   ]

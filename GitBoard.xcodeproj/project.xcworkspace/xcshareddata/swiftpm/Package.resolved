@@ -6,7 +6,7 @@
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
         "branch" : "add-search-api",
-        "revision" : "8119533402b90352763d3bcf9e3b49a94e803b8e"
+        "revision" : "d13e73012c6b75d0df50646da1ff0dd3bf9d9d68"
       }
     },
     {
@@ -34,6 +34,15 @@
       "state" : {
         "revision" : "467a3d17479887943ab917a379e62bbaff60ac8a",
         "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "toastview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zunda-pixel/ToastView",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8e5a24ac37087665a063aa05bb832c5f6955fceb"
       }
     }
   ],
