@@ -3,8 +3,8 @@
 //
 
 import Foundation
-import OctoKit
 import Observation
+import GitHubKit
 
 protocol FollowersViewState: Observable {
   var userName: String { get }

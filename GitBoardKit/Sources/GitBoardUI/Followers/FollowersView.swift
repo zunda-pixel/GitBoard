@@ -3,7 +3,6 @@
 //
 
 import SwiftUI
-import OctoKit
 import GitBoardData
 
 struct FollowersView<ViewState: FollowersViewState>: View {

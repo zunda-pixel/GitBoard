@@ -3,8 +3,8 @@
 //
 
 import Foundation
-import OctoKit
 import Observation
+import GitHubKit
 
 @Observable
 final class OnlineFollowersViewState: FollowersViewState {
@@ -16,10 +16,5 @@ final class OnlineFollowersViewState: FollowersViewState {
   }
   
   func fetchFollowers() async {
-    do {
-      followers = try await Octokit().following(name: userName)
-    } catch {
-      print(error)
-    }
   }
 }
