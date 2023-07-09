@@ -5,7 +5,7 @@
 import SwiftUI
 
 struct ErrorView: View {
-  let error: Error
+  let error: any Error
   
   var body: some View {
     VStack(alignment: .center, spacing: 5) {

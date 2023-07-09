@@ -20,7 +20,11 @@ struct SearchView: View {
           Label("Search Repositories", systemImage: "figure.pilates")
         }
       }
-      .listStyle(.insetGrouped)
+      #if os(macOS)
+      .listStyle(.bordered)
+      #else
+      .listStyle(.insetGroup)
+      #endif
       .navigationDestination()
       .navigationTitle("Search")
     }
