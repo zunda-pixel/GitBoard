@@ -11,12 +11,22 @@ extension View {
       case .searchUsers:
         SearchUsersView()
           .navigationTitle("Search User")
-          .navigationBarTitleDisplayMode(.inline)
+          .navigationBarTitleDisplayMode()
       case .searchRepositories:
         SearchRepositoriesView()
           .navigationTitle("Search Repository")
-          .navigationBarTitleDisplayMode(.inline)
+          .navigationBarTitleDisplayMode()
       }
     }
+  }
+}
+
+private extension View {
+  func navigationBarTitleDisplayMode() -> some View {
+    #if os(macOS)
+    self
+    #else
+    self.navigationBarTitleDisplayMode(.inline)
+    #endif
   }
 }
