@@ -4,6 +4,7 @@
 
 import Observation
 import SwiftUI
+import GitHubKit
 
 @Observable
 final class NavigationRouter {
@@ -12,6 +13,8 @@ final class NavigationRouter {
   enum Item: Hashable {
     case searchUsers
     case searchRepositories
+    case userDetail(user: User)
+    case repositories(userID: String)
   }
 }
 

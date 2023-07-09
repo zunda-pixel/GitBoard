@@ -23,7 +23,7 @@ struct SearchView: View {
       #if os(macOS)
       .listStyle(.bordered)
       #else
-      .listStyle(.insetGroup)
+      .listStyle(.insetGrouped)
       #endif
       .navigationDestination()
       .navigationTitle("Search")

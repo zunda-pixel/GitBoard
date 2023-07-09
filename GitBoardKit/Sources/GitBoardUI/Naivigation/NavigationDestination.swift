@@ -16,6 +16,10 @@ extension View {
         SearchRepositoriesView()
           .navigationTitle("Search Repository")
           .navigationBarTitleDisplayMode()
+      case .repositories(userID: let userID):
+        RepositoriesView(userID: userID)
+      case .userDetail(user: let user):
+        UserDetailView(user: user)
       }
     }
   }
