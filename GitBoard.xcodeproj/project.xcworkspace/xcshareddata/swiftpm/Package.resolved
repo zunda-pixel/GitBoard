@@ -1,0 +1,50 @@
+{
+  "pins" : [
+    {
+      "identity" : "githubkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zunda-pixel/GitHubKit",
+      "state" : {
+        "branch" : "add-search-api",
+        "revision" : "d13e73012c6b75d0df50646da1ff0dd3bf9d9d68"
+      }
+    },
+    {
+      "identity" : "httpmethod",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/thii/HTTPMethod",
+      "state" : {
+        "revision" : "5cb356f4cdd00f1c79f52250f697a4007be22d55",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/keychain-swift",
+      "state" : {
+        "revision" : "d108a1fa6189e661f91560548ef48651ed8d93b9",
+        "version" : "20.0.0"
+      }
+    },
+    {
+      "identity" : "swiftui-cached-async-image",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lorenzofiamingo/swiftui-cached-async-image",
+      "state" : {
+        "revision" : "467a3d17479887943ab917a379e62bbaff60ac8a",
+        "version" : "2.1.1"
+      }
+    },
+    {
+      "identity" : "toastview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zunda-pixel/ToastView",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8e5a24ac37087665a063aa05bb832c5f6955fceb"
+      }
+    }
+  ],
+  "version" : 2
+}
