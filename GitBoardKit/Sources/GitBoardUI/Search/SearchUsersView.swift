@@ -4,9 +4,11 @@
 
 import SwiftUI
 import GitHubKit
+import Algorithms
 
 struct SearchUsersView: View {
   @Environment(ErrorHandle.self) var errorHandle
+  @Environment(NavigationRouter.self) var router
   @State var query: String = ""
   @State var users: [User] = []
   
@@ -23,6 +25,9 @@ struct SearchUsersView: View {
     List {
       ForEach(users) { user in
         UserCell(user: user)
+          .onTapGesture {
+            router.items.append(.userDetail(user: user))
+          }
       }
     }
     .overlay {
