@@ -7,6 +7,7 @@ import GitHubKit
 
 struct RepositoriesView: View {
   @Environment(ErrorHandle.self) var errorHandle
+  @Environment(NavigationRouter.self) var router
   @State var loadPage = 1
   @State var repositories: [Repository] = []
   
@@ -60,6 +61,9 @@ struct RepositoriesView: View {
           .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
           .task {
             await populateMoreRepositories(repositoryID: repository.id)
+          }
+          .onTapGesture {
+            router.items.append(.repositoryDetail(repository: repository))
           }
       }
     }
