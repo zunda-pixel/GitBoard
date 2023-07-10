@@ -66,7 +66,7 @@ struct RepositoryDetailView: View {
   
   @ViewBuilder
   var links: some View {
-    NavigationLink(item: .issue) {
+    NavigationLink(item: .issue(ownerID: repository.owner.userID, repositoryName: repository.name)) {
       label(systemImage: "dot.circle", imageColor: .green) {
         HStack(alignment: .center, spacing: 0) {
           Text("Issues")
@@ -77,34 +77,15 @@ struct RepositoryDetailView: View {
       }
     }
     
-    NavigationLink(item: .pullRequests) {
+    NavigationLink(item: .pullRequests(ownerID: repository.owner.userID, repositoryName: repository.name)) {
       label("Pull Requests", systemImage: "arrow.triangle.pull", imageColor: .blue)
     }
     
-    NavigationLink(item: .discussions) {
-      label("Discussions", systemImage: "bubble", imageColor: .purple)
-    }
-    
-    NavigationLink(item: .actions) {
-      label("Actions", systemImage: "play.circle", imageColor: .yellow)
-    }
-    
-    NavigationLink(item: .contributors) {
+    NavigationLink(item: .contributors(ownerID: repository.owner.userID, repositoryName: repository.name)) {
       label("Contributors", systemImage: "person.2", imageColor: .orange)
     }
     
-    NavigationLink(item: .watchers) {
-      label(systemImage: "eye", imageColor: .yellow) {
-        HStack(alignment: .center, spacing: 0) {
-          Text("Watchers")
-          Spacer()
-          Text("\(repository.watchersCount)")
-        }
-      }
-      
-    }
-    
-    NavigationLink(item: .license) {
+    NavigationLink(item: .license(ownerID: repository.owner.userID, repositoryName: repository.name)) {
       label("License", systemImage: "building.columns", imageColor: .red)
     }
   }
@@ -116,16 +97,9 @@ struct RepositoryDetailView: View {
           .listRowSeparator(.hidden)
       }
       
-      Section {
+      Section("Links") {
         links
       }
-      
-      Section("Branch") {
-        NavigationLink(item: .actions) {
-          Label("Actions", systemImage: "house")
-        }
-      }
-      
     }
     .listStyle(.plain)
   }
