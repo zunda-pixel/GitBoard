@@ -51,6 +51,8 @@ private struct UserProfileImageShape: Shape {
       Circle().path(in: rect)
     case .mannequin: // TODO 謎
       Circle().path(in: rect)
+    case .bot:
+      Circle().path(in: rect)
     }
   }
 }

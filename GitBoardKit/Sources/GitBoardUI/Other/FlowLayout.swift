@@ -4,6 +4,8 @@
 
 import SwiftUI
 
+/// FlowLayout
+/// https://github.com/apple/sample-food-truck/blob/main/App/General/FlowLayout.swift
 struct FlowLayout: Layout {
   var alignment: Alignment = .center
   var spacing: CGFloat?
