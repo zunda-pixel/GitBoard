@@ -5,17 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-        "branch" : "add-repositories",
-        "revision" : "efee94b67c6180d93d9ea122a2dce2abb89663c0"
-      }
-    },
-    {
-      "identity" : "httpmethod",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/thii/HTTPMethod",
-      "state" : {
-        "revision" : "5cb356f4cdd00f1c79f52250f697a4007be22d55",
-        "version" : "0.1.0"
+        "branch" : "develop/add-pullrequests",
+        "revision" : "be08bfed9df3f9fb3ffeb1116eaf6e0918235a9d"
       }
     },
     {
@@ -34,6 +25,15 @@
       "state" : {
         "revision" : "b14b7f4c528c942f121c8b860b9410b2bf57825e",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swift-http-types",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-http-types",
+      "state" : {
+        "revision" : "39661f4ca82db8ad050cc060a471c8e2c542b24f",
+        "version" : "0.1.1"
       }
     },
     {
