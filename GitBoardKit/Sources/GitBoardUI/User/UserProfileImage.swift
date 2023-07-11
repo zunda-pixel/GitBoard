@@ -49,6 +49,8 @@ private struct UserProfileImageShape: Shape {
       RoundedRectangle(cornerSize: cornerSize).path(in: rect)
     case .user:
       Circle().path(in: rect)
+    case .mannequin: // TODO 謎
+      Circle().path(in: rect)
     }
   }
 }

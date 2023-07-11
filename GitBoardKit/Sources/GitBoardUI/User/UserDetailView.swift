@@ -90,7 +90,11 @@ struct UserDetailView: View {
         }
       }
     }
+    #if os(macOS)
+    .listStyle(.inset)
+    #else
     .listStyle(.insetGrouped)
+    #endif
   }
 }
 
