@@ -51,8 +51,6 @@ struct IssueCell: View {
   }
 }
 
-struct IssueCell_Preview: PreviewProvider {
-  static var previews: some View {
-    IssueCell(issue: .sample)
-  }
+#Preview {
+  IssueCell(issue: .sample)
 }

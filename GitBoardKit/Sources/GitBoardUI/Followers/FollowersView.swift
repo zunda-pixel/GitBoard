@@ -12,6 +12,7 @@ struct FollowersView<ViewState: FollowersViewState>: View {
     List {
       ForEach(viewState.followers, id: \.id) { follower in
         UserCell(user: follower)
+          .listRow()
       }
     }
     .overlay {
@@ -29,10 +30,10 @@ struct FollowersView<ViewState: FollowersViewState>: View {
   }
 }
 
-struct FollowersView_Preview: PreviewProvider {
-  static var previews: some View {
+#Preview {
+  NavigationStack {
     let viewState = OnlineFollowersViewState(userName: "zunda-pixel")
     FollowersView(viewState: viewState)
-      .frame(maxWidth: 300)
   }
+    .frame(maxWidth: 300)
 }

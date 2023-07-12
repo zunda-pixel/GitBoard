@@ -49,15 +49,13 @@ struct UserCell: View {
   }
 }
 
-struct UserCell_Preview: PreviewProvider {
-  static var previews: some View {
+#Preview {
+  List {
     let user = User.sample
-    
-    List {
+    ForEach(0..<4) { _ in
       UserCell(user: user)
-      UserCell(user: user)
-      UserCell(user: user)
+        .listRow()
     }
-    .listStyle(.plain)
   }
+  .listStyle(.plain)
 }

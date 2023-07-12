@@ -83,14 +83,12 @@ struct IssuesView: View {
 }
 
 
-struct IssuesView_Preview: PreviewProvider {
-  static var previews: some View {
-    NavigationStack {
-      IssuesView(ownerID: "apple", repository: .sample)
-        .environment(ErrorHandle())
-    }
-    .frame(maxWidth: 500)
+#Preview {
+  NavigationStack {
+    IssuesView(ownerID: "apple", repository: .sample)
+      .environment(ErrorHandle())
   }
+  .frame(maxWidth: 500)
 }
 
 private extension IssueSearchState {

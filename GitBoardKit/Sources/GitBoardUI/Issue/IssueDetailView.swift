@@ -65,8 +65,6 @@ struct IssueDetailView: View {
 }
 
 
-struct IssueDetailView_Preview: PreviewProvider {
-  static var previews: some View {
-    IssueDetailView(issue: .sample, repository: .sample)
-  }
+#Preview {
+  IssueDetailView(issue: .sample, repository: .sample)
 }

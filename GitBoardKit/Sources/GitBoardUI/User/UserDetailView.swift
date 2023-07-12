@@ -52,48 +52,57 @@ struct UserDetailView: View {
     }
   }
   
+  var userView: some View {
+    VStack(alignment: .center, spacing: 10) {
+      HStack(alignment: .center, spacing: 0) {
+        userProfile
+        Spacer()
+      }
+
+      Button {
+        
+      } label: {
+        Label("Follow", systemImage: "plus")
+          .frame(maxWidth: 200)
+      }
+      .buttonStyle(.bordered)
+    }
+  }
+  
+  var repositoryNavigation: some View {
+    NavigationLink(item: .repositories(userID: user.userID)) {
+      Label {
+        HStack(alignment: .center, spacing: 5) {
+          Text("Repositories")
+          Spacer()
+          if let publicRepoCount = user.publicRepoCount {
+            Text("\(publicRepoCount)")
+          }
+          if let ownedPrivateRepoCount = user.ownedPrivateRepoCount {
+            Text("\(ownedPrivateRepoCount)")
+          }
+          if let totalPrivateRepoCount = user.totalPrivateRepoCount {
+            Text("\(totalPrivateRepoCount)")
+          }
+        }
+      } icon: {
+        Image(systemName: "book.closed")
+      }
+    }
+  }
+  
   var body: some View {
     List {
-      VStack(alignment: .center, spacing: 10) {
-        HStack(alignment: .center, spacing: 0) {
-          userProfile
-          Spacer()
-        }
-
-        Button {
-          
-        } label: {
-          Label("Follow", systemImage: "plus")
-            .frame(maxWidth: 200)
-        }
-        .buttonStyle(.bordered)
-      }
-      .frame(maxWidth: .infinity)
+      userView
+        .listRow()
       
-      NavigationLink(item: .repositories(userID: user.userID)) {
-        Label {
-          HStack(alignment: .center, spacing: 5) {
-            Text("Repositories")
-            Spacer()
-            if let publicRepoCount = user.publicRepoCount {
-              Text("\(publicRepoCount)")
-            }
-            if let ownedPrivateRepoCount = user.ownedPrivateRepoCount {
-              Text("\(ownedPrivateRepoCount)")
-            }
-            if let totalPrivateRepoCount = user.totalPrivateRepoCount {
-              Text("\(totalPrivateRepoCount)")
-            }
-          }
-        } icon: {
-          Image(systemName: "book.closed")
-        }
-      }
+      repositoryNavigation
+        .listRow()
     }
     #if os(macOS)
     .listStyle(.inset)
     #else
-    .listStyle(.insetGrouped)
+    .listStyle(.plain)
     #endif
   }
 }

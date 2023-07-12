@@ -61,10 +61,8 @@ struct RepositoryCell: View {
   }
 }
 
-struct RepositoryCell_Preview: PreviewProvider {
-  static var previews: some View {
-    List {
-      RepositoryCell(repository: .sample)
-    }
+#Preview {
+  List {
+    RepositoryCell(repository: .sample)
   }
 }
