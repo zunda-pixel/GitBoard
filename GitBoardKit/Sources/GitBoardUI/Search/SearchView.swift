@@ -14,11 +14,11 @@ struct SearchView: View {
     NavigationStack(path: $router.items) {
       List {
         NavigationLink(item: .searchUsers(query: query)) {
-          Label("Search Users", systemImage: "figure.pilates")
+          Label("Search Users", systemImage: "person.2")
         }
         
         NavigationLink(item: .searchRepositories(query: query)) {
-          Label("Search Repositories", systemImage: "figure.pilates")
+          Label("Search Repositories", systemImage: "book.pages")
         }
       }
       .searchable(text: $query, prompt: "Search GitHub")
