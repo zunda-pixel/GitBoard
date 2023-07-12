@@ -6,17 +6,23 @@ import SwiftUI
 import GitHubKit
 
 struct RepositoryDetailView: View {
+  @Environment(NavigationRouter.self) var router
+  
   let repository: Repository
   
   var repositoryView: some View {
     VStack(alignment: .leading, spacing: 5) {
       HStack(alignment: .center, spacing: 10) {
         UserProfileImage(avatarURL: repository.owner.avatarURL, type: repository.owner.type)
-          .frame(width: 50, height: 50)
-        
+          .frame(width: 30, height: 30)
+
         Text(repository.owner.userID)
       }
       .foregroundStyle(.secondary)
+      .contentShape(.rect)
+      .onTapGesture {
+        router.items.append(.userDetail(user: repository.owner))
+      }
       
       Text(repository.name)
         .font(.largeTitle)
@@ -108,4 +114,5 @@ struct RepositoryDetailView: View {
   NavigationStack {
     RepositoryDetailView(repository: .sample)
   }
+  .environment(NavigationRouter())
 }
