@@ -8,8 +8,11 @@ import GitHubKit
 
 public struct ContentView: View {
   @AppStorage(UserDefaults.UserDefaultsKey.currentUserID.rawValue, store: .shared) var currentUserID: Int?
+  @State var errorHandle = ErrorHandle()
   @State var splitMode: NavigationStyle = .tab
+  @State var isTap = false
   @State var selectedTab: TabItem = .search
+  
   var bindingSelectedTab: Binding<TabItem?> {
     .init {
       selectedTab
@@ -44,7 +47,7 @@ public struct ContentView: View {
   }
   
   @ViewBuilder
-  func content() -> some View {
+  var contentView:  some View {
     switch splitMode {
     case .split:
       NavigationSplitView {
@@ -62,11 +65,68 @@ public struct ContentView: View {
     }
   }
   
+  @ViewBuilder
+  var loginView: some View {
+    VStack {
+      Spacer()
+      
+      Image(systemName: "cat.circle.fill")
+        .resizable()
+        .frame(maxWidth: 100, maxHeight: 100)
+        .bold()
+        .foregroundStyle(.background, .foreground)
+        .scaledToFit()
+        .padding(20)
+        .rotation3DEffect(
+          .degrees(isTap ? 360 : 180),
+          axis: (x: 0.0, y: 1.0, z: 0.0)
+        )
+        .animation(.smooth(duration: 1), value: isTap)
+        .onTapGesture {
+          isTap.toggle()
+        }
+      
+      Spacer()
+      
+      LoginView(currentUserID: $currentUserID) {
+        Text("Sign in to GitHub")
+          .padding(20)
+          .frame(maxWidth: 250)
+          .bold()
+          .foregroundStyle(.background)
+          .background {
+            Capsule()
+          }
+      }
+      
+      Spacer()
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+  }
+  
+  @ViewBuilder
+  var loginOrContent: some View {
+    if currentUserID != nil {
+      contentView
+    } else {
+      loginView
+    }
+  }
+  
   public var body: some View {
-    content()
+    loginOrContent
       .defaultStyle()
       .font(.callout)
       .handlesExternalEvents(preferring: ["gitboard"], allowing: [])
+      .toastAlert(
+        item: $errorHandle.error,
+        position: .top,
+        animation: .spring,
+        duration: .seconds(2)
+      ) { error in
+        ErrorView(error: error.error)
+      }
+      .environment(errorHandle)
   }
 }
 

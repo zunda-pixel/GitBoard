@@ -7,10 +7,17 @@ import GitBoardData
 import KeychainSwift
 import GitHubKit
 
-struct LoginView: View {
+struct LoginView<Content: View>: View {
   @Environment(\.openURL) var openURL
   @Environment(ErrorHandle.self) var errorHandle
   @Binding var currentUserID: User.ID?
+  let label: Content
+  
+  init(currentUserID: Binding<User.ID?>, @ViewBuilder label: @escaping () -> Content) {
+    self._currentUserID = currentUserID
+    self.label = label()
+  }
+  
   
   func accessToken(code: String) async throws -> String {
     let oauth = OAuth(
@@ -38,9 +45,11 @@ struct LoginView: View {
   }
   
   var body: some View {
-    Button("Login") {
+    Button {
       let url = OAuthRequest(clientID: Env.clientID, scopes: Scope.allCases).authorizingURL()
       openURL(url)
+    } label: {
+      label
     }
     .onOpenURL { url in
       Task {

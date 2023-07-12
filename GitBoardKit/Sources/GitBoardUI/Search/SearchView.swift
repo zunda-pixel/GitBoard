@@ -7,21 +7,15 @@ import ToastView
 
 struct SearchView: View {
   @Bindable var router = NavigationRouter()
-  @State var errorHandle = ErrorHandle()
   @State var query = ""
+  @State var isPresentedKeyboard = false
   
   var body: some View {
     NavigationStack(path: $router.items) {
       List {
-        NavigationLink(item: .searchUsers(query: query)) {
-          Label("Search Users", systemImage: "person.2")
-        }
-        
-        NavigationLink(item: .searchRepositories(query: query)) {
-          Label("Search Repositories", systemImage: "book.pages")
-        }
+        Text("BODY")
       }
-      .searchable(text: $query, prompt: "Search GitHub")
+      .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
       #if os(macOS)
       .listStyle(.bordered)
       #else
@@ -29,17 +23,36 @@ struct SearchView: View {
       #endif
       .navigationDestination()
       .navigationTitle("Search")
-    }
-    .toastAlert(
-      item: $errorHandle.error,
-      position: .top,
-      animation: .spring,
-      duration: .seconds(2)
-    ) { error in
-      ErrorView(error: error.error)
+      .overlay {
+        if isPresentedKeyboard {
+          if query.trimmingCharacters(in: .whitespaces).isEmpty {
+            VStack(alignment: .center, spacing: 40) {
+              Text("Find your stuff.")
+                .bold()
+              
+              Text("Search all of GitHub for People, Repositories, Organizations, Issues, and Pull Requests.")
+                .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .background(.background)
+          } else {
+            List {
+              let query = query.trimmingCharacters(in: .whitespaces)
+              
+              NavigationLink(item: .searchUsers(query: query)) {
+                Label("Search Users", systemImage: "person.2")
+              }
+              
+              NavigationLink(item: .searchRepositories(query: query)) {
+                Label("Search Repositories", systemImage: "book.pages")
+              }
+            }
+            .listStyle(.insetGrouped)
+          }
+        }
+      }
     }
     .environment(router)
-    .environment(errorHandle)
   }
 }
 
