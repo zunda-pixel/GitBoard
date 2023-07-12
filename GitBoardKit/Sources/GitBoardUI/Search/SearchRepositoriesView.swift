@@ -31,6 +31,7 @@ struct SearchRepositoriesView: View {
           }
       }
     }
+    .listStyle(.inset)
     .overlay {
       if repositories.isEmpty && !query.isEmpty {
         ContentUnavailableView.search(text: query)
@@ -45,3 +46,10 @@ struct SearchRepositoriesView: View {
   }
 }
 
+#Preview {
+  NavigationStack {
+    SearchRepositoriesView()
+  }
+    .environment(ErrorHandle())
+    .environment(NavigationRouter())
+}

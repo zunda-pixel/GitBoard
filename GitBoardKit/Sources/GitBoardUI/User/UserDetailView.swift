@@ -11,7 +11,7 @@ struct UserDetailView: View {
   var userProfileAndName: some View {
     HStack(alignment: .center, spacing: 10) {
       UserProfileImage(avatarURL: user.avatarURL, type: user.type)
-        .frame(width: 80, height: 80)
+        .frame(width: 50, height: 50)
       VStack(alignment: .leading, spacing: 0) {
         if let userName = user.userName {
           Text(userName)
@@ -24,7 +24,7 @@ struct UserDetailView: View {
   }
   
   var userProfile: some View {
-    VStack(alignment: .center, spacing: 0) {
+    VStack(alignment: .leading, spacing: 0) {
       userProfileAndName
       
       HStack(alignment: .center, spacing: 20) {
@@ -94,15 +94,18 @@ struct UserDetailView: View {
   var body: some View {
     List {
       userView
+        .padding(10)
         .listRow()
-      
-      repositoryNavigation
-        .listRow()
+        
+      Section {
+        repositoryNavigation
+      }
     }
+    .environment(\.defaultMinListRowHeight, 0)
     #if os(macOS)
     .listStyle(.inset)
     #else
-    .listStyle(.plain)
+    .listStyle(.insetGrouped)
     #endif
   }
 }
