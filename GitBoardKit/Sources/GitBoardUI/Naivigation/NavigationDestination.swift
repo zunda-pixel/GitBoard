@@ -8,12 +8,12 @@ extension View {
   func navigationDestination() -> some View {
     self.navigationDestination(for: NavigationRouter.Item.self) { item in
       switch item {
-      case .searchUsers:
-        SearchUsersView()
+      case .searchUsers(query: let query):
+        SearchUsersView(query: query)
           .navigationTitle("Search User")
           .navigationBarTitleDisplayMode()
-      case .searchRepositories:
-        SearchRepositoriesView()
+      case .searchRepositories(query: let query):
+        SearchRepositoriesView(query: query)
           .navigationTitle("Search Repository")
           .navigationBarTitleDisplayMode()
       case .repositories(userID: let userID):

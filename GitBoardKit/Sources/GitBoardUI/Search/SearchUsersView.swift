@@ -9,7 +9,7 @@ import Algorithms
 struct SearchUsersView: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
-  @State var query: String = ""
+  let query: String
   @State var users: [User] = []
   
   func searchUsers() async {
@@ -36,15 +36,15 @@ struct SearchUsersView: View {
         ContentUnavailableView.search(text: query)
       }
     }
-    .searchable(text: $query)
-    .onSubmit(of: .search) {
-      Task {
-        await searchUsers()
-      }
+    .task {
+      await searchUsers()
+    }
+    .refreshable {
+      await searchUsers()
     }
   }
 }
 
 #Preview {
-  SearchUsersView()
+  SearchUsersView(query: "apple")
 }

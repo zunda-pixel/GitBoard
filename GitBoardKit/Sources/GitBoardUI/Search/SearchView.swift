@@ -8,18 +8,20 @@ import ToastView
 struct SearchView: View {
   @Bindable var router = NavigationRouter()
   @State var errorHandle = ErrorHandle()
+  @State var query = ""
   
   var body: some View {
     NavigationStack(path: $router.items) {
       List {
-        NavigationLink(item: .searchUsers) {
+        NavigationLink(item: .searchUsers(query: query)) {
           Label("Search Users", systemImage: "figure.pilates")
         }
         
-        NavigationLink(item: .searchRepositories) {
+        NavigationLink(item: .searchRepositories(query: query)) {
           Label("Search Repositories", systemImage: "figure.pilates")
         }
       }
+      .searchable(text: $query, prompt: "Search GitHub")
       #if os(macOS)
       .listStyle(.bordered)
       #else

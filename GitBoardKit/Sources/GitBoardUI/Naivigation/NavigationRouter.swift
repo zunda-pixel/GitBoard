@@ -11,8 +11,8 @@ final class NavigationRouter {
   var items: [Item] = []
   
   enum Item: Hashable {
-    case searchUsers
-    case searchRepositories
+    case searchUsers(query: String)
+    case searchRepositories(query: String)
     case userDetail(user: User)
     case repositories(userID: String)
     case repositoryDetail(repository: Repository)

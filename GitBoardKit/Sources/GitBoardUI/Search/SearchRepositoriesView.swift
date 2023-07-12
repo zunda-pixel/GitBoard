@@ -9,7 +9,7 @@ struct SearchRepositoriesView: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
   
-  @State var query = ""
+  let query: String
   @State var repositories: [Repository] = []
   
   func searchRepositories() async {
@@ -37,18 +37,18 @@ struct SearchRepositoriesView: View {
         ContentUnavailableView.search(text: query)
       }
     }
-    .searchable(text: $query)
-    .onSubmit(of: .search) {
-      Task {
-        await searchRepositories()
-      }
+    .task {
+      await searchRepositories()
+    }
+    .refreshable {
+      await searchRepositories()
     }
   }
 }
 
 #Preview {
   NavigationStack {
-    SearchRepositoriesView()
+    SearchRepositoriesView(query: "swift")
   }
     .environment(ErrorHandle())
     .environment(NavigationRouter())
