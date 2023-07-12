@@ -16,8 +16,7 @@ struct IssuesView: View {
   var issues: [Issue] {
     self._issues.lazy
       .uniqued(keyPath: \.id)
-      .sorted(using: KeyPathComparator(\.createdAt))
-      .reversed()
+      .sorted(using: KeyPathComparator(\.title, order: .reverse))
   }
   @State var page = 1
   
@@ -26,7 +25,7 @@ struct IssuesView: View {
     page += 1
     
     do {
-      var newIssues = try await GitHubKit().issues(
+      let newIssues = try await GitHubKit().issues(
         ownerID: ownerID,
         repositoryName: repository.name,
         state: .all,

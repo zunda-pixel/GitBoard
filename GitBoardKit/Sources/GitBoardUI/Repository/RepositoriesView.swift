@@ -14,8 +14,7 @@ struct RepositoriesView: View {
   var repositories: [Repository] {
     self._repositories.lazy
       .uniqued(keyPath: \.id)
-      .sorted(using: KeyPathComparator(\.pushedAt))
-      .reversed()
+      .sorted(using: KeyPathComparator(\.pushedAt, order: .reverse))
   }
   
   let userID: String

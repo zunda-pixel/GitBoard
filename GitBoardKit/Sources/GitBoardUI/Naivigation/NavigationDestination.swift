@@ -30,7 +30,7 @@ extension View {
           .navigationBarTitleDisplayMode()
       case .issue(ownerID: let ownerID, repository: let repository):
         IssuesView(ownerID: ownerID, repository: repository)
-          .navigationTitle("Issues \(ownerID)/\(repository.name)")
+          .navigationTitle("Issues")
           .navigationBarTitleDisplayMode()
       case .issueDetail(issue: let issue, repository: let repository):
         IssueDetailView(issue: issue, repository: repository)
