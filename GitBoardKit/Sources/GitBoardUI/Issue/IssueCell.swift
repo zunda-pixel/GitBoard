@@ -32,6 +32,7 @@ struct IssueCell: View {
       VStack(alignment: .leading, spacing: 5)  {
         Text(issue.title)
           .bold()
+        
         FlowLayout(alignment: .leading, spacing: 5) {
           ForEach(issue.labels) { label in
             IssueLabel(label: label)

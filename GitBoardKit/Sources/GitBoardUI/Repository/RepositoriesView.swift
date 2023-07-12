@@ -8,44 +8,48 @@ import GitHubKit
 struct RepositoriesView: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
-  @State var loadPage = 1
-  @State var repositories: [Repository] = []
+  @State var page = 1
+  @State var _repositories: [Repository] = []
+  
+  var repositories: [Repository] {
+    self._repositories.lazy
+      .uniqued(keyPath: \.id)
+      .sorted(using: KeyPathComparator(\.pushedAt))
+      .reversed()
+  }
   
   let userID: String
   
   func populateMoreRepositories(repositoryID: Repository.ID) async {
     guard repositoryID == repositories.last?.id else { return }
-    loadPage += 1
+    page += 1
     do {
-      var newRepositories = try await GitHubKit().repositories(
+      let newRepositories = try await GitHubKit().repositories(
         userID: userID,
         type: .all,
         sort: .pushed,
         direction: .desc,
         perPage: 30,
-        page: loadPage
+        page: page
       )
       
-      newRepositories.append(contentsOf: repositories)
-      
-      self.repositories = newRepositories.lazy
-        .uniqued(keyPath: \.id)
-        .sorted(using: KeyPathComparator(\.pushedAt))
-        .reversed()
+      _repositories.append(contentsOf: newRepositories)
     } catch {
       errorHandle.error = .init(error: error)
     }
   }
   
   func populateRepositories() async {
+    page = 1
+    
     do {
-      repositories = try await GitHubKit().repositories(
+      _repositories = try await GitHubKit().repositories(
         userID: userID,
         type: .all,
         sort: .pushed,
         direction: .desc,
         perPage: 30,
-        page: 1
+        page: page
       )
     } catch {
       errorHandle.error = .init(error: error)
@@ -56,9 +60,7 @@ struct RepositoriesView: View {
     List {
       ForEach(repositories) { repository in
         RepositoryCell(repository: repository)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .contentShape(.rect)
-          .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+          .listRow()
           .task {
             await populateMoreRepositories(repositoryID: repository.id)
           }

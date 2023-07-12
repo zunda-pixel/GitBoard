@@ -25,6 +25,7 @@ struct SearchUsersView: View {
     List {
       ForEach(users) { user in
         UserCell(user: user)
+          .listRow()
           .onTapGesture {
             router.items.append(.userDetail(user: user))
           }

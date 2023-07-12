@@ -28,9 +28,13 @@ extension View {
         RepositoryDetailView(repository: repository)
           .navigationTitle(repository.name)
           .navigationBarTitleDisplayMode()
-      case .issue(ownerID: let ownerID, repositoryName: let repositoryName):
-        IssuesView(ownerID: ownerID, repositoryName: repositoryName)
-          .navigationTitle("Issues")
+      case .issue(ownerID: let ownerID, repository: let repository):
+        IssuesView(ownerID: ownerID, repository: repository)
+          .navigationTitle("Issues \(ownerID)/\(repository.name)")
+          .navigationBarTitleDisplayMode()
+      case .issueDetail(issue: let issue, repository: let repository):
+        IssueDetailView(issue: issue, repository: repository)
+          .navigationTitle("Issue #\(issue.number)")
           .navigationBarTitleDisplayMode()
       case .pullRequests(ownerID: let ownerID, repositoryName: let repositoryName):
         PullRequestsView(ownerID: ownerID, repositoryName: repositoryName)

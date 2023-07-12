@@ -7,7 +7,8 @@ import GitHubKit
 
 struct SearchRepositoriesView: View {
   @Environment(ErrorHandle.self) var errorHandle
-
+  @Environment(NavigationRouter.self) var router
+  
   @State var query = ""
   @State var repositories: [Repository] = []
   
@@ -24,6 +25,10 @@ struct SearchRepositoriesView: View {
     List {
       ForEach(repositories) { repository in
         RepositoryCell(repository: repository)
+          .listRow()
+          .onTapGesture {
+            router.items.append(.repositoryDetail(repository: repository))
+          }
       }
     }
     .overlay {

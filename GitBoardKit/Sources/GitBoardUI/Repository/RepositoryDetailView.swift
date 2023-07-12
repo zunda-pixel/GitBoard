@@ -66,13 +66,12 @@ struct RepositoryDetailView: View {
   
   @ViewBuilder
   var links: some View {
-    NavigationLink(item: .issue(ownerID: repository.owner.userID, repositoryName: repository.name)) {
+    NavigationLink(item: .issue(ownerID: repository.owner.userID, repository: repository)) {
       label(systemImage: "dot.circle", imageColor: .green) {
         HStack(alignment: .center, spacing: 0) {
           Text("Issues")
           Spacer()
           Text("\(repository.openIssuesCount)")
-          
         }
       }
     }

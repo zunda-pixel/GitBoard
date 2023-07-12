@@ -3,12 +3,103 @@
 //
 
 import SwiftUI
+import GitHubKit
 
 struct IssuesView: View {
   let ownerID: String
-  let repositoryName: String
+  let repository: Repository
+  
+  @Environment(ErrorHandle.self) var errorHandle
+  @Environment(NavigationRouter.self) var router
+  
+  @State var _issues: [Issue] = []
+  var issues: [Issue] {
+    self._issues.lazy
+      .uniqued(keyPath: \.id)
+      .sorted(using: KeyPathComparator(\.createdAt))
+      .reversed()
+  }
+  @State var page = 1
+  
+  func populateMoreIssues(issueID: Issue.ID) async {
+    guard issueID == issues.last?.id else { return }
+    page += 1
+    
+    do {
+      var newIssues = try await GitHubKit().issues(
+        ownerID: ownerID,
+        repositoryName: repository.name,
+        state: .all,
+        sort: .created,
+        direction: .desc,
+        perPage: 30,
+        page: page
+      )
+      
+      _issues.append(contentsOf: newIssues)
+    } catch {
+      errorHandle.error = .init(error: error)
+    }
+  }
+  
+  func populateIssues() async {
+    page = 1
+    
+    do {
+      _issues = try await GitHubKit().issues(
+        ownerID: ownerID,
+        repositoryName: repository.name,
+        state: .all,
+        sort: .created,
+        direction: .desc,
+        perPage: 30,
+        page: page
+      )
+    } catch {
+      errorHandle.error = .init(error: error)
+    }
+  }
   
   var body: some View {
-    Text("")
+    List {
+      ForEach(issues) { issue in
+        IssueCell(issue: issue)
+          .listRow()
+          .onTapGesture {
+            router.items.append(.issueDetail(issue: issue, repository: repository))
+          }
+          .task {
+            await populateMoreIssues(issueID: issue.id)
+          }
+      }
+    }
+    .listStyle(.inset)
+    .refreshable {
+      await populateIssues()
+    }
+    .task {
+      await populateIssues()
+    }
+  }
+}
+
+
+struct IssuesView_Preview: PreviewProvider {
+  static var previews: some View {
+    NavigationStack {
+      IssuesView(ownerID: "apple", repository: .sample)
+        .environment(ErrorHandle())
+    }
+    .frame(maxWidth: 500)
+  }
+}
+
+private extension IssueSearchState {
+  var label: String {
+    switch self {
+    case .all: "All"
+    case .closed: "Closed"
+    case .open: "Open"
+    }
   }
 }

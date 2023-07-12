@@ -80,7 +80,7 @@ private extension View {
       .gaugeStyle(.accessoryCircular)
       .tableStyle(.inset)
       .pickerStyle(.inline)
-      .labelStyle(.titleAndIcon)
+      .labelStyle(.automatic)
       .toggleStyle(.switch)
   }
 }
