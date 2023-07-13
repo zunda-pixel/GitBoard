@@ -52,6 +52,7 @@ struct IssueDetailView: View {
       
       stateLabelView
         .bold()
+        .font(.caption)
     }
   }
   

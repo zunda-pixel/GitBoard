@@ -9,16 +9,15 @@ struct IssueLabel: View {
   let label: Issue.Label
   
   var body: some View {
-    let color = Color(hex: label.color).opacity(4.0)
+    let color = Color(hex: label.color).opacity(3.0)
     Text(label.name)
-      .foregroundStyle(color)
       .padding(.horizontal, 8)
       .padding(.vertical, 2)
       .overlay {
         Capsule()
-          .stroke(color, lineWidth: 2)
+          .stroke(color, lineWidth: 1)
       }
-      .background(color.opacity(0.15))
+      .background(color.opacity(0.1))
       .clipShape(.capsule)
   }
 }
