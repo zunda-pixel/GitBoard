@@ -29,7 +29,7 @@ struct RepositoryCell: View {
     VStack(alignment: .leading, spacing: 10) {
       let profileImageSize: CGFloat = 35
       
-      HStack(alignment: .top, spacing: 10) {
+      HStack(alignment: .center, spacing: 10) {
         UserProfileImage(
           avatarURL: repository.owner.avatarURL,
           type: repository.owner.type,
