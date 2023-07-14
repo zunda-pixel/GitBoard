@@ -3,12 +3,30 @@
 //
 
 import Foundation
-import Observation
+import SwiftUI
 import GitHubKit
 
-protocol FollowersViewState: Observable {
-  var userName: String { get }
-  var followers: [User] { get }
+@Observable
+final class FollowersViewState: UsersViewState {
+  let userName: String
+  var users: [User] = []
+
+  init(userName: String) {
+    self.userName = userName
+  }
   
-  func fetchFollowers() async
+  func populateUsers() async throws {
+  }
+  
+  func populateMoreUsers(id: User.ID) async throws {
+  }
+}
+
+#Preview {
+  NavigationStack {
+    let viewState = FollowersViewState(userName: "apple")
+    UsersView(viewState: viewState)
+  }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }
