@@ -5,55 +5,23 @@
 import SwiftUI
 import GitHubKit
 
-struct IssuesView: View {
-  let ownerID: String
-  let repository: Repository
-  
+struct IssuesView<ViewState: IssuesViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
   
-  @State var _issues: [Issue] = []
-  var issues: [Issue] {
-    self._issues.lazy
-      .uniqued(keyPath: \.id)
-      .sorted(using: KeyPathComparator(\.title, order: .reverse))
-  }
-  @State var page = 1
+  @State var viewState: ViewState
   
-  func populateMoreIssues(issueID: Issue.ID) async {
-    guard issueID == issues.last?.id else { return }
-    page += 1
-    
+  func populateMore(id: Issue.ID) async {
     do {
-      let newIssues = try await GitHubKit().issues(
-        ownerID: ownerID,
-        repositoryName: repository.name,
-        state: .all,
-        sort: .created,
-        direction: .desc,
-        perPage: 30,
-        page: page
-      )
-      
-      _issues.append(contentsOf: newIssues)
+      try await viewState.populateMoreIssues(issueID: id)
     } catch {
       errorHandle.error = .init(error: error)
     }
   }
   
-  func populateIssues() async {
-    page = 1
-    
+  func populate() async {
     do {
-      _issues = try await GitHubKit().issues(
-        ownerID: ownerID,
-        repositoryName: repository.name,
-        state: .all,
-        sort: .created,
-        direction: .desc,
-        perPage: 30,
-        page: page
-      )
+      try await viewState.populateIssues()
     } catch {
       errorHandle.error = .init(error: error)
     }
@@ -61,42 +29,57 @@ struct IssuesView: View {
   
   var body: some View {
     List {
-      ForEach(issues) { issue in
+      ForEach(viewState.issues) { issue in
         IssueCell(issue: issue)
           .listRow()
           .onTapGesture {
-            router.items.append(.issueDetail(issue: issue, repository: repository))
+            router.items.append(.issueDetail(issue: issue, repository: viewState.repository))
           }
           .task {
-            await populateMoreIssues(issueID: issue.id)
+            await populateMore(id: issue.id)
           }
       }
     }
     .listStyle(.plain)
     .refreshable {
-      await populateIssues()
+      await populate()
     }
     .task {
-      await populateIssues()
+      await populate()
     }
   }
 }
 
+@Observable
+final private class TestIssuesViewState: IssuesViewState {
+  let ownerID: String
+  let repository: Repository
+  var _issues: [Issue] = []
+  
+  init(ownerID: String, repository: Repository) {
+    self.ownerID = ownerID
+    self.repository = repository
+  }
+  
+  func populateMoreIssues(issueID: Issue.ID) async throws {
+    _issues = [
+      .sample
+    ]
+  }
+  
+  func populateIssues() async throws {
+    _issues = [
+      .sample
+    ]
+  }
+}
 
 #Preview {
   NavigationStack {
-    IssuesView(ownerID: "apple", repository: .sample)
-      .environment(ErrorHandle())
+    let viewState = TestIssuesViewState(ownerID: "apple", repository: .sample)
+    IssuesView(viewState: viewState)
   }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
   .frame(maxWidth: 500)
-}
-
-private extension IssueSearchState {
-  var label: String {
-    switch self {
-    case .all: "All"
-    case .closed: "Closed"
-    case .open: "Open"
-    }
-  }
 }
