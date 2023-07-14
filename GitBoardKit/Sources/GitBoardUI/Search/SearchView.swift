@@ -16,11 +16,7 @@ struct SearchView: View {
         Text("BODY")
       }
       .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
-      #if os(macOS)
-      .listStyle(.bordered)
-      #else
-      .listStyle(.insetGrouped)
-      #endif
+      .listStyle(.plain)
       .navigationDestination()
       .navigationTitle("Search")
       .overlay {
@@ -47,7 +43,7 @@ struct SearchView: View {
                 Label("Search Repositories", systemImage: "book.pages")
               }
             }
-            .listStyle(.insetGrouped)
+            .listStyle(.grouped)
           }
         }
       }

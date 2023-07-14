@@ -72,7 +72,7 @@ struct IssuesView: View {
           }
       }
     }
-    .listStyle(.inset)
+    .listStyle(.plain)
     .refreshable {
       await populateIssues()
     }

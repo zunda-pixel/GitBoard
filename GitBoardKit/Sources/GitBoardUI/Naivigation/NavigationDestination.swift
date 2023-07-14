@@ -13,11 +13,13 @@ extension View {
           .navigationTitle("Search User")
           .navigationBarTitleDisplayMode()
       case .searchRepositories(query: let query):
-        SearchRepositoriesView(query: query)
-          .navigationTitle("Search Repository")
+        let viewState = SearchRepositoriesViewState(query: query)
+        RepositoriesView(viewState: viewState)
+          .navigationTitle("Repositories")
           .navigationBarTitleDisplayMode()
-      case .repositories(userID: let userID):
-        RepositoriesView(userID: userID)
+      case .userRepositories(userID: let userID):
+        let viewState = UserRepositoriesViewState(userID: userID)
+        RepositoriesView(viewState: viewState)
           .navigationTitle("Repositories")
           .navigationBarTitleDisplayMode()
       case .userDetail(user: let user):

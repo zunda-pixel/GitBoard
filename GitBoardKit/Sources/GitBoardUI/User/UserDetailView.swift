@@ -70,7 +70,7 @@ struct UserDetailView: View {
   }
   
   var repositoryNavigation: some View {
-    NavigationLink(item: .repositories(userID: user.userID)) {
+    NavigationLink(item: .userRepositories(userID: user.userID)) {
       Label {
         HStack(alignment: .center, spacing: 5) {
           Text("Repositories")
@@ -101,12 +101,7 @@ struct UserDetailView: View {
         repositoryNavigation
       }
     }
-    .environment(\.defaultMinListRowHeight, 0)
-    #if os(macOS)
-    .listStyle(.inset)
-    #else
-    .listStyle(.insetGrouped)
-    #endif
+    .listStyle(.plain)
   }
 }
 

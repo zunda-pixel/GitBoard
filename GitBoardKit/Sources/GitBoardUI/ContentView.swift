@@ -127,6 +127,7 @@ public struct ContentView: View {
         ErrorView(error: error.error)
       }
       .environment(errorHandle)
+      .environment(\.defaultMinListRowHeight, 0)
   }
 }
 
