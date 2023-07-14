@@ -21,7 +21,7 @@ final class RepositoryIssuesViewState: IssuesViewState {
     guard issueID == issues.last?.id else { return }
     page += 1
     
-    let newIssues = try await GitHubKit().issues(
+    let newIssues = try await GitHubAPI().issues(
       ownerID: ownerID,
       repositoryName: repository.name,
       state: .all,
@@ -37,7 +37,7 @@ final class RepositoryIssuesViewState: IssuesViewState {
   func populateIssues() async throws {
     page = 1
     
-    _issues = try await GitHubKit().issues(
+    _issues = try await GitHubAPI().issues(
       ownerID: ownerID,
       repositoryName: repository.name,
       state: .all,

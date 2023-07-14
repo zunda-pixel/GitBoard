@@ -34,8 +34,8 @@ struct LoginView<Content: View>: View {
     guard let code = urlComponents.queryItems?.first(where: { $0.name == "code" })?.value else { return }
     do{
       let accessToken = try await accessToken(code: code)
-      let githubKit = GitHubKit(accessToken: accessToken)
-      let me = try await githubKit.me()
+      let api = GitHubAPI(accessToken: accessToken)
+      let me = try await api.me()
       
       KeychainSwift.shared.setAccessToken(userID: me.id, accessToken: accessToken)
       currentUserID = me.id

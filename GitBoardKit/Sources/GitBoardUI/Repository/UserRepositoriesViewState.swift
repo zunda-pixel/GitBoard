@@ -19,7 +19,7 @@ final class UserRepositoriesViewState: RepositoriesViewState {
   func populateRepositories() async throws {
     page = 1
     
-    _repositories = try await GitHubKit().repositories(
+    _repositories = try await GitHubAPI().repositories(
       userID: userID,
       type: .all,
       sort: .pushed,
@@ -32,7 +32,7 @@ final class UserRepositoriesViewState: RepositoriesViewState {
   func populateMoreRepositories(id: Repository.ID) async throws {
     guard id == repositories.last?.id else { return }
     page += 1
-    let newRepositories = try await GitHubKit().repositories(
+    let newRepositories = try await GitHubAPI().repositories(
       userID: userID,
       type: .all,
       sort: .pushed,

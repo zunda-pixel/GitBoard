@@ -16,12 +16,12 @@ final class SearchUsersViewState: UsersViewState {
   }
   
   func populateUsers() async throws {
-    let response = try await GitHubKit().searchUsers(query: query)
+    let response = try await GitHubAPI().searchUsers(query: query)
     users = response.users
   }
   
   func populateMoreUsers(id: User.ID) async throws {
-    let response = try await GitHubKit().searchUsers(query: query)
+    let response = try await GitHubAPI().searchUsers(query: query)
     users = response.users
   }
 }

@@ -19,7 +19,7 @@ final class SearchRepositoriesViewState: RepositoriesViewState {
     guard id == repositories.last?.id else { return }
     page += 1
     
-    let response = try await GitHubKit().searchRepositories(
+    let response = try await GitHubAPI().searchRepositories(
       query: query,
       sort: nil,
       order: .desc,
@@ -33,7 +33,7 @@ final class SearchRepositoriesViewState: RepositoriesViewState {
   func populateRepositories() async throws {
     page = 1
     
-    let response = try await GitHubKit().searchRepositories(
+    let response = try await GitHubAPI().searchRepositories(
       query: query,
       sort: nil,
       order: .desc,
