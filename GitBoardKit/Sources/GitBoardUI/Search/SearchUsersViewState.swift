@@ -1,5 +1,5 @@
 //
-//  SearchUsersView.swift
+//  SearchUsersViewState.swift
 //
 
 import SwiftUI
@@ -10,19 +10,39 @@ import Algorithms
 final class SearchUsersViewState: UsersViewState {
   let query: String
   var users: [User] = []
+  var page: Int = 1
   
   init(query: String) {
     self.query = query
   }
   
   func populateUsers() async throws {
-    let response = try await GitHubAPI().searchUsers(query: query)
+    page = 1
+    
+    let response = try await GitHubAPI().searchUsers(
+      query: query,
+      sort: nil,
+      order: .desc,
+      perPage: 30,
+      page: page
+    )
     users = response.users
   }
   
   func populateMoreUsers(id: User.ID) async throws {
-    let response = try await GitHubAPI().searchUsers(query: query)
-    users = response.users
+    guard id == users.last?.id else { return }
+    
+    page += 1
+    
+    let response = try await GitHubAPI().searchUsers(
+      query: query,
+      sort: nil,
+      order: .desc,
+      perPage: 30,
+      page: page
+    )
+    
+    users.append(contentsOf: response.users)
   }
 }
 
