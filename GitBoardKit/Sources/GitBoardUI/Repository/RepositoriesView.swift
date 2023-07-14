@@ -29,7 +29,13 @@ struct RepositoriesView<ViewState: RepositoriesViewState>: View {
   var body: some View {
     List {
       ForEach(viewState.repositories) { repository in
-        RepositoryCell(repository: repository)
+        VStack(alignment: .leading, spacing: 0) {
+          RepositoryCell(repository: repository)
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          
+          Divider()
+        }
           .listRow()
           .task {
             await populateMore(id: repository.id)

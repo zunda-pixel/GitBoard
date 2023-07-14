@@ -9,7 +9,7 @@ import GitHubKit
 public struct ContentView: View {
   @AppStorage(UserDefaults.UserDefaultsKey.currentUserID.rawValue, store: .shared) var currentUserID: Int?
   @State var errorHandle = ErrorHandle()
-  @State var splitMode: NavigationStyle = .tab
+  @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
   @State var selectedTab: TabItem = .search
   
@@ -48,7 +48,7 @@ public struct ContentView: View {
   
   @ViewBuilder
   var contentView:  some View {
-    switch splitMode {
+    switch navigationStyle {
     case .split:
       NavigationSplitView {
         List(selection: bindingSelectedTab) {

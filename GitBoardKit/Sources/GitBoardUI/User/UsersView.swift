@@ -29,14 +29,19 @@ struct UsersView<ViewState: UsersViewState>: View {
   var body: some View {
     List {
       ForEach(viewState.users) { user in
-        UserCell(user: user)
-          .listRow()
-          .onTapGesture {
-            router.items.append(.userDetail(user: user))
-          }
-          .task {
-            await populateMore(id: user.id)
-          }
+        VStack(alignment: .leading, spacing: 0) {
+          UserCell(user: user)
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          Divider()
+        }
+        .listRow()
+        .onTapGesture {
+          router.items.append(.userDetail(user: user))
+        }
+        .task {
+          await populateMore(id: user.id)
+        }
       }
     }
     .listStyle(.plain)

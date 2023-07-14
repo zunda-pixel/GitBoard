@@ -43,7 +43,7 @@ struct SearchView: View {
                 Label("Search Repositories", systemImage: "book.pages")
               }
             }
-            .listStyle(.grouped)
+            .listStyle(.automatic)
           }
         }
       }
