@@ -20,7 +20,7 @@ struct RepositoriesView<ViewState: RepositoriesViewState>: View {
   
   func populateMore(id: Repository.ID) async {
     do {
-      try await viewState.populateMoreRepositories(repositoryID: id)
+      try await viewState.populateMoreRepositories(id: id)
     } catch {
       errorHandle.error = .init(error: error)
     }
@@ -56,7 +56,7 @@ private final class TestRepositoriesViewState: RepositoriesViewState {
   
   var _repositories: [Repository] = []
   
-  func populateMoreRepositories(repositoryID: Repository.ID) async throws {
+  func populateMoreRepositories(id: Repository.ID) async throws {
     _repositories = [
       .sample,
     ]

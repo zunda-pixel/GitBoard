@@ -6,12 +6,6 @@ import SwiftUI
 import GitHubKit
 import Algorithms
 
-protocol UsersViewState: Observable {
-  var users: [User] { get }
-  func populateUsers() async throws
-  func populateMoreUsers(id: User.ID) async throws
-}
-
 @Observable
 final class SearchUsersViewState: UsersViewState {
   let query: String

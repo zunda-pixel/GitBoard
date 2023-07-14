@@ -10,7 +10,7 @@ protocol RepositoriesViewState: Observable {
   var repositories: [Repository] { get }
   var _repositories: [Repository] { get }
   
-  func populateMoreRepositories(repositoryID: Repository.ID) async throws
+  func populateMoreRepositories(id: Repository.ID) async throws
   func populateRepositories() async throws
 }
 

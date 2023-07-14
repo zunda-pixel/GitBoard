@@ -29,8 +29,8 @@ final class UserRepositoriesViewState: RepositoriesViewState {
     )
   }
   
-  func populateMoreRepositories(repositoryID: Repository.ID) async throws {
-    guard repositoryID == repositories.last?.id else { return }
+  func populateMoreRepositories(id: Repository.ID) async throws {
+    guard id == repositories.last?.id else { return }
     page += 1
     let newRepositories = try await GitHubKit().repositories(
       userID: userID,
