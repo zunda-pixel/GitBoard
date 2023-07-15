@@ -60,14 +60,13 @@ final class TestUsersViewState: UsersViewState {
   
   func populateUsers() async throws {
     users = [
-      .sample,
+      .apple,
+      .zunda
     ]
   }
   
   func populateMoreUsers(id: User.ID) async throws {
-    users = [
-      .sample,
-    ]
+    users.append(.sample)
   }
 }
 

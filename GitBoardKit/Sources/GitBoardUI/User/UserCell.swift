@@ -51,9 +51,8 @@ struct UserCell: View {
 
 #Preview {
   List {
-    let user = User.sample
     ForEach(0..<4) { _ in
-      UserCell(user: user)
+      UserCell(user: .sample)
         .listRow()
     }
   }

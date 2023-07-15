@@ -64,13 +64,13 @@ private final class TestRepositoriesViewState: RepositoriesViewState {
   
   func populateMoreRepositories(id: Repository.ID) async throws {
     _repositories = [
-      .sample,
+      .swift,
     ]
   }
   
   func populateRepositories() async throws {
     _repositories = [
-      .sample,
+      .swift,
     ]
   }
 }

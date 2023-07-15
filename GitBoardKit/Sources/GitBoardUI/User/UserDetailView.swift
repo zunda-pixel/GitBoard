@@ -107,6 +107,6 @@ struct UserDetailView: View {
 
 #Preview {
   NavigationStack {
-    UserDetailView(user: .sample)
+    UserDetailView(user: .apple)
   }
 }

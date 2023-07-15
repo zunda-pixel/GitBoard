@@ -68,20 +68,24 @@ final private class TestIssuesViewState: IssuesViewState {
   
   func populateMoreIssues(issueID: Issue.ID) async throws {
     _issues = [
-      .sample
+      .sample,
+      .sample,
+      .sample,
     ]
   }
   
   func populateIssues() async throws {
     _issues = [
-      .sample
+      .sample,
+      .sample,
+      .sample,
     ]
   }
 }
 
 #Preview {
   NavigationStack {
-    let viewState = TestIssuesViewState(ownerID: "apple", repository: .sample)
+    let viewState = TestIssuesViewState(ownerID: "apple", repository: .swift)
     IssuesView(viewState: viewState)
   }
   .environment(ErrorHandle())

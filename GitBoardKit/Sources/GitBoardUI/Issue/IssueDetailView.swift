@@ -67,5 +67,5 @@ struct IssueDetailView: View {
 
 
 #Preview {
-  IssueDetailView(issue: .sample, repository: .sample)
+  IssueDetailView(issue: .sample, repository: .swift)
 }

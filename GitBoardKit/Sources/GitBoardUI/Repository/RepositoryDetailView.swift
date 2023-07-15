@@ -112,7 +112,7 @@ struct RepositoryDetailView: View {
 
 #Preview {
   NavigationStack {
-    RepositoryDetailView(repository: .sample)
+    RepositoryDetailView(repository: .swift)
   }
   .environment(NavigationRouter())
 }
