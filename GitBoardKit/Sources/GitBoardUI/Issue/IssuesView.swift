@@ -30,7 +30,12 @@ struct IssuesView<ViewState: IssuesViewState>: View {
   var body: some View {
     List {
       ForEach(viewState.issues) { issue in
-        IssueCell(issue: issue)
+        VStack(alignment: .leading, spacing: 0) {
+          IssueCell(issue: issue)
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          Divider()
+        }
           .listRow()
           .onTapGesture {
             router.items.append(.issueDetail(issue: issue, repository: viewState.repository))

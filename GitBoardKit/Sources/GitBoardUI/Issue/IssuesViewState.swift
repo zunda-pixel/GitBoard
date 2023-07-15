@@ -19,6 +19,6 @@ extension IssuesViewState {
   var issues: [Issue] {
     self._issues.lazy
       .uniqued(keyPath: \.id)
-      .sorted(using: KeyPathComparator(\.title, order: .reverse))
+      .sorted(using: KeyPathComparator(\.createdAt, order: .reverse))
   }
 }
