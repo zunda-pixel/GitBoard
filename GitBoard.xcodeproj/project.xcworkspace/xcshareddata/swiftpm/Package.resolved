@@ -6,7 +6,7 @@
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
         "branch" : "develop/add-follow",
-        "revision" : "f8aef5f36cd138c0da6632a2f18367d9a17f8e60"
+        "revision" : "e0dcf35b1c671e8cb9d7495b43a0c19cd0ecb71b"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-http-types",
       "state" : {
-        "revision" : "39661f4ca82db8ad050cc060a471c8e2c542b24f",
-        "version" : "0.1.1"
+        "revision" : "6861b096b0bd0cc339b9c5d34d55c665c7490703",
+        "version" : "0.2.0"
       }
     },
     {

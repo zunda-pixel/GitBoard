@@ -82,7 +82,7 @@ struct RepositoryDetailView: View {
       }
     }
     
-    NavigationLink(item: .pullRequests(ownerID: repository.owner.userID, repositoryName: repository.name)) {
+    NavigationLink(item: .repositoryPulls(ownerID: repository.owner.userID, repositoryName: repository.name)) {
       label("Pull Requests", systemImage: "arrow.triangle.pull", imageColor: .blue)
     }
     

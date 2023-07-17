@@ -18,7 +18,7 @@ final class NavigationRouter {
     case repositoryDetail(repository: Repository)
     case issue(ownerID: String, repository: Repository)
     case issueDetail(issue: Issue, repository: Repository)
-    case pullRequests(ownerID: String, repositoryName: String)
+    case repositoryPulls(ownerID: String, repositoryName: String)
     case contributors(ownerID: String, repositoryName: String)
     case license(ownerID: String, repositoryName: String)
     case following(userID: String)
