@@ -52,6 +52,16 @@ extension View {
         LicenseView(ownerID: ownerID, repositoryName: repositoryName)
           .navigationTitle("License")
           .navigationBarTitleDisplayMode()
+      case .followers(userID: let userID):
+        let viewState = FollowersViewState(userID: userID)
+        UsersView(viewState: viewState)
+          .navigationTitle("Followers")
+          .navigationBarTitleDisplayMode()
+      case .following(userID: let userID):
+        let viewState = FollowingViewState(userID: userID)
+        UsersView(viewState: viewState)
+          .navigationTitle("Following")
+          .navigationBarTitleDisplayMode()
       }
     }
   }

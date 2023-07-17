@@ -6,6 +6,8 @@ import SwiftUI
 import GitHubKit
 
 struct UserDetailView: View {
+  @Environment(NavigationRouter.self) var router
+  
   let user: User
   
   var userProfileAndName: some View {
@@ -24,10 +26,10 @@ struct UserDetailView: View {
   }
   
   var userProfile: some View {
-    VStack(alignment: .leading, spacing: 0) {
+    VStack(alignment: .leading, spacing: 10) {
       userProfileAndName
       
-      HStack(alignment: .center, spacing: 20) {
+      HStack(alignment: .center, spacing: 10) {
         if let company = user.company {
           Label(company, systemImage: "building")
         }
@@ -35,18 +37,40 @@ struct UserDetailView: View {
         if let location = user.location {
           Label(location, systemImage: "location")
         }
+        
+        if let twitterUserName = user.twitterUserName {
+          Link(destination: URL(string: "https://twitter.com/\(twitterUserName)")!) {
+            Label("@\(twitterUserName)", systemImage: "bird")
+          }
+        }
       }
+      .lineLimit(1)
+      .labelStyle(.titleAndIcon)
       
       if let followerCount = user.followerCount,
          let followingCount = user.followingCount {
-        HStack(alignment: .center, spacing: 5) {
-          Image(systemName: "person")
-          Text("\(followerCount)").bold()
-          Text("followers")
-            .foregroundStyle(.secondary)
-          Text("\(followingCount)").bold()
-          Text("following")
-            .foregroundStyle(.secondary)
+        HStack(alignment: .center, spacing: 10) {
+          Image(systemName: "person.2")
+          
+          HStack(alignment: .center, spacing: 5) {
+            Text("\(followerCount)").bold()
+            Text("followers")
+              .foregroundStyle(.secondary)
+          }
+          .contentShape(.rect)
+          .onTapGesture {
+            router.items.append(.followers(userID: user.userID))
+          }
+          
+          HStack(alignment: .center, spacing: 5) {
+            Text("\(followingCount)").bold()
+            Text("following")
+              .foregroundStyle(.secondary)
+          }
+          .contentShape(.rect)
+          .onTapGesture {
+            router.items.append(.following(userID: user.userID))
+          }
         }
       }
     }
@@ -107,6 +131,8 @@ struct UserDetailView: View {
 
 #Preview {
   NavigationStack {
-    UserDetailView(user: .apple)
+    UserDetailView(user: .zunda)
   }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }

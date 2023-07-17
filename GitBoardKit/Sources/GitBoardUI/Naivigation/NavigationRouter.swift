@@ -21,7 +21,8 @@ final class NavigationRouter {
     case pullRequests(ownerID: String, repositoryName: String)
     case contributors(ownerID: String, repositoryName: String)
     case license(ownerID: String, repositoryName: String)
-    
+    case following(userID: String)
+    case followers(userID: String)
   }
 }
 
