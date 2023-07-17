@@ -5,8 +5,8 @@
 import SwiftUI
 import GitHubKit
 
-struct IssueLabel: View {
-  let label: Issue.Label
+struct IssueLabelView: View {
+  let label: GitHubKit.Label
   
   var body: some View {
     let color = Color(hex: label.color).opacity(3.0)
@@ -24,7 +24,7 @@ struct IssueLabel: View {
 
 #Preview {
   VStack {
-    IssueLabel(
+    IssueLabelView(
       label: .init(
         id: 323,
         nodeID: "nodeID",

@@ -322,8 +322,8 @@ extension Reaction {
   )
 }
 
-extension PullRequest {
-  static let sample = PullRequest(
+extension SimplePull {
+  static let sample = SimplePull(
     url: URL(string: "https://github.com")!,
     htmlURL: URL(string: "https://github.com")!,
     diffURL: URL(string: "https://github.com")!,
