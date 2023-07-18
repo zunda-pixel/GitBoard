@@ -322,6 +322,120 @@ extension Reaction {
   )
 }
 
+extension Label {
+  static var sample: Label {
+    Label(
+      id: (Int.min...Int.max).randomElement()!,
+      nodeID: "nodeID",
+      url: URL(string: "https://github.com")!,
+      name: "name",
+      color: "11334455",
+      isDefault: true,
+      description: "description"
+    )
+  }
+}
+
+extension Pull {
+  static var sample: Pull {
+    Pull(
+      id: (Int.min...Int.max).randomElement()!,
+      nodeID: "nodeID",
+      number: 132,
+      state: .open,
+      locked: false,
+      title: "Title",
+      user: .sample,
+      body: "body",
+      createdAt: .now,
+      updateAt: .now,
+      closedAt: .now,
+      url: URL(string: "https://github.com")!,
+      htmlURL: URL(string: "https://github.com")!,
+      diffURL: URL(string: "https://github.com")!,
+      patchURL: URL(string: "https://github.com")!,
+      issueURL: URL(string: "https://github.com")!,
+      mergedAt: .now,
+      mergeCommitSha: "mergeCommitSha",
+      assignee: .sample,
+      assignees: [.sample],
+      requestedReviewers: [.sample],
+      requestedTeams: [.sample],
+      labels: [.sample],
+      milestone: .sample,
+      isDraft: false,
+      commitsURL: URL(string: "https://github.com")!,
+      reviewCommentsURL: URL(string: "https://github.com")!,
+      reviewCommentURL: URL(string: "https://github.com")!,
+      commentsURL: URL(string: "https://github.com")!,
+      statusesURL: URL(string: "https://github.com")!,
+      head: .apple,
+      base: .apple,
+      authorAssociation: .collaborator,
+      autoMerge: .apple,
+      activeLockReason: .offTopic
+    )
+  }
+}
+
+extension Merge {
+  static let apple = Merge(
+    enabledBy: .apple,
+    method: .merge,
+    commitTitle: "title",
+    commitMessage: "message"
+  )
+}
+
+extension Branch {
+  static let apple = Branch(
+    label: "label",
+    ref: "ref",
+    sha: "sha",
+    user: .apple,
+    repo: .swift
+  )
+}
+
+extension ParentTeam {
+  static var sample: ParentTeam {
+    ParentTeam(
+      id: (Int.min...Int.max).randomElement()!,
+      nodeID: "nodeID",
+      membersURL: URL(string: "https://github.com")!,
+      name: "TeamName",
+      description: "description",
+      permission: .pull,
+      privacy: .closed,
+      notificationSetting: .enabled,
+      htmlURL: URL(string: "https://github.com")!,
+      repositoriesURL: URL(string: "https://github.com")!,
+      slug: "slug",
+      ldapDn: "ldapDn"
+    )
+  }
+}
+
+extension Team {
+  static var sample: Team {
+    Team(
+      id: (Int.min...Int.max).randomElement()!,
+      nodeID: "nodeID",
+      name: "TeamName",
+      slug: "slug",
+      description: "description",
+      privacy: .closed,
+      notificationSetting: .enabled,
+      permission: .pull,
+      url: URL(string: "https://github.com")!,
+      htmlURL: URL(string: "https://github.com")!,
+      membersURL: URL(string: "https://github.com")!,
+      repositoriesURL: URL(string: "https://github.com")!,
+      parent: .sample
+    )
+  }
+}
+
 extension SimplePull {
   static let sample = SimplePull(
     url: URL(string: "https://github.com")!,
