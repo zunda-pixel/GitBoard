@@ -31,13 +31,13 @@ struct RepositoryCell: View {
       
       HStack(alignment: .center, spacing: 10) {
         UserProfileImage(
-          avatarURL: repository.owner.avatarURL,
-          type: repository.owner.type,
+          avatarURL: repository.owner!.avatarURL,
+          type: repository.owner!.type,
           roundWidth: 2
         )
         .frame(width: profileImageSize, height: profileImageSize)
         
-        Text(repository.owner.userID)
+        Text(repository.owner!.userID)
       }
       .foregroundStyle(.secondary)
 

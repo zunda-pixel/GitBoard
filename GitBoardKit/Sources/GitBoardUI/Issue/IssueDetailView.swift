@@ -38,10 +38,10 @@ struct IssueDetailView: View {
   var header: some View {
     VStack(alignment: .leading, spacing: 5) {
       HStack(alignment: .center, spacing: 10) {
-        UserProfileImage(avatarURL: repository.owner.avatarURL, type: repository.owner.type)
+        UserProfileImage(avatarURL: repository.owner!.avatarURL, type: repository.owner!.type)
           .frame(width: 30, height: 30)
         
-        Text("\(repository.owner.userID) / \(repository.name)")
+        Text("\(repository.owner!.userID) / \(repository.name)")
         
         Text("#\(issue.number)")
           .foregroundStyle(.secondary)
