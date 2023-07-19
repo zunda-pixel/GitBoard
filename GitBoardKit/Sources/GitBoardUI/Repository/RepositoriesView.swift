@@ -2,7 +2,7 @@
 //  RepositoriesView.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct RepositoriesView<ViewState: RepositoriesViewState>: View {

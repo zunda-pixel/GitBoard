@@ -4,7 +4,7 @@
 
 import Algorithms
 import Foundation
-import GitHubKit
+import GitHubAPI
 import Observation
 
 protocol PullDetailViewState: Observable {

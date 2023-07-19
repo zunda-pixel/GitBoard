@@ -2,7 +2,7 @@
 //  CommentCell.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct CommentCell: View {
@@ -25,14 +25,14 @@ struct CommentCell: View {
         HStack(alignment: .center, spacing: 10) {
           Text(comment.user.userID)
             .bold()
-            .clipShape(.rect)
+            .contentShape(.rect)
             .onTapGesture {
               router.items.append(.userDetail(user: comment.user))
             }
 
           Text(comment.createdAt, format: .relative(presentation: .named))
             .foregroundStyle(.secondary)
-            .clipShape(.rect)
+            .contentShape(.rect)
             .onTapGesture {
               isPresentedPopOver.toggle()
             }

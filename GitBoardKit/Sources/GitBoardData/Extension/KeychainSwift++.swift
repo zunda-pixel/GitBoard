@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import GitHubKit
+import GitHubAPI
 import KeychainSwift
 
 extension KeychainSwift {

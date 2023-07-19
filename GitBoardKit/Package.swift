@@ -22,7 +22,7 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/zunda-pixel/GitHubKit", branch: "develop/add-stars"),
+    .package(url: "https://github.com/zunda-pixel/GitHubKit", branch: "develop/add-forks"),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image", .upToNextMajor(from: "2.1.1")),
     .package(url: "https://github.com/evgenyneu/keychain-swift", .upToNextMajor(from: "20.0.0")),
     .package(url: "https://github.com/zunda-pixel/ToastView", branch: "main"),
@@ -54,7 +54,7 @@ let package = Package(
     .target(
       name: "GitBoardData",
       dependencies: [
-        .product(name: "GitHubKit", package: "GitHubKit"),
+        .product(name: "GitHubAPI", package: "GitHubKit"),
       ]
     ),
   ]

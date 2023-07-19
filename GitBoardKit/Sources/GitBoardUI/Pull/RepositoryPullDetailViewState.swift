@@ -2,7 +2,7 @@
 //  RepositoryPullDetailViewState.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 @Observable
@@ -30,7 +30,7 @@ final class RepositoryPullDetailViewState: PullDetailViewState {
     _comments = newComments
   }
 
-  func populateMoreComments(id: GitHubKit.Comment.ID) async throws {
+  func populateMoreComments(id: GitHubData.Comment.ID) async throws {
     guard id == comments.last?.id else { return }
     page += 1
 

@@ -2,7 +2,7 @@
 //  NavigationRouter.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import Observation
 import SwiftUI
 
@@ -24,6 +24,8 @@ final class NavigationRouter {
     case following(userID: String)
     case followers(userID: String)
     case pullDetail(pull: Pull)
+    case stargazers(ownerID: String, repositoryName: String)
+    case forks(ownerID: String, repositoryName: String)
   }
 }
 

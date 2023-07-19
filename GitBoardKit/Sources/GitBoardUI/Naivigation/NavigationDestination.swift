@@ -70,6 +70,16 @@ extension View {
         PullDetailView(viewState: viewState)
           .navigationTitle("Pull #\(pull.number)")
           .navigationBarTitleDisplayMode()
+      case .stargazers(let ownerID, let repositoryName):
+        let viewState = StargazersViewState(ownerID: ownerID, repositoryName: repositoryName)
+        UsersView(viewState: viewState)
+          .navigationTitle("Stargazers")
+          .navigationBarTitleDisplayMode()
+      case .forks(let ownerID, let repositoryName):
+        let viewState = ForksRepositoriesViewState(ownerID: ownerID, repositoryName: repositoryName)
+        RepositoriesView(viewState: viewState)
+          .navigationTitle("Forks")
+          .navigationBarTitleDisplayMode()
       }
     }
   }

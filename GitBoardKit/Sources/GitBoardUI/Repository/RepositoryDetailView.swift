@@ -2,7 +2,7 @@
 //  RepositoryDetailView.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct RepositoryDetailView: View {
@@ -13,8 +13,11 @@ struct RepositoryDetailView: View {
   var repositoryView: some View {
     VStack(alignment: .leading, spacing: 5) {
       HStack(alignment: .center, spacing: 10) {
-        UserProfileImage(avatarURL: repository.owner!.avatarURL, type: repository.owner!.type)
-          .frame(width: 30, height: 30)
+        UserProfileImage(
+          avatarURL: repository.owner!.avatarURL,
+          type: repository.owner!.type
+        )
+        .frame(width: 30, height: 30)
 
         Text(repository.owner!.userID)
       }
@@ -40,6 +43,15 @@ struct RepositoryDetailView: View {
           Text("stars")
             .foregroundStyle(.secondary)
         }
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(
+            .stargazers(
+              ownerID: repository.owner!.userID,
+              repositoryName: repository.name
+            )
+          )
+        }
 
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "arrow.branch")
@@ -47,6 +59,15 @@ struct RepositoryDetailView: View {
           Text("\(repository.forksCount)")
           Text("forks")
             .foregroundStyle(.secondary)
+        }
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(
+            .forks(
+              ownerID: repository.owner!.userID,
+              repositoryName: repository.name
+            )
+          )
         }
       }
     }
@@ -79,7 +100,9 @@ struct RepositoryDetailView: View {
         HStack(alignment: .center, spacing: 0) {
           Text("Issues")
           Spacer()
-          Text("\(repository.openIssuesCount)")
+          if repository.openIssuesCount > 0 {
+            Text("\(repository.openIssuesCount)")
+          }
         }
       }
     }

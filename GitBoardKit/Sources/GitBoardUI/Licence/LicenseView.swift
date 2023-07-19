@@ -2,7 +2,7 @@
 //  LicenseView.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct LicenseView: View {

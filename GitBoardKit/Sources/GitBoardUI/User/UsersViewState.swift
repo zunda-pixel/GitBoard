@@ -2,7 +2,7 @@
 //  UsersViewState.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import Observation
 
 protocol UsersViewState: Observable {

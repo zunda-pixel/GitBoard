@@ -2,11 +2,11 @@
 //  LabelCell.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct LabelCell: View {
-  let label: GitHubKit.Label
+  let label: GitHubData.Label
 
   var body: some View {
     let color = Color(hex: label.color).opacity(3.0)

@@ -3,7 +3,7 @@
 //
 
 import Algorithms
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct PullDetailView<ViewState: PullDetailViewState>: View {
@@ -53,7 +53,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       HStack(alignment: .center, spacing: 0) {
         Text(head)
           .labelView(color: .blue)
-          .clipShape(.rect)
+          .contentShape(.rect)
           .onTapGesture {
             router.items.append(.repositoryDetail(repository: viewState.pull.head.repository!))
           }
@@ -63,7 +63,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
 
         Text(base)
           .labelView(color: .blue)
-          .clipShape(.rect)
+          .contentShape(.rect)
           .onTapGesture {
             router.items.append(.repositoryDetail(repository: viewState.pull.base.repository!))
           }

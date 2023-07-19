@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import GitHubKit
+import GitHubAPI
 
 extension User {
   static var sample: User {
@@ -231,7 +231,32 @@ extension Repository {
     visibility: .public,
     defaultBranch: "main",
     permissions: nil,
-    score: 312
+    roleName: .admin,
+    tempCloneToken: "tempCloneToken",
+    deleteBranchOnMerge: true,
+    subscribersCount: 100,
+    networkCount: 100,
+    codeConduct: .sample,
+    securityAnalytics: .sample
+  )
+}
+
+extension CodeConduct {
+  static let sample = CodeConduct(
+    key: "contributor_covenant",
+    name: "Contributor Covenant",
+    url: URL(string: "https://github.com")!,
+    body: "Contributor Covenant Code of Conduct",
+    htmlURL: URL(string: "https://github.com")!
+  )
+}
+
+extension SecurityAnalytics {
+  static let sample = SecurityAnalytics(
+    advancedSecurity: true,
+    dependabotSecurityUpdates: true,
+    secretScanning: true,
+    secretScanningPushProtection: true
   )
 }
 
