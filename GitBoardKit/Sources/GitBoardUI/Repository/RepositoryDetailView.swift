@@ -40,6 +40,10 @@ struct RepositoryDetailView: View {
           Text("stars")
             .foregroundStyle(.secondary)
         }
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(.stargazers(ownerID: repository.owner!.userID, repositoryName: repository.name))
+        }
 
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "arrow.branch")
