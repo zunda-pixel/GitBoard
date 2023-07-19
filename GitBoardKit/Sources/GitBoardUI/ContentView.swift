@@ -29,7 +29,9 @@ public struct ContentView: View {
   func tabContent(tab: TabItem) -> some View {
     switch tab {
     case .search:
-      SearchView()
+      SearchNavigationView()
+    case .notifications:
+      NotificationsNavigationView()
     }
   }
 
