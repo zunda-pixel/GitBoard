@@ -87,7 +87,9 @@ struct RepositoryDetailView: View {
         HStack(alignment: .center, spacing: 0) {
           Text("Issues")
           Spacer()
-          Text("\(repository.openIssuesCount)")
+          if repository.openIssuesCount > 0 {
+            Text("\(repository.openIssuesCount)")
+          }
         }
       }
     }
