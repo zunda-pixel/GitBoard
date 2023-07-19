@@ -8,7 +8,7 @@ import SwiftUI
 import ToastView
 
 public struct ContentView: View {
-  @AppStorage("currentUser", store: .shared) var currentUser: User?
+  @AppStorage(key: .currentUser, store: .shared) var currentUser: User?
   @State var errorHandle = ErrorHandle()
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
