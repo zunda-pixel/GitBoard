@@ -75,6 +75,11 @@ extension View {
         UsersView(viewState: viewState)
           .navigationTitle("Stargazers")
           .navigationBarTitleDisplayMode()
+      case .forks(ownerID: let ownerID, repositoryName: let repositoryName):
+        let viewState = ForksRepositoriesViewState(ownerID: ownerID, repositoryName: repositoryName)
+        RepositoriesView(viewState: viewState)
+          .navigationTitle("Forks")
+          .navigationBarTitleDisplayMode()
       }
     }
   }

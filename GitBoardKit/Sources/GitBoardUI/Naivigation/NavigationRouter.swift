@@ -25,6 +25,7 @@ final class NavigationRouter {
     case followers(userID: String)
     case pullDetail(pull: Pull)
     case stargazers(ownerID: String, repositoryName: String)
+    case forks(ownerID: String, repositoryName: String)
   }
 }
 

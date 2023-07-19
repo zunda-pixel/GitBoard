@@ -52,6 +52,10 @@ struct RepositoryDetailView: View {
           Text("forks")
             .foregroundStyle(.secondary)
         }
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(.forks(ownerID: repository.owner!.userID, repositoryName: repository.name))
+        }
       }
     }
   }
