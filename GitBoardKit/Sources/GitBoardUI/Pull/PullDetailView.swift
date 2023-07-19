@@ -3,7 +3,7 @@
 //
 
 import Algorithms
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct PullDetailView<ViewState: PullDetailViewState>: View {

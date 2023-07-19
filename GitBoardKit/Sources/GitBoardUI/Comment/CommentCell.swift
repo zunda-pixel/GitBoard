@@ -2,7 +2,7 @@
 //  CommentCell.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct CommentCell: View {

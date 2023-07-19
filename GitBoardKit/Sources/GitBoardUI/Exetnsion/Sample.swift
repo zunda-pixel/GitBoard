@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import GitHubKit
+import GitHubAPI
 
 extension User {
   static var sample: User {

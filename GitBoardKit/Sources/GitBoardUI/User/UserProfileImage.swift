@@ -3,7 +3,7 @@
 //
 
 import CachedAsyncImage
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct UserProfileImage: View {

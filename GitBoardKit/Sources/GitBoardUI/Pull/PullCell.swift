@@ -2,7 +2,7 @@
 //  PullCell.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct PullCell: View {

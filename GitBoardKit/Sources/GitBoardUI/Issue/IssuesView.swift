@@ -2,7 +2,7 @@
 //  IssuesView.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct IssuesView<ViewState: IssuesViewState>: View {

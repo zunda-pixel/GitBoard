@@ -2,7 +2,7 @@
 //  RepositoryIssuesViewState.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 @Observable

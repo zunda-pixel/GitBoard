@@ -2,7 +2,7 @@
 //  RepositoryDetailView.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct RepositoryDetailView: View {

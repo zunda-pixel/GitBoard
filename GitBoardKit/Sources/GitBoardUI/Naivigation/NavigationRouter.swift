@@ -2,7 +2,7 @@
 //  NavigationRouter.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import Observation
 import SwiftUI
 

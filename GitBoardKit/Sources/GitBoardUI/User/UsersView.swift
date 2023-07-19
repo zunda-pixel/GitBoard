@@ -2,7 +2,7 @@
 //  UsersView.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 struct UsersView<ViewState: UsersViewState>: View {

@@ -3,7 +3,7 @@
 //
 
 import GitBoardData
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 public struct ContentView: View {

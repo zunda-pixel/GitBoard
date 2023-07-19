@@ -2,14 +2,14 @@
 //  RepositoryPullsViewState.swift
 //
 
-import GitHubKit
+import GitHubAPI
 import SwiftUI
 
 @Observable
 final class RepositoryPullsViewState: PullsViewState {
   let ownerID: String
   let repositoryName: String
-  var _pulls: [GitHubKit.Pull] = []
+  var _pulls: [GitHubData.Pull] = []
   var page: Int = 1
 
   init(
