@@ -1,5 +1,5 @@
 //
-//  GitHubKit++.swift
+//  GitHubAPI++.swift
 //
 
 import Foundation
@@ -16,7 +16,7 @@ extension GitHubAPI {
     }
     
     let accessToken = KeychainSwift.shared.getAccessToken(userID: userID)
-    let githubKit = GitHubKit(accessToken: accessToken)
+    let githubKit = GitHubAPI(accessToken: accessToken)
     self = githubKit
   }
 }
