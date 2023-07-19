@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-        "branch" : "develop/add-stars",
-        "revision" : "71fefc228ceb859bd3ff43d058699a781adb42fb"
+        "branch" : "develop/cleanup",
+        "revision" : "b7d40a7eddaf671ba51cd9b4c9b874a748d39c69"
       }
     },
     {
