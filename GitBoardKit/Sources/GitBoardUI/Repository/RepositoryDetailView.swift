@@ -13,8 +13,11 @@ struct RepositoryDetailView: View {
   var repositoryView: some View {
     VStack(alignment: .leading, spacing: 5) {
       HStack(alignment: .center, spacing: 10) {
-        UserProfileImage(avatarURL: repository.owner!.avatarURL, type: repository.owner!.type)
-          .frame(width: 30, height: 30)
+        UserProfileImage(
+          avatarURL: repository.owner!.avatarURL,
+          type: repository.owner!.type
+        )
+        .frame(width: 30, height: 30)
 
         Text(repository.owner!.userID)
       }
@@ -42,7 +45,12 @@ struct RepositoryDetailView: View {
         }
         .contentShape(.rect)
         .onTapGesture {
-          router.items.append(.stargazers(ownerID: repository.owner!.userID, repositoryName: repository.name))
+          router.items.append(
+            .stargazers(
+              ownerID: repository.owner!.userID,
+              repositoryName: repository.name
+            )
+          )
         }
 
         HStack(alignment: .center, spacing: 5) {
@@ -54,7 +62,12 @@ struct RepositoryDetailView: View {
         }
         .contentShape(.rect)
         .onTapGesture {
-          router.items.append(.forks(ownerID: repository.owner!.userID, repositoryName: repository.name))
+          router.items.append(
+            .forks(
+              ownerID: repository.owner!.userID,
+              repositoryName: repository.name
+            )
+          )
         }
       }
     }

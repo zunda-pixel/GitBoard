@@ -3,8 +3,8 @@
 //
 
 import Foundation
-import Observation
 import GitHubAPI
+import Observation
 
 @Observable
 final class ForksRepositoriesViewState: RepositoriesViewState {
@@ -12,7 +12,7 @@ final class ForksRepositoriesViewState: RepositoriesViewState {
   let repositoryName: String
   var _repositories: [GitHubData.Repository] = []
   var page: Int = 1
-  
+
   init(
     ownerID: String,
     repositoryName: String
@@ -20,7 +20,7 @@ final class ForksRepositoriesViewState: RepositoriesViewState {
     self.ownerID = ownerID
     self.repositoryName = repositoryName
   }
-  
+
   func populateRepositories() async throws {
     page = 1
     let newRepositories = try await GitHubAPI().forks(
@@ -30,14 +30,14 @@ final class ForksRepositoriesViewState: RepositoriesViewState {
       perPage: 30,
       page: page
     )
-    
+
     _repositories = newRepositories
   }
-  
+
   func populateMoreRepositories(id: GitHubData.Repository.ID) async throws {
     guard id == repositories.last?.id else { return }
     page += 1
-    
+
     let newRepositories = try await GitHubAPI().forks(
       ownerID: ownerID,
       repositoryName: repositoryName,
@@ -45,7 +45,7 @@ final class ForksRepositoriesViewState: RepositoriesViewState {
       perPage: 30,
       page: page
     )
-    
+
     _repositories.append(contentsOf: newRepositories)
   }
 }
