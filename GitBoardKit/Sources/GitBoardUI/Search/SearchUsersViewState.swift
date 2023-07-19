@@ -2,23 +2,23 @@
 //  SearchUsersViewState.swift
 //
 
-import SwiftUI
-import GitHubKit
 import Algorithms
+import GitHubKit
+import SwiftUI
 
 @Observable
 final class SearchUsersViewState: UsersViewState {
   let query: String
   var users: [User] = []
   var page: Int = 1
-  
+
   init(query: String) {
     self.query = query
   }
-  
+
   func populateUsers() async throws {
     page = 1
-    
+
     let response = try await GitHubAPI().searchUsers(
       query: query,
       sort: nil,
@@ -28,12 +28,12 @@ final class SearchUsersViewState: UsersViewState {
     )
     users = response.users
   }
-  
+
   func populateMoreUsers(id: User.ID) async throws {
     guard id == users.last?.id else { return }
-    
+
     page += 1
-    
+
     let response = try await GitHubAPI().searchUsers(
       query: query,
       sort: nil,
@@ -41,12 +41,12 @@ final class SearchUsersViewState: UsersViewState {
       perPage: 30,
       page: page
     )
-    
+
     users.append(contentsOf: response.users)
   }
 }
 
-#Preview {
+#Preview{
   NavigationStack {
     let viewState = SearchUsersViewState(query: "apple")
     UsersView(viewState: viewState)

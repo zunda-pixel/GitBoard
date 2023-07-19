@@ -2,14 +2,14 @@
 //  UsersView.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 struct UsersView<ViewState: UsersViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
   @State var viewState: ViewState
-  
+
   func populate() async {
     do {
       try await viewState.populateUsers()
@@ -17,7 +17,7 @@ struct UsersView<ViewState: UsersViewState>: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   func populateMore(id: User.ID) async {
     do {
       try await viewState.populateMoreUsers(id: id)
@@ -25,7 +25,7 @@ struct UsersView<ViewState: UsersViewState>: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   var body: some View {
     List {
       ForEach(viewState.users) { user in
@@ -57,20 +57,20 @@ struct UsersView<ViewState: UsersViewState>: View {
 @Observable
 final class TestUsersViewState: UsersViewState {
   var users: [User] = []
-  
+
   func populateUsers() async throws {
     users = [
       .apple,
-      .zunda
+      .zunda,
     ]
   }
-  
+
   func populateMoreUsers(id: User.ID) async throws {
     users.append(.sample)
   }
 }
 
-#Preview {
+#Preview{
   NavigationStack {
     let viewState = TestUsersViewState()
     UsersView(viewState: viewState)

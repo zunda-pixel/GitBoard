@@ -2,15 +2,15 @@
 //  PullsViewState.swift
 //
 
-import Foundation
-import Observation
 import Algorithms
+import Foundation
 import GitHubKit
+import Observation
 
 protocol PullsViewState: Observable {
   var pulls: [Pull] { get }
   var _pulls: [Pull] { get }
-  
+
   func populatePulls() async throws
   func populateMorePulls(id: Pull.ID) async throws
 }

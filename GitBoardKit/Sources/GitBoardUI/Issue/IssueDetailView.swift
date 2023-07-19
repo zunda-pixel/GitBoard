@@ -2,16 +2,16 @@
 //  IssueDetailView.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 struct IssueDetailView: View {
   let issue: Issue
   let repository: Repository
-  
+
   var stateLabel: (String, String, Color) {
     let hasPullRequest = issue.pullRequest != nil
-    
+
     switch issue.state {
     case .open:
       return ("Open", "dot.circle", .green)
@@ -23,7 +23,7 @@ struct IssueDetailView: View {
       }
     }
   }
-  
+
   @ViewBuilder
   var stateLabelView: some View {
     Label(stateLabel.0, systemImage: stateLabel.1)
@@ -34,28 +34,28 @@ struct IssueDetailView: View {
           .foregroundStyle(stateLabel.2.opacity(0.1))
       }
   }
-  
+
   var header: some View {
     VStack(alignment: .leading, spacing: 5) {
       HStack(alignment: .center, spacing: 10) {
         UserProfileImage(avatarURL: repository.owner!.avatarURL, type: repository.owner!.type)
           .frame(width: 30, height: 30)
-        
+
         Text("\(repository.owner!.userID) / \(repository.name)")
-        
+
         Text("#\(issue.number)")
           .foregroundStyle(.secondary)
       }
-      
+
       Text(issue.title)
         .bold()
-      
+
       stateLabelView
         .bold()
         .font(.caption)
     }
   }
-  
+
   var body: some View {
     List {
       header
@@ -65,7 +65,6 @@ struct IssueDetailView: View {
   }
 }
 
-
-#Preview {
+#Preview{
   IssueDetailView(issue: .sample, repository: .swift)
 }

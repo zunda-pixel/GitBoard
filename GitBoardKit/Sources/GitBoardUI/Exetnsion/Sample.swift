@@ -54,7 +54,7 @@ extension User {
       )
     )
   }
-  
+
   static let apple = User(
     id: 11111,
     userID: "apple",
@@ -101,7 +101,7 @@ extension User {
       privateRepoCount: 4234
     )
   )
-  
+
   static let zunda = User(
     id: 1234,
     userID: "zunda-pixel",
@@ -149,7 +149,6 @@ extension User {
     )
   )
 }
-
 
 extension Repository {
   static let swift = Repository(
@@ -227,7 +226,7 @@ extension Repository {
     isTemplate: false,
     webCommitSignOffRequired: false,
     topics: [
-      "Apple", "swift"
+      "Apple", "swift",
     ],
     visibility: .public,
     defaultBranch: "main",
@@ -254,12 +253,26 @@ extension Issue {
       eventsURL: URL(string: "https://github.com")!,
       htmlURL: URL(string: "https://github.com")!,
       labels: [
-        .init(id: 111, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "bug", color: "ff11bb", isDefault: true, description: "description"),
-        .init(id: 222, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "existentials", color: "2211bb44", isDefault: true, description: "description"),
-        .init(id: 333, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "existential member accesses", color: "9211bb44", isDefault: true, description: "description"),
-        .init(id: 444, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "inout parameters", color: "22114b44", isDefault: true, description: "description"),
-        .init(id: 555, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "variadic generics", color: "2499bb94", isDefault: true, description: "description"),
-        .init(id: 666, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "multi-statement closures", color: "9911bb44", isDefault: true, description: "description"),
+        .init(
+          id: 111, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "bug",
+          color: "ff11bb", isDefault: true, description: "description"),
+        .init(
+          id: 222, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "existentials",
+          color: "2211bb44", isDefault: true, description: "description"),
+        .init(
+          id: 333, nodeID: "nodeID", url: URL(string: "https://github.com")!,
+          name: "existential member accesses", color: "9211bb44", isDefault: true,
+          description: "description"),
+        .init(
+          id: 444, nodeID: "nodeID", url: URL(string: "https://github.com")!,
+          name: "inout parameters", color: "22114b44", isDefault: true, description: "description"),
+        .init(
+          id: 555, nodeID: "nodeID", url: URL(string: "https://github.com")!,
+          name: "variadic generics", color: "2499bb94", isDefault: true, description: "description"),
+        .init(
+          id: 666, nodeID: "nodeID", url: URL(string: "https://github.com")!,
+          name: "multi-statement closures", color: "9911bb44", isDefault: true,
+          description: "description"),
       ],
       state: .closed,
       locked: false,
@@ -467,7 +480,6 @@ extension SimplePull {
   )
 }
 
-
 extension Milestone {
   static var sample: Milestone {
     Milestone(
@@ -490,4 +502,3 @@ extension Milestone {
     )
   }
 }
-

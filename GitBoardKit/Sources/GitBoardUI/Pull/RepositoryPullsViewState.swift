@@ -2,8 +2,8 @@
 //  RepositoryPullsViewState.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 @Observable
 final class RepositoryPullsViewState: PullsViewState {
@@ -11,7 +11,7 @@ final class RepositoryPullsViewState: PullsViewState {
   let repositoryName: String
   var _pulls: [GitHubKit.Pull] = []
   var page: Int = 1
-  
+
   init(
     ownerID: String,
     repositoryName: String
@@ -19,10 +19,10 @@ final class RepositoryPullsViewState: PullsViewState {
     self.ownerID = ownerID
     self.repositoryName = repositoryName
   }
-  
+
   func populatePulls() async throws {
     page = 1
-    
+
     let newPulls = try await GitHubAPI().pulls(
       ownerID: ownerID,
       repositoryName: repositoryName,
@@ -34,14 +34,14 @@ final class RepositoryPullsViewState: PullsViewState {
       perPage: 30,
       page: page
     )
-    
+
     _pulls = newPulls
   }
-  
+
   func populateMorePulls(id: Pull.ID) async throws {
     guard id == pulls.last?.id else { return }
     page += 1
-    
+
     let newPulls = try await GitHubAPI().pulls(
       ownerID: ownerID,
       repositoryName: repositoryName,
@@ -53,7 +53,7 @@ final class RepositoryPullsViewState: PullsViewState {
       perPage: 30,
       page: page
     )
-    
+
     _pulls.append(contentsOf: newPulls)
   }
 }

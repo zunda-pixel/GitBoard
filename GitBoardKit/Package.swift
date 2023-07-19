@@ -27,6 +27,7 @@ let package = Package(
     .package(url: "https://github.com/evgenyneu/keychain-swift", .upToNextMajor(from: "20.0.0")),
     .package(url: "https://github.com/zunda-pixel/ToastView", branch: "main"),
     .package(url: "https://github.com/apple/swift-algorithms", .upToNextMajor(from: "1.0.0")),
+    .package(url: "https://github.com/apple/swift-format", .upToNextMajor(from: "508.0.1")),
   ],
   targets: [
     .target(

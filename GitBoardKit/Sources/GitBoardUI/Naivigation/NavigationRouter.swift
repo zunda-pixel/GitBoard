@@ -2,14 +2,14 @@
 //  NavigationRouter.swift
 //
 
+import GitHubKit
 import Observation
 import SwiftUI
-import GitHubKit
 
 @Observable
 final class NavigationRouter {
   var items: [Item] = []
-  
+
   enum Item: Hashable {
     case searchUsers(query: String)
     case searchRepositories(query: String)

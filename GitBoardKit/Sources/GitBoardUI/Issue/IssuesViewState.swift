@@ -2,9 +2,9 @@
 //  IssuesViewState.swift
 //
 
-import Observation
-import GitHubKit
 import Foundation
+import GitHubKit
+import Observation
 
 protocol IssuesViewState: Observable {
   var ownerID: String { get }

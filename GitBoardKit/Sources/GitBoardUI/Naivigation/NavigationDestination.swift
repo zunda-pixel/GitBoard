@@ -8,62 +8,62 @@ extension View {
   func navigationDestination() -> some View {
     self.navigationDestination(for: NavigationRouter.Item.self) { item in
       switch item {
-      case .searchUsers(query: let query):
+      case .searchUsers(let query):
         let viewState = SearchUsersViewState(query: query)
         UsersView(viewState: viewState)
           .navigationTitle("Search User")
           .navigationBarTitleDisplayMode()
-      case .searchRepositories(query: let query):
+      case .searchRepositories(let query):
         let viewState = SearchRepositoriesViewState(query: query)
         RepositoriesView(viewState: viewState)
           .navigationTitle("Repositories")
           .navigationBarTitleDisplayMode()
-      case .userRepositories(userID: let userID):
+      case .userRepositories(let userID):
         let viewState = UserRepositoriesViewState(userID: userID)
         RepositoriesView(viewState: viewState)
           .navigationTitle("Repositories")
           .navigationBarTitleDisplayMode()
-      case .userDetail(user: let user):
+      case .userDetail(let user):
         UserDetailView(user: user)
           .navigationTitle(user.userID)
           .navigationBarTitleDisplayMode()
-      case .repositoryDetail(repository: let repository):
+      case .repositoryDetail(let repository):
         RepositoryDetailView(repository: repository)
           .navigationTitle(repository.name)
           .navigationBarTitleDisplayMode()
-      case .issue(ownerID: let ownerID, repository: let repository):
+      case .issue(let ownerID, let repository):
         let viewState = RepositoryIssuesViewState(ownerID: ownerID, repository: repository)
         IssuesView(viewState: viewState)
           .navigationTitle("Issues")
           .navigationBarTitleDisplayMode()
-      case .issueDetail(issue: let issue, repository: let repository):
+      case .issueDetail(let issue, let repository):
         IssueDetailView(issue: issue, repository: repository)
           .navigationTitle("Issue #\(issue.number)")
           .navigationBarTitleDisplayMode()
-      case .repositoryPulls(ownerID: let ownerID, repositoryName: let repositoryName):
+      case .repositoryPulls(let ownerID, let repositoryName):
         let viewState = RepositoryPullsViewState(ownerID: ownerID, repositoryName: repositoryName)
         PullsView(viewState: viewState)
           .navigationTitle("Pull Requests")
           .navigationBarTitleDisplayMode()
-      case .contributors(ownerID: let ownerID, repositoryName: let repositoryName):
+      case .contributors(let ownerID, let repositoryName):
         ContributorsView(ownerID: ownerID, repositoryName: repositoryName)
           .navigationTitle("Contributors")
           .navigationBarTitleDisplayMode()
-      case .license(ownerID: let ownerID, repositoryName: let repositoryName):
+      case .license(let ownerID, let repositoryName):
         LicenseView(ownerID: ownerID, repositoryName: repositoryName)
           .navigationTitle("License")
           .navigationBarTitleDisplayMode()
-      case .followers(userID: let userID):
+      case .followers(let userID):
         let viewState = FollowersViewState(userID: userID)
         UsersView(viewState: viewState)
           .navigationTitle("Followers")
           .navigationBarTitleDisplayMode()
-      case .following(userID: let userID):
+      case .following(let userID):
         let viewState = FollowingViewState(userID: userID)
         UsersView(viewState: viewState)
           .navigationTitle("Following")
           .navigationBarTitleDisplayMode()
-      case .pullDetail(pull: let pull):
+      case .pullDetail(let pull):
         let viewState = RepositoryPullDetailViewState(pull: pull)
         PullDetailView(viewState: viewState)
           .navigationTitle("Pull #\(pull.number)")
@@ -73,12 +73,12 @@ extension View {
   }
 }
 
-private extension View {
-  func navigationBarTitleDisplayMode() -> some View {
+extension View {
+  fileprivate func navigationBarTitleDisplayMode() -> some View {
     #if os(macOS)
-    self
+      self
     #else
-    self.navigationBarTitleDisplayMode(.inline)
+      self.navigationBarTitleDisplayMode(.inline)
     #endif
   }
 }

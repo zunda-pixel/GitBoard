@@ -3,22 +3,22 @@
 //
 
 import Foundation
-import Observation
 import GitHubKit
+import Observation
 
 @Observable
 final class UserRepositoriesViewState: RepositoriesViewState {
   let userID: String
   var page: Int = 1
   var _repositories: [Repository] = []
-  
+
   init(userID: String) {
     self.userID = userID
   }
-  
+
   func populateRepositories() async throws {
     page = 1
-    
+
     _repositories = try await GitHubAPI().repositories(
       userID: userID,
       type: .all,
@@ -28,7 +28,7 @@ final class UserRepositoriesViewState: RepositoriesViewState {
       page: page
     )
   }
-  
+
   func populateMoreRepositories(id: Repository.ID) async throws {
     guard id == repositories.last?.id else { return }
     page += 1
@@ -40,7 +40,7 @@ final class UserRepositoriesViewState: RepositoriesViewState {
       perPage: 30,
       page: page
     )
-    
+
     _repositories.append(contentsOf: newRepositories)
   }
 }

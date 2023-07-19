@@ -2,12 +2,12 @@
 //  IssueCell.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 struct IssueCell: View {
   let issue: Issue
-  
+
   @ViewBuilder
   func issueStatus(status: Issue.State, hasPullRequest: Bool) -> some View {
     switch status {
@@ -24,15 +24,15 @@ struct IssueCell: View {
         .foregroundStyle(.green)
     }
   }
-  
+
   var body: some View {
     HStack(alignment: .top, spacing: 10) {
       issueStatus(status: issue.state, hasPullRequest: issue.pullRequest != nil)
-      
-      VStack(alignment: .leading, spacing: 5)  {
+
+      VStack(alignment: .leading, spacing: 5) {
         Text(issue.title)
           .bold()
-        
+
         FlowLayout(alignment: .leading, spacing: 7) {
           ForEach(issue.labels) { label in
             LabelCell(label: label)
@@ -42,7 +42,7 @@ struct IssueCell: View {
         }
       }
       .frame(maxWidth: .infinity, alignment: .leading)
-      
+
       Text(
         issue.updatedAt,
         format: .relative(presentation: .named, unitsStyle: .narrow)
@@ -52,6 +52,6 @@ struct IssueCell: View {
   }
 }
 
-#Preview {
+#Preview{
   IssueCell(issue: .sample)
 }

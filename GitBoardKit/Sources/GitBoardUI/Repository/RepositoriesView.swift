@@ -2,8 +2,8 @@
 //  RepositoriesView.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 struct RepositoriesView<ViewState: RepositoriesViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
@@ -17,7 +17,7 @@ struct RepositoriesView<ViewState: RepositoriesViewState>: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   func populateMore(id: Repository.ID) async {
     do {
       try await viewState.populateMoreRepositories(id: id)
@@ -25,7 +25,7 @@ struct RepositoriesView<ViewState: RepositoriesViewState>: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   var body: some View {
     List {
       ForEach(viewState.repositories) { repository in
@@ -33,16 +33,16 @@ struct RepositoriesView<ViewState: RepositoriesViewState>: View {
           RepositoryCell(repository: repository)
             .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
-          
+
           Divider()
         }
-          .listRow()
-          .task {
-            await populateMore(id: repository.id)
-          }
-          .onTapGesture {
-            router.items.append(.repositoryDetail(repository: repository))
-          }
+        .listRow()
+        .task {
+          await populateMore(id: repository.id)
+        }
+        .onTapGesture {
+          router.items.append(.repositoryDetail(repository: repository))
+        }
       }
     }
     .listStyle(.plain)
@@ -55,26 +55,25 @@ struct RepositoriesView<ViewState: RepositoriesViewState>: View {
   }
 }
 
-
 @Observable
 private final class TestRepositoriesViewState: RepositoriesViewState {
   var page: Int = 0
-  
+
   var _repositories: [Repository] = []
-  
+
   func populateMoreRepositories(id: Repository.ID) async throws {
     _repositories = [
-      .swift,
+      .swift
     ]
   }
-  
+
   func populateRepositories() async throws {
     _repositories = [
-      .swift,
+      .swift
     ]
   }
 }
 
-#Preview {
+#Preview{
   RepositoriesView(viewState: TestRepositoriesViewState())
 }

@@ -2,10 +2,10 @@
 //  PullDetailViewState.swift
 //
 
-import Foundation
-import Observation
 import Algorithms
+import Foundation
 import GitHubKit
+import Observation
 
 protocol PullDetailViewState: Observable {
   var pull: Pull { get }

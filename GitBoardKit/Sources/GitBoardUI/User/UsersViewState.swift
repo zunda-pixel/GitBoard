@@ -2,8 +2,8 @@
 //  UsersViewState.swift
 //
 
-import Observation
 import GitHubKit
+import Observation
 
 protocol UsersViewState: Observable {
   var users: [User] { get }

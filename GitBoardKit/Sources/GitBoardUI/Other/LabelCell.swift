@@ -2,12 +2,12 @@
 //  LabelCell.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 struct LabelCell: View {
   let label: GitHubKit.Label
-  
+
   var body: some View {
     let color = Color(hex: label.color).opacity(3.0)
     Text(label.name)
@@ -22,7 +22,7 @@ struct LabelCell: View {
   }
 }
 
-#Preview {
+#Preview{
   VStack {
     LabelCell(
       label: .init(

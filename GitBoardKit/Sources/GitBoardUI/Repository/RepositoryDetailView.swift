@@ -2,14 +2,14 @@
 //  RepositoryDetailView.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 struct RepositoryDetailView: View {
   @Environment(NavigationRouter.self) var router
-  
+
   let repository: Repository
-  
+
   var repositoryView: some View {
     VStack(alignment: .leading, spacing: 5) {
       HStack(alignment: .center, spacing: 10) {
@@ -23,15 +23,15 @@ struct RepositoryDetailView: View {
       .onTapGesture {
         router.items.append(.userDetail(user: repository.owner!))
       }
-      
+
       Text(repository.name)
         .font(.largeTitle)
         .bold()
-      
+
       if let description = repository.description {
         Text(description)
       }
-      
+
       HStack(alignment: .center, spacing: 10) {
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "star")
@@ -40,7 +40,7 @@ struct RepositoryDetailView: View {
           Text("stars")
             .foregroundStyle(.secondary)
         }
-        
+
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "arrow.branch")
             .foregroundStyle(.secondary)
@@ -51,8 +51,10 @@ struct RepositoryDetailView: View {
       }
     }
   }
-  
-  func label<Content: View>(systemImage: String, imageColor: Color, @ViewBuilder  label: @escaping () -> Content) -> some View {
+
+  func label<Content: View>(
+    systemImage: String, imageColor: Color, @ViewBuilder label: @escaping () -> Content
+  ) -> some View {
     Label {
       label()
     } icon: {
@@ -60,7 +62,7 @@ struct RepositoryDetailView: View {
         .foregroundStyle(imageColor)
     }
   }
-  
+
   func label(_ titleKey: LocalizedStringKey, systemImage: String, imageColor: Color) -> some View {
     Label {
       Text(titleKey)
@@ -69,7 +71,7 @@ struct RepositoryDetailView: View {
         .foregroundStyle(imageColor)
     }
   }
-  
+
   @ViewBuilder
   var links: some View {
     NavigationLink(item: .issue(ownerID: repository.owner!.userID, repository: repository)) {
@@ -81,27 +83,33 @@ struct RepositoryDetailView: View {
         }
       }
     }
-    
-    NavigationLink(item: .repositoryPulls(ownerID: repository.owner!.userID, repositoryName: repository.name)) {
+
+    NavigationLink(
+      item: .repositoryPulls(ownerID: repository.owner!.userID, repositoryName: repository.name)
+    ) {
       label("Pull Requests", systemImage: "arrow.triangle.pull", imageColor: .blue)
     }
-    
-    NavigationLink(item: .contributors(ownerID: repository.owner!.userID, repositoryName: repository.name)) {
+
+    NavigationLink(
+      item: .contributors(ownerID: repository.owner!.userID, repositoryName: repository.name)
+    ) {
       label("Contributors", systemImage: "person.2", imageColor: .orange)
     }
-    
-    NavigationLink(item: .license(ownerID: repository.owner!.userID, repositoryName: repository.name)) {
+
+    NavigationLink(
+      item: .license(ownerID: repository.owner!.userID, repositoryName: repository.name)
+    ) {
       label("License", systemImage: "building.columns", imageColor: .red)
     }
   }
-  
+
   var body: some View {
     List {
       Section {
         repositoryView
           .listRowSeparator(.hidden)
       }
-      
+
       Section("Links") {
         links
       }
@@ -110,7 +118,7 @@ struct RepositoryDetailView: View {
   }
 }
 
-#Preview {
+#Preview{
   NavigationStack {
     RepositoryDetailView(repository: .swift)
   }

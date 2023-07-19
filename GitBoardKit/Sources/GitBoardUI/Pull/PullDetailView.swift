@@ -2,16 +2,16 @@
 //  PullDetailView.swift
 //
 
-import SwiftUI
-import GitHubKit
 import Algorithms
+import GitHubKit
+import SwiftUI
 
 struct PullDetailView<ViewState: PullDetailViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
-  
+
   @State var viewState: ViewState
-  
+
   var repository: some View {
     HStack(alignment: .center, spacing: 10) {
       let repository = viewState.pull.base.repository!
@@ -19,15 +19,15 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
         avatarURL: repository.owner!.avatarURL,
         type: repository.owner!.type
       )
-        .frame(width: 40, height: 40)
-      
+      .frame(width: 40, height: 40)
+
       Text("\(repository.name) / \(repository.owner!.userID)")
-      
+
       Text("#\(viewState.pull.number)")
         .foregroundStyle(.secondary)
     }
   }
-  
+
   @ViewBuilder
   var pullState: some View {
     switch viewState.pull.state {
@@ -44,11 +44,12 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       }
     }
   }
-  
+
   @ViewBuilder
   var merge: some View {
     if let head = viewState.pull.head.label,
-       let base = viewState.pull.base.label {
+      let base = viewState.pull.base.label
+    {
       HStack(alignment: .center, spacing: 0) {
         Text(head)
           .labelView(color: .blue)
@@ -56,10 +57,10 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
           .onTapGesture {
             router.items.append(.repositoryDetail(repository: viewState.pull.head.repository!))
           }
-        
+
         Image(systemName: "arrow.right")
           .foregroundStyle(.secondary)
-        
+
         Text(base)
           .labelView(color: .blue)
           .clipShape(.rect)
@@ -69,16 +70,16 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       }
     }
   }
-  
+
   var header: some View {
     VStack(alignment: .leading, spacing: 10) {
       repository
         .font(.caption)
-      
+
       Text(viewState.pull.title)
         .fixedSize(horizontal: false, vertical: true)
         .bold()
-      
+
       ScrollView(.horizontal) {
         LazyHStack(alignment: .center, spacing: 10) {
           pullState
@@ -87,7 +88,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       }
       .scrollIndicators(.hidden)
       .font(.caption)
-      
+
       FlowLayout(alignment: .center, spacing: 10) {
         ForEach(viewState.pull.labels) { label in
           LabelCell(label: label)
@@ -96,7 +97,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       .font(.caption)
     }
   }
-  
+
   func populate() async {
     do {
       try await viewState.populateComments()
@@ -104,7 +105,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   func populateMore(id: Comment.ID) async {
     do {
       try await viewState.populateMoreComments(id: id)
@@ -112,7 +113,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   @ViewBuilder
   var comments: some View {
     ForEach(viewState.comments) { comment in
@@ -120,16 +121,16 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
         CommentCell(comment: comment)
           .padding(10)
           .frame(maxWidth: .infinity, alignment: .leading)
-        
+
         Divider()
       }
-        .listRow()
-        .task {
-          await populateMore(id: comment.id)
-        }
+      .listRow()
+      .task {
+        await populateMore(id: comment.id)
+      }
     }
   }
-  
+
   var body: some View {
     List {
       VStack(alignment: .leading, spacing: 0) {
@@ -138,8 +139,8 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
           .frame(maxWidth: .infinity, alignment: .leading)
         Divider()
       }
-        .listRow()
-      
+      .listRow()
+
       comments
     }
     .listStyle(.plain)
@@ -152,15 +153,15 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
   }
 }
 
-#Preview {
+#Preview{
   NavigationStack {
     let viewState = RepositoryPullDetailViewState(pull: .sample)
     PullDetailView(viewState: viewState)
   }
 }
 
-private extension View {
-  func labelView(color: Color) -> some View {
+extension View {
+  fileprivate func labelView(color: Color) -> some View {
     self
       .padding(.horizontal, 10)
       .padding(.vertical, 5)

@@ -2,9 +2,9 @@
 //  ContentView.swift
 //
 
-import SwiftUI
 import GitBoardData
 import GitHubKit
+import SwiftUI
 
 public struct ContentView: View {
   @AppStorage(UserDefaults.UserDefaultsKey.currentUserID.rawValue, store: .shared) var currentUserID: Int?
@@ -12,7 +12,7 @@ public struct ContentView: View {
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
   @State var selectedTab: TabItem = .search
-  
+
   var bindingSelectedTab: Binding<TabItem?> {
     .init {
       selectedTab
@@ -21,7 +21,7 @@ public struct ContentView: View {
       selectedTab = newValue
     }
   }
-  
+
   public init() {
   }
 
@@ -32,7 +32,7 @@ public struct ContentView: View {
       SearchView()
     }
   }
-  
+
   @ViewBuilder
   func tabView() -> some View {
     TabView(selection: $selectedTab) {
@@ -45,9 +45,9 @@ public struct ContentView: View {
       }
     }
   }
-  
+
   @ViewBuilder
-  var contentView:  some View {
+  var contentView: some View {
     switch navigationStyle {
     case .split:
       NavigationSplitView {
@@ -64,12 +64,12 @@ public struct ContentView: View {
       tabView()
     }
   }
-  
+
   @ViewBuilder
   var loginView: some View {
     VStack {
       Spacer()
-      
+
       Image(systemName: "cat.circle.fill")
         .resizable()
         .frame(maxWidth: 100, maxHeight: 100)
@@ -85,9 +85,9 @@ public struct ContentView: View {
         .onTapGesture {
           isTap.toggle()
         }
-      
+
       Spacer()
-      
+
       LoginView(currentUserID: $currentUserID) {
         Text("Sign in to GitHub")
           .padding(20)
@@ -98,12 +98,12 @@ public struct ContentView: View {
             Capsule()
           }
       }
-      
+
       Spacer()
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
   }
-  
+
   @ViewBuilder
   var loginOrContent: some View {
     if currentUserID != nil {
@@ -112,7 +112,7 @@ public struct ContentView: View {
       loginView
     }
   }
-  
+
   public var body: some View {
     loginOrContent
       .defaultStyle()
@@ -131,8 +131,8 @@ public struct ContentView: View {
   }
 }
 
-private extension View {
-  func defaultStyle() -> some View {
+extension View {
+  fileprivate func defaultStyle() -> some View {
     self
       .listStyle(.plain)
       .buttonStyle(.plain)

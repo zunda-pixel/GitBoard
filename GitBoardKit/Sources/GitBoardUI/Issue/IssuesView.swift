@@ -2,15 +2,15 @@
 //  IssuesView.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 struct IssuesView<ViewState: IssuesViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
-  
+
   @State var viewState: ViewState
-  
+
   func populateMore(id: Issue.ID) async {
     do {
       try await viewState.populateMoreIssues(issueID: id)
@@ -18,7 +18,7 @@ struct IssuesView<ViewState: IssuesViewState>: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   func populate() async {
     do {
       try await viewState.populateIssues()
@@ -26,7 +26,7 @@ struct IssuesView<ViewState: IssuesViewState>: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   var body: some View {
     List {
       ForEach(viewState.issues) { issue in
@@ -36,13 +36,13 @@ struct IssuesView<ViewState: IssuesViewState>: View {
             .frame(maxWidth: .infinity, alignment: .leading)
           Divider()
         }
-          .listRow()
-          .onTapGesture {
-            router.items.append(.issueDetail(issue: issue, repository: viewState.repository))
-          }
-          .task {
-            await populateMore(id: issue.id)
-          }
+        .listRow()
+        .onTapGesture {
+          router.items.append(.issueDetail(issue: issue, repository: viewState.repository))
+        }
+        .task {
+          await populateMore(id: issue.id)
+        }
       }
     }
     .listStyle(.plain)
@@ -60,12 +60,12 @@ final private class TestIssuesViewState: IssuesViewState {
   let ownerID: String
   let repository: Repository
   var _issues: [Issue] = []
-  
+
   init(ownerID: String, repository: Repository) {
     self.ownerID = ownerID
     self.repository = repository
   }
-  
+
   func populateMoreIssues(issueID: Issue.ID) async throws {
     _issues = [
       .sample,
@@ -73,7 +73,7 @@ final private class TestIssuesViewState: IssuesViewState {
       .sample,
     ]
   }
-  
+
   func populateIssues() async throws {
     _issues = [
       .sample,
@@ -83,7 +83,7 @@ final private class TestIssuesViewState: IssuesViewState {
   }
 }
 
-#Preview {
+#Preview{
   NavigationStack {
     let viewState = TestIssuesViewState(ownerID: "apple", repository: .swift)
     IssuesView(viewState: viewState)

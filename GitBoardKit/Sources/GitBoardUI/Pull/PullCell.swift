@@ -2,12 +2,12 @@
 //  PullCell.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
 struct PullCell: View {
   let pull: Pull
-  
+
   @ViewBuilder
   var stateView: some View {
     switch pull.state {
@@ -24,7 +24,7 @@ struct PullCell: View {
       }
     }
   }
-  
+
   var label: LocalizedStringKey {
     switch pull.state {
     case .open:
@@ -39,7 +39,7 @@ struct PullCell: View {
       }
     }
   }
-  
+
   var body: some View {
     Label {
       VStack(alignment: .leading, spacing: 5) {
@@ -51,7 +51,7 @@ struct PullCell: View {
           }
         }
         .font(.caption)
-        
+
         Text(label)
           .foregroundStyle(.secondary)
           .font(.caption)
@@ -62,6 +62,6 @@ struct PullCell: View {
   }
 }
 
-#Preview {
+#Preview{
   PullCell(pull: .sample)
 }
