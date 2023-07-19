@@ -10,11 +10,11 @@ import SwiftUI
 struct LoginView<Content: View>: View {
   @Environment(\.openURL) var openURL
   @Environment(ErrorHandle.self) var errorHandle
-  @Binding var currentUserID: User.ID?
+  @Binding var currentUser: User?
   let label: Content
 
-  init(currentUserID: Binding<User.ID?>, @ViewBuilder label: @escaping () -> Content) {
-    self._currentUserID = currentUserID
+  init(currentUser: Binding<User?>, @ViewBuilder label: @escaping () -> Content) {
+    self._currentUser = currentUser
     self.label = label()
   }
 
@@ -39,7 +39,7 @@ struct LoginView<Content: View>: View {
       let me = try await api.me()
 
       KeychainSwift.shared.setAccessToken(userID: me.id, accessToken: accessToken)
-      currentUserID = me.id
+      currentUser = me
     } catch {
       errorHandle.error = .init(error: error)
     }

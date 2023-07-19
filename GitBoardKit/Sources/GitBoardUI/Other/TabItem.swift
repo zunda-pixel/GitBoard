@@ -7,6 +7,7 @@ import Foundation
 enum TabItem: String, CaseIterable, Identifiable {
   case search
   case notifications
+  case profile
   
   var id: Self { self }
 
@@ -16,6 +17,8 @@ enum TabItem: String, CaseIterable, Identifiable {
       return ("Search", "magnifyingglass")
     case .notifications:
       return ("Notifications", "bell")
+    case .profile:
+      return ("Profile", "person")
     }
   }
 }

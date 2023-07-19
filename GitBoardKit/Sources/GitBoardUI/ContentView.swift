@@ -8,7 +8,7 @@ import SwiftUI
 import ToastView
 
 public struct ContentView: View {
-  @AppStorage(UserDefaults.UserDefaultsKey.currentUserID.rawValue, store: .shared) var currentUserID: Int?
+  @AppStorage("currentUser", store: .shared) var currentUser: User?
   @State var errorHandle = ErrorHandle()
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
@@ -27,20 +27,22 @@ public struct ContentView: View {
   }
 
   @ViewBuilder
-  func tabContent(tab: TabItem) -> some View {
+  func tabContent(tab: TabItem, user: User) -> some View {
     switch tab {
     case .search:
       SearchNavigationView()
     case .notifications:
       NotificationsNavigationView()
+    case .profile:
+      ProfileNavigationView(user: user)
     }
   }
 
   @ViewBuilder
-  func tabView() -> some View {
+  func tabView(user: User) -> some View {
     TabView(selection: $selectedTab) {
       ForEach(TabItem.allCases) { tab in
-        tabContent(tab: tab)
+        tabContent(tab: tab, user: user)
           .tag(tab)
           .tabItem {
             Label(tab.label.text, systemImage: tab.label.systemImage)
@@ -50,7 +52,7 @@ public struct ContentView: View {
   }
 
   @ViewBuilder
-  var contentView: some View {
+  func contentView(user: User) -> some View {
     switch navigationStyle {
     case .split:
       NavigationSplitView {
@@ -61,10 +63,10 @@ public struct ContentView: View {
           }
         }
       } detail: {
-        tabView()
+        tabView(user: user)
       }
     case .tab:
-      tabView()
+      tabView(user: user)
     }
   }
 
@@ -91,7 +93,7 @@ public struct ContentView: View {
 
       Spacer()
 
-      LoginView(currentUserID: $currentUserID) {
+      LoginView(currentUser: $currentUser) {
         Text("Sign in to GitHub")
           .padding(20)
           .frame(maxWidth: 250)
@@ -109,8 +111,8 @@ public struct ContentView: View {
 
   @ViewBuilder
   var loginOrContent: some View {
-    if currentUserID != nil {
-      contentView
+    if let currentUser {
+      contentView(user: currentUser)
     } else {
       loginView
     }
