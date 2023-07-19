@@ -14,6 +14,7 @@ struct ProfileNavigationView: View {
       UserDetailView(user: user)
         .navigationDestination()
         .navigationTitle(user.userID)
+        .navigationBarTitleDisplayMode()
     }
     .environment(router)
   }

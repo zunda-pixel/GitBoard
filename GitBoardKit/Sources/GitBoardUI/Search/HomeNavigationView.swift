@@ -1,30 +1,30 @@
 //
-//  SearchNavigationView.swift
+//  HomeNavigationView.swift
 //
 
 import SwiftUI
 import ToastView
 
-struct SearchNavigationView: View {
+struct HomeNavigationView: View {
   @Bindable var router = NavigationRouter()
-  @State var query = ""
+  @State var query: String = ""
   @State var isPresentedKeyboard = false
 
   var body: some View {
     NavigationStack(path: $router.items) {
       List {
-        Text("BODY")
       }
       .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
       .listStyle(.plain)
       .navigationDestination()
-      .navigationTitle("Search")
+      .navigationTitle("Home")
       .overlay {
         if isPresentedKeyboard {
           if query.trimmingCharacters(in: .whitespaces).isEmpty {
             VStack(alignment: .center, spacing: 40) {
               Text("Find your stuff.")
                 .bold()
+                .font(.title)
 
               Text(
                 "Search all of GitHub for People, Repositories, Organizations, Issues, and Pull Requests."
@@ -55,5 +55,5 @@ struct SearchNavigationView: View {
 }
 
 #Preview{
-  SearchNavigationView()
+  HomeNavigationView()
 }

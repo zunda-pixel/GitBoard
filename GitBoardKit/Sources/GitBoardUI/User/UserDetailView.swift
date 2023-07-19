@@ -119,11 +119,12 @@ struct UserDetailView: View {
 
   var body: some View {
     List {
-      userView
-        .padding(10)
-        .listRow()
-
       Section {
+        userView
+          .listRowSeparator(.hidden)
+      }
+
+      Section("Links") {
         repositoryNavigation
       }
     }

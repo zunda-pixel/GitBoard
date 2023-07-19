@@ -12,7 +12,7 @@ public struct ContentView: View {
   @State var errorHandle = ErrorHandle()
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
-  @State var selectedTab: TabItem = .search
+  @State var selectedTab: TabItem = .home
 
   var bindingSelectedTab: Binding<TabItem?> {
     .init {
@@ -29,8 +29,8 @@ public struct ContentView: View {
   @ViewBuilder
   func tabContent(tab: TabItem, user: User) -> some View {
     switch tab {
-    case .search:
-      SearchNavigationView()
+    case .home:
+      HomeNavigationView()
     case .notifications:
       NotificationsNavigationView()
     case .profile:
@@ -46,6 +46,8 @@ public struct ContentView: View {
           .tag(tab)
           .tabItem {
             Label(tab.label.text, systemImage: tab.label.systemImage)
+              // https://stackoverflow.com/questions/70057749/why-swiftui-tabitem-systemimage-is-filled
+              .environment(\.symbolVariants, tab == selectedTab ? .fill : .none)
           }
       }
     }

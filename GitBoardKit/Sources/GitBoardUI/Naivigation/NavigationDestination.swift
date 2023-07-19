@@ -86,7 +86,7 @@ extension View {
 }
 
 extension View {
-  fileprivate func navigationBarTitleDisplayMode() -> some View {
+  func navigationBarTitleDisplayMode() -> some View {
     #if os(macOS)
       self
     #else

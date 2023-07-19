@@ -5,7 +5,7 @@
 import Foundation
 
 enum TabItem: String, CaseIterable, Identifiable {
-  case search
+  case home
   case notifications
   case profile
   
@@ -13,8 +13,8 @@ enum TabItem: String, CaseIterable, Identifiable {
 
   var label: (text: String, systemImage: String) {
     switch self {
-    case .search:
-      return ("Search", "magnifyingglass")
+    case .home:
+      return ("Home", "house")
     case .notifications:
       return ("Notifications", "bell")
     case .profile:
