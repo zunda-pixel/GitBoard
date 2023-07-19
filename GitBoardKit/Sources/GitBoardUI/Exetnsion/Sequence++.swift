@@ -2,8 +2,8 @@
 //  Sequence++.swift
 //
 
-import Foundation
 import Algorithms
+import Foundation
 
 extension LazySequenceProtocol {
   public func uniqued<Value>(

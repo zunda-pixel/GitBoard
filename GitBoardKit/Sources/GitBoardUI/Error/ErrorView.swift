@@ -6,7 +6,7 @@ import SwiftUI
 
 struct ErrorView: View {
   let error: any Error
-  
+
   var body: some View {
     VStack(alignment: .center, spacing: 5) {
       Label {
@@ -19,8 +19,8 @@ struct ErrorView: View {
       Text(error.localizedDescription)
         .lineLimit(2)
     }
-      .padding()
-      .toastView()
+    .padding()
+    .toastView()
   }
 }
 
@@ -28,6 +28,6 @@ private enum SomeError: Error {
   case some
 }
 
-#Preview {
+#Preview{
   ErrorView(error: SomeError.some)
 }

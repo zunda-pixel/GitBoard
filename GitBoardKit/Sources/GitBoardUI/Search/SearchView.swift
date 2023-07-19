@@ -7,40 +7,53 @@ import ToastView
 
 struct SearchView: View {
   @Bindable var router = NavigationRouter()
-  @State var errorHandle = ErrorHandle()
-  
+  @State var query = ""
+  @State var isPresentedKeyboard = false
+
   var body: some View {
     NavigationStack(path: $router.items) {
       List {
-        NavigationLink(item: .searchUsers) {
-          Label("Search Users", systemImage: "figure.pilates")
-        }
-        
-        NavigationLink(item: .searchRepositories) {
-          Label("Search Repositories", systemImage: "figure.pilates")
-        }
+        Text("BODY")
       }
-      #if os(macOS)
-      .listStyle(.bordered)
-      #else
-      .listStyle(.insetGrouped)
-      #endif
+      .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
+      .listStyle(.plain)
       .navigationDestination()
       .navigationTitle("Search")
-    }
-    .toastAlert(
-      item: $errorHandle.error,
-      position: .top,
-      animation: .spring,
-      duration: .seconds(2)
-    ) { error in
-      ErrorView(error: error.error)
+      .overlay {
+        if isPresentedKeyboard {
+          if query.trimmingCharacters(in: .whitespaces).isEmpty {
+            VStack(alignment: .center, spacing: 40) {
+              Text("Find your stuff.")
+                .bold()
+
+              Text(
+                "Search all of GitHub for People, Repositories, Organizations, Issues, and Pull Requests."
+              )
+              .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            .background(.background)
+          } else {
+            List {
+              let query = query.trimmingCharacters(in: .whitespaces)
+
+              NavigationLink(item: .searchUsers(query: query)) {
+                Label("Search Users", systemImage: "person.2")
+              }
+
+              NavigationLink(item: .searchRepositories(query: query)) {
+                Label("Search Repositories", systemImage: "book.pages")
+              }
+            }
+            .listStyle(.automatic)
+          }
+        }
+      }
     }
     .environment(router)
-    .environment(errorHandle)
   }
 }
 
-#Preview {
+#Preview{
   SearchView()
 }

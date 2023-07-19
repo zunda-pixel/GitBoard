@@ -2,15 +2,15 @@
 //  UserProfileImage.swift
 //
 
-import SwiftUI
 import CachedAsyncImage
 import GitHubKit
+import SwiftUI
 
 struct UserProfileImage: View {
   let avatarURL: URL
   let type: UserType
   let roundWidth: CGFloat
-  
+
   init(
     avatarURL: URL,
     type: UserType,
@@ -20,7 +20,7 @@ struct UserProfileImage: View {
     self.type = type
     self.roundWidth = roundWidth
   }
-  
+
   var body: some View {
     CachedAsyncImage(url: avatarURL) { image in
       image
@@ -30,11 +30,14 @@ struct UserProfileImage: View {
         .resizable()
     }
     .overlay {
-      UserProfileImageShape(type: type, cornerSize: .init(width: roundWidth * 2, height: roundWidth * 2))
-        .stroke(.thinMaterial, lineWidth: roundWidth)
+      UserProfileImageShape(
+        type: type, cornerSize: .init(width: roundWidth * 2, height: roundWidth * 2)
+      )
+      .stroke(.thinMaterial, lineWidth: roundWidth)
     }
     .clipShape(
-      UserProfileImageShape(type: type, cornerSize: .init(width: roundWidth * 2, height: roundWidth * 2))
+      UserProfileImageShape(
+        type: type, cornerSize: .init(width: roundWidth * 2, height: roundWidth * 2))
     )
   }
 }
@@ -42,12 +45,16 @@ struct UserProfileImage: View {
 private struct UserProfileImageShape: Shape {
   let type: UserType
   let cornerSize: CGSize
-  
+
   func path(in rect: CGRect) -> Path {
     switch type {
     case .organization:
       RoundedRectangle(cornerSize: cornerSize).path(in: rect)
     case .user:
+      Circle().path(in: rect)
+    case .mannequin:  // TODO 謎
+      Circle().path(in: rect)
+    case .bot:
       Circle().path(in: rect)
     }
   }

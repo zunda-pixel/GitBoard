@@ -6,7 +6,7 @@ import Foundation
 import GitHubKit
 import KeychainSwift
 
-extension GitHubKit {
+extension GitHubAPI {
   public init() {
     let userID = UserDefaults.shared.currentUserID
     

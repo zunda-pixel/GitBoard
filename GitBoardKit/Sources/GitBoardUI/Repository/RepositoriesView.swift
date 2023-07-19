@@ -2,51 +2,25 @@
 //  RepositoriesView.swift
 //
 
-import SwiftUI
 import GitHubKit
+import SwiftUI
 
-struct RepositoriesView: View {
+struct RepositoriesView<ViewState: RepositoriesViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
-  @State var loadPage = 1
-  @State var repositories: [Repository] = []
-  
-  let userID: String
-  
-  func populateMoreRepositories(repositoryID: Repository.ID) async {
-    guard repositoryID == repositories.last?.id else { return }
-    loadPage += 1
+  @State var viewState: ViewState
+
+  func populate() async {
     do {
-      var newRepositories = try await GitHubKit().repositories(
-        userID: userID,
-        type: .all,
-        sort: .pushed,
-        direction: .desc,
-        perPage: 30,
-        page: loadPage
-      )
-      
-      newRepositories.append(contentsOf: repositories)
-      
-      self.repositories = newRepositories.lazy
-        .uniqued(keyPath: \.id)
-        .sorted(using: KeyPathComparator(\.pushedAt))
-        .reversed()
+      try await viewState.populateRepositories()
     } catch {
       errorHandle.error = .init(error: error)
     }
   }
-  
-  func populateRepositories() async {
+
+  func populateMore(id: Repository.ID) async {
     do {
-      repositories = try await GitHubKit().repositories(
-        userID: userID,
-        type: .all,
-        sort: .pushed,
-        direction: .desc,
-        perPage: 30,
-        page: 1
-      )
+      try await viewState.populateMoreRepositories(id: id)
     } catch {
       errorHandle.error = .init(error: error)
     }
@@ -54,30 +28,52 @@ struct RepositoriesView: View {
 
   var body: some View {
     List {
-      ForEach(repositories) { repository in
-        RepositoryCell(repository: repository)
-          .frame(maxWidth: .infinity, alignment: .leading)
-          .contentShape(.rect)
-          .listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-          .task {
-            await populateMoreRepositories(repositoryID: repository.id)
-          }
-          .onTapGesture {
-            router.items.append(.repositoryDetail(repository: repository))
-          }
+      ForEach(viewState.repositories) { repository in
+        VStack(alignment: .leading, spacing: 0) {
+          RepositoryCell(repository: repository)
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+          Divider()
+        }
+        .listRow()
+        .task {
+          await populateMore(id: repository.id)
+        }
+        .onTapGesture {
+          router.items.append(.repositoryDetail(repository: repository))
+        }
       }
     }
-    .listStyle(.inset)
+    .listStyle(.plain)
     .refreshable {
-      await populateRepositories()
+      await populate()
     }
     .task {
-      await populateRepositories()
+      await populate()
     }
   }
 }
 
-#Preview {
-  RepositoriesView(userID: "apple")
-    .environment(ErrorHandle())
+@Observable
+private final class TestRepositoriesViewState: RepositoriesViewState {
+  var page: Int = 0
+
+  var _repositories: [Repository] = []
+
+  func populateMoreRepositories(id: Repository.ID) async throws {
+    _repositories = [
+      .swift
+    ]
+  }
+
+  func populateRepositories() async throws {
+    _repositories = [
+      .swift
+    ]
+  }
+}
+
+#Preview{
+  RepositoriesView(viewState: TestRepositoriesViewState())
 }

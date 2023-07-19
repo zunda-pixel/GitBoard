@@ -2,25 +2,28 @@
 //  NavigationRouter.swift
 //
 
+import GitHubKit
 import Observation
 import SwiftUI
-import GitHubKit
 
 @Observable
 final class NavigationRouter {
   var items: [Item] = []
-  
+
   enum Item: Hashable {
-    case searchUsers
-    case searchRepositories
+    case searchUsers(query: String)
+    case searchRepositories(query: String)
     case userDetail(user: User)
-    case repositories(userID: String)
+    case userRepositories(ownerID: String)
     case repositoryDetail(repository: Repository)
-    case issue(ownerID: String, repositoryName: String)
-    case pullRequests(ownerID: String, repositoryName: String)
+    case issue(ownerID: String, repository: Repository)
+    case issueDetail(issue: Issue, repository: Repository)
+    case repositoryPulls(ownerID: String, repositoryName: String)
     case contributors(ownerID: String, repositoryName: String)
     case license(ownerID: String, repositoryName: String)
-    
+    case following(userID: String)
+    case followers(userID: String)
+    case pullDetail(pull: Pull)
   }
 }
 
