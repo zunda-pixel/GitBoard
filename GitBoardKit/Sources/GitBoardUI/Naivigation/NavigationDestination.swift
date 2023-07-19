@@ -51,7 +51,8 @@ extension View {
           .navigationTitle("Contributors")
           .navigationBarTitleDisplayMode()
       case .license(let ownerID, let repositoryName):
-        LicenseView(ownerID: ownerID, repositoryName: repositoryName)
+        let viewState = LicenseViewState(ownerID: ownerID, repositoryName: repositoryName)
+        LicenseView(viewState: viewState)
           .navigationTitle("License")
           .navigationBarTitleDisplayMode()
       case .followers(let userID):

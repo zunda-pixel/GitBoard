@@ -96,10 +96,18 @@ struct RepositoryDetailView: View {
       label("Contributors", systemImage: "person.2", imageColor: .orange)
     }
 
-    NavigationLink(
-      item: .license(ownerID: repository.owner!.userID, repositoryName: repository.name)
-    ) {
-      label("License", systemImage: "building.columns", imageColor: .red)
+    if let license = repository.license {
+      NavigationLink(
+        item: .license(ownerID: repository.owner!.userID, repositoryName: repository.name)
+      ) {
+        label(systemImage: "building.columns", imageColor: .red) {
+          HStack(alignment: .center, spacing: 0) {
+            Text("License")
+            Spacer()
+            Text(license.name)
+          }
+        }
+      }
     }
   }
 

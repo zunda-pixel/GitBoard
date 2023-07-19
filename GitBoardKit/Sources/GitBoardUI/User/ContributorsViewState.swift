@@ -2,9 +2,9 @@
 //  ContributorsViewState.swift
 //
 
-import SwiftUI
-import GitHubKit
 import Algorithms
+import GitHubKit
+import SwiftUI
 
 @Observable
 final class ContributorsViewState: UsersViewState {
@@ -17,7 +17,7 @@ final class ContributorsViewState: UsersViewState {
       .sorted(using: KeyPathComparator(\.contributionCount, order: .forward))
       .map(\.user)
   }
-  
+
   init(
     ownerID: String,
     repositoryName: String
@@ -25,7 +25,7 @@ final class ContributorsViewState: UsersViewState {
     self.ownerID = ownerID
     self.repositoryName = repositoryName
   }
-  
+
   func populateUsers() async throws {
     page = 1
     let newContributors = try await GitHubAPI().contributors(
@@ -36,18 +36,18 @@ final class ContributorsViewState: UsersViewState {
     )
     contributors = newContributors
   }
-  
+
   func populateMoreUsers(id: User.ID) async throws {
     guard id == users.last?.id else { return }
     page += 1
-    
+
     let newContributors = try await GitHubAPI().contributors(
       ownerID: ownerID,
       repositoryName: repositoryName,
       perPage: 30,
       page: page
     )
-    
+
     contributors.append(contentsOf: newContributors)
   }
 }
