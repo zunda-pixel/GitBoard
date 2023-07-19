@@ -100,14 +100,15 @@ struct UserDetailView: View {
         HStack(alignment: .center, spacing: 5) {
           Text("Repositories")
           Spacer()
-          if let publicRepoCount = user.publicRepoCount {
-            Text("\(publicRepoCount)")
+          
+          var count: Int {
+            var sum = user.publicRepoCount ?? 0
+            sum += user.ownedPrivateRepoCount ?? 0
+            return sum
           }
-          if let ownedPrivateRepoCount = user.ownedPrivateRepoCount {
-            Text("\(ownedPrivateRepoCount)")
-          }
-          if let totalPrivateRepoCount = user.totalPrivateRepoCount {
-            Text("\(totalPrivateRepoCount)")
+          
+          if count > 0 {
+            Text("\(count)")
           }
         }
       } icon: {
