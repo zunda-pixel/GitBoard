@@ -46,7 +46,8 @@ extension View {
           .navigationTitle("Pull Requests")
           .navigationBarTitleDisplayMode()
       case .contributors(let ownerID, let repositoryName):
-        ContributorsView(ownerID: ownerID, repositoryName: repositoryName)
+        let viewState = ContributorsViewState(ownerID: ownerID, repositoryName: repositoryName)
+        UsersView(viewState: viewState)
           .navigationTitle("Contributors")
           .navigationBarTitleDisplayMode()
       case .license(let ownerID, let repositoryName):
