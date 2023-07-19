@@ -241,6 +241,30 @@ extension Repository {
   )
 }
 
+extension Subject {
+  static let sample = Subject(
+    title: "Title",
+    url: URL(string: "https://github.com")!,
+    latestCommitURL: URL(string: "https://github.com")!,
+    type: .issue
+  )
+}
+extension GitHubData.Notification {
+  static var sample: GitHubData.Notification {
+    .init(
+      id: "\((Int.min...Int.max).randomElement()!)",
+      repository: .swift,
+      subject: .sample,
+      reason: .author,
+      unread: false,
+      updatedAt: .now,
+      lastReadAt: .now,
+      url: URL(string: "https://github.com")!,
+      subscriptionURL: URL(string: "https://github.com")!
+    )
+  }
+}
+
 extension CodeConduct {
   static let sample = CodeConduct(
     key: "contributor_covenant",
