@@ -5,6 +5,7 @@
 import GitBoardData
 import GitHubAPI
 import SwiftUI
+import ToastView
 
 public struct ContentView: View {
   @AppStorage(UserDefaults.UserDefaultsKey.currentUserID.rawValue, store: .shared) var currentUserID: Int?

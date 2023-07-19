@@ -5,104 +5,6 @@
 import SwiftUI
 import GitHubAPI
 
-@Observable
-final class NotificationsViewState {
-  var _notifications: [GitHubData.Notification] = []
-  var notifications: [GitHubData.Notification] {
-    _notifications.lazy
-      .uniqued(keyPath: \.id)
-      .sorted(using: KeyPathComparator(\.id, order: .reverse))
-  }
-  
-  var page: Int = 1
-  
-  func populateNotifications() async throws {
-    page = 1
-    
-    let newNotifications = try await GitHubAPI().notifications(
-      all: true,
-      participating: false,
-      since: nil,
-      before: nil,
-      perPage: 30,
-      page: page
-    )
-    
-    _notifications = newNotifications
-  }
-  
-  func populateMoreNotifications(id: GitHubData.Notification.ID) async throws {
-    guard id == notifications.last?.id else { return }
-    page += 1
-    
-    let newNotifications = try await GitHubAPI().notifications(
-      all: true,
-      participating: false,
-      since: nil,
-      before: nil,
-      perPage: 30,
-      page: page
-    )
-    
-    _notifications.append(contentsOf: newNotifications)
-  }
-}
-
-struct NotificationCell: View {
-  let notification: GitHubData.Notification
-  
-  
-  @ViewBuilder
-  var stateImage: some View {
-    switch notification.subject.type {
-    case .issue:
-      Image(systemName: "dot.circle")
-        .foregroundStyle(.green)
-    case .release:
-      Image(systemName: "tag")
-        .foregroundStyle(.blue)
-        .rotation3DEffect(
-          .degrees(180),
-          axis: (x: 0.0, y: 1.0, z: 0.0)
-        )
-    case .pullRequest:
-      Image(systemName: "arrow.triangle.merge")
-        .foregroundStyle(.purple)
-    }
-  }
-  
-  @ViewBuilder
-  var label: some View {
-    VStack(alignment: .leading, spacing: 10) {
-      Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
-        .foregroundStyle(.secondary)
-      
-      Text(notification.subject.title)
-        .bold()
-      
-      HStack(alignment: .center, spacing: 10) {
-        UserProfileImage(
-          avatarURL: notification.repository.owner!.avatarURL,
-          type: notification.repository.owner!.type,
-          roundWidth: 2
-        )
-        .frame(width: 20, height: 20)
-        
-        Text(notification.repository.owner!.userID)
-      }
-    }
-  }
-  
-  var body: some View {
-    Label {
-      label
-    } icon: {
-      stateImage
-    }
-  }
-}
-
-
 struct NotificationsView: View {
   @Environment(ErrorHandle.self) var errorHandle
   @State var viewState: NotificationsViewState
@@ -150,9 +52,9 @@ struct NotificationsView: View {
 }
 
 #Preview {
-  Text("Hello")
-    .rotation3DEffect(
-      .degrees(180),
-      axis: (x: 0.0, y: 1.0, z: 0.0)
-    )
+  NavigationStack {
+    let viewState = NotificationsViewState()
+    NotificationsView(viewState: viewState)
+  }
+  .environment(ErrorHandle())
 }
