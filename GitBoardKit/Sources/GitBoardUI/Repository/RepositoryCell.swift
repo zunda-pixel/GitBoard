@@ -2,7 +2,6 @@
 //  RepositoryCell.swift
 //
 
-import CachedAsyncImage
 import GitHubAPI
 import SwiftUI
 
@@ -10,10 +9,10 @@ struct RepositoryCell: View {
   let repository: Repository
 
   @ViewBuilder
-  var starView: some View {
+  func starView(count: Int) -> some View {
     HStack(alignment: .center, spacing: 0) {
       Image(systemName: "star")
-      Text("\(repository.stargazersCount)")
+      Text("\(count)")
     }
   }
 
@@ -50,7 +49,9 @@ struct RepositoryCell: View {
       }
 
       HStack(alignment: .center, spacing: 20) {
-        starView
+        if let stargazersCount = repository.stargazersCount {
+          starView(count: stargazersCount)
+        }
         if let language = repository.language {
           languageView(language: language)
         }

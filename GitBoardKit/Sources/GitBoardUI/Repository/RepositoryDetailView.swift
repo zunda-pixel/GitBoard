@@ -39,7 +39,9 @@ struct RepositoryDetailView: View {
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "star")
             .foregroundStyle(.secondary)
-          Text("\(repository.stargazersCount)")
+          if let stargazersCount = repository.stargazersCount {
+            Text("\(stargazersCount)")
+          }
           Text("stars")
             .foregroundStyle(.secondary)
         }
@@ -56,7 +58,11 @@ struct RepositoryDetailView: View {
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "arrow.branch")
             .foregroundStyle(.secondary)
-          Text("\(repository.forksCount)")
+          
+          if let forksCount = repository.forksCount {
+            Text("\(forksCount)")
+          }
+          
           Text("forks")
             .foregroundStyle(.secondary)
         }
@@ -100,8 +106,8 @@ struct RepositoryDetailView: View {
         HStack(alignment: .center, spacing: 0) {
           Text("Issues")
           Spacer()
-          if repository.openIssuesCount > 0 {
-            Text("\(repository.openIssuesCount)")
+          if let openIssuesCount = repository.openIssuesCount, openIssuesCount > 0 {
+            Text("\(openIssuesCount)")
           }
         }
       }
