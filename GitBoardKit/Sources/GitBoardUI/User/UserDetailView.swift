@@ -95,7 +95,7 @@ struct UserDetailView: View {
   }
 
   var repositoryNavigation: some View {
-    NavigationLink(item: .userRepositories(userID: user.userID)) {
+    NavigationLink(item: .userRepositories(ownerID: user.userID)) {
       Label {
         HStack(alignment: .center, spacing: 5) {
           Text("Repositories")

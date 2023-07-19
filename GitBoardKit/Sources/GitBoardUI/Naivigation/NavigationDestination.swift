@@ -18,8 +18,8 @@ extension View {
         RepositoriesView(viewState: viewState)
           .navigationTitle("Repositories")
           .navigationBarTitleDisplayMode()
-      case .userRepositories(let userID):
-        let viewState = UserRepositoriesViewState(userID: userID)
+      case .userRepositories(let ownerID):
+        let viewState = UserRepositoriesViewState(ownerID: ownerID)
         RepositoriesView(viewState: viewState)
           .navigationTitle("Repositories")
           .navigationBarTitleDisplayMode()

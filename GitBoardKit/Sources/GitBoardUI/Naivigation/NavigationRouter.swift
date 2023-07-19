@@ -14,7 +14,7 @@ final class NavigationRouter {
     case searchUsers(query: String)
     case searchRepositories(query: String)
     case userDetail(user: User)
-    case userRepositories(userID: String)
+    case userRepositories(ownerID: String)
     case repositoryDetail(repository: Repository)
     case issue(ownerID: String, repository: Repository)
     case issueDetail(issue: Issue, repository: Repository)

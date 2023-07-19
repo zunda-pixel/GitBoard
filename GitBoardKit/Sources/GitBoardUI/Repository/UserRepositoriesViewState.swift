@@ -8,19 +8,19 @@ import Observation
 
 @Observable
 final class UserRepositoriesViewState: RepositoriesViewState {
-  let userID: String
+  let ownerID: String
   var page: Int = 1
   var _repositories: [Repository] = []
 
-  init(userID: String) {
-    self.userID = userID
+  init(ownerID: String) {
+    self.ownerID = ownerID
   }
 
   func populateRepositories() async throws {
     page = 1
 
     _repositories = try await GitHubAPI().repositories(
-      userID: userID,
+      ownerID: ownerID,
       type: .all,
       sort: .pushed,
       direction: .desc,
@@ -33,7 +33,7 @@ final class UserRepositoriesViewState: RepositoriesViewState {
     guard id == repositories.last?.id else { return }
     page += 1
     let newRepositories = try await GitHubAPI().repositories(
-      userID: userID,
+      ownerID: ownerID,
       type: .all,
       sort: .pushed,
       direction: .desc,
