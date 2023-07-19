@@ -1,11 +1,11 @@
 //
-//  SearchView.swift
+//  SearchNavigationView.swift
 //
 
 import SwiftUI
 import ToastView
 
-struct SearchView: View {
+struct SearchNavigationView: View {
   @Bindable var router = NavigationRouter()
   @State var query = ""
   @State var isPresentedKeyboard = false
@@ -55,5 +55,5 @@ struct SearchView: View {
 }
 
 #Preview{
-  SearchView()
+  SearchNavigationView()
 }
