@@ -38,6 +38,17 @@ let package = Package(
         .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image"),
         .product(name: "KeychainSwift", package: "keychain-swift"),
         .product(name: "Algorithms", package: "swift-algorithms"),
+      ],
+      swiftSettings: [
+        // https://github.com/uhooi/Loki/blob/main/LokiPackage/Package.swift
+        .unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=500"], .when(configuration: .debug)),
+        .unsafeFlags(["-Xfrontend", "-warn-long-function-bodies=500"], .when(configuration: .debug)),
+        .unsafeFlags(["-strict-concurrency=targeted"], .when(configuration: .debug)), // TODO targeted -> complete
+        .unsafeFlags(["-enable-actor-data-race-checks"], .when(configuration: .debug)),
+        .enableUpcomingFeature("ConciseMagicFile", .when(configuration: .debug)), // SE-0274
+        .enableUpcomingFeature("ForwardTrailingClosures", .when(configuration: .debug)), // SE-0286
+        .enableUpcomingFeature("ExistentialAny", .when(configuration: .debug)), // SE-0335
+        .enableUpcomingFeature("BaseSlashRegexLiterals", .when(configuration: .debug)), // SE-0354
       ]
     ),
     .target(
