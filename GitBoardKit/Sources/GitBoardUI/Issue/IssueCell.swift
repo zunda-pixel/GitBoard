@@ -35,7 +35,7 @@ struct IssueCell: View {
         
         FlowLayout(alignment: .leading, spacing: 7) {
           ForEach(issue.labels) { label in
-            IssueLabelView(label: label)
+            LabelCell(label: label)
               .bold()
               .font(.caption2)
           }

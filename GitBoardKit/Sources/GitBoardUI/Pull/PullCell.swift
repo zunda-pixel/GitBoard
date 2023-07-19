@@ -42,9 +42,15 @@ struct PullCell: View {
   
   var body: some View {
     Label {
-      VStack(alignment: .leading, spacing: 0) {
+      VStack(alignment: .leading, spacing: 5) {
         Text(pull.title)
           .bold()
+        FlowLayout(alignment: .center, spacing: 10) {
+          ForEach(pull.labels) { label in
+            LabelCell(label: label)
+          }
+        }
+        .font(.caption)
         
         Text(label)
           .foregroundStyle(.secondary)

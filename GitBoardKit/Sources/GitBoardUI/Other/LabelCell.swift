@@ -1,11 +1,11 @@
 //
-//  IssueLabel.swift
+//  LabelCell.swift
 //
 
 import SwiftUI
 import GitHubKit
 
-struct IssueLabelView: View {
+struct LabelCell: View {
   let label: GitHubKit.Label
   
   var body: some View {
@@ -24,7 +24,7 @@ struct IssueLabelView: View {
 
 #Preview {
   VStack {
-    IssueLabelView(
+    LabelCell(
       label: .init(
         id: 323,
         nodeID: "nodeID",

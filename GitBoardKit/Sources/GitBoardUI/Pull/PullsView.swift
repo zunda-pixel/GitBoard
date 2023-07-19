@@ -8,6 +8,8 @@ import Algorithms
 
 struct PullsView<ViewState: PullsViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
+  @Environment(NavigationRouter.self) var router
+  
   @State var viewState: ViewState
   
   func populate() async {
@@ -38,6 +40,9 @@ struct PullsView<ViewState: PullsViewState>: View {
           .listRow()
           .task {
             await populateMore(id: pull.id)
+          }
+          .onTapGesture {
+            router.items.append(.pullDetail(pull: pull))
           }
       }
     }

@@ -63,6 +63,11 @@ extension View {
         UsersView(viewState: viewState)
           .navigationTitle("Following")
           .navigationBarTitleDisplayMode()
+      case .pullDetail(pull: let pull):
+        let viewState = RepositoryPullDetailViewState(pull: pull)
+        PullDetailView(viewState: viewState)
+          .navigationTitle("Pull #\(pull.number)")
+          .navigationBarTitleDisplayMode()
       }
     }
   }

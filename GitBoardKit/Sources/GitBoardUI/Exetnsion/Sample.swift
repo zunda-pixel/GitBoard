@@ -378,6 +378,27 @@ extension Pull {
   }
 }
 
+extension Comment {
+  static var sample: Comment {
+    Comment(
+      id: (Int.min...Int.max).randomElement()!,
+      nodeID: "nodeID",
+      url: URL(string: "https://github.com")!,
+      body: "Type inference fails chaining call on the return value of @resultBuilder",
+      bodyText: "Type inference fails chaining call on the return value of @resultBuilder",
+      bodyHTML: "Type inference fails chaining call on the return value of @resultBuilder",
+      htmlURL: URL(string: "https://github.com")!,
+      user: .zunda,
+      createdAt: .now,
+      updatedAt: .now,
+      issueURL: URL(string: "https://github.com")!,
+      authorAssociation: .collaborator,
+      reactions: .sample,
+      performGitHubApp: .sample
+    )
+  }
+}
+
 extension Merge {
   static let apple = Merge(
     enabledBy: .apple,
@@ -393,7 +414,7 @@ extension Branch {
     ref: "ref",
     sha: "sha",
     user: .apple,
-    repo: .swift
+    repository: .swift
   )
 }
 
