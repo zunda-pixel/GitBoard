@@ -21,9 +21,7 @@ public struct ContentView: View {
     .init {
       selectedTab
     } set: { newValue in
-      if newValue == selectedTab {
-        tabTapAgain[newValue]! = .init()
-      }
+      tabTapAgain[newValue]! = .init()
       selectedTab = newValue
     }
   }
@@ -33,9 +31,7 @@ public struct ContentView: View {
       selectedTab
     } set: { newValue in
       guard let newValue else { return }
-      if newValue == selectedTab {
-        tabTapAgain[newValue]! = .init()
-      }
+      tabTapAgain[newValue]! = .init()
       selectedTab = newValue
     }
   }

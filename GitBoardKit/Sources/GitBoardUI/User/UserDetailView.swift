@@ -95,25 +95,29 @@ struct UserDetailView: View {
   }
 
   var repositoryNavigation: some View {
-    NavigationLink(item: .userRepositories(ownerID: user.userID)) {
-      Label {
-        HStack(alignment: .center, spacing: 5) {
-          Text("Repositories")
-          Spacer()
-          
-          var count: Int {
-            var sum = user.publicRepoCount ?? 0
-            sum += user.ownedPrivateRepoCount ?? 0
-            return sum
-          }
-          
-          if count > 0 {
-            Text("\(count)")
-          }
+    Label {
+      HStack(alignment: .center, spacing: 5) {
+        Text("Repositories")
+        Spacer()
+        
+        var count: Int {
+          var sum = user.publicRepoCount ?? 0
+          sum += user.ownedPrivateRepoCount ?? 0
+          return sum
         }
-      } icon: {
-        Image(systemName: "book.closed")
+        
+        if count > 0 {
+          Text("\(count)")
+        }
+                
+        Image(systemName: "chevron.right")
       }
+    } icon: {
+      Image(systemName: "book.closed")
+    }
+    .contentShape(.rect)
+    .onTapGesture {
+      router.items.append(.userRepositories(ownerID: user.userID))
     }
   }
 
@@ -121,11 +125,12 @@ struct UserDetailView: View {
     List {
       Section {
         userView
-          .listRowSeparator(.hidden)
+          .listRow()
       }
 
       Section("Links") {
         repositoryNavigation
+          .listRow()
       }
     }
     .listStyle(.plain)

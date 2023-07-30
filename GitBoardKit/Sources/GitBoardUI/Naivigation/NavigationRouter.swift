@@ -30,9 +30,3 @@ final class NavigationRouter {
     case forks(ownerID: String, repositoryName: String)
   }
 }
-
-extension NavigationLink where Destination == Never {
-  init(item: NavigationRouter.Item, @ViewBuilder label: () -> Label) {
-    self.init(value: item, label: label)
-  }
-}

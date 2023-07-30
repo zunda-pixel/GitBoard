@@ -11,6 +11,22 @@ struct HomeNavigationView: View {
   @State var query: String = ""
   @State var isPresentedKeyboard = false
 
+  func label(
+    _ titleKey: LocalizedStringKey,
+    systemImage: String
+  ) -> some View {
+    Label {
+      HStack(alignment: .center, spacing: 0) {
+        Text(titleKey)
+        Spacer()
+        Image(systemName: "chevron.right")
+          .foregroundStyle(.secondary)
+      }
+    } icon: {
+      Image(systemName: systemImage)
+    }
+  }
+  
   var body: some View {
     NavigationStack(path: $router.items) {
       List {
@@ -37,14 +53,18 @@ struct HomeNavigationView: View {
           } else {
             List {
               let query = query.trimmingCharacters(in: .whitespaces)
-
-              NavigationLink(item: .searchUsers(query: query)) {
-                Label("Search Users", systemImage: "person.2")
-              }
-
-              NavigationLink(item: .searchRepositories(query: query)) {
-                Label("Search Repositories", systemImage: "book.pages")
-              }
+              
+              label("Search Users", systemImage: "person.2")
+                .contentShape(.rect)
+                .onTapGesture {
+                  router.items.append(.searchUsers(query: query))
+                }
+              
+              label("Search Repositories", systemImage: "book.pages")
+                .contentShape(.rect)
+                .onTapGesture {
+                  router.items.append(.searchRepositories(query: query))
+                }
             }
             .listStyle(.automatic)
           }
