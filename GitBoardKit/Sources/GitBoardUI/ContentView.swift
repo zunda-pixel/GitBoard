@@ -6,9 +6,11 @@ import GitBoardData
 import GitHubAPI
 import SwiftUI
 import ToastView
+import Defaults
 
 public struct ContentView: View {
-  @AppStorage(key: .currentUser, store: .shared) var currentUser: User?
+  @Default(.currentUser) var currentUser: User?
+  
   @State var errorHandle = ErrorHandle()
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
