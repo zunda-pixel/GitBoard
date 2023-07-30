@@ -158,6 +158,7 @@ extension Repository {
     fullName: "apple/swift",
     isPrivate: false,
     owner: .apple,
+    organization: .apple,
     htmlURL: URL(string: "https://github.com")!,
     description: "Swift",
     isFork: false,
@@ -224,7 +225,7 @@ extension Repository {
     license: nil,
     allowForking: true,
     isTemplate: false,
-    webCommitSignOffRequired: false,
+    webCommitSignoffRequired: false,
     topics: [
       "Apple", "swift",
     ],
@@ -237,7 +238,21 @@ extension Repository {
     subscribersCount: 100,
     networkCount: 100,
     codeConduct: .sample,
-    securityAnalytics: .sample
+    securityAnalytics: .sample,
+    anonymousAccessEnabled: true,
+    starredAt: .now,
+    masterBranch: "master",
+    allowMergeCommit: true,
+    mergeCommitMessage: .prBody,
+    mergeCommitTitle: .prTitle,
+    squashMergeCommitMessage: .prBody,
+    squashMergeCommitTitle: .prTitle,
+    useSquashPrTitleAsDefault: true,
+    allowUpdateBranch: true,
+    allowAutoMerge: true,
+    allowSquashMerge: true,
+    allowRebaseMerge: true,
+    templateRepository: nil
   )
 }
 
