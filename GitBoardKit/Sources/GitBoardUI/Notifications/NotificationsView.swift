@@ -6,6 +6,7 @@ import SwiftUI
 import GitHubAPI
 
 struct NotificationsView: View {
+  @Environment(NavigationRouter.self) var router
   @Environment(ErrorHandle.self) var errorHandle
   @State var viewState: NotificationsViewState
   
@@ -36,6 +37,33 @@ struct NotificationsView: View {
           Divider()
         }
         .listRow()
+        .onTapGesture {
+          let item: NavigationRouter.Item
+          switch notification.subject.type {
+          case .issue:
+            item = .issueDetailOnline(
+              ownerID: notification.repository.owner!.userID,
+              repositoryName: notification.repository.name,
+              issueNumber: Int(notification.subject.url.lastPathComponent)!
+            )
+          case .pullRequest:
+            router.items.append(.pullDetail(pull: .sample))
+            item = .pullDetailOnline(
+              ownerID: notification.repository.owner!.userID,
+              repositoryName: notification.repository.name,
+              pullNumber: Int(notification.subject.url.lastPathComponent)!
+            )
+          case .release:
+            //TODO
+            item = .pullDetailOnline(
+              ownerID: notification.repository.owner!.userID,
+              repositoryName: notification.repository.name,
+              pullNumber: Int(notification.subject.url.lastPathComponent)!
+            )
+          }
+          
+          router.items.append(item)
+        }
         .task {
           await populateMore(id: notification.id)
         }
