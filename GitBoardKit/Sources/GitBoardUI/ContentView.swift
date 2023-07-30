@@ -15,7 +15,7 @@ public struct ContentView: View {
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
   @State var tabTapAgain: [TabItem: UUID] = .init(uniqueKeysWithValues: TabItem.allCases.map { ($0, .init()) })
-  @State var selectedTab: TabItem = .home
+  @SceneStorage("ContentView.selectedTab") var selectedTab: TabItem = .home
   
   var bindingSelectedTab: Binding<TabItem> {
     .init {
