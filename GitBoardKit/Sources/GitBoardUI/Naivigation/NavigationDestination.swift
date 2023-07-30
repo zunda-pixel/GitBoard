@@ -40,6 +40,14 @@ extension View {
         IssueDetailView(issue: issue, repository: repository)
           .navigationTitle("Issue #\(issue.number)")
           .navigationBarTitleDisplayMode()
+      case .issueDetailOnline(let ownerID, let repositoryName, let issueNumber):
+        IssueDetailOnlineView(
+          ownerID: ownerID,
+          repositoryName: repositoryName,
+          issueNumber: issueNumber
+        )
+          .navigationTitle("Issue #\(issueNumber)")
+          .navigationBarTitleDisplayMode()
       case .repositoryPulls(let ownerID, let repositoryName):
         let viewState = RepositoryPullsViewState(ownerID: ownerID, repositoryName: repositoryName)
         PullsView(viewState: viewState)
@@ -69,6 +77,14 @@ extension View {
         let viewState = RepositoryPullDetailViewState(pull: pull)
         PullDetailView(viewState: viewState)
           .navigationTitle("Pull #\(pull.number)")
+          .navigationBarTitleDisplayMode()
+      case .pullDetailOnline(let ownerID, let repositoryName, let pullNumber):
+        PullDetailOnlineView(
+          ownerID: ownerID,
+          repositoryName: repositoryName,
+          pullNumber: pullNumber
+        )
+          .navigationTitle("Pull #\(pullNumber)")
           .navigationBarTitleDisplayMode()
       case .stargazers(let ownerID, let repositoryName):
         let viewState = StargazersViewState(ownerID: ownerID, repositoryName: repositoryName)
