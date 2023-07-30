@@ -24,6 +24,9 @@ struct NotificationCell: View {
     case .pullRequest:
       Image(systemName: "arrow.triangle.merge")
         .foregroundStyle(.purple)
+    case .discussion:
+      Image(systemName: "bubble.left.and.bubble.right")
+        .foregroundStyle(.gray)
     }
   }
   
@@ -31,12 +34,23 @@ struct NotificationCell: View {
   var label: some View {
     VStack(alignment: .leading, spacing: 10) {
       HStack(alignment: .center, spacing: 5) {
-        Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
-
-        if notification.subject.type != .release {
-          let number = notification.subject.url.lastPathComponent
+        switch notification.subject.type {
+        case .discussion:
+          Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
+        case .issue:
+          Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
+          let number = notification.subject.url!.lastPathComponent
+          Text("#\(number)")
+        case .release:
+          Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
+          let number = notification.subject.url!.lastPathComponent
+          Text("#\(number)")
+        case .pullRequest:
+          Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
+          let number = notification.subject.url!.lastPathComponent
           Text("#\(number)")
         }
+
         Spacer()
         
         Text(notification.updatedAt, format: .relative(presentation: .named, unitsStyle: .spellOut))
