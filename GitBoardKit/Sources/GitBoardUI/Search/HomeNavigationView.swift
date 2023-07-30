@@ -6,6 +6,7 @@ import SwiftUI
 import ToastView
 
 struct HomeNavigationView: View {
+  let tabTapAgain: UUID
   @Bindable var router = NavigationRouter()
   @State var query: String = ""
   @State var isPresentedKeyboard = false
@@ -51,9 +52,14 @@ struct HomeNavigationView: View {
       }
     }
     .environment(router)
+    .onChange(of: tabTapAgain) { oldValue, newValue in
+      if newValue != oldValue {
+        router.items.removeAll()
+      }
+    }
   }
 }
 
 #Preview{
-  HomeNavigationView()
+  HomeNavigationView(tabTapAgain: .init())
 }

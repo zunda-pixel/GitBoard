@@ -14,13 +14,28 @@ public struct ContentView: View {
   @State var errorHandle = ErrorHandle()
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
+  @State var tabTapAgain: [TabItem: UUID] = .init(uniqueKeysWithValues: TabItem.allCases.map { ($0, .init()) })
   @State var selectedTab: TabItem = .home
-
-  var bindingSelectedTab: Binding<TabItem?> {
+  
+  var bindingSelectedTab: Binding<TabItem> {
+    .init {
+      selectedTab
+    } set: { newValue in
+      if newValue == selectedTab {
+        tabTapAgain[newValue]! = .init()
+      }
+      selectedTab = newValue
+    }
+  }
+  
+  var bindingSelectedTabOptional: Binding<TabItem?> {
     .init {
       selectedTab
     } set: { newValue in
       guard let newValue else { return }
+      if newValue == selectedTab {
+        tabTapAgain[newValue]! = .init()
+      }
       selectedTab = newValue
     }
   }
@@ -32,17 +47,17 @@ public struct ContentView: View {
   func tabContent(tab: TabItem, user: User) -> some View {
     switch tab {
     case .home:
-      HomeNavigationView()
+      HomeNavigationView(tabTapAgain: tabTapAgain[tab]!)
     case .notifications:
-      NotificationsNavigationView()
+      NotificationsNavigationView(tabTapAgain: tabTapAgain[tab]!)
     case .profile:
-      ProfileNavigationView(user: user)
+      ProfileNavigationView(user: user, tabTapAgain: tabTapAgain[tab]!)
     }
   }
 
   @ViewBuilder
   func tabView(user: User) -> some View {
-    TabView(selection: $selectedTab) {
+    TabView(selection: bindingSelectedTab) {
       ForEach(TabItem.allCases) { tab in
         tabContent(tab: tab, user: user)
           .tag(tab)
@@ -60,7 +75,7 @@ public struct ContentView: View {
     switch navigationStyle {
     case .split:
       NavigationSplitView {
-        List(selection: bindingSelectedTab) {
+        List(selection: bindingSelectedTabOptional) {
           ForEach(TabItem.allCases) { tab in
             Text(tab.rawValue)
               .tag(tab)

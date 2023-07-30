@@ -5,6 +5,7 @@
 import SwiftUI
 
 struct NotificationsNavigationView: View {
+  let tabTapAgain: UUID
   @Bindable var router = NavigationRouter()
 
   var body: some View {
@@ -15,9 +16,14 @@ struct NotificationsNavigationView: View {
         .navigationTitle("Notifications")
     }
     .environment(router)
+    .onChange(of: tabTapAgain) { oldValue, newValue in
+      if newValue != oldValue {
+        router.items.removeAll()
+      }
+    }
   }
 }
 
 #Preview{
-  NotificationsNavigationView()
+  NotificationsNavigationView(tabTapAgain: .init())
 }

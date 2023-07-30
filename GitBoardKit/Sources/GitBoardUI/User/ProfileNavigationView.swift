@@ -8,6 +8,7 @@ import GitHubAPI
 struct ProfileNavigationView: View {
   @Bindable var router = NavigationRouter()
   let user: User
+  let tabTapAgain: UUID
 
   var body: some View {
     NavigationStack(path: $router.items) {
@@ -17,9 +18,14 @@ struct ProfileNavigationView: View {
         .navigationBarTitleDisplayMode()
     }
     .environment(router)
+    .onChange(of: tabTapAgain) { oldValue, newValue in
+      if newValue != oldValue {
+        router.items.removeAll()
+      }
+    }
   }
 }
 
 #Preview{
-  ProfileNavigationView(user: .sample)
+  ProfileNavigationView(user: .sample, tabTapAgain: .init())
 }
