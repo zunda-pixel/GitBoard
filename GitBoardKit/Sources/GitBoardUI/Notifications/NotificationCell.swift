@@ -34,19 +34,19 @@ struct NotificationCell: View {
   var label: some View {
     VStack(alignment: .leading, spacing: 10) {
       HStack(alignment: .center, spacing: 5) {
+        Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
+
         switch notification.subject.type {
         case .discussion:
-          Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
+          //TODO
+          EmptyView()
         case .issue:
-          Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
           let number = notification.subject.url!.lastPathComponent
           Text("#\(number)")
         case .release:
-          Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
           let number = notification.subject.url!.lastPathComponent
           Text("#\(number)")
         case .pullRequest:
-          Text("\(notification.repository.owner!.userID) / \(notification.repository.name)")
           let number = notification.subject.url!.lastPathComponent
           Text("#\(number)")
         }

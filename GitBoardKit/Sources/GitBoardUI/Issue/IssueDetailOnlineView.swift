@@ -12,15 +12,26 @@ struct IssueDetailOnlineView: View {
   let repositoryName: String
   let issueNumber: Int
   
-  @State var issue: Issue? = nil
+  @State var issue: (Issue, Repository)? = nil
 
   func populate() async {
+    let ownerID = ownerID
+    let repositoryName = repositoryName
+    let issueNumber = issueNumber
+    
     do {
-      self.issue = try await GitHubAPI().issue(
+      async let issue = try await GitHubAPI().issue(
         ownerID: ownerID,
         repositoryName: repositoryName,
         issueNumber: issueNumber
       )
+      
+      async let repository = try await GitHubAPI().repository(
+        ownerID: ownerID,
+        repositoryName: repositoryName
+      )
+      
+      self.issue  = try await (issue, repository)
     } catch {
       errorHandle.error = .init(error: error)
     }
@@ -28,7 +39,7 @@ struct IssueDetailOnlineView: View {
   
   var body: some View {
     if let issue {
-      IssueDetailView(issue: issue, repository: issue.repository!)
+      IssueDetailView(issue: issue.0, repository: issue.1)
     } else {
       ProgressView()
         .task {
