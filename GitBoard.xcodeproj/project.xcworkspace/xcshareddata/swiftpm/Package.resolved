@@ -1,12 +1,21 @@
 {
   "pins" : [
     {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults",
+      "state" : {
+        "revision" : "0f5a23fcbd83eb72f6d405aa85bbfacaffb99b03",
+        "version" : "7.2.0"
+      }
+    },
+    {
       "identity" : "githubkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-        "branch" : "develop/add-forks",
-        "revision" : "23b9e264c9574c2f268644830bf23d29c298afdc"
+        "branch" : "main",
+        "revision" : "d05e446ae771f8722ab9839b28063f543e8829cf"
       }
     },
     {
