@@ -52,5 +52,5 @@ final class SearchUsersViewState: UsersViewState {
     UsersView(viewState: viewState)
   }
   .environment(ErrorHandle())
-  .environment(NavigationRouter())
+  .environmentObject(NavigationRouter())
 }

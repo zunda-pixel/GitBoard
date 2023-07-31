@@ -6,7 +6,7 @@ import GitHubAPI
 import SwiftUI
 
 struct RepositoryDetailView: View {
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
 
   let repository: Repository
 
@@ -183,5 +183,5 @@ struct RepositoryDetailView: View {
   NavigationStack {
     RepositoryDetailView(repository: .swift)
   }
-  .environment(NavigationRouter())
+  .environmentObject(NavigationRouter())
 }

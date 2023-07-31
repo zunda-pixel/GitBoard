@@ -5,8 +5,8 @@
 import SwiftUI
 
 struct NotificationsNavigationView: View {
-  let tabTapAgain: UUID
-  @Bindable var router = NavigationRouter()
+  let trigger: TabTrigger
+  @StateObject var router = NavigationRouter()
 
   var body: some View {
     NavigationStack(path: $router.items) {
@@ -15,15 +15,13 @@ struct NotificationsNavigationView: View {
         .navigationDestination()
         .navigationTitle("Notifications")
     }
-    .environment(router)
-    .onChange(of: tabTapAgain) { oldValue, newValue in
-      if newValue != oldValue {
-        router.items.removeAll()
-      }
+    .environmentObject(router)
+    .onTrigger(of: trigger) {
+      router.items.removeAll()
     }
   }
 }
 
 #Preview{
-  NotificationsNavigationView(tabTapAgain: .init())
+  NotificationsNavigationView(trigger: .init())
 }

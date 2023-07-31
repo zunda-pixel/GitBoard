@@ -6,10 +6,11 @@ import GitHubAPI
 import Observation
 import SwiftUI
 
-@Observable
-final class NavigationRouter {
-  var items: [Item] = []
+final class NavigationRouter: ObservableObject {
+  @Published var items: [Item] = []
+}
 
+extension NavigationRouter {
   enum Item: Hashable {
     case searchUsers(query: String)
     case searchRepositories(query: String)

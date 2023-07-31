@@ -6,9 +6,9 @@ import SwiftUI
 import GitHubAPI
 
 struct ProfileNavigationView: View {
-  @Bindable var router = NavigationRouter()
+  @StateObject var router = NavigationRouter()
   let user: User
-  let tabTapAgain: UUID
+  let trigger: TabTrigger
 
   var body: some View {
     NavigationStack(path: $router.items) {
@@ -17,15 +17,13 @@ struct ProfileNavigationView: View {
         .navigationTitle(user.userID)
         .navigationBarTitleDisplayMode()
     }
-    .environment(router)
-    .onChange(of: tabTapAgain) { oldValue, newValue in
-      if newValue != oldValue {
-        router.items.removeAll()
-      }
+    .environmentObject(router)
+    .onTrigger(of: trigger) {
+      router.items.removeAll()
     }
   }
 }
 
 #Preview{
-  ProfileNavigationView(user: .sample, tabTapAgain: .init())
+  ProfileNavigationView(user: .sample, trigger: .init())
 }

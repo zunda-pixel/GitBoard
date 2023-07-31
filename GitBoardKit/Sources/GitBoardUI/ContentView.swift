@@ -14,14 +14,16 @@ public struct ContentView: View {
   @State var errorHandle = ErrorHandle()
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
-  @State var tabTapAgain: [TabItem: UUID] = .init(uniqueKeysWithValues: TabItem.allCases.map { ($0, .init()) })
+  @State var tabTappedTwice: [TabItem: TabTrigger] = .init(uniqueKeysWithValues: TabItem.allCases.map { ($0, .init()) })
   @SceneStorage("ContentView.selectedTab") var selectedTab: TabItem = .home
   
   var bindingSelectedTab: Binding<TabItem> {
     .init {
       selectedTab
     } set: { newValue in
-      tabTapAgain[newValue]! = .init()
+      if newValue == selectedTab {
+        tabTappedTwice[newValue]!.fire()
+      }
       selectedTab = newValue
     }
   }
@@ -31,7 +33,9 @@ public struct ContentView: View {
       selectedTab
     } set: { newValue in
       guard let newValue else { return }
-      tabTapAgain[newValue]! = .init()
+      if newValue == selectedTab {
+        tabTappedTwice[newValue]!.fire()
+      }
       selectedTab = newValue
     }
   }
@@ -43,11 +47,11 @@ public struct ContentView: View {
   func tabContent(tab: TabItem, user: User) -> some View {
     switch tab {
     case .home:
-      HomeNavigationView(tabTapAgain: tabTapAgain[tab]!)
+      HomeNavigationView(trigger: tabTappedTwice[tab]!)
     case .notifications:
-      NotificationsNavigationView(tabTapAgain: tabTapAgain[tab]!)
+      NotificationsNavigationView(trigger: tabTappedTwice[tab]!)
     case .profile:
-      ProfileNavigationView(user: user, tabTapAgain: tabTapAgain[tab]!)
+      ProfileNavigationView(user: user, trigger: tabTappedTwice[tab]!)
     }
   }
 

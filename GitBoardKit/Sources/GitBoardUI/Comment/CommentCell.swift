@@ -6,7 +6,7 @@ import GitHubAPI
 import SwiftUI
 
 struct CommentCell: View {
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
   let comment: Comment
   @State var isPresentedPopOver = false
 

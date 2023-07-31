@@ -6,7 +6,7 @@ import SwiftUI
 import GitHubAPI
 
 struct NotificationsView: View {
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
   @Environment(ErrorHandle.self) var errorHandle
   @State var viewState: NotificationsViewState
   
