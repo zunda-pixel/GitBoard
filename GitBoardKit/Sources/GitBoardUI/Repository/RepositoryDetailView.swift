@@ -142,8 +142,7 @@ struct RepositoryDetailView: View {
         .contentShape(.rect)
         .onTapGesture {
           router.items.append(.releases(
-            ownerID: repository.owner!.userID,
-            repositoryName: repository.name
+            repository: repository
           ))
         }
       

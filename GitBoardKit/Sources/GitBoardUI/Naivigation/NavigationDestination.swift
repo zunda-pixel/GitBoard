@@ -58,14 +58,18 @@ extension View {
         UsersView(viewState: viewState)
           .navigationTitle("Contributors")
           .navigationBarTitleDisplayMode()
-      case .releases(let ownerID, let repositoryName):
-        let viewState = ReleasesViewState(ownerID: ownerID, repositoryName: repositoryName)
+      case .releases(let repository):
+        let viewState = ReleasesViewState(repository: repository)
         ReleasesView(viewState: viewState)
           .navigationTitle("Releases")
           .navigationBarTitleDisplayMode()
+      case .releaseDetail(let repository, let release):
+        ReleaseDetailView(repository: repository, release: release)
+          .navigationTitle("Release")
+          .navigationBarTitleDisplayMode()
       case .releaseDetailOnline(let repository, let releaseID):
         ReleaseDetailOnlineView(repository: repository, releaseID: releaseID)
-          .navigationTitle("Release #\(releaseID)")
+          .navigationTitle("Release")
           .navigationBarTitleDisplayMode()
       case .license(let ownerID, let repositoryName):
         let viewState = LicenseViewState(ownerID: ownerID, repositoryName: repositoryName)

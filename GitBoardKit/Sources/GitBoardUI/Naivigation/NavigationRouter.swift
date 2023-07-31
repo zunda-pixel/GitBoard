@@ -29,9 +29,9 @@ extension NavigationRouter {
     case issueDetailOnline(ownerID: String, repositoryName: String, issueNumber: Int)
         
     // Release
-    case releases(ownerID: String, repositoryName: String)
+    case releases(repository: Repository)
+    case releaseDetail(repository: Repository, release: Release)
     case releaseDetailOnline(repository: Repository, releaseID: Int)
-    
     
     // Follow
     case following(userID: String)

@@ -11,7 +11,7 @@ struct ReleaseCell: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       Text(release.name)
-        .font(.title)
+        .font(.title2)
         .bold()
       
       reactions(reaction: release.reactions)

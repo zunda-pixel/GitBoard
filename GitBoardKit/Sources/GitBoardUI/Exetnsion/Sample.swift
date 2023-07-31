@@ -15,7 +15,7 @@ extension Asset {
       name: "name",
       url: URL(string: "https://github.com")!,
       browserDownloadURL: URL(string: "https://github.com")!,
-      contentType: "contentType",
+      contentType: .zip,
       size: 1231,
       downloadCount: 32,
       createdAt: .now,

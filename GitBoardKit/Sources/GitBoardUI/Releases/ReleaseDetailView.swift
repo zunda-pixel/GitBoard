@@ -68,7 +68,9 @@ struct ReleaseDetailView: View {
         Text(release.publishedAt, style: .date)
       }
       
-      Text(LocalizedStringKey(release.body))
+      if let body = release.body {
+        Text(LocalizedStringKey(body))
+      }
       
       ScrollView(.horizontal) {
         if let reaction = release.reactions {
@@ -80,10 +82,37 @@ struct ReleaseDetailView: View {
     }
   }
   
+  @ViewBuilder
+  var assetsSection: some View {
+    if !release.assets.isEmpty {
+      Section("Assets") {
+        ForEach(release.assets) { asset in
+          ShareLink(item: asset.browserDownloadURL) {
+            Label {
+              HStack(alignment: .center, spacing: 10) {
+                Text(asset.name)
+                Text(Int64(asset.size), format: .byteCount(style: .file))
+                Spacer()
+                Image(systemName: "tray.and.arrow.down")
+                  .foregroundStyle(.tint)
+              }
+              .contentShape(.rect)
+            } icon: {
+              Image(systemName: "doc.zipper")
+            }
+          }
+        }
+      }
+    }
+  }
+  
   var body: some View {
     List {
       header
+        .padding(15)
         .listRow()
+      
+      assetsSection
       
       Section("INFO") {
         Label(release.tagName, systemImage: "tag")

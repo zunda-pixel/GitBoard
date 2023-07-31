@@ -8,8 +8,7 @@ import Foundation
 
 @Observable
 final class ReleasesViewState {
-  let ownerID: String
-  let repositoryName: String
+  let repository: Repository
   var page: Int = 1
   var _releases: [GitHubData.Release] = []
   var releases: [GitHubData.Release] {
@@ -18,20 +17,16 @@ final class ReleasesViewState {
       .sorted(using: KeyPathComparator(\.id, order: .reverse))
   }
   
-  init(
-    ownerID: String,
-    repositoryName: String
-  ) {
-    self.ownerID = ownerID
-    self.repositoryName = repositoryName
+  init(repository: Repository) {
+    self.repository = repository
   }
   
   func populateReleases() async throws {
     page = 1
     
     let newReleases = try await GitHubAPI().releases(
-      ownerID: ownerID,
-      repositoryName: repositoryName,
+      ownerID: repository.owner!.userID,
+      repositoryName: repository.name,
       perPage: 30,
       page: page
     )
@@ -44,8 +39,8 @@ final class ReleasesViewState {
     page += 1
     
     let newReleases = try await GitHubAPI().releases(
-      ownerID: ownerID,
-      repositoryName: repositoryName,
+      ownerID: repository.owner!.userID,
+      repositoryName: repository.name,
       perPage: 30,
       page: page
     )

@@ -37,6 +37,15 @@ struct ReleasesView: View {
           Divider()
         }
         .listRow()
+        .onTapGesture {
+          router.items.append(.releaseDetail(
+            repository: viewState.repository,
+            release: release
+          ))
+        }
+        .task {
+          await populateMore(id: release.id)
+        }
       }
     }
     .listStyle(.plain)
@@ -51,10 +60,7 @@ struct ReleasesView: View {
 
 #Preview {
   NavigationStack {
-    let viewState = ReleasesViewState(
-      ownerID: "apple",
-      repositoryName: "swift"
-    )
+    let viewState = ReleasesViewState(repository: .swift)
     ReleasesView(viewState: viewState)
   }
   .environment(ErrorHandle())
