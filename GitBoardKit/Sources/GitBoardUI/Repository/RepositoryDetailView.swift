@@ -137,6 +137,15 @@ struct RepositoryDetailView: View {
             repositoryName: repository.name
           ))
         }
+
+      label("Releases", systemImage: "tag", imageColor: .gray)
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(.releases(
+            ownerID: repository.owner!.userID,
+            repositoryName: repository.name
+          ))
+        }
       
       label("Contributors", systemImage: "person.2", imageColor: .orange)
         .contentShape(.rect)

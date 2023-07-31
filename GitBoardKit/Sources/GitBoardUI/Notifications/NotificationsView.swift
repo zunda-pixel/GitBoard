@@ -53,8 +53,11 @@ struct NotificationsView: View {
               pullNumber: Int(notification.subject.url!.lastPathComponent)!
             )
           case .release:
-            //TODO
-            item = nil
+            item = .releaseDetailOnline(
+              ownerID: notification.repository.owner!.userID,
+              repositoryName: notification.repository.name,
+              releaseID: Int(notification.subject.url!.lastPathComponent)!
+            )
           case .discussion:
             //TODO
             item = nil
