@@ -5,6 +5,59 @@
 import Foundation
 import GitHubAPI
 
+extension Asset {
+  static var sample: Asset {
+    Asset(
+      id: (Int.min...Int.max).randomElement()!,
+      nodeID: "nodeID",
+      label: "label",
+      state: .open,
+      name: "name",
+      url: URL(string: "https://github.com")!,
+      browserDownloadURL: URL(string: "https://github.com")!,
+      contentType: "contentType",
+      size: 1231,
+      downloadCount: 32,
+      createdAt: .now,
+      updatedAt: .now,
+      uploader: .apple
+    )
+  }
+}
+
+extension Release {
+  static var sample: Release {
+    Release(
+      id: (Int.min...Int.max).randomElement()!,
+      nodeID: "nodeID",
+      name: "name",
+      url: URL(string: "https://github.com")!,
+      htmlURL: URL(string: "https://github.com")!,
+      assetsURL: URL(string: "https://github.com")!,
+      uploadURL: URL(string: "https://github.com")!,
+      tarballURL: URL(string: "https://github.com")!,
+      zipballURL: URL(string: "https://github.com")!,
+      tagName: "TagName",
+      targetCommitish: "targetCommitish",
+      body: "Body",
+      draft: true,
+      prerelease: true,
+      createdAt: .now,
+      publishedAt: .now,
+      author: .apple,
+      assets: [
+        .sample,
+        .sample
+      ],
+      bodyHTML: "bodyHTML",
+      bodyText: "bodyText",
+      mentionsCount: 123,
+      discussionURL: URL(string: "https://github.com")!,
+      reactions: .sample
+    )
+  }
+}
+
 extension User {
   static var sample: User {
     User(
