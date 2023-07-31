@@ -30,7 +30,7 @@ extension NavigationRouter {
         
     // Release
     case releases(ownerID: String, repositoryName: String)
-    case releaseDetailOnline(ownerID: String, repositoryName: String, releaseID: Int)
+    case releaseDetailOnline(repository: Repository, releaseID: Int)
     
     
     // Follow

@@ -63,8 +63,8 @@ extension View {
         ReleasesView(viewState: viewState)
           .navigationTitle("Releases")
           .navigationBarTitleDisplayMode()
-      case .releaseDetailOnline(let ownerID, let repositoryName, let releaseID):
-        ReleaseDetailOnlineView(ownerID: ownerID, repositoryName: repositoryName, releaseID: releaseID)
+      case .releaseDetailOnline(let repository, let releaseID):
+        ReleaseDetailOnlineView(repository: repository, releaseID: releaseID)
           .navigationTitle("Release #\(releaseID)")
           .navigationBarTitleDisplayMode()
       case .license(let ownerID, let repositoryName):

@@ -54,8 +54,7 @@ struct NotificationsView: View {
             )
           case .release:
             item = .releaseDetailOnline(
-              ownerID: notification.repository.owner!.userID,
-              repositoryName: notification.repository.name,
+              repository: notification.repository,
               releaseID: Int(notification.subject.url!.lastPathComponent)!
             )
           case .discussion:
