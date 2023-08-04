@@ -27,15 +27,12 @@ struct PullDetailOnlineView: View {
   }
   
   var body: some View {
-    if let pull {
-      let viewState = RepositoryPullDetailViewState(pull: pull)
-      PullDetailView(viewState: viewState)
-    } else {
-      ProgressView()
-        .task {
-          await populate()
-        }
-    }
+    let viewState = RepositoryPullDetailViewState(pull: pull ?? .sample)
+    PullDetailView(viewState: viewState)
+      .redacted(reason: pull == nil ? .placeholder : [])
+      .task {
+        await populate()
+      }
   }
 }
 

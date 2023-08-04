@@ -12,7 +12,8 @@ struct IssueDetailOnlineView: View {
   let repositoryName: String
   let issueNumber: Int
   
-  @State var issue: (Issue, Repository)? = nil
+  @State var issue: Issue?
+  @State var repository: Repository?
 
   func populate() async {
     let ownerID = ownerID
@@ -31,21 +32,19 @@ struct IssueDetailOnlineView: View {
         repositoryName: repositoryName
       )
       
-      self.issue  = try await (issue, repository)
+      self.issue = try await issue
+      self.repository = try await repository
     } catch {
       errorHandle.error = .init(error: error)
     }
   }
   
   var body: some View {
-    if let issue {
-      IssueDetailView(issue: issue.0, repository: issue.1)
-    } else {
-      ProgressView()
-        .task {
-          await populate()
-        }
-    }
+    IssueDetailView(issue: issue ?? .sample, repository: repository ?? .swift)
+      .redacted(reason: issue == nil || repository == nil ? .placeholder : [])
+      .task {
+        await populate()
+      }
   }
 }
 

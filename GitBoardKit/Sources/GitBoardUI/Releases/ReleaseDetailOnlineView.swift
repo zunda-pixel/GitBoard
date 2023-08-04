@@ -26,14 +26,12 @@ struct ReleaseDetailOnlineView: View {
   }
   
   var body: some View {
-    if let release {
-      ReleaseDetailView(repository: repository, release: release)
-    } else {
-      ProgressView()
-        .task {
-          await populate()
-        }
-    }
+    ReleaseDetailView(repository: repository, release: release ?? .sample)
+      .redacted(reason: release == nil ? .placeholder : [])
+      .task {
+        await populate()
+      }
+
   }
 }
 
