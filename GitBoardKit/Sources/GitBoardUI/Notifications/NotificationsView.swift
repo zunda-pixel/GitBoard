@@ -38,33 +38,34 @@ struct NotificationsView: View {
         }
         .listRow()
         .onTapGesture {
-          let item: NavigationRouter.Item?
+          let item: NavigationRouter.Item
+          let number = Int(notification.subject.url!.lastPathComponent)!
           switch notification.subject.type {
           case .issue:
             item = .issueDetailOnline(
               ownerID: notification.repository.owner!.userID,
               repositoryName: notification.repository.name,
-              issueNumber: Int(notification.subject.url!.lastPathComponent)!
+              issueNumber: number
             )
           case .pullRequest:
             item = .pullDetailOnline(
               ownerID: notification.repository.owner!.userID,
               repositoryName: notification.repository.name,
-              pullNumber: Int(notification.subject.url!.lastPathComponent)!
+              pullNumber: number
             )
           case .release:
             item = .releaseDetailOnline(
               repository: notification.repository,
-              releaseID: Int(notification.subject.url!.lastPathComponent)!
+              releaseID: number
             )
           case .discussion:
-            //TODO
-            item = nil
+            item = .discussionDetailOnline(
+              repository: notification.repository,
+              discussionNumber: number
+            )
           }
           
-          if let item {
-            router.items.append(item)
-          }
+          router.items.append(item)
         }
         .task {
           await populateMore(id: notification.id)
