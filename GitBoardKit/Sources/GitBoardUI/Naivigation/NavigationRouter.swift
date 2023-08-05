@@ -42,6 +42,11 @@ extension NavigationRouter {
     case pullDetail(pull: Pull)
     case pullDetailOnline(ownerID: String, repositoryName: String, pullNumber: Int)
     
+    // Discussion
+    case discussions(repository: Repository)
+    case discussionDetail(repository: Repository, discussion: Discussion)
+    case discussionDetailOnline(repository: Repository, discussionNumber: Int)
+    
     case license(ownerID: String, repositoryName: String)
     case contributors(ownerID: String, repositoryName: String)
     case stargazers(ownerID: String, repositoryName: String)

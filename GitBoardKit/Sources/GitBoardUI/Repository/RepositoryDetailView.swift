@@ -137,7 +137,17 @@ struct RepositoryDetailView: View {
             repositoryName: repository.name
           ))
         }
-
+      
+      if repository.hasDiscussions == true {
+        label("Discussions", systemImage: "bubble.left.and.bubble.right", imageColor: .purple)
+          .contentShape(.rect)
+          .onTapGesture {
+            router.items.append(.discussions(
+              repository: repository
+            ))
+          }
+      }
+      
       label("Releases", systemImage: "tag", imageColor: .gray)
         .contentShape(.rect)
         .onTapGesture {

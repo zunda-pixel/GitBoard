@@ -109,6 +109,18 @@ extension View {
         RepositoriesView(viewState: viewState)
           .navigationTitle("Forks")
           .navigationBarTitleDisplayMode()
+      case .discussions(let repository):
+        DiscussionsView(repository: repository)
+          .navigationTitle("Discussions")
+          .navigationBarTitleDisplayMode()
+      case .discussionDetail(let repository, let discussion):
+        DiscussionDetailView(repository: repository, discussion: discussion)
+          .navigationTitle("Discussion \(discussion.title)")
+          .navigationBarTitleDisplayMode()
+      case .discussionDetailOnline(let repository, let discussionNumber):
+        DiscussionDetailOnlineView(repository: repository, discussionNumber: discussionNumber)
+          .navigationTitle("Discussion")
+          .navigationBarTitleDisplayMode()
       }
     }
   }
