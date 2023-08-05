@@ -619,3 +619,75 @@ extension Milestone {
     )
   }
 }
+
+extension Discussion.User {
+  static let sample = Discussion.User(
+    login: "zunda-pixel",
+    avatarUrl: URL(string: "https://github.com")!,
+    resourcePath: "/zunda-pixel",
+    url: URL(string: "https://github.com/zunda-pixel")!
+  )
+}
+
+extension Discussion.Comment {
+  static var sample = Discussion.Comment(
+    id: "\(Int.random(in: Int.min...Int.max))",
+    author: .sample,
+    body: "Hello",
+    bodyHTML: "Hello",
+    bodyText: "Hello",
+    createdAt: .now,
+    createdViaEmail: false,
+    editor: .sample,
+    authorAssociation: .mannequin,
+    includesCreatedEdit: false,
+    lastEditedAt: .now,
+    publishedAt: .now,
+    updatedAt: .now,
+    viewerDidAuthor: false
+  )
+}
+
+extension Discussion {
+  static var sample = Discussion(
+    id: "\(Int.random(in: Int.min...Int.max))",
+    number: Int.random(in: Int.min...Int.max),
+    url: URL(string: "https://github.com")!,
+    author: .sample,
+    createdAt: .now,
+    title: "100",
+    updatedAt: .now,
+    upvoteCount: 100,
+    stateReason: .duplicate,
+    activeLockReason: nil,
+    authorAssociation: .collaborator,
+    body: "Hello",
+    bodyHTML: "Hello",
+    bodyText: "Hello",
+    createdViaEmail: false,
+    databaseId: Int.random(in: Int.min...Int.max),
+    editor: .sample,
+    includesCreatedEdit: false,
+    lastEditedAt: .now,
+    locked: false,
+    comments: [
+      .sample,
+      .sample,
+      .sample,
+    ],
+    category: .sample
+  )
+}
+
+extension GitHubData.Category {
+  static let sample = Category(
+    createdAt: .now,
+    description: "Description",
+    emoji: ":play",
+    emojiHTML: "✌️",
+    isAnswerable: false,
+    name: "name",
+    slug: "slug",
+    updateAt: .now
+  )
+}
