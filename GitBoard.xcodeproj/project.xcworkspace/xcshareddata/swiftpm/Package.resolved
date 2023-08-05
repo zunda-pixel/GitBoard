@@ -10,12 +10,21 @@
       }
     },
     {
+      "identity" : "emoji-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zunda-pixel/Emoji-Swift",
+      "state" : {
+        "revision" : "a828c332a267ee16245d78c8fe316f4ba15eb89e",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "githubkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-        "branch" : "main",
-        "revision" : "d05e446ae771f8722ab9839b28063f543e8829cf"
+        "branch" : "develop/add-discussions",
+        "revision" : "d6771013aa503834da8aaf3108b7d6092fe84707"
       }
     },
     {

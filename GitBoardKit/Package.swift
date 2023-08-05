@@ -30,6 +30,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-format", .upToNextMajor(from: "508.0.1")),
     .package(url: "https://github.com/sindresorhus/Defaults", .upToNextMajor(from: "7.2.0")),
     .package(url: "https://github.com/gonzalezreal/swift-markdown-ui", .upToNextMajor(from: "2.1.0")),
+    .package(url: "https://github.com/zunda-pixel/Emoji-Swift", .upToNextMajor(from: "1.0.0")),
   ],
   targets: [
     .target(
@@ -41,7 +42,8 @@ let package = Package(
         .product(name: "KeychainSwift", package: "keychain-swift"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Defaults", package: "Defaults"),
-        .product(name: "MarkdownUI", package: "swift-markdown-ui")
+        .product(name: "MarkdownUI", package: "swift-markdown-ui"),
+        .product(name: "Emoji", package: "Emoji-Swift"),
       ],
       swiftSettings: [
         // https://github.com/uhooi/Loki/blob/main/LokiPackage/Package.swift
