@@ -64,7 +64,7 @@ extension User {
       id: Int.random(in: Int.min...Int.max),
       userID: "apple",
       userName: "apple",
-      nodeID: "",
+      nodeID: "fadsfakjlk",
       avatarURL: URL(string: "https://avatars.githubusercontent.com/u/10639145?v=4")!,
       gravatarID: "",
       url: URL(string: "https://github.com")!,
@@ -204,7 +204,7 @@ extension User {
 }
 
 extension Repository {
-  static let swift = Repository(
+  static let sample = Repository(
     id: 321312,
     nodeID: "",
     name: "swift",
@@ -321,7 +321,7 @@ extension GitHubData.Notification {
   static var sample: GitHubData.Notification {
     .init(
       id: "\(Int.random(in: Int.min...Int.max))",
-      repository: .swift,
+      repository: .sample,
       subject: .sample,
       reason: .author,
       unread: false,
@@ -409,7 +409,7 @@ extension Issue {
       performedViaGitHubApp: .sample,
       stateReason: .completed,
       closedBy: .apple,
-      repository: .swift
+      repository: .sample
     )
   }
 }
@@ -474,9 +474,9 @@ extension Pull {
       number: 132,
       state: .open,
       locked: false,
-      title: "Title",
+      title: "Use index.md instead of [topic_name].md",
       user: .sample,
-      body: "body",
+      body: "This branch does two things:\r\n\r\n- Renames each topic\'s Markdown file to be the standard index.md, so we can see its contents as soon as you click into the topic folder in the GitHub UI.\r\n- Updates the content to be the latest from our master sheet.\r\n\r\n/cc @github/identity-team-rainbow-skate @nayafia",
       createdAt: .now,
       updateAt: .now,
       closedAt: .now,
@@ -488,10 +488,18 @@ extension Pull {
       mergedAt: .now,
       mergeCommitSha: "mergeCommitSha",
       assignee: .sample,
-      assignees: [.sample],
-      requestedReviewers: [.sample],
-      requestedTeams: [.sample],
-      labels: [.sample],
+      assignees: [
+        .sample
+      ],
+      requestedReviewers: [
+        .sample
+      ],
+      requestedTeams: [
+        .sample
+      ],
+      labels: [
+        .sample
+      ],
       milestone: .sample,
       isDraft: false,
       commitsURL: URL(string: "https://github.com")!,
@@ -499,10 +507,10 @@ extension Pull {
       reviewCommentURL: URL(string: "https://github.com")!,
       commentsURL: URL(string: "https://github.com")!,
       statusesURL: URL(string: "https://github.com")!,
-      head: .apple,
-      base: .apple,
+      head: .sample,
+      base: .sample,
       authorAssociation: .collaborator,
-      autoMerge: .apple,
+      autoMerge: .sample,
       activeLockReason: .offTopic
     )
   }
@@ -530,21 +538,21 @@ extension Comment {
 }
 
 extension Merge {
-  static let apple = Merge(
-    enabledBy: .apple,
+  static let sample = Merge(
+    enabledBy: .sample,
     method: .merge,
-    commitTitle: "title",
-    commitMessage: "message"
+    commitTitle: "Merge pull request #27 from zunda-pixel/develop/fix-decode",
+    commitMessage: "Develop/fix decode"
   )
 }
 
 extension Branch {
-  static let apple = Branch(
-    label: "label",
-    ref: "ref",
-    sha: "sha",
-    user: .apple,
-    repository: .swift
+  static let sample = Branch(
+    label: "zunda-pixel:main",
+    ref: "main",
+    sha: "13a5ec49c9fadd49761f9113134cb29a2163f9fb",
+    user: .sample,
+    repository: .sample
   )
 }
 
@@ -604,12 +612,12 @@ extension Milestone {
       nodeID: "nodeID",
       state: .closed,
       number: 42,
-      title: "Titlw",
-      description: "description",
+      title: "backlog",
+      description: "",
       url: URL(string: "https://github.com")!,
       htmlURL: URL(string: "https://github.com")!,
       labelsURL: URL(string: "https://github.com")!,
-      creator: .apple,
+      creator: .sample,
       openIssueCount: 312,
       closedIssueCount: 3,
       createdAt: .now,
@@ -623,7 +631,7 @@ extension Milestone {
 extension Discussion.User {
   static let sample = Discussion.User(
     login: "zunda-pixel",
-    avatarUrl: URL(string: "https://github.com")!,
+    avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/47569369?v=4")!,
     resourcePath: "/zunda-pixel",
     url: URL(string: "https://github.com/zunda-pixel")!
   )
@@ -633,9 +641,14 @@ extension Discussion.Comment {
   static var sample = Discussion.Comment(
     id: "\(Int.random(in: Int.min...Int.max))",
     author: .sample,
-    body: "Hello",
-    bodyHTML: "Hello",
-    bodyText: "Hello",
+    body: """
+<p>There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In <a href=\"https://developer.github.com/v3/pulls/#get-a-single-pull-request\" rel=\"nofollow noopener\">the documentation</a> it states:</p>\n<blockquote>\n<p>The value of the <code>mergeable</code> attribute can be <code>true</code>, <code>false</code>, or <code>null</code>. If the value is <code>null</code>, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-<code>null</code> value for the <code>mergeable</code> attribute.</p>\n</blockquote>\n<p>We don’t record the result of why, only yes, no, or not yet computed.</p>\n<p>I hope that helps :+1:</p>
+""",
+    bodyHTML: """
+<p dir=\"auto\">There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In <a href=\"https://developer.github.com/v3/pulls/#get-a-single-pull-request\">the documentation</a> it states:</p>\n<blockquote>\n<p dir=\"auto\">The value of the <code class=\"notranslate\">mergeable</code> attribute can be <code class=\"notranslate\">true</code>, <code class=\"notranslate\">false</code>, or <code class=\"notranslate\">null</code>. If the value is <code class=\"notranslate\">null</code>, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-<code class=\"notranslate\">null</code> value for the <code class=\"notranslate\">mergeable</code> attribute.</p>\n</blockquote>\n<p dir=\"auto\">We don’t record the result of why, only yes, no, or not yet computed.</p>\n<p dir=\"auto\">I hope that helps <g-emoji class=\"g-emoji\" alias=\"+1\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png\">👍</g-emoji></p>"
+- bodyText : "There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In the documentation it states:\n\nThe value of the mergeable attribute can be true, false, or null. If the value is null, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-null value for the mergeable attribute.\n\nWe don’t record the result of why, only yes, no, or not yet computed.\nI hope that helps 👍
+""",
+    bodyText: "There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In the documentation it states:\n\nThe value of the mergeable attribute can be true, false, or null. If the value is null, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-null value for the mergeable attribute.\n\nWe don’t record the result of why, only yes, no, or not yet computed.\nI hope that helps 👍",
     createdAt: .now,
     createdViaEmail: false,
     editor: .sample,
@@ -650,44 +663,95 @@ extension Discussion.Comment {
 
 extension Discussion {
   static var sample = Discussion(
-    id: "\(Int.random(in: Int.min...Int.max))",
+    id: UUID().uuidString,
     number: Int.random(in: Int.min...Int.max),
-    url: URL(string: "https://github.com")!,
+    url: URL(string: "https://githubc.com")!,
     author: .sample,
     createdAt: .now,
-    title: "100",
+    title: "API - Getting the reason that a pull request isn\'t mergeable?",
     updatedAt: .now,
-    upvoteCount: 100,
+    upvoteCount: 13,
     stateReason: .duplicate,
-    activeLockReason: nil,
-    authorAssociation: .collaborator,
-    body: "Hello",
-    bodyHTML: "Hello",
-    bodyText: "Hello",
-    createdViaEmail: false,
+    activeLockReason: .offTopic,
+    authorAssociation: .contributor,
+    body: """
+<p>I can use the <a href=\"https://developer.github.com/v3/pulls/\" rel=\"nofollow noopener\">pull requests</a> api to see whether a PR is mergeable, and I can use the <a href=\"https://developer.github.com/v3/repos/statuses/\" rel=\"nofollow noopener\">status api</a> to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?</p>
+""",
+    bodyHTML: """
+<p dir=\"auto\">I can use the <a href=\"https://developer.github.com/v3/pulls/\">pull requests</a> api to see whether a PR is mergeable, and I can use the <a href=\"https://developer.github.com/v3/repos/statuses/\">status api</a> to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?</p>
+""",
+    bodyText: "I can use the pull requests api to see whether a PR is mergeable, and I can use the status api to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?",
+    createdViaEmail: true,
     databaseId: Int.random(in: Int.min...Int.max),
     editor: .sample,
-    includesCreatedEdit: false,
+    includesCreatedEdit: true,
     lastEditedAt: .now,
     locked: false,
+    viewerCanClose: true,
+    viewerCanDelete: true,
+    viewerCanReact: true,
+    viewerCanReopen: true,
+    viewerCanSubscribe: true,
+    viewerCanUpdate: true,
+    viewerCanUpvote: true,
+    viewerDidAuthor: true,
+    viewerHasUpvoted: true,
+    viewerSubscription: .subscribed,
     comments: [
-      .sample,
-      .sample,
-      .sample,
+      .sample
     ],
-    category: .sample
+    category: .sample,
+    labels: [
+      .sample
+    ],
+    reactions: [
+      .sample
+    ],
+    poll: .sample
+  )
+}
+
+extension Discussion.Reaction {
+  static let sample = Discussion.Reaction(
+    content: "content",
+    createdAt: .now,
+    databaseId: Int.random(in: Int.min...Int.max),
+    user: .sample
+  )
+}
+
+extension Discussion.Label {
+  static let sample = Discussion.Label(
+    name: "API and Webhooks",
+    color: "e0023d",
+    createdAt: .now,
+    description: "",
+    isDefault: false,
+    resourcePath: "/community/community/labels/API%20and%20Webhooks",
+    updatedAt: .now,
+    url: URL(string: "https://github.com")!
+  )
+}
+
+extension Discussion.Poll {
+  static let sample = Discussion.Poll(
+    question: "question",
+    totalVoteCount: 123,
+    viewerCanVote: true
   )
 }
 
 extension GitHubData.Category {
   static let sample = Category(
     createdAt: .now,
-    description: "Description",
-    emoji: ":play",
-    emojiHTML: "✌️",
+    description: "Conversations related to getting started on using GitHub and the community. For beginners of GitHub, Community on Discussions, and those new to different areas of the product alike!",
+    emoji: ":new:",
+    emojiHTML: """
+<div><g-emoji class=\"g-emoji\" alias=\"new\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f195.png\">🆕</g-emoji></div>
+""",
     isAnswerable: false,
-    name: "name",
-    slug: "slug",
+    name: "New to GitHub",
+    slug: "new-to-github",
     updateAt: .now
   )
 }

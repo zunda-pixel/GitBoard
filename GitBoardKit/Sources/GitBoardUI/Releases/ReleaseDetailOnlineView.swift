@@ -37,7 +37,7 @@ struct ReleaseDetailOnlineView: View {
 
 #Preview {
   ReleaseDetailOnlineView(
-    repository: .swift,
+    repository: .sample,
     releaseID: 114412910
   )
 }

@@ -63,6 +63,6 @@ struct RepositoryCell: View {
 
 #Preview{
   List {
-    RepositoryCell(repository: .swift)
+    RepositoryCell(repository: .sample)
   }
 }

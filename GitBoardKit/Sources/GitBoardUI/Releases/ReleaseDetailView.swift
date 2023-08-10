@@ -125,7 +125,7 @@ struct ReleaseDetailView: View {
 
 #Preview {
   ReleaseDetailView(
-    repository: .swift,
+    repository: .sample,
     release: .sample
   )
 }

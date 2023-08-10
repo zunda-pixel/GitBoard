@@ -60,7 +60,7 @@ struct ReleasesView: View {
 
 #Preview {
   NavigationStack {
-    let viewState = ReleasesViewState(repository: .swift)
+    let viewState = ReleasesViewState(repository: .sample)
     ReleasesView(viewState: viewState)
   }
   .environment(ErrorHandle())

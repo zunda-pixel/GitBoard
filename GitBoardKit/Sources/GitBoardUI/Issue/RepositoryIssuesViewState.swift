@@ -51,7 +51,7 @@ final class RepositoryIssuesViewState: IssuesViewState {
 
 #Preview{
   NavigationStack {
-    let viewState = RepositoryIssuesViewState(ownerID: "apple", repository: .swift)
+    let viewState = RepositoryIssuesViewState(ownerID: "apple", repository: .sample)
     IssuesView(viewState: viewState)
   }
   .environment(ErrorHandle())

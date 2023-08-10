@@ -40,7 +40,7 @@ struct IssueDetailOnlineView: View {
   }
   
   var body: some View {
-    IssueDetailView(issue: issue ?? .sample, repository: repository ?? .swift)
+    IssueDetailView(issue: issue ?? .sample, repository: repository ?? .sample)
       .redacted(reason: issue == nil || repository == nil ? .placeholder : [])
       .task {
         await populate()
