@@ -67,17 +67,25 @@ struct DiscussionDetailView: View {
         }
         
         Divider()
-        HStack(alignment: .center, spacing: 10) {
-          UserProfileImage(avatarURL: discussion.author.avatarUrl, type: .user)
-            .frame(width: 40, height: 40)
-          
-          Text(discussion.author.login)
-          
-          Text(discussion.updatedAt, style: .date)
+      }
+      .listRow()
+      
+      VStack(alignment: .leading, spacing: 0) {
+        if let author = discussion.author {
+          HStack(alignment: .center, spacing: 10) {
+            UserProfileImage(avatarURL: author.avatarUrl, type: .user)
+              .frame(width: 40, height: 40)
+            
+            Text(author.login)
+            
+            Text(discussion.updatedAt, style: .date)
+          }
         }
         
         Markdown(discussion.body)
       }
+      .padding()
+      .frame(maxWidth: .infinity, alignment: .leading)
       .listRow()
       
       ForEach(discussion.comments) { comment in
@@ -90,8 +98,12 @@ struct DiscussionDetailView: View {
           Divider()
         }
           .listRow()
-          .padding(.vertical, 5)
       }
     }
+    .listStyle(.plain)
   }
+}
+
+#Preview {
+  DiscussionDetailView(repository: .sample, discussion: .sample)
 }
