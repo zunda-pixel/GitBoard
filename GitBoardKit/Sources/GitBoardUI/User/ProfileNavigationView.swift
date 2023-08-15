@@ -6,6 +6,7 @@ import SwiftUI
 import GitHubAPI
 
 struct ProfileNavigationView: View {
+  @Environment(\.modelContext) var modelContext
   @StateObject var router = NavigationRouter()
   let user: User
   let trigger: TabTrigger
@@ -13,7 +14,7 @@ struct ProfileNavigationView: View {
   var body: some View {
     NavigationStack(path: $router.items) {
       UserDetailView(user: user)
-        .navigationDestination()
+        .navigationDestination(modelContext: modelContext)
         .navigationTitle(user.userID)
         .navigationBarTitleDisplayMode()
     }

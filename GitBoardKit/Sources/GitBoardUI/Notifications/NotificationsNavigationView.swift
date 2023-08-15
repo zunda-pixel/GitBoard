@@ -3,8 +3,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NotificationsNavigationView: View {
+  @Environment(\.modelContext) var modelContext
   let trigger: TabTrigger
   @StateObject var router = NavigationRouter()
 
@@ -12,7 +14,7 @@ struct NotificationsNavigationView: View {
     NavigationStack(path: $router.items) {
       let viewState = NotificationsViewState()
       NotificationsView(viewState: viewState)
-        .navigationDestination()
+        .navigationDestination(modelContext: modelContext)
         .navigationTitle("Notifications")
     }
     .environmentObject(router)

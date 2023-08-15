@@ -3,9 +3,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 extension View {
-  func navigationDestination() -> some View {
+  func navigationDestination(modelContext: ModelContext) -> some View {
     self.navigationDestination(for: NavigationRouter.Item.self) { item in
       switch item {
       case .searchUsers(let query):

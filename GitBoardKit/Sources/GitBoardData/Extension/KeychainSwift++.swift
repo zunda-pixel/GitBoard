@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import GitHubAPI
+import GitHubData
 import KeychainSwift
 
 extension KeychainSwift {
@@ -13,11 +13,11 @@ extension KeychainSwift {
     return keychain
   }
 
-  func getAccessToken(userID: User.ID) -> String {
+  func getAccessToken(userID: GitHubData.User.ID) -> String {
     self.get("accessToken-\(userID)")!
   }
 
-  public func setAccessToken(userID: User.ID, accessToken: String) {
+  public func setAccessToken(userID: GitHubData.User.ID, accessToken: String) {
     self.set(accessToken, forKey: "accessToken-\(userID)")
   }
 }

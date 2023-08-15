@@ -4,9 +4,11 @@
 
 import SwiftUI
 import ToastView
+import SwiftData
 
 struct HomeNavigationView: View {
   let trigger: TabTrigger
+  @Environment(\.modelContext) var modelContext
   @StateObject var router = NavigationRouter()
   @State var query: String = ""
   @State var isPresentedKeyboard = false
@@ -33,7 +35,7 @@ struct HomeNavigationView: View {
       }
       .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
       .listStyle(.plain)
-      .navigationDestination()
+      .navigationDestination(modelContext: modelContext)
       .navigationTitle("Home")
       .overlay {
         if isPresentedKeyboard {
