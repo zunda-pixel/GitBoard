@@ -3,13 +3,13 @@
 //
 
 import GitBoardData
-import GitHubAPI
+import GitHubData
 import SwiftUI
 import ToastView
 import Defaults
 
 public struct ContentView: View {
-  @Default(.currentUser) var currentUser: User?
+  @Default(.currentUser) var currentUser: GitHubData.User?
   
   @State var errorHandle = ErrorHandle()
   @State var navigationStyle: NavigationStyle = .tab
@@ -44,7 +44,7 @@ public struct ContentView: View {
   }
 
   @ViewBuilder
-  func tabContent(tab: TabItem, user: User) -> some View {
+  func tabContent(tab: TabItem, user: GitHubData.User) -> some View {
     switch tab {
     case .home:
       HomeNavigationView(trigger: tabTappedTwice[tab]!)
@@ -56,7 +56,7 @@ public struct ContentView: View {
   }
 
   @ViewBuilder
-  func tabView(user: User) -> some View {
+  func tabView(user: GitHubData.User) -> some View {
     TabView(selection: bindingSelectedTab) {
       ForEach(TabItem.allCases) { tab in
         tabContent(tab: tab, user: user)
@@ -71,7 +71,7 @@ public struct ContentView: View {
   }
 
   @ViewBuilder
-  func contentView(user: User) -> some View {
+  func contentView(user: GitHubData.User) -> some View {
     switch navigationStyle {
     case .split:
       NavigationSplitView {

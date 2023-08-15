@@ -3,7 +3,7 @@
 //
 
 import Foundation
-import GitHubAPI
+import GitHubData
 import Defaults
 
 extension UserDefaults {  
@@ -11,7 +11,7 @@ extension UserDefaults {
 }
 
 extension Defaults.Keys {
-  static public let currentUser = Key<User?>("currentUser", suite: .shared)
+  static public let currentUser = Key<GitHubData.User?>("currentUser", suite: .shared)
 }
 
-extension User: _DefaultsSerializable { }
+extension GitHubData.User: _DefaultsSerializable { }

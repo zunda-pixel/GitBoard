@@ -10,10 +10,10 @@ import SwiftUI
 struct LoginView<Content: View>: View {
   @Environment(\.openURL) var openURL
   @Environment(ErrorHandle.self) var errorHandle
-  @Binding var currentUser: User?
+  @Binding var currentUser: GitHubData.User?
   let label: Content
 
-  init(currentUser: Binding<User?>, @ViewBuilder label: @escaping () -> Content) {
+  init(currentUser: Binding<GitHubData.User?>, @ViewBuilder label: @escaping () -> Content) {
     self._currentUser = currentUser
     self.label = label()
   }
