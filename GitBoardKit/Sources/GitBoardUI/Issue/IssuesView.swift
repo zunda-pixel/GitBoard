@@ -7,7 +7,7 @@ import SwiftUI
 
 struct IssuesView<ViewState: IssuesViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
 
   @State var viewState: ViewState
 
@@ -85,10 +85,10 @@ final private class TestIssuesViewState: IssuesViewState {
 
 #Preview{
   NavigationStack {
-    let viewState = TestIssuesViewState(ownerID: "apple", repository: .swift)
+    let viewState = TestIssuesViewState(ownerID: "apple", repository: .sample)
     IssuesView(viewState: viewState)
   }
   .environment(ErrorHandle())
-  .environment(NavigationRouter())
+  .environmentObject(NavigationRouter())
   .frame(maxWidth: 500)
 }

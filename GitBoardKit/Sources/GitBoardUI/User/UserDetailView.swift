@@ -6,7 +6,7 @@ import GitHubAPI
 import SwiftUI
 
 struct UserDetailView: View {
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
 
   let user: User
 
@@ -95,35 +95,42 @@ struct UserDetailView: View {
   }
 
   var repositoryNavigation: some View {
-    NavigationLink(item: .userRepositories(ownerID: user.userID)) {
-      Label {
-        HStack(alignment: .center, spacing: 5) {
-          Text("Repositories")
-          Spacer()
-          if let publicRepoCount = user.publicRepoCount {
-            Text("\(publicRepoCount)")
-          }
-          if let ownedPrivateRepoCount = user.ownedPrivateRepoCount {
-            Text("\(ownedPrivateRepoCount)")
-          }
-          if let totalPrivateRepoCount = user.totalPrivateRepoCount {
-            Text("\(totalPrivateRepoCount)")
-          }
+    Label {
+      HStack(alignment: .center, spacing: 5) {
+        Text("Repositories")
+        Spacer()
+        
+        var count: Int {
+          var sum = user.publicRepoCount ?? 0
+          sum += user.ownedPrivateRepoCount ?? 0
+          return sum
         }
-      } icon: {
-        Image(systemName: "book.closed")
+        
+        if count > 0 {
+          Text("\(count)")
+        }
+                
+        Image(systemName: "chevron.right")
       }
+    } icon: {
+      Image(systemName: "book.closed")
+    }
+    .contentShape(.rect)
+    .onTapGesture {
+      router.items.append(.userRepositories(ownerID: user.userID))
     }
   }
 
   var body: some View {
     List {
-      userView
-        .padding(10)
-        .listRow()
-
       Section {
+        userView
+          .listRow()
+      }
+
+      Section("Links") {
         repositoryNavigation
+          .listRow()
       }
     }
     .listStyle(.plain)
@@ -135,5 +142,5 @@ struct UserDetailView: View {
     UserDetailView(user: .zunda)
   }
   .environment(ErrorHandle())
-  .environment(NavigationRouter())
+  .environmentObject(NavigationRouter())
 }

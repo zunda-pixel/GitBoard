@@ -6,7 +6,7 @@ import GitHubAPI
 import SwiftUI
 
 struct RepositoryDetailView: View {
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
 
   let repository: Repository
 
@@ -39,7 +39,9 @@ struct RepositoryDetailView: View {
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "star")
             .foregroundStyle(.secondary)
-          Text("\(repository.stargazersCount)")
+          if let stargazersCount = repository.stargazersCount {
+            Text("\(stargazersCount)")
+          }
           Text("stars")
             .foregroundStyle(.secondary)
         }
@@ -56,7 +58,11 @@ struct RepositoryDetailView: View {
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "arrow.branch")
             .foregroundStyle(.secondary)
-          Text("\(repository.forksCount)")
+          
+          if let forksCount = repository.forksCount {
+            Text("\(forksCount)")
+          }
+          
           Text("forks")
             .foregroundStyle(.secondary)
         }
@@ -77,7 +83,12 @@ struct RepositoryDetailView: View {
     systemImage: String, imageColor: Color, @ViewBuilder label: @escaping () -> Content
   ) -> some View {
     Label {
-      label()
+      HStack(alignment: .center, spacing: 0) {
+        label()
+        Spacer()
+        Image(systemName: "chevron.right")
+          .foregroundStyle(.secondary)
+      }
     } icon: {
       Image(systemName: systemImage)
         .foregroundStyle(imageColor)
@@ -86,7 +97,12 @@ struct RepositoryDetailView: View {
 
   func label(_ titleKey: LocalizedStringKey, systemImage: String, imageColor: Color) -> some View {
     Label {
-      Text(titleKey)
+      HStack(alignment: .center, spacing: 0) {
+        Text(titleKey)
+        Spacer()
+        Image(systemName: "chevron.right")
+          .foregroundStyle(.secondary)
+      }
     } icon: {
       Image(systemName: systemImage)
         .foregroundStyle(imageColor)
@@ -95,40 +111,74 @@ struct RepositoryDetailView: View {
 
   @ViewBuilder
   var links: some View {
-    NavigationLink(item: .issue(ownerID: repository.owner!.userID, repository: repository)) {
+    Section("Links") {
       label(systemImage: "dot.circle", imageColor: .green) {
         HStack(alignment: .center, spacing: 0) {
           Text("Issues")
           Spacer()
-          if repository.openIssuesCount > 0 {
-            Text("\(repository.openIssuesCount)")
+          if let openIssuesCount = repository.openIssuesCount, openIssuesCount > 0 {
+            Text("\(openIssuesCount)")
           }
         }
       }
-    }
-
-    NavigationLink(
-      item: .repositoryPulls(ownerID: repository.owner!.userID, repositoryName: repository.name)
-    ) {
+      .contentShape(.rect)
+      .onTapGesture {
+        router.items.append(.issue(
+          ownerID: repository.owner!.userID,
+          repository: repository
+        ))
+      }
+      
       label("Pull Requests", systemImage: "arrow.triangle.pull", imageColor: .blue)
-    }
-
-    NavigationLink(
-      item: .contributors(ownerID: repository.owner!.userID, repositoryName: repository.name)
-    ) {
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(.repositoryPulls(
+            ownerID: repository.owner!.userID,
+            repositoryName: repository.name
+          ))
+        }
+      
+      if repository.hasDiscussions == true {
+        label("Discussions", systemImage: "bubble.left.and.bubble.right", imageColor: .purple)
+          .contentShape(.rect)
+          .onTapGesture {
+            router.items.append(.discussions(
+              repository: repository
+            ))
+          }
+      }
+      
+      label("Releases", systemImage: "tag", imageColor: .gray)
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(.releases(
+            repository: repository
+          ))
+        }
+      
       label("Contributors", systemImage: "person.2", imageColor: .orange)
-    }
-
-    if let license = repository.license {
-      NavigationLink(
-        item: .license(ownerID: repository.owner!.userID, repositoryName: repository.name)
-      ) {
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(.contributors(
+            ownerID: repository.owner!.userID,
+            repositoryName: repository.name
+          ))
+        }
+      
+      if let license = repository.license {
         label(systemImage: "building.columns", imageColor: .red) {
           HStack(alignment: .center, spacing: 0) {
             Text("License")
             Spacer()
             Text(license.name)
           }
+        }
+        .contentShape(.rect)
+        .onTapGesture {
+          router.items.append(.license(
+            ownerID: repository.owner!.userID,
+            repositoryName: repository.name
+          ))
         }
       }
     }
@@ -138,12 +188,10 @@ struct RepositoryDetailView: View {
     List {
       Section {
         repositoryView
-          .listRowSeparator(.hidden)
+          .listRow()
       }
 
-      Section("Links") {
-        links
-      }
+      links
     }
     .listStyle(.plain)
   }
@@ -151,7 +199,7 @@ struct RepositoryDetailView: View {
 
 #Preview{
   NavigationStack {
-    RepositoryDetailView(repository: .swift)
+    RepositoryDetailView(repository: .sample)
   }
-  .environment(NavigationRouter())
+  .environmentObject(NavigationRouter())
 }

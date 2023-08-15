@@ -1,12 +1,30 @@
 {
   "pins" : [
     {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults",
+      "state" : {
+        "revision" : "0f5a23fcbd83eb72f6d405aa85bbfacaffb99b03",
+        "version" : "7.2.0"
+      }
+    },
+    {
+      "identity" : "emoji-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zunda-pixel/Emoji-Swift",
+      "state" : {
+        "revision" : "a828c332a267ee16245d78c8fe316f4ba15eb89e",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "githubkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-        "branch" : "develop/add-forks",
-        "revision" : "0ad6d0881445cc4999e5f0dc442377e486403013"
+        "branch" : "develop/add-discussions",
+        "revision" : "d6771013aa503834da8aaf3108b7d6092fe84707"
       }
     },
     {
@@ -50,8 +68,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-http-types",
       "state" : {
-        "revision" : "6861b096b0bd0cc339b9c5d34d55c665c7490703",
-        "version" : "0.2.0"
+        "revision" : "68deedb6b98837564cf0231fa1df48de35881993",
+        "version" : "0.2.1"
+      }
+    },
+    {
+      "identity" : "swift-markdown-ui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gonzalezreal/swift-markdown-ui",
+      "state" : {
+        "revision" : "12b351a75201a8124c2f2e1f9fc6ef5cd812c0b9",
+        "version" : "2.1.0"
       }
     },
     {

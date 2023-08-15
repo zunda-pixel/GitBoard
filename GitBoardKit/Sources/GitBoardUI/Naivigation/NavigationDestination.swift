@@ -40,6 +40,14 @@ extension View {
         IssueDetailView(issue: issue, repository: repository)
           .navigationTitle("Issue #\(issue.number)")
           .navigationBarTitleDisplayMode()
+      case .issueDetailOnline(let ownerID, let repositoryName, let issueNumber):
+        IssueDetailOnlineView(
+          ownerID: ownerID,
+          repositoryName: repositoryName,
+          issueNumber: issueNumber
+        )
+          .navigationTitle("Issue #\(issueNumber)")
+          .navigationBarTitleDisplayMode()
       case .repositoryPulls(let ownerID, let repositoryName):
         let viewState = RepositoryPullsViewState(ownerID: ownerID, repositoryName: repositoryName)
         PullsView(viewState: viewState)
@@ -49,6 +57,19 @@ extension View {
         let viewState = ContributorsViewState(ownerID: ownerID, repositoryName: repositoryName)
         UsersView(viewState: viewState)
           .navigationTitle("Contributors")
+          .navigationBarTitleDisplayMode()
+      case .releases(let repository):
+        let viewState = ReleasesViewState(repository: repository)
+        ReleasesView(viewState: viewState)
+          .navigationTitle("Releases")
+          .navigationBarTitleDisplayMode()
+      case .releaseDetail(let repository, let release):
+        ReleaseDetailView(repository: repository, release: release)
+          .navigationTitle("Release")
+          .navigationBarTitleDisplayMode()
+      case .releaseDetailOnline(let repository, let releaseID):
+        ReleaseDetailOnlineView(repository: repository, releaseID: releaseID)
+          .navigationTitle("Release")
           .navigationBarTitleDisplayMode()
       case .license(let ownerID, let repositoryName):
         let viewState = LicenseViewState(ownerID: ownerID, repositoryName: repositoryName)
@@ -70,6 +91,14 @@ extension View {
         PullDetailView(viewState: viewState)
           .navigationTitle("Pull #\(pull.number)")
           .navigationBarTitleDisplayMode()
+      case .pullDetailOnline(let ownerID, let repositoryName, let pullNumber):
+        PullDetailOnlineView(
+          ownerID: ownerID,
+          repositoryName: repositoryName,
+          pullNumber: pullNumber
+        )
+          .navigationTitle("Pull #\(pullNumber)")
+          .navigationBarTitleDisplayMode()
       case .stargazers(let ownerID, let repositoryName):
         let viewState = StargazersViewState(ownerID: ownerID, repositoryName: repositoryName)
         UsersView(viewState: viewState)
@@ -80,13 +109,25 @@ extension View {
         RepositoriesView(viewState: viewState)
           .navigationTitle("Forks")
           .navigationBarTitleDisplayMode()
+      case .discussions(let repository):
+        DiscussionsView(repository: repository)
+          .navigationTitle("Discussions")
+          .navigationBarTitleDisplayMode()
+      case .discussionDetail(let repository, let discussion):
+        DiscussionDetailView(repository: repository, discussion: discussion)
+          .navigationTitle("Discussion \(discussion.title)")
+          .navigationBarTitleDisplayMode()
+      case .discussionDetailOnline(let repository, let discussionNumber):
+        DiscussionDetailOnlineView(repository: repository, discussionNumber: discussionNumber)
+          .navigationTitle("Discussion")
+          .navigationBarTitleDisplayMode()
       }
     }
   }
 }
 
 extension View {
-  fileprivate func navigationBarTitleDisplayMode() -> some View {
+  func navigationBarTitleDisplayMode() -> some View {
     #if os(macOS)
       self
     #else

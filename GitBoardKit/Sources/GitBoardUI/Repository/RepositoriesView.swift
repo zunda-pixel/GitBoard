@@ -7,7 +7,7 @@ import SwiftUI
 
 struct RepositoriesView<ViewState: RepositoriesViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
   @State var viewState: ViewState
 
   func populate() async {
@@ -63,13 +63,13 @@ private final class TestRepositoriesViewState: RepositoriesViewState {
 
   func populateMoreRepositories(id: Repository.ID) async throws {
     _repositories = [
-      .swift
+      .sample
     ]
   }
 
   func populateRepositories() async throws {
     _repositories = [
-      .swift
+      .sample
     ]
   }
 }

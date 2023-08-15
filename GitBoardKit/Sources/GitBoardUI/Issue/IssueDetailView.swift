@@ -6,6 +6,8 @@ import GitHubAPI
 import SwiftUI
 
 struct IssueDetailView: View {
+  @EnvironmentObject var router: NavigationRouter
+  
   let issue: Issue
   let repository: Repository
 
@@ -36,15 +38,25 @@ struct IssueDetailView: View {
   }
 
   var header: some View {
-    VStack(alignment: .leading, spacing: 5) {
-      HStack(alignment: .center, spacing: 10) {
-        UserProfileImage(avatarURL: repository.owner!.avatarURL, type: repository.owner!.type)
+    VStack(alignment: .leading, spacing: 15) {
+      HStack(alignment: .center, spacing: 15) {
+        UserProfileImage(
+          avatarURL: repository.owner!.avatarURL,
+          type: repository.owner!.type
+        )
           .frame(width: 30, height: 30)
+          .onTapGesture {
+            router.items.append(.userDetail(user: repository.owner!))
+          }
 
         Text("\(repository.owner!.userID) / \(repository.name)")
 
         Text("#\(issue.number)")
           .foregroundStyle(.secondary)
+      }
+      .contentShape(.rect)
+      .onTapGesture {
+        router.items.append(.repositoryDetail(repository: repository))
       }
 
       Text(issue.title)
@@ -66,5 +78,5 @@ struct IssueDetailView: View {
 }
 
 #Preview{
-  IssueDetailView(issue: .sample, repository: .swift)
+  IssueDetailView(issue: .sample, repository: .sample)
 }

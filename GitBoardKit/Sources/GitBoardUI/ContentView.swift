@@ -5,19 +5,37 @@
 import GitBoardData
 import GitHubAPI
 import SwiftUI
+import ToastView
+import Defaults
 
 public struct ContentView: View {
-  @AppStorage(UserDefaults.UserDefaultsKey.currentUserID.rawValue, store: .shared) var currentUserID: Int?
+  @Default(.currentUser) var currentUser: User?
+  
   @State var errorHandle = ErrorHandle()
   @State var navigationStyle: NavigationStyle = .tab
   @State var isTap = false
-  @State var selectedTab: TabItem = .search
-
-  var bindingSelectedTab: Binding<TabItem?> {
+  @State var tabTappedTwice: [TabItem: TabTrigger] = .init(uniqueKeysWithValues: TabItem.allCases.map { ($0, .init()) })
+  @SceneStorage("ContentView.selectedTab") var selectedTab: TabItem = .home
+  
+  var bindingSelectedTab: Binding<TabItem> {
+    .init {
+      selectedTab
+    } set: { newValue in
+      if newValue == selectedTab {
+        tabTappedTwice[newValue]!.fire()
+      }
+      selectedTab = newValue
+    }
+  }
+  
+  var bindingSelectedTabOptional: Binding<TabItem?> {
     .init {
       selectedTab
     } set: { newValue in
       guard let newValue else { return }
+      if newValue == selectedTab {
+        tabTappedTwice[newValue]!.fire()
+      }
       selectedTab = newValue
     }
   }
@@ -26,42 +44,48 @@ public struct ContentView: View {
   }
 
   @ViewBuilder
-  func tabContent(tab: TabItem) -> some View {
+  func tabContent(tab: TabItem, user: User) -> some View {
     switch tab {
-    case .search:
-      SearchView()
+    case .home:
+      HomeNavigationView(trigger: tabTappedTwice[tab]!)
+    case .notifications:
+      NotificationsNavigationView(trigger: tabTappedTwice[tab]!)
+    case .profile:
+      ProfileNavigationView(user: user, trigger: tabTappedTwice[tab]!)
     }
   }
 
   @ViewBuilder
-  func tabView() -> some View {
-    TabView(selection: $selectedTab) {
+  func tabView(user: User) -> some View {
+    TabView(selection: bindingSelectedTab) {
       ForEach(TabItem.allCases) { tab in
-        tabContent(tab: tab)
+        tabContent(tab: tab, user: user)
           .tag(tab)
           .tabItem {
             Label(tab.label.text, systemImage: tab.label.systemImage)
+              // https://stackoverflow.com/questions/70057749/why-swiftui-tabitem-systemimage-is-filled
+              .environment(\.symbolVariants, tab == selectedTab ? .fill : .none)
           }
       }
     }
   }
 
   @ViewBuilder
-  var contentView: some View {
+  func contentView(user: User) -> some View {
     switch navigationStyle {
     case .split:
       NavigationSplitView {
-        List(selection: bindingSelectedTab) {
+        List(selection: bindingSelectedTabOptional) {
           ForEach(TabItem.allCases) { tab in
             Text(tab.rawValue)
               .tag(tab)
           }
         }
       } detail: {
-        tabView()
+        tabView(user: user)
       }
     case .tab:
-      tabView()
+      tabView(user: user)
     }
   }
 
@@ -88,7 +112,7 @@ public struct ContentView: View {
 
       Spacer()
 
-      LoginView(currentUserID: $currentUserID) {
+      LoginView(currentUser: $currentUser) {
         Text("Sign in to GitHub")
           .padding(20)
           .frame(maxWidth: 250)
@@ -106,8 +130,8 @@ public struct ContentView: View {
 
   @ViewBuilder
   var loginOrContent: some View {
-    if currentUserID != nil {
-      contentView
+    if let currentUser {
+      contentView(user: currentUser)
     } else {
       loginView
     }

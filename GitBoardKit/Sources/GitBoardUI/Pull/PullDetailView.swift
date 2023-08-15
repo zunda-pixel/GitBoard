@@ -8,7 +8,7 @@ import SwiftUI
 
 struct PullDetailView<ViewState: PullDetailViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
 
   @State var viewState: ViewState
 

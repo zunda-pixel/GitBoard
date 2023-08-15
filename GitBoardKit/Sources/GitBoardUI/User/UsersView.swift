@@ -7,7 +7,7 @@ import SwiftUI
 
 struct UsersView<ViewState: UsersViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
-  @Environment(NavigationRouter.self) var router
+  @EnvironmentObject var router: NavigationRouter
   @State var viewState: ViewState
 
   func populate() async {
@@ -76,5 +76,5 @@ final class TestUsersViewState: UsersViewState {
     UsersView(viewState: viewState)
   }
   .environment(ErrorHandle())
-  .environment(NavigationRouter())
+  .environmentObject(NavigationRouter())
 }
