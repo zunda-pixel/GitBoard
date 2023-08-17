@@ -19,7 +19,6 @@ struct DiscussionsView: View {
         ownerID: repository.owner!.userID,
         repositoryName: repository.name,
         last: 100,
-        commentLast: 100,
         orderBy: .updatedAt,
         direction: .desc
       )

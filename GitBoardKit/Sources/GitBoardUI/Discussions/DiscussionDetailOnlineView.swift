@@ -19,7 +19,7 @@ struct DiscussionDetailOnlineView: View {
         ownerID: repository.owner!.userID,
         repositoryName: repository.name,
         discussionNumber: discussionNumber,
-        commentLast: 100
+        itemLast: 100
       )
     } catch {
       errorHandle.error = .init(error: error)

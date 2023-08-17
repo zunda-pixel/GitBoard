@@ -22,7 +22,7 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/zunda-pixel/GitHubKit", branch: "develop/add-discussions"),
+    .package(url: "https://github.com/zunda-pixel/GitHubKit", branch: "develop/fix-decode"),
     .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image", .upToNextMajor(from: "2.1.1")),
     .package(url: "https://github.com/evgenyneu/keychain-swift", .upToNextMajor(from: "20.0.0")),
     .package(url: "https://github.com/zunda-pixel/ToastView", branch: "main"),

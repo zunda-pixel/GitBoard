@@ -537,8 +537,8 @@ extension Comment {
   }
 }
 
-extension Merge {
-  static let sample = Merge(
+extension AutoMerge {
+  static let sample = AutoMerge(
     enabledBy: .sample,
     method: .merge,
     commitTitle: "Merge pull request #27 from zunda-pixel/develop/fix-decode",
@@ -737,7 +737,13 @@ extension Discussion.Poll {
   static let sample = Discussion.Poll(
     question: "question",
     totalVoteCount: 123,
-    viewerCanVote: true
+    viewerCanVote: true,
+    viewerHasVoted: true,
+    options: [
+      .init(option: "Option1", totalVoteCount: 2, viewerHasVoted: true),
+      .init(option: "Option2", totalVoteCount: 5, viewerHasVoted: true),
+      .init(option: "Option3", totalVoteCount: 1, viewerHasVoted: true),
+    ]
   )
 }
 
