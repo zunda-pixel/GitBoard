@@ -8,13 +8,9 @@ import GitHubData
 
 @Model
 final public class User: Hashable, Sendable, Identifiable {
-  @Attribute(.unique)
-  public let id: Int
   public let userID: String
   public let userName: String?
-  public let nodeID: String
   public let avatarURL: URL
-  public let gravatarID: String
   public let publicRepoCount: Int?
   public let totalPrivateRepoCount: Int?
   public let ownedPrivateRepoCount: Int?
@@ -29,22 +25,43 @@ final public class User: Hashable, Sendable, Identifiable {
   public let location: String?
   public let hireable: Bool?
   public let type: UserType
-  public let score: Int?
   public let siteAdmin: Bool
   public let twitterUserName: String?
   public let company: String?
-  public let diskUsage: Int?
   public let collaboratorCount: Int?
   public let twoFactorAuthentication: Bool?
   public let plan: Plan?
   
+  public init(user: GitHubData.User) {
+    self.userID = user.userID
+    self.userName = user.userName
+    self.avatarURL = user.avatarURL
+    self.publicRepoCount = user.publicRepoCount
+    self.totalPrivateRepoCount = user.totalPrivateRepoCount
+    self.ownedPrivateRepoCount = user.ownedPrivateRepoCount
+    self.publicGistsCount = user.publicGistsCount
+    self.privateGistsCount = user.privateGistsCount
+    self.followerCount = user.followerCount
+    self.followingCount = user.followingCount
+    self.createdAt = user.createdAt
+    self.updatedAt = user.updatedAt
+    self.bio = user.bio
+    self.email = user.email
+    self.location = user.location
+    self.hireable = user.hireable
+    self.type = user.type
+    self.siteAdmin = user.siteAdmin
+    self.twitterUserName = user.twitterUserName
+    self.company = user.company
+    self.collaboratorCount = user.collaboratorCount
+    self.twoFactorAuthentication = user.twoFactorAuthentication
+    self.plan = user.plan
+  }
+  
   public init(
-    id: Int,
     userID: String,
     userName: String?,
-    nodeID: String,
     avatarURL: URL,
-    gravatarID: String,
     publicRepoCount: Int?,
     totalPrivateRepoCount: Int?,
     ownedPrivateRepoCount: Int?,
@@ -59,21 +76,16 @@ final public class User: Hashable, Sendable, Identifiable {
     location: String?,
     hireable: Bool?,
     type: UserType,
-    score: Int?,
     siteAdmin: Bool,
     twitterUserName: String?,
     company: String?,
-    diskUsage: Int?,
     collaboratorCount: Int?,
     twoFactorAuthentication: Bool?,
     plan: Plan?
   ) {
-    self.id = id
     self.userID = userID
     self.userName = userName
-    self.nodeID = nodeID
     self.avatarURL = avatarURL
-    self.gravatarID = gravatarID
     self.publicRepoCount = publicRepoCount
     self.totalPrivateRepoCount = totalPrivateRepoCount
     self.ownedPrivateRepoCount = ownedPrivateRepoCount
@@ -88,11 +100,9 @@ final public class User: Hashable, Sendable, Identifiable {
     self.location = location
     self.hireable = hireable
     self.type = type
-    self.score = score
     self.siteAdmin = siteAdmin
     self.twitterUserName = twitterUserName
     self.company = company
-    self.diskUsage = diskUsage
     self.collaboratorCount = collaboratorCount
     self.twoFactorAuthentication = twoFactorAuthentication
     self.plan = plan
