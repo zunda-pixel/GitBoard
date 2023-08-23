@@ -3,8 +3,8 @@
 //
 
 import Foundation
-import SwiftData
 import GitHubData
+import SwiftData
 
 @Model
 final public class User: Hashable, Identifiable {

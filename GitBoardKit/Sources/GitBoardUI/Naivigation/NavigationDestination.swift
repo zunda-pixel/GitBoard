@@ -10,8 +10,7 @@ extension View {
     self.navigationDestination(for: NavigationRouter.Item.self) { item in
       switch item {
       case .searchUsers(let query):
-        let viewState = SearchUsersViewState(query: query)
-        UsersView(viewState: viewState)
+        SearchUsersView(query: query)
           .navigationTitle("Search User")
           .navigationBarTitleDisplayMode()
       case .searchRepositories(let query):
