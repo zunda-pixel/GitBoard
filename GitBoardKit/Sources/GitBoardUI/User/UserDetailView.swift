@@ -4,10 +4,12 @@
 
 import GitHubAPI
 import SwiftUI
+import GitBoardData
 
-struct UserDetailView: View {
+struct UserDetailView<User: UserProtocol>: View {
   @Environment(NavigationRouter.self) var router
-
+  @Environment(ErrorHandle.self) var errorHandle
+  
   let user: User
 
   var userProfileAndName: some View {
@@ -120,6 +122,15 @@ struct UserDetailView: View {
       router.items.append(.userRepositories(ownerID: user.userID))
     }
   }
+  
+  func updateUser() async {
+    do {
+      let user = try await GitHubAPI().user(userID: user.userID)
+      self.user.update(user: user)
+    } catch {
+      errorHandle.error = .init(error: error)
+    }
+  }
 
   var body: some View {
     List {
@@ -134,12 +145,18 @@ struct UserDetailView: View {
       }
     }
     .listStyle(.plain)
+    .task {
+      await updateUser()
+    }
+    .refreshable {
+      await updateUser()
+    }
   }
 }
 
 #Preview{
   NavigationStack {
-    UserDetailView(user: .zunda)
+    UserDetailView(user: GitHubData.User.zunda)
   }
   .environment(ErrorHandle())
   .environment(NavigationRouter())
