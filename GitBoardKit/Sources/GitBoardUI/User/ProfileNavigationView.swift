@@ -4,8 +4,9 @@
 
 import GitHubAPI
 import SwiftUI
+import GitBoardData
 
-struct ProfileNavigationView: View {
+struct ProfileNavigationView<User: UserProtocol>: View {
   @Environment(\.modelContext) var modelContext
   @State var router = NavigationRouter()
   let user: User
@@ -26,5 +27,5 @@ struct ProfileNavigationView: View {
 }
 
 #Preview{
-  ProfileNavigationView(user: .sample, trigger: .init())
+  ProfileNavigationView(user: GitHubData.User.sample, trigger: .init())
 }

@@ -5,7 +5,7 @@
 import Foundation
 import GitHubData
 
-public protocol UserProtocol {
+public protocol UserProtocol: Identifiable, Hashable {
   var avatarURL: URL { get }
   var type: UserType { get }
   var userName: String? { get }
