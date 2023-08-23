@@ -9,7 +9,7 @@ import SwiftData
 @Model
 final public class User: Hashable, Identifiable {
   @Attribute(.unique)
-  public let id: Int
+  public let githubID: Int
   public var userID: String
   public var userName: String?
   public var avatarURL: URL
@@ -36,7 +36,7 @@ final public class User: Hashable, Identifiable {
   
   public static func from(user: GitHubData.User) -> User {
     self.init(
-      id: user.id,
+      githubID: user.id,
       userID: user.userID,
       userName: user.userName,
       avatarURL: user.avatarURL,
@@ -62,35 +62,9 @@ final public class User: Hashable, Identifiable {
       plan: user.plan
     )
   }
-  
-  public func update(user: GitHubData.User) {
-    self.userID = user.userID
-    user.userName.map { self.userName = $0 }
-    self.avatarURL =  user.avatarURL
-    user.publicRepoCount.map { self.publicRepoCount = $0 }
-    user.totalPrivateRepoCount.map { self.totalPrivateRepoCount = $0 }
-    user.ownedPrivateRepoCount.map { self.ownedPrivateRepoCount = $0 }
-    user.publicGistsCount.map { self.publicGistsCount = $0 }
-    user.privateGistsCount.map { self.privateGistsCount = $0 }
-    user.followerCount.map { self.followerCount = $0 }
-    user.followingCount.map { self.followingCount = $0 }
-    user.createdAt.map { self.createdAt = $0 }
-    user.updatedAt.map { self.updatedAt = $0 }
-    user.bio.map { self.bio = $0 }
-    user.email.map { self.email = $0 }
-    user.location.map { self.location = $0 }
-    user.hireable.map { self.hireable = $0 }
-    self.type = user.type
-    self.siteAdmin = user.siteAdmin
-    user.twitterUserName.map { self.twitterUserName = $0 }
-    user.company.map { self.company = $0 }
-    user.collaboratorCount.map { self.collaboratorCount = $0 }
-    user.twoFactorAuthentication.map { self.twoFactorAuthentication = $0 }
-    user.plan.map { self.plan = $0 }
-  }
-  
+
   private init(
-    id: Int,
+    githubID: Int,
     userID: String,
     userName: String?,
     avatarURL: URL,
@@ -115,7 +89,7 @@ final public class User: Hashable, Identifiable {
     twoFactorAuthentication: Bool?,
     plan: Plan?
   ) {
-    self.id = id
+    self.githubID = githubID
     self.userID = userID
     self.userName = userName
     self.avatarURL = avatarURL
@@ -139,5 +113,33 @@ final public class User: Hashable, Identifiable {
     self.collaboratorCount = collaboratorCount
     self.twoFactorAuthentication = twoFactorAuthentication
     self.plan = plan
+  }
+}
+
+extension User: UserProtocol {
+  public func update(user: some UserProtocol) {
+    self.userID = user.userID
+    user.userName.map { self.userName = $0 }
+    self.avatarURL = user.avatarURL
+    user.publicRepoCount.map { self.publicRepoCount = $0 }
+    user.totalPrivateRepoCount.map { self.totalPrivateRepoCount = $0 }
+    user.ownedPrivateRepoCount.map { self.ownedPrivateRepoCount = $0 }
+    user.publicGistsCount.map { self.publicGistsCount = $0 }
+    user.privateGistsCount.map { self.privateGistsCount = $0 }
+    user.followerCount.map { self.followerCount = $0 }
+    user.followingCount.map { self.followingCount = $0 }
+    user.createdAt.map { self.createdAt = $0 }
+    user.updatedAt.map { self.updatedAt = $0 }
+    user.bio.map { self.bio = $0 }
+    user.email.map { self.email = $0 }
+    user.location.map { self.location = $0 }
+    user.hireable.map { self.hireable = $0 }
+    self.type = user.type
+    self.siteAdmin = user.siteAdmin
+    user.twitterUserName.map { self.twitterUserName = $0 }
+    user.company.map { self.company = $0 }
+    user.collaboratorCount.map { self.collaboratorCount = $0 }
+    user.twoFactorAuthentication.map { self.twoFactorAuthentication = $0 }
+    user.plan.map { self.plan = $0 }
   }
 }
