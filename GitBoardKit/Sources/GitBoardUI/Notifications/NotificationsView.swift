@@ -39,7 +39,8 @@ struct NotificationsView: View {
         .listRow()
         .onTapGesture {
           let item: NavigationRouter.Item
-          let number = Int(notification.subject.url!.lastPathComponent)!
+          guard let stringNumber = notification.subject.url?.lastPathComponent else { return }
+          guard let number = Int(stringNumber) else { return }
           switch notification.subject.type {
           case .issue:
             item = .issueDetailOnline(
