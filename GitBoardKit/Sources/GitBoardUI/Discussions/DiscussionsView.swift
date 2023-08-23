@@ -2,17 +2,17 @@
 //  DiscussionsView.swift
 //
 
-import SwiftUI
+import Emoji
 import GitHubAPI
 import MarkdownUI
-import Emoji
+import SwiftUI
 
 struct DiscussionsView: View {
   let repository: Repository
   @State var discussions: [Discussion] = []
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
-  
+
   func populate() async {
     do {
       self.discussions = try await GitHubAPI().discussions(
@@ -26,7 +26,7 @@ struct DiscussionsView: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   var body: some View {
     List {
       ForEach(discussions) { discussion in

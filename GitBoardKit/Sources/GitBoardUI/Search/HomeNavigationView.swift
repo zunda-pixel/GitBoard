@@ -2,9 +2,9 @@
 //  HomeNavigationView.swift
 //
 
+import SwiftData
 import SwiftUI
 import ToastView
-import SwiftData
 
 struct HomeNavigationView: View {
   let trigger: TabTrigger
@@ -28,7 +28,7 @@ struct HomeNavigationView: View {
       Image(systemName: systemImage)
     }
   }
-  
+
   var body: some View {
     NavigationStack(path: $router.items) {
       List {
@@ -55,13 +55,13 @@ struct HomeNavigationView: View {
           } else {
             List {
               let query = query.trimmingCharacters(in: .whitespaces)
-              
+
               label("Search Users", systemImage: "person.2")
                 .contentShape(.rect)
                 .onTapGesture {
                   router.items.append(.searchUsers(query: query))
                 }
-              
+
               label("Search Repositories", systemImage: "book.pages")
                 .contentShape(.rect)
                 .onTapGesture {

@@ -47,7 +47,7 @@ extension Release {
       author: .apple,
       assets: [
         .sample,
-        .sample
+        .sample,
       ],
       bodyHTML: "bodyHTML",
       bodyText: "bodyText",
@@ -476,7 +476,8 @@ extension Pull {
       locked: false,
       title: "Use index.md instead of [topic_name].md",
       user: .sample,
-      body: "This branch does two things:\r\n\r\n- Renames each topic\'s Markdown file to be the standard index.md, so we can see its contents as soon as you click into the topic folder in the GitHub UI.\r\n- Updates the content to be the latest from our master sheet.\r\n\r\n/cc @github/identity-team-rainbow-skate @nayafia",
+      body:
+        "This branch does two things:\r\n\r\n- Renames each topic\'s Markdown file to be the standard index.md, so we can see its contents as soon as you click into the topic folder in the GitHub UI.\r\n- Updates the content to be the latest from our master sheet.\r\n\r\n/cc @github/identity-team-rainbow-skate @nayafia",
       createdAt: .now,
       updateAt: .now,
       closedAt: .now,
@@ -642,13 +643,14 @@ extension Discussion.Comment {
     id: "\(Int.random(in: Int.min...Int.max))",
     author: .sample,
     body: """
-<p>There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In <a href=\"https://developer.github.com/v3/pulls/#get-a-single-pull-request\" rel=\"nofollow noopener\">the documentation</a> it states:</p>\n<blockquote>\n<p>The value of the <code>mergeable</code> attribute can be <code>true</code>, <code>false</code>, or <code>null</code>. If the value is <code>null</code>, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-<code>null</code> value for the <code>mergeable</code> attribute.</p>\n</blockquote>\n<p>We don’t record the result of why, only yes, no, or not yet computed.</p>\n<p>I hope that helps :+1:</p>
-""",
+      <p>There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In <a href=\"https://developer.github.com/v3/pulls/#get-a-single-pull-request\" rel=\"nofollow noopener\">the documentation</a> it states:</p>\n<blockquote>\n<p>The value of the <code>mergeable</code> attribute can be <code>true</code>, <code>false</code>, or <code>null</code>. If the value is <code>null</code>, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-<code>null</code> value for the <code>mergeable</code> attribute.</p>\n</blockquote>\n<p>We don’t record the result of why, only yes, no, or not yet computed.</p>\n<p>I hope that helps :+1:</p>
+      """,
     bodyHTML: """
-<p dir=\"auto\">There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In <a href=\"https://developer.github.com/v3/pulls/#get-a-single-pull-request\">the documentation</a> it states:</p>\n<blockquote>\n<p dir=\"auto\">The value of the <code class=\"notranslate\">mergeable</code> attribute can be <code class=\"notranslate\">true</code>, <code class=\"notranslate\">false</code>, or <code class=\"notranslate\">null</code>. If the value is <code class=\"notranslate\">null</code>, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-<code class=\"notranslate\">null</code> value for the <code class=\"notranslate\">mergeable</code> attribute.</p>\n</blockquote>\n<p dir=\"auto\">We don’t record the result of why, only yes, no, or not yet computed.</p>\n<p dir=\"auto\">I hope that helps <g-emoji class=\"g-emoji\" alias=\"+1\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png\">👍</g-emoji></p>"
-- bodyText : "There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In the documentation it states:\n\nThe value of the mergeable attribute can be true, false, or null. If the value is null, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-null value for the mergeable attribute.\n\nWe don’t record the result of why, only yes, no, or not yet computed.\nI hope that helps 👍
-""",
-    bodyText: "There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In the documentation it states:\n\nThe value of the mergeable attribute can be true, false, or null. If the value is null, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-null value for the mergeable attribute.\n\nWe don’t record the result of why, only yes, no, or not yet computed.\nI hope that helps 👍",
+      <p dir=\"auto\">There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In <a href=\"https://developer.github.com/v3/pulls/#get-a-single-pull-request\">the documentation</a> it states:</p>\n<blockquote>\n<p dir=\"auto\">The value of the <code class=\"notranslate\">mergeable</code> attribute can be <code class=\"notranslate\">true</code>, <code class=\"notranslate\">false</code>, or <code class=\"notranslate\">null</code>. If the value is <code class=\"notranslate\">null</code>, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-<code class=\"notranslate\">null</code> value for the <code class=\"notranslate\">mergeable</code> attribute.</p>\n</blockquote>\n<p dir=\"auto\">We don’t record the result of why, only yes, no, or not yet computed.</p>\n<p dir=\"auto\">I hope that helps <g-emoji class=\"g-emoji\" alias=\"+1\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f44d.png\">👍</g-emoji></p>"
+      - bodyText : "There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In the documentation it states:\n\nThe value of the mergeable attribute can be true, false, or null. If the value is null, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-null value for the mergeable attribute.\n\nWe don’t record the result of why, only yes, no, or not yet computed.\nI hope that helps 👍
+      """,
+    bodyText:
+      "There isn’t an API that summarizes why a PR is mergeable or not, only that it is or isn’t. In the documentation it states:\n\nThe value of the mergeable attribute can be true, false, or null. If the value is null, this means that the mergeability hasn’t been computed yet, and a background job was started to compute it. Give the job a few moments to complete, and then submit the request again. When the job is complete, the response will include a non-null value for the mergeable attribute.\n\nWe don’t record the result of why, only yes, no, or not yet computed.\nI hope that helps 👍",
     createdAt: .now,
     createdViaEmail: false,
     editor: .sample,
@@ -675,12 +677,13 @@ extension Discussion {
     activeLockReason: .offTopic,
     authorAssociation: .contributor,
     body: """
-<p>I can use the <a href=\"https://developer.github.com/v3/pulls/\" rel=\"nofollow noopener\">pull requests</a> api to see whether a PR is mergeable, and I can use the <a href=\"https://developer.github.com/v3/repos/statuses/\" rel=\"nofollow noopener\">status api</a> to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?</p>
-""",
+      <p>I can use the <a href=\"https://developer.github.com/v3/pulls/\" rel=\"nofollow noopener\">pull requests</a> api to see whether a PR is mergeable, and I can use the <a href=\"https://developer.github.com/v3/repos/statuses/\" rel=\"nofollow noopener\">status api</a> to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?</p>
+      """,
     bodyHTML: """
-<p dir=\"auto\">I can use the <a href=\"https://developer.github.com/v3/pulls/\">pull requests</a> api to see whether a PR is mergeable, and I can use the <a href=\"https://developer.github.com/v3/repos/statuses/\">status api</a> to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?</p>
-""",
-    bodyText: "I can use the pull requests api to see whether a PR is mergeable, and I can use the status api to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?",
+      <p dir=\"auto\">I can use the <a href=\"https://developer.github.com/v3/pulls/\">pull requests</a> api to see whether a PR is mergeable, and I can use the <a href=\"https://developer.github.com/v3/repos/statuses/\">status api</a> to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?</p>
+      """,
+    bodyText:
+      "I can use the pull requests api to see whether a PR is mergeable, and I can use the status api to check custom statuses logged for a given commit, but how can I fetch the reason that a PR is blocked from merging (e.g. it could be merge conflicts, review obligations, commit status)?",
     createdViaEmail: true,
     databaseId: Int.random(in: Int.min...Int.max),
     editor: .sample,
@@ -750,11 +753,12 @@ extension Discussion.Poll {
 extension GitHubData.Category {
   static let sample = Category(
     createdAt: .now,
-    description: "Conversations related to getting started on using GitHub and the community. For beginners of GitHub, Community on Discussions, and those new to different areas of the product alike!",
+    description:
+      "Conversations related to getting started on using GitHub and the community. For beginners of GitHub, Community on Discussions, and those new to different areas of the product alike!",
     emoji: ":new:",
     emojiHTML: """
-<div><g-emoji class=\"g-emoji\" alias=\"new\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f195.png\">🆕</g-emoji></div>
-""",
+      <div><g-emoji class=\"g-emoji\" alias=\"new\" fallback-src=\"https://github.githubassets.com/images/icons/emoji/unicode/1f195.png\">🆕</g-emoji></div>
+      """,
     isAnswerable: false,
     name: "New to GitHub",
     slug: "new-to-github",

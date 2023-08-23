@@ -58,11 +58,11 @@ struct RepositoryDetailView: View {
         HStack(alignment: .center, spacing: 5) {
           Image(systemName: "arrow.branch")
             .foregroundStyle(.secondary)
-          
+
           if let forksCount = repository.forksCount {
             Text("\(forksCount)")
           }
-          
+
           Text("forks")
             .foregroundStyle(.secondary)
         }
@@ -123,48 +123,53 @@ struct RepositoryDetailView: View {
       }
       .contentShape(.rect)
       .onTapGesture {
-        router.items.append(.issue(
-          ownerID: repository.owner!.userID,
-          repository: repository
-        ))
+        router.items.append(
+          .issue(
+            ownerID: repository.owner!.userID,
+            repository: repository
+          ))
       }
-      
+
       label("Pull Requests", systemImage: "arrow.triangle.pull", imageColor: .blue)
         .contentShape(.rect)
         .onTapGesture {
-          router.items.append(.repositoryPulls(
-            ownerID: repository.owner!.userID,
-            repositoryName: repository.name
-          ))
+          router.items.append(
+            .repositoryPulls(
+              ownerID: repository.owner!.userID,
+              repositoryName: repository.name
+            ))
         }
-      
+
       if repository.hasDiscussions == true {
         label("Discussions", systemImage: "bubble.left.and.bubble.right", imageColor: .purple)
           .contentShape(.rect)
           .onTapGesture {
-            router.items.append(.discussions(
-              repository: repository
-            ))
+            router.items.append(
+              .discussions(
+                repository: repository
+              ))
           }
       }
-      
+
       label("Releases", systemImage: "tag", imageColor: .gray)
         .contentShape(.rect)
         .onTapGesture {
-          router.items.append(.releases(
-            repository: repository
-          ))
+          router.items.append(
+            .releases(
+              repository: repository
+            ))
         }
-      
+
       label("Contributors", systemImage: "person.2", imageColor: .orange)
         .contentShape(.rect)
         .onTapGesture {
-          router.items.append(.contributors(
-            ownerID: repository.owner!.userID,
-            repositoryName: repository.name
-          ))
+          router.items.append(
+            .contributors(
+              ownerID: repository.owner!.userID,
+              repositoryName: repository.name
+            ))
         }
-      
+
       if let license = repository.license {
         label(systemImage: "building.columns", imageColor: .red) {
           HStack(alignment: .center, spacing: 0) {
@@ -175,10 +180,11 @@ struct RepositoryDetailView: View {
         }
         .contentShape(.rect)
         .onTapGesture {
-          router.items.append(.license(
-            ownerID: repository.owner!.userID,
-            repositoryName: repository.name
-          ))
+          router.items.append(
+            .license(
+              ownerID: repository.owner!.userID,
+              repositoryName: repository.name
+            ))
         }
       }
     }

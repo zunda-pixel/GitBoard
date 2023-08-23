@@ -2,8 +2,8 @@
 //  NotificationsNavigationView.swift
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct NotificationsNavigationView: View {
   @Environment(\.modelContext) var modelContext

@@ -2,20 +2,20 @@
 //  ReleaseCell.swift
 //
 
-import SwiftUI
 import GitHubAPI
+import SwiftUI
 
 struct ReleaseCell: View {
   let release: Release
-  
+
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       Text(release.name)
         .font(.title2)
         .bold()
-      
+
       reactions(reaction: release.reactions)
-      
+
       HStack(alignment: .center, spacing: 10) {
         Text(release.publishedAt, format: .dateTime)
         if release.prerelease {
@@ -25,7 +25,7 @@ struct ReleaseCell: View {
       }
     }
   }
-  
+
   @ViewBuilder
   func reactions(reaction: Reaction?) -> some View {
     ScrollView(.horizontal) {
@@ -38,6 +38,6 @@ struct ReleaseCell: View {
   }
 }
 
-#Preview {
+#Preview{
   ReleaseCell(release: .sample)
 }

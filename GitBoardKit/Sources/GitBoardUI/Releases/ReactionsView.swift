@@ -2,12 +2,12 @@
 //  ReactionsView.swift
 //
 
-import SwiftUI
 import GitHubAPI
+import SwiftUI
 
 struct ReactionsView: View {
   let reaction: Reaction
-  
+
   var body: some View {
     if reaction.plusOne > 0 {
       reactionView(emoji: "👍", count: reaction.plusOne)
@@ -27,7 +27,7 @@ struct ReactionsView: View {
     if reaction.heartCount > 0 {
       reactionView(emoji: "❤️", count: reaction.heartCount)
     }
-    
+
     if reaction.rockerCount > 0 {
       reactionView(emoji: "🚀", count: reaction.rockerCount)
     }
@@ -35,12 +35,12 @@ struct ReactionsView: View {
       reactionView(emoji: "👀", count: reaction.eyesCount)
     }
   }
-  
+
   @ViewBuilder
-  func reactionView(emoji: String, count: Int) -> some View{
+  func reactionView(emoji: String, count: Int) -> some View {
     HStack(alignment: .center, spacing: 3) {
       Text(emoji)
-      
+
       Text("\(count)")
         .foregroundStyle(.secondary)
     }
@@ -53,6 +53,6 @@ struct ReactionsView: View {
   }
 }
 
-#Preview {
+#Preview{
   ReactionsView(reaction: .sample)
 }

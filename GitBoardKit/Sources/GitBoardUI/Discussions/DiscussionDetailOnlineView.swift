@@ -2,17 +2,17 @@
 //  DiscussionDetailOnlineView.swift
 //
 
-import SwiftUI
 import GitHubAPI
+import SwiftUI
 
 struct DiscussionDetailOnlineView: View {
   @Environment(ErrorHandle.self) var errorHandle
-  
+
   let repository: Repository
   let discussionNumber: Int
-  
+
   @State var discussion: Discussion? = nil
-  
+
   func populate() async {
     do {
       self.discussion = try await GitHubAPI().discussion(
@@ -25,7 +25,7 @@ struct DiscussionDetailOnlineView: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   var body: some View {
     DiscussionDetailView(repository: repository, discussion: discussion ?? .sample)
       .redacted(reason: discussion == nil ? .placeholder : [])

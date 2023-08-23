@@ -12,7 +12,7 @@ extension User: RawRepresentable {
     let user = try! decoder.decode(User.self, from: data)
     self = user
   }
-  
+
   public var rawValue: String {
     let encoder = JSONEncoder.github
     let data = try! encoder.encode(self)

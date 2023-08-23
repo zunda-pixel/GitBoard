@@ -2,13 +2,13 @@
 //  DiscussionCell.swift
 //
 
-import SwiftUI
-import GitHubAPI
 import Emoji
+import GitHubAPI
+import SwiftUI
 
 struct DiscussionCell: View {
   let discussion: Discussion
-  
+
   var body: some View {
     Label {
       HStack(alignment: .top, spacing: 10) {
@@ -19,7 +19,7 @@ struct DiscussionCell: View {
           Text(discussion.title)
             .font(.title3)
             .bold()
-          
+
           Spacer()
           Text("\(Image(systemName: "bubble")) \(discussion.comments.count)")
             .font(.caption)
@@ -30,9 +30,9 @@ struct DiscussionCell: View {
                 .stroke(.secondary, lineWidth: 1)
             }
         }
-        
+
         Spacer()
-        
+
         Text(discussion.createdAt, format: .relative(presentation: .named))
       }
     } icon: {

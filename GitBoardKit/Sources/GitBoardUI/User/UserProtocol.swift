@@ -17,9 +17,9 @@ protocol UserProtocol {
 }
 
 extension GitHubData.User: UserProtocol {
-  
+
 }
 
 extension GitBoardData.User: UserProtocol {
-  
+
 }

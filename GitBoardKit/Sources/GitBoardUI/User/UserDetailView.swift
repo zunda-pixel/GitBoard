@@ -99,17 +99,17 @@ struct UserDetailView: View {
       HStack(alignment: .center, spacing: 5) {
         Text("Repositories")
         Spacer()
-        
+
         var count: Int {
           var sum = user.publicRepoCount ?? 0
           sum += user.ownedPrivateRepoCount ?? 0
           return sum
         }
-        
+
         if count > 0 {
           Text("\(count)")
         }
-                
+
         Image(systemName: "chevron.right")
       }
     } icon: {

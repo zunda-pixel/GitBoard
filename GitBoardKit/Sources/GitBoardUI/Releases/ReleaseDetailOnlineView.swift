@@ -2,17 +2,17 @@
 //  ReleaseDetailOnlineView.swift
 //
 
-import SwiftUI
 import GitHubAPI
+import SwiftUI
 
 struct ReleaseDetailOnlineView: View {
   @Environment(ErrorHandle.self) var errorHandle
-  
+
   let repository: Repository
   let releaseID: Int
 
   @State var release: Release? = nil
-  
+
   func populate() async {
     do {
       self.release = try await GitHubAPI().release(
@@ -24,7 +24,7 @@ struct ReleaseDetailOnlineView: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   var body: some View {
     ReleaseDetailView(repository: repository, release: release ?? .sample)
       .redacted(reason: release == nil ? .placeholder : [])
@@ -35,9 +35,9 @@ struct ReleaseDetailOnlineView: View {
   }
 }
 
-#Preview {
+#Preview{
   ReleaseDetailOnlineView(
     repository: .sample,
-    releaseID: 114412910
+    releaseID: 114_412_910
   )
 }

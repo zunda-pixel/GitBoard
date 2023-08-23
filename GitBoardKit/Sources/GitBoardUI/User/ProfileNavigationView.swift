@@ -2,8 +2,8 @@
 //  ProfileNavigationView.swift
 //
 
-import SwiftUI
 import GitHubAPI
+import SwiftUI
 
 struct ProfileNavigationView: View {
   @Environment(\.modelContext) var modelContext
