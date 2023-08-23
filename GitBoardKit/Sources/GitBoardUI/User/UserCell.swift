@@ -5,6 +5,7 @@
 import CachedAsyncImage
 import GitHubAPI
 import SwiftUI
+import GitBoardData
 
 struct UserCell<User: UserProtocol>: View {
   let user: User

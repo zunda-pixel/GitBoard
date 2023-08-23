@@ -4,8 +4,9 @@
 
 import Foundation
 import GitHubAPI
+import GitBoardData
 
-extension User: RawRepresentable {
+extension GitHubData.User: RawRepresentable {
   public init?(rawValue: String) {
     let decoder = JSONDecoder.github
     let data = Data(rawValue.utf8)
@@ -17,5 +18,10 @@ extension User: RawRepresentable {
     let encoder = JSONEncoder.github
     let data = try! encoder.encode(self)
     return String(data: data, encoding: .utf8)!
+  }
+}
+
+extension GitHubData.User: UserProtocol {
+  public func update(user: some GitBoardData.UserProtocol) {
   }
 }
