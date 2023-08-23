@@ -7,58 +7,90 @@ import SwiftData
 import GitHubData
 
 @Model
-final public class User: Hashable, Sendable, Identifiable {
-  public let userID: String
-  public let userName: String?
-  public let avatarURL: URL
-  public let publicRepoCount: Int?
-  public let totalPrivateRepoCount: Int?
-  public let ownedPrivateRepoCount: Int?
-  public let publicGistsCount: Int?
-  public let privateGistsCount: Int?
-  public let followerCount: Int?
-  public let followingCount: Int?
-  public let createdAt: Date?
-  public let updatedAt: Date?
-  public let bio: String?
-  public let email: String?
-  public let location: String?
-  public let hireable: Bool?
-  public let type: UserType
-  public let siteAdmin: Bool
-  public let twitterUserName: String?
-  public let company: String?
-  public let collaboratorCount: Int?
-  public let twoFactorAuthentication: Bool?
-  public let plan: Plan?
+final public class User: Hashable, Identifiable {
+  @Attribute(.unique)
+  public let id: Int
+  public var userID: String
+  public var userName: String?
+  public var avatarURL: URL
+  public var publicRepoCount: Int?
+  public var totalPrivateRepoCount: Int?
+  public var ownedPrivateRepoCount: Int?
+  public var publicGistsCount: Int?
+  public var privateGistsCount: Int?
+  public var followerCount: Int?
+  public var followingCount: Int?
+  public var createdAt: Date?
+  public var updatedAt: Date?
+  public var bio: String?
+  public var email: String?
+  public var location: String?
+  public var hireable: Bool?
+  public var type: UserType
+  public var siteAdmin: Bool
+  public var twitterUserName: String?
+  public var company: String?
+  public var collaboratorCount: Int?
+  public var twoFactorAuthentication: Bool?
+  public var plan: Plan?
   
-  public init(user: GitHubData.User) {
-    self.userID = user.userID
-    self.userName = user.userName
-    self.avatarURL = user.avatarURL
-    self.publicRepoCount = user.publicRepoCount
-    self.totalPrivateRepoCount = user.totalPrivateRepoCount
-    self.ownedPrivateRepoCount = user.ownedPrivateRepoCount
-    self.publicGistsCount = user.publicGistsCount
-    self.privateGistsCount = user.privateGistsCount
-    self.followerCount = user.followerCount
-    self.followingCount = user.followingCount
-    self.createdAt = user.createdAt
-    self.updatedAt = user.updatedAt
-    self.bio = user.bio
-    self.email = user.email
-    self.location = user.location
-    self.hireable = user.hireable
-    self.type = user.type
-    self.siteAdmin = user.siteAdmin
-    self.twitterUserName = user.twitterUserName
-    self.company = user.company
-    self.collaboratorCount = user.collaboratorCount
-    self.twoFactorAuthentication = user.twoFactorAuthentication
-    self.plan = user.plan
+  public static func from(user: GitHubData.User) -> User {
+    self.init(
+      id: user.id,
+      userID: user.userID,
+      userName: user.userName,
+      avatarURL: user.avatarURL,
+      publicRepoCount: user.publicRepoCount,
+      totalPrivateRepoCount: user.totalPrivateRepoCount,
+      ownedPrivateRepoCount: user.ownedPrivateRepoCount,
+      publicGistsCount: user.publicGistsCount,
+      privateGistsCount: user.privateGistsCount,
+      followerCount: user.followerCount,
+      followingCount: user.followingCount,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+      bio: user.bio,
+      email: user.email,
+      location: user.location,
+      hireable: user.hireable,
+      type: user.type,
+      siteAdmin: user.siteAdmin,
+      twitterUserName: user.twitterUserName,
+      company: user.company,
+      collaboratorCount: user.collaboratorCount,
+      twoFactorAuthentication: user.twoFactorAuthentication,
+      plan: user.plan
+    )
   }
   
-  public init(
+  public func update(user: GitHubData.User) {
+    self.userID = user.userID
+    user.userName.map { self.userName = $0 }
+    self.avatarURL =  user.avatarURL
+    user.publicRepoCount.map { self.publicRepoCount = $0 }
+    user.totalPrivateRepoCount.map { self.totalPrivateRepoCount = $0 }
+    user.ownedPrivateRepoCount.map { self.ownedPrivateRepoCount = $0 }
+    user.publicGistsCount.map { self.publicGistsCount = $0 }
+    user.privateGistsCount.map { self.privateGistsCount = $0 }
+    user.followerCount.map { self.followerCount = $0 }
+    user.followingCount.map { self.followingCount = $0 }
+    user.createdAt.map { self.createdAt = $0 }
+    user.updatedAt.map { self.updatedAt = $0 }
+    user.bio.map { self.bio = $0 }
+    user.email.map { self.email = $0 }
+    user.location.map { self.location = $0 }
+    user.hireable.map { self.hireable = $0 }
+    self.type = user.type
+    self.siteAdmin = user.siteAdmin
+    user.twitterUserName.map { self.twitterUserName = $0 }
+    user.company.map { self.company = $0 }
+    user.collaboratorCount.map { self.collaboratorCount = $0 }
+    user.twoFactorAuthentication.map { self.twoFactorAuthentication = $0 }
+    user.plan.map { self.plan = $0 }
+  }
+  
+  private init(
+    id: Int,
     userID: String,
     userName: String?,
     avatarURL: URL,
@@ -83,6 +115,7 @@ final public class User: Hashable, Sendable, Identifiable {
     twoFactorAuthentication: Bool?,
     plan: Plan?
   ) {
+    self.id = id
     self.userID = userID
     self.userName = userName
     self.avatarURL = avatarURL
