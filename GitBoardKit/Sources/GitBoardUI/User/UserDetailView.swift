@@ -6,7 +6,7 @@ import GitHubAPI
 import SwiftUI
 
 struct UserDetailView: View {
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
 
   let user: User
 
@@ -142,5 +142,5 @@ struct UserDetailView: View {
     UserDetailView(user: .zunda)
   }
   .environment(ErrorHandle())
-  .environmentObject(NavigationRouter())
+  .environment(NavigationRouter())
 }

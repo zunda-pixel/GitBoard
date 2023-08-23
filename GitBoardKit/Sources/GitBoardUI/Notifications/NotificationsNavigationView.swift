@@ -8,7 +8,7 @@ import SwiftData
 struct NotificationsNavigationView: View {
   @Environment(\.modelContext) var modelContext
   let trigger: TabTrigger
-  @StateObject var router = NavigationRouter()
+  @State var router = NavigationRouter()
 
   var body: some View {
     NavigationStack(path: $router.items) {
@@ -17,7 +17,7 @@ struct NotificationsNavigationView: View {
         .navigationDestination(modelContext: modelContext)
         .navigationTitle("Notifications")
     }
-    .environmentObject(router)
+    .environment(router)
     .onTrigger(of: trigger) {
       router.items.removeAll()
     }

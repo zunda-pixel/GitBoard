@@ -6,7 +6,7 @@ import GitHubAPI
 import SwiftUI
 
 struct IssueDetailView: View {
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   
   let issue: Issue
   let repository: Repository

@@ -48,5 +48,5 @@ final class FollowersViewState: UsersViewState {
     UsersView(viewState: viewState)
   }
   .environment(ErrorHandle())
-  .environmentObject(NavigationRouter())
+  .environment(NavigationRouter())
 }

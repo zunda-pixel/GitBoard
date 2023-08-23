@@ -7,7 +7,7 @@ import GitHubAPI
 
 struct ProfileNavigationView: View {
   @Environment(\.modelContext) var modelContext
-  @StateObject var router = NavigationRouter()
+  @State var router = NavigationRouter()
   let user: User
   let trigger: TabTrigger
 
@@ -18,7 +18,7 @@ struct ProfileNavigationView: View {
         .navigationTitle(user.userID)
         .navigationBarTitleDisplayMode()
     }
-    .environmentObject(router)
+    .environment(router)
     .onTrigger(of: trigger) {
       router.items.removeAll()
     }

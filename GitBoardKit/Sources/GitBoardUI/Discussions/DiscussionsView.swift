@@ -11,7 +11,7 @@ struct DiscussionsView: View {
   let repository: Repository
   @State var discussions: [Discussion] = []
   @Environment(ErrorHandle.self) var errorHandle
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   
   func populate() async {
     do {

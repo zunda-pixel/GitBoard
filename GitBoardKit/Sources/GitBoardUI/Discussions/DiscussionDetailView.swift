@@ -8,7 +8,7 @@ import MarkdownUI
 import Emoji
 
 struct DiscussionDetailView: View {
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   
   let repository: Repository
   let discussion: Discussion

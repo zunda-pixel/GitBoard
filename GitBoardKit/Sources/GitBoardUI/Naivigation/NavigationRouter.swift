@@ -6,8 +6,9 @@ import GitHubAPI
 import Observation
 import SwiftUI
 
-final class NavigationRouter: ObservableObject {
-  @Published var items: [Item] = []
+@Observable
+final class NavigationRouter {
+  var items: [Item] = []
 }
 
 extension NavigationRouter {

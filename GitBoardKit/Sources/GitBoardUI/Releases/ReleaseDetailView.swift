@@ -6,7 +6,7 @@ import SwiftUI
 import GitHubAPI
 
 struct ReleaseDetailView: View {
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   
   let repository: Repository
   let release: Release

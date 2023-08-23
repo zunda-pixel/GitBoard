@@ -9,7 +9,7 @@ import SwiftData
 struct HomeNavigationView: View {
   let trigger: TabTrigger
   @Environment(\.modelContext) var modelContext
-  @StateObject var router = NavigationRouter()
+  @State var router = NavigationRouter()
   @State var query: String = ""
   @State var isPresentedKeyboard = false
 
@@ -73,7 +73,7 @@ struct HomeNavigationView: View {
         }
       }
     }
-    .environmentObject(router)
+    .environment(router)
     .onTrigger(of: trigger) {
       router.items.removeAll()
     }

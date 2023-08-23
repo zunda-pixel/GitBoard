@@ -6,7 +6,7 @@ import SwiftUI
 import GitHubAPI
 
 struct ReleasesView: View {
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   @Environment(ErrorHandle.self) var errorHandle
   @State var viewState: ReleasesViewState
   
