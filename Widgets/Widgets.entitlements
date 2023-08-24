@@ -8,5 +8,9 @@
 	<array>
 		<string>group.zunda.gitboard</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)group.zunda.gitboard</string>
+	</array>
 </dict>
 </plist>
