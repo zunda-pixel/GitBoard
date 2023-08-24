@@ -23,15 +23,6 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-      }
-    },
-    {
-      "identity" : "keychain-swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/evgenyneu/keychain-swift",
-      "state" : {
-        "revision" : "d108a1fa6189e661f91560548ef48651ed8d93b9",
-        "version" : "20.0.0"
         "branch" : "develop/add-user-api",
         "revision" : "9680caa69432666f01f31f7cd4181771bb28236e"
       }
@@ -133,6 +124,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "8e5a24ac37087665a063aa05bb832c5f6955fceb"
+      }
+    },
+    {
+      "identity" : "valet",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/square/Valet",
+      "state" : {
+        "revision" : "89f12b93553055f4908c0d2548c9b8655926940a",
+        "version" : "4.2.0"
       }
     }
   ],
