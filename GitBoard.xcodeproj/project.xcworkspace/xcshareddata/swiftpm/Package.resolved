@@ -23,8 +23,6 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-        "branch" : "develop/fix-decode",
-        "revision" : "a5dc1de33ee5ce9bc8e826baa7e222c296c3da9d"
       }
     },
     {
@@ -34,6 +32,8 @@
       "state" : {
         "revision" : "d108a1fa6189e661f91560548ef48651ed8d93b9",
         "version" : "20.0.0"
+        "branch" : "develop/add-user-api",
+        "revision" : "9680caa69432666f01f31f7cd4181771bb28236e"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-argument-parser.git",
       "state" : {
-        "revision" : "fee6933f37fde9a5e12a1e4aeaa93fe60116ff2a",
-        "version" : "1.2.2"
+        "revision" : "8f4d2753f0e4778c76d5f05ad16c74f707390531",
+        "version" : "1.2.3"
       }
     },
     {
