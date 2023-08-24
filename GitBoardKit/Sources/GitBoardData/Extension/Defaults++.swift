@@ -7,7 +7,7 @@ import Foundation
 import GitHubData
 
 extension UserDefaults {
-  static public let shared: UserDefaults = .init(suiteName: Env.appGroup)!
+  static public let shared: UserDefaults = .init(suiteName: "\(Env.appGroupPrefix).\(Env.appGroup)")!
 }
 
 extension Defaults.Keys {
