@@ -11,6 +11,11 @@ let package = Package(
   ],
   products: [
     .library(
+      name: "GitBoardWidgets",
+      type: .dynamic,
+      targets: ["GitBoardWidgets"]
+    ),
+    .library(
       name: "GitBoardData",
       type: .dynamic,
       targets: ["GitBoardData"]
@@ -33,6 +38,12 @@ let package = Package(
     .package(url: "https://github.com/square/Valet", .upToNextMajor(from: "4.2.0")),
   ],
   targets: [
+    .target(
+      name: "GitBoardWidgets",
+      dependencies: [
+        .target(name: "GitBoardUI"),
+      ]
+    ),
     .target(
       name: "GitBoardUI",
       dependencies: [
