@@ -2,9 +2,9 @@
 //  ProfileNavigationView.swift
 //
 
+import GitBoardData
 import GitHubAPI
 import SwiftUI
-import GitBoardData
 
 struct ProfileNavigationView<User: UserProtocol>: View {
   @Environment(\.modelContext) var modelContext

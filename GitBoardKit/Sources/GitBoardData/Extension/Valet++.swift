@@ -14,7 +14,7 @@ extension Valet {
       accessibility: .afterFirstUnlock
     )
   }
-  
+
   public func getAccessToken(userID: GitHubData.User.ID) -> String {
     try! self.string(forKey: "accessToken-\(userID)")
   }

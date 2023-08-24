@@ -29,6 +29,6 @@ public protocol UserProtocol: Identifiable, Hashable {
   var collaboratorCount: Int? { get }
   var twoFactorAuthentication: Bool? { get }
   var plan: Plan? { get }
-  
+
   func update(user: some UserProtocol)
 }

@@ -2,9 +2,9 @@
 //  GitHubAPI++.swift
 //
 
+import Defaults
 import Foundation
 import GitHubAPI
-import Defaults
 import Valet
 
 extension GitHubAPI {
@@ -13,7 +13,7 @@ extension GitHubAPI {
       self.init(type: .withoutToken)
       return
     }
-    
+
     let accessToken = Valet.shared.getAccessToken(userID: user.id)
     self.init(accessToken: accessToken)
   }

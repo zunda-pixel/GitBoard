@@ -2,14 +2,14 @@
 //  UserDetailView.swift
 //
 
+import GitBoardData
 import GitHubAPI
 import SwiftUI
-import GitBoardData
 
 struct UserDetailView<User: UserProtocol>: View {
   @Environment(NavigationRouter.self) var router
   @Environment(ErrorHandle.self) var errorHandle
-  
+
   let user: User
 
   var userProfileAndName: some View {
@@ -122,7 +122,7 @@ struct UserDetailView<User: UserProtocol>: View {
       router.items.append(.userRepositories(ownerID: user.userID))
     }
   }
-  
+
   func updateUser() async {
     do {
       let user = try await GitHubAPI().user(userID: user.userID)

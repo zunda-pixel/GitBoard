@@ -33,7 +33,7 @@ final public class User: Hashable, Identifiable {
   public var collaboratorCount: Int?
   public var twoFactorAuthentication: Bool?
   public var plan: Plan?
-  
+
   public static func from(user: GitHubData.User) -> User {
     self.init(
       githubID: user.id,

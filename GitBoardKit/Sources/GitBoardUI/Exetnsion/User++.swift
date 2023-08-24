@@ -3,8 +3,8 @@
 //
 
 import Foundation
-import GitHubAPI
 import GitBoardData
+import GitHubAPI
 
 extension GitHubData.User: RawRepresentable {
   public init?(rawValue: String) {

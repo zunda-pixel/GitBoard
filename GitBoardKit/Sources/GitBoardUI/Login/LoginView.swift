@@ -39,7 +39,7 @@ struct LoginView<Content: View>: View {
       let me = try await api.me()
 
       Valet.shared.setAccessToken(userID: me.id, accessToken: accessToken)
-      
+
       currentUser = me
     } catch {
       errorHandle.error = .init(error: error)
