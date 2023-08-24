@@ -12,6 +12,8 @@
 		2E59296A2A9796CF00BDFEE5 /* WidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5929692A9796CF00BDFEE5 /* WidgetsBundle.swift */; };
 		2E5929702A9796D200BDFEE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E59296F2A9796D200BDFEE5 /* Assets.xcassets */; };
 		2E5929752A9796D200BDFEE5 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2E5929632A9796CF00BDFEE5 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2E59297B2A9798F600BDFEE5 /* GitBoardWidgets in Frameworks */ = {isa = PBXBuildFile; productRef = 2E59297A2A9798F600BDFEE5 /* GitBoardWidgets */; };
+		2E59297D2A9798F600BDFEE5 /* GitBoardWidgets in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2E59297A2A9798F600BDFEE5 /* GitBoardWidgets */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2E61C0D12A4C7EE6009C6552 /* GitBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E61C0D02A4C7EE6009C6552 /* GitBoardApp.swift */; };
 		2E61C0D72A4C7EE7009C6552 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E61C0D62A4C7EE7009C6552 /* Assets.xcassets */; };
 		2E61C0DB2A4C7EE7009C6552 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E61C0DA2A4C7EE7009C6552 /* Preview Assets.xcassets */; };
@@ -39,6 +41,17 @@
 				2E5929752A9796D200BDFEE5 /* WidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E59297C2A9798F600BDFEE5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2E59297D2A9798F600BDFEE5 /* GitBoardWidgets in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2EDF18B02A507B24000C5684 /* Embed Frameworks */ = {
@@ -77,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E5929672A9796CF00BDFEE5 /* SwiftUI.framework in Frameworks */,
+				2E59297B2A9798F600BDFEE5 /* GitBoardWidgets in Frameworks */,
 				2E5929652A9796CF00BDFEE5 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,12 +176,16 @@
 				2E59295F2A9796CF00BDFEE5 /* Sources */,
 				2E5929602A9796CF00BDFEE5 /* Frameworks */,
 				2E5929612A9796CF00BDFEE5 /* Resources */,
+				2E59297C2A9798F600BDFEE5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = WidgetsExtension;
+			packageProductDependencies = (
+				2E59297A2A9798F600BDFEE5 /* GitBoardWidgets */,
+			);
 			productName = WidgetsExtension;
 			productReference = 2E5929632A9796CF00BDFEE5 /* WidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -583,6 +601,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2E59297A2A9798F600BDFEE5 /* GitBoardWidgets */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GitBoardWidgets;
+		};
 		2EDF18AE2A507B24000C5684 /* GitBoardUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GitBoardUI;
