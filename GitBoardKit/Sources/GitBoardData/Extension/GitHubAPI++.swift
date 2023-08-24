@@ -4,19 +4,17 @@
 
 import Foundation
 import GitHubAPI
-import KeychainSwift
+import Defaults
+import Valet
 
 extension GitHubAPI {
   public init() {
-    let userID = UserDefaults.shared.currentUserID
-    
-    guard let userID else {
-      self = .init(type: .withoutToken)
+    guard let user = Default(.currentUser).wrappedValue else {
+      self.init(type: .withoutToken)
       return
     }
     
-    let accessToken = KeychainSwift.shared.getAccessToken(userID: userID)
-    let githubKit = GitHubAPI(accessToken: accessToken)
-    self = githubKit
+    let accessToken = Valet.shared.getAccessToken(userID: user.id)
+    self.init(accessToken: accessToken)
   }
 }
