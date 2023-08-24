@@ -51,5 +51,5 @@ final class SearchRepositoriesViewState: RepositoriesViewState {
     RepositoriesView(viewState: viewState)
   }
   .environment(ErrorHandle())
-  .environmentObject(NavigationRouter())
+  .environment(NavigationRouter())
 }

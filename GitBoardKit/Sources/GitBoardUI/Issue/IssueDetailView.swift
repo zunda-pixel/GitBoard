@@ -6,8 +6,8 @@ import GitHubAPI
 import SwiftUI
 
 struct IssueDetailView: View {
-  @EnvironmentObject var router: NavigationRouter
-  
+  @Environment(NavigationRouter.self) var router
+
   let issue: Issue
   let repository: Repository
 
@@ -44,10 +44,10 @@ struct IssueDetailView: View {
           avatarURL: repository.owner!.avatarURL,
           type: repository.owner!.type
         )
-          .frame(width: 30, height: 30)
-          .onTapGesture {
-            router.items.append(.userDetail(user: repository.owner!))
-          }
+        .frame(width: 30, height: 30)
+        .onTapGesture {
+          router.items.append(.userDetail(user: repository.owner!))
+        }
 
         Text("\(repository.owner!.userID) / \(repository.name)")
 

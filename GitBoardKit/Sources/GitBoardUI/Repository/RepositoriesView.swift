@@ -7,7 +7,7 @@ import SwiftUI
 
 struct RepositoriesView<ViewState: RepositoriesViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   @State var viewState: ViewState
 
   func populate() async {

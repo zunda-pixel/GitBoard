@@ -2,15 +2,15 @@
 //  NavigationDestination.swift
 //
 
+import SwiftData
 import SwiftUI
 
 extension View {
-  func navigationDestination() -> some View {
+  func navigationDestination(modelContext: ModelContext) -> some View {
     self.navigationDestination(for: NavigationRouter.Item.self) { item in
       switch item {
       case .searchUsers(let query):
-        let viewState = SearchUsersViewState(query: query)
-        UsersView(viewState: viewState)
+        SearchUsersView(query: query)
           .navigationTitle("Search User")
           .navigationBarTitleDisplayMode()
       case .searchRepositories(let query):
@@ -46,8 +46,8 @@ extension View {
           repositoryName: repositoryName,
           issueNumber: issueNumber
         )
-          .navigationTitle("Issue #\(issueNumber)")
-          .navigationBarTitleDisplayMode()
+        .navigationTitle("Issue #\(issueNumber)")
+        .navigationBarTitleDisplayMode()
       case .repositoryPulls(let ownerID, let repositoryName):
         let viewState = RepositoryPullsViewState(ownerID: ownerID, repositoryName: repositoryName)
         PullsView(viewState: viewState)
@@ -97,8 +97,8 @@ extension View {
           repositoryName: repositoryName,
           pullNumber: pullNumber
         )
-          .navigationTitle("Pull #\(pullNumber)")
-          .navigationBarTitleDisplayMode()
+        .navigationTitle("Pull #\(pullNumber)")
+        .navigationBarTitleDisplayMode()
       case .stargazers(let ownerID, let repositoryName):
         let viewState = StargazersViewState(ownerID: ownerID, repositoryName: repositoryName)
         UsersView(viewState: viewState)

@@ -4,16 +4,16 @@
 
 import GitBoardData
 import GitHubAPI
-import KeychainSwift
 import SwiftUI
+import Valet
 
 struct LoginView<Content: View>: View {
   @Environment(\.openURL) var openURL
   @Environment(ErrorHandle.self) var errorHandle
-  @Binding var currentUser: User?
+  @Binding var currentUser: GitHubData.User?
   let label: Content
 
-  init(currentUser: Binding<User?>, @ViewBuilder label: @escaping () -> Content) {
+  init(currentUser: Binding<GitHubData.User?>, @ViewBuilder label: @escaping () -> Content) {
     self._currentUser = currentUser
     self.label = label()
   }
@@ -38,7 +38,8 @@ struct LoginView<Content: View>: View {
       let api = GitHubAPI(accessToken: accessToken)
       let me = try await api.me()
 
-      KeychainSwift.shared.setAccessToken(userID: me.id, accessToken: accessToken)
+      Valet.shared.setAccessToken(userID: me.id, accessToken: accessToken)
+
       currentUser = me
     } catch {
       errorHandle.error = .init(error: error)

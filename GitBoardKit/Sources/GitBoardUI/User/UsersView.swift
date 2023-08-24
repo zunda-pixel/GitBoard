@@ -7,7 +7,7 @@ import SwiftUI
 
 struct UsersView<ViewState: UsersViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   @State var viewState: ViewState
 
   func populate() async {
@@ -18,7 +18,7 @@ struct UsersView<ViewState: UsersViewState>: View {
     }
   }
 
-  func populateMore(id: User.ID) async {
+  func populateMore(id: GitHubData.User.ID) async {
     do {
       try await viewState.populateMoreUsers(id: id)
     } catch {
@@ -56,7 +56,7 @@ struct UsersView<ViewState: UsersViewState>: View {
 
 @Observable
 final class TestUsersViewState: UsersViewState {
-  var users: [User] = []
+  var users: [GitHubData.User] = []
 
   func populateUsers() async throws {
     users = [
@@ -65,7 +65,7 @@ final class TestUsersViewState: UsersViewState {
     ]
   }
 
-  func populateMoreUsers(id: User.ID) async throws {
+  func populateMoreUsers(id: GitHubData.User.ID) async throws {
     users.append(.sample)
   }
 }
@@ -76,5 +76,5 @@ final class TestUsersViewState: UsersViewState {
     UsersView(viewState: viewState)
   }
   .environment(ErrorHandle())
-  .environmentObject(NavigationRouter())
+  .environment(NavigationRouter())
 }

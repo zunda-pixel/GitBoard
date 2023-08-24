@@ -2,14 +2,14 @@
 //  ReleasesView.swift
 //
 
-import SwiftUI
 import GitHubAPI
+import SwiftUI
 
 struct ReleasesView: View {
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   @Environment(ErrorHandle.self) var errorHandle
   @State var viewState: ReleasesViewState
-  
+
   func populate() async {
     do {
       try await viewState.populateReleases()
@@ -17,7 +17,7 @@ struct ReleasesView: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   func populateMore(id: GitHubData.Release.ID) async {
     do {
       try await viewState.populateMoreReleases(id: id)
@@ -25,7 +25,7 @@ struct ReleasesView: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   var body: some View {
     List {
       ForEach(viewState.releases) { release in
@@ -33,15 +33,16 @@ struct ReleasesView: View {
           ReleaseCell(release: release)
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-          
+
           Divider()
         }
         .listRow()
         .onTapGesture {
-          router.items.append(.releaseDetail(
-            repository: viewState.repository,
-            release: release
-          ))
+          router.items.append(
+            .releaseDetail(
+              repository: viewState.repository,
+              release: release
+            ))
         }
         .task {
           await populateMore(id: release.id)
@@ -58,7 +59,7 @@ struct ReleasesView: View {
   }
 }
 
-#Preview {
+#Preview{
   NavigationStack {
     let viewState = ReleasesViewState(repository: .sample)
     ReleasesView(viewState: viewState)

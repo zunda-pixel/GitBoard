@@ -2,12 +2,14 @@
 //  HomeNavigationView.swift
 //
 
+import SwiftData
 import SwiftUI
 import ToastView
 
 struct HomeNavigationView: View {
   let trigger: TabTrigger
-  @StateObject var router = NavigationRouter()
+  @Environment(\.modelContext) var modelContext
+  @State var router = NavigationRouter()
   @State var query: String = ""
   @State var isPresentedKeyboard = false
 
@@ -26,14 +28,14 @@ struct HomeNavigationView: View {
       Image(systemName: systemImage)
     }
   }
-  
+
   var body: some View {
     NavigationStack(path: $router.items) {
       List {
       }
       .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
       .listStyle(.plain)
-      .navigationDestination()
+      .navigationDestination(modelContext: modelContext)
       .navigationTitle("Home")
       .overlay {
         if isPresentedKeyboard {
@@ -53,13 +55,13 @@ struct HomeNavigationView: View {
           } else {
             List {
               let query = query.trimmingCharacters(in: .whitespaces)
-              
+
               label("Search Users", systemImage: "person.2")
                 .contentShape(.rect)
                 .onTapGesture {
                   router.items.append(.searchUsers(query: query))
                 }
-              
+
               label("Search Repositories", systemImage: "book.pages")
                 .contentShape(.rect)
                 .onTapGesture {
@@ -71,7 +73,7 @@ struct HomeNavigationView: View {
         }
       }
     }
-    .environmentObject(router)
+    .environment(router)
     .onTrigger(of: trigger) {
       router.items.removeAll()
     }

@@ -8,7 +8,7 @@ import SwiftUI
 
 struct PullsView<ViewState: PullsViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
 
   @State var viewState: ViewState
 
@@ -62,5 +62,5 @@ struct PullsView<ViewState: PullsViewState>: View {
     PullsView(viewState: viewState)
   }
   .environment(ErrorHandle())
-  .environmentObject(NavigationRouter())
+  .environment(NavigationRouter())
 }

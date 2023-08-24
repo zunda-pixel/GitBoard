@@ -2,22 +2,24 @@
 //  ProfileNavigationView.swift
 //
 
-import SwiftUI
+import GitBoardData
 import GitHubAPI
+import SwiftUI
 
-struct ProfileNavigationView: View {
-  @StateObject var router = NavigationRouter()
+struct ProfileNavigationView<User: UserProtocol>: View {
+  @Environment(\.modelContext) var modelContext
+  @State var router = NavigationRouter()
   let user: User
   let trigger: TabTrigger
 
   var body: some View {
     NavigationStack(path: $router.items) {
       UserDetailView(user: user)
-        .navigationDestination()
+        .navigationDestination(modelContext: modelContext)
         .navigationTitle(user.userID)
         .navigationBarTitleDisplayMode()
     }
-    .environmentObject(router)
+    .environment(router)
     .onTrigger(of: trigger) {
       router.items.removeAll()
     }
@@ -25,5 +27,5 @@ struct ProfileNavigationView: View {
 }
 
 #Preview{
-  ProfileNavigationView(user: .sample, trigger: .init())
+  ProfileNavigationView(user: GitHubData.User.sample, trigger: .init())
 }

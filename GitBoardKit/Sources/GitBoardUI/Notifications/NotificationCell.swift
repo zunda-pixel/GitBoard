@@ -2,12 +2,12 @@
 //  NotificationCell.swift
 //
 
-import SwiftUI
 import GitHubAPI
+import SwiftUI
 
 struct NotificationCell: View {
   let notification: GitHubData.Notification
-  
+
   @ViewBuilder
   var stateImage: some View {
     switch notification.subject.type {
@@ -29,7 +29,7 @@ struct NotificationCell: View {
         .foregroundStyle(.gray)
     }
   }
-  
+
   @ViewBuilder
   var label: some View {
     VStack(alignment: .leading, spacing: 10) {
@@ -52,7 +52,7 @@ struct NotificationCell: View {
         }
 
         Spacer()
-        
+
         Text(notification.updatedAt, format: .relative(presentation: .named, unitsStyle: .spellOut))
       }
       .foregroundStyle(.secondary)
@@ -60,7 +60,7 @@ struct NotificationCell: View {
 
       Text(notification.subject.title)
         .bold()
-      
+
       HStack(alignment: .center, spacing: 10) {
         UserProfileImage(
           avatarURL: notification.repository.owner!.avatarURL,
@@ -68,12 +68,12 @@ struct NotificationCell: View {
           roundWidth: 2
         )
         .frame(width: 20, height: 20)
-        
+
         Text(notification.repository.owner!.userID)
       }
     }
   }
-  
+
   var body: some View {
     Label {
       label
@@ -83,6 +83,6 @@ struct NotificationCell: View {
   }
 }
 
-#Preview {
+#Preview{
   NotificationCell(notification: .sample)
 }

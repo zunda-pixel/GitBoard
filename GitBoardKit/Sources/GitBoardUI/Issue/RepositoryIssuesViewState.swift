@@ -55,5 +55,5 @@ final class RepositoryIssuesViewState: IssuesViewState {
     IssuesView(viewState: viewState)
   }
   .environment(ErrorHandle())
-  .environmentObject(NavigationRouter())
+  .environment(NavigationRouter())
 }

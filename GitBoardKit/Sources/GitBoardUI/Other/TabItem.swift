@@ -8,7 +8,7 @@ enum TabItem: String, CaseIterable, Identifiable {
   case home
   case notifications
   case profile
-  
+
   var id: Self { self }
 
   var label: (text: String, systemImage: String) {

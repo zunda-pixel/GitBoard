@@ -2,14 +2,14 @@
 //  NotificationsView.swift
 //
 
-import SwiftUI
 import GitHubAPI
+import SwiftUI
 
 struct NotificationsView: View {
-  @EnvironmentObject var router: NavigationRouter
+  @Environment(NavigationRouter.self) var router
   @Environment(ErrorHandle.self) var errorHandle
   @State var viewState: NotificationsViewState
-  
+
   func populate() async {
     do {
       try await viewState.populateNotifications()
@@ -17,7 +17,7 @@ struct NotificationsView: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   func populateMore(id: GitHubData.Notification.ID) async {
     do {
       try await viewState.populateMoreNotifications(id: id)
@@ -25,7 +25,7 @@ struct NotificationsView: View {
       errorHandle.error = .init(error: error)
     }
   }
-  
+
   var body: some View {
     List {
       ForEach(viewState.notifications) { notification in
@@ -33,13 +33,14 @@ struct NotificationsView: View {
           NotificationCell(notification: notification)
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-          
+
           Divider()
         }
         .listRow()
         .onTapGesture {
           let item: NavigationRouter.Item
-          let number = Int(notification.subject.url!.lastPathComponent)!
+          guard let stringNumber = notification.subject.url?.lastPathComponent else { return }
+          guard let number = Int(stringNumber) else { return }
           switch notification.subject.type {
           case .issue:
             item = .issueDetailOnline(
@@ -64,7 +65,7 @@ struct NotificationsView: View {
               discussionNumber: number
             )
           }
-          
+
           router.items.append(item)
         }
         .task {
@@ -82,7 +83,7 @@ struct NotificationsView: View {
   }
 }
 
-#Preview {
+#Preview{
   NavigationStack {
     let viewState = NotificationsViewState()
     NotificationsView(viewState: viewState)

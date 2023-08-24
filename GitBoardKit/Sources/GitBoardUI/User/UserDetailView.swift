@@ -2,11 +2,13 @@
 //  UserDetailView.swift
 //
 
+import GitBoardData
 import GitHubAPI
 import SwiftUI
 
-struct UserDetailView: View {
-  @EnvironmentObject var router: NavigationRouter
+struct UserDetailView<User: UserProtocol>: View {
+  @Environment(NavigationRouter.self) var router
+  @Environment(ErrorHandle.self) var errorHandle
 
   let user: User
 
@@ -99,17 +101,17 @@ struct UserDetailView: View {
       HStack(alignment: .center, spacing: 5) {
         Text("Repositories")
         Spacer()
-        
+
         var count: Int {
           var sum = user.publicRepoCount ?? 0
           sum += user.ownedPrivateRepoCount ?? 0
           return sum
         }
-        
+
         if count > 0 {
           Text("\(count)")
         }
-                
+
         Image(systemName: "chevron.right")
       }
     } icon: {
@@ -118,6 +120,15 @@ struct UserDetailView: View {
     .contentShape(.rect)
     .onTapGesture {
       router.items.append(.userRepositories(ownerID: user.userID))
+    }
+  }
+
+  func updateUser() async {
+    do {
+      let user = try await GitHubAPI().user(userID: user.userID)
+      self.user.update(user: user)
+    } catch {
+      errorHandle.error = .init(error: error)
     }
   }
 
@@ -134,13 +145,19 @@ struct UserDetailView: View {
       }
     }
     .listStyle(.plain)
+    .task {
+      await updateUser()
+    }
+    .refreshable {
+      await updateUser()
+    }
   }
 }
 
 #Preview{
   NavigationStack {
-    UserDetailView(user: .zunda)
+    UserDetailView(user: GitHubData.User.zunda)
   }
   .environment(ErrorHandle())
-  .environmentObject(NavigationRouter())
+  .environment(NavigationRouter())
 }

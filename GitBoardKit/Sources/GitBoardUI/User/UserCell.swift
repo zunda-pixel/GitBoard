@@ -3,10 +3,11 @@
 //
 
 import CachedAsyncImage
+import GitBoardData
 import GitHubAPI
 import SwiftUI
 
-struct UserCell: View {
+struct UserCell<User: UserProtocol>: View {
   let user: User
 
   var body: some View {
@@ -52,7 +53,7 @@ struct UserCell: View {
 #Preview{
   List {
     ForEach(0..<4) { _ in
-      UserCell(user: .sample)
+      UserCell(user: GitHubData.User.sample)
         .listRow()
     }
   }

@@ -2,17 +2,17 @@
 //  DiscussionDetailView.swift
 //
 
-import SwiftUI
+import Emoji
 import GitHubAPI
 import MarkdownUI
-import Emoji
+import SwiftUI
 
 struct DiscussionDetailView: View {
-  @EnvironmentObject var router: NavigationRouter
-  
+  @Environment(NavigationRouter.self) var router
+
   let repository: Repository
   let discussion: Discussion
-  
+
   @ViewBuilder
   var header: some View {
     HStack(alignment: .center, spacing: 10) {
@@ -32,10 +32,10 @@ struct DiscussionDetailView: View {
           .onTapGesture {
             router.items.append(.userDetail(user: repository.owner!))
           }
-        
+
         Text("/")
           .foregroundStyle(.secondary)
-        
+
         Text(repository.name)
           .bold()
           .contentShape(.rect)
@@ -46,7 +46,7 @@ struct DiscussionDetailView: View {
     }
     .font(.caption)
   }
-  
+
   var body: some View {
     List {
       VStack(alignment: .leading, spacing: 20) {
@@ -65,45 +65,45 @@ struct DiscussionDetailView: View {
           RoundedRectangle(cornerRadius: 10)
             .foregroundStyle(.ultraThinMaterial)
         }
-        
+
         Divider()
       }
       .listRow()
-      
+
       VStack(alignment: .leading, spacing: 0) {
         if let author = discussion.author {
           HStack(alignment: .center, spacing: 10) {
             UserProfileImage(avatarURL: author.avatarUrl, type: .user)
               .frame(width: 40, height: 40)
-            
+
             Text(author.login)
-            
+
             Text(discussion.updatedAt, style: .date)
           }
         }
-        
+
         Markdown(discussion.body)
       }
       .padding()
       .frame(maxWidth: .infinity, alignment: .leading)
       .listRow()
-      
+
       ForEach(discussion.comments) { comment in
         VStack(alignment: .leading, spacing: 0) {
           Divider()
           DiscussionCommentCell(comment: comment)
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
-          
+
           Divider()
         }
-          .listRow()
+        .listRow()
       }
     }
     .listStyle(.plain)
   }
 }
 
-#Preview {
+#Preview{
   DiscussionDetailView(repository: .sample, discussion: .sample)
 }

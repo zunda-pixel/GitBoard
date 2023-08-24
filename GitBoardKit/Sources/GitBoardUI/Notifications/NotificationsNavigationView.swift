@@ -2,20 +2,22 @@
 //  NotificationsNavigationView.swift
 //
 
+import SwiftData
 import SwiftUI
 
 struct NotificationsNavigationView: View {
+  @Environment(\.modelContext) var modelContext
   let trigger: TabTrigger
-  @StateObject var router = NavigationRouter()
+  @State var router = NavigationRouter()
 
   var body: some View {
     NavigationStack(path: $router.items) {
       let viewState = NotificationsViewState()
       NotificationsView(viewState: viewState)
-        .navigationDestination()
+        .navigationDestination(modelContext: modelContext)
         .navigationTitle("Notifications")
     }
-    .environmentObject(router)
+    .environment(router)
     .onTrigger(of: trigger) {
       router.items.removeAll()
     }

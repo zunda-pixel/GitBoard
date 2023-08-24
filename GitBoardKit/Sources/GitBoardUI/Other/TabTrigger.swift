@@ -8,7 +8,7 @@ import SwiftUI
 /// https://qiita.com/YusukeHosonuma/items/dc986c408e14106caf29
 struct TabTrigger {
   private(set) var key: Bool = false
-  
+
   mutating func fire() {
     key.toggle()
   }
