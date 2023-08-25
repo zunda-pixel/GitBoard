@@ -9,8 +9,8 @@ import Valet
 extension Valet {
   public static var shared: Valet {
     Valet.sharedGroupValet(
-      identifier: .init(nonEmpty: Env.teamID),
       with: .init(appIDPrefix: Env.appIdentifierPrefix, nonEmptyGroup: Env.appGroup)!,
+      identifier: nil,
       accessibility: .afterFirstUnlock
     )
   }
