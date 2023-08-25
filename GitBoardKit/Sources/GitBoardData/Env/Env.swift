@@ -7,6 +7,12 @@ import Foundation
 public enum Env {
   static public let clientID: String = <#CLIENT_ID#>
   static public let clientSecret: String = <#CLIENT_SECRET#>
-  static let teamID: String = Bundle.main.infoDictionary!["AppIdentifierPrefix"] as! String
   static public let appGroup = "group.zunda.gitboard"
+  static var appIdentifierPrefix: String {
+    var teamID = Bundle.main.infoDictionary!["AppIdentifierPrefix"] as! String
+    if teamID.last == "." {
+      teamID.removeLast() // remove [.] dot
+    }
+    return teamID
+  }
 }
