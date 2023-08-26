@@ -5,27 +5,36 @@
 import AppIntents
 import SwiftUI
 
-enum SelectableColor: String, CaseIterable, AppEntity {
-  static var defaultQuery: SelectableColorQuery = .init()
-  
-  var id: String { rawValue }
-  
+enum SelectableColor: String, CaseIterable, AppEnum {
   static var typeDisplayRepresentation: TypeDisplayRepresentation = "typeDisplayRepresentation"
   
-  var displayRepresentation: DisplayRepresentation { DisplayRepresentation(stringLiteral: rawValue.uppercased()) }
+  static var caseDisplayRepresentations: [SelectableColor : DisplayRepresentation] {
+    return [
+      .red: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .blue: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .yellow: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .green: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .orange: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .brown: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .purple: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .cyan: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .mint: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .indigo: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+    ]
+  }
+    
+  case red = "Red"
+  case blue = "Blue"
+  case yellow = "Yellow"
+  case green = "Green"
+  case orange = "Orange"
+  case brown = "Brown"
+  case purple = "Purple"
+  case cyan = "Cyan"
+  case mint = "Mint"
+  case indigo = "Indigo"
   
-  case red
-  case blue
-  case yellow
-  case green
-  case orange
-  case brown
-  case purple
-  case cyan
-  case mint
-  case indigo
-  
-  static let `default`: SelectableColor = .cyan
+  static let `default`: Self = .cyan
   
   var color: Color {
     switch self {
@@ -40,23 +49,5 @@ enum SelectableColor: String, CaseIterable, AppEntity {
     case .mint: return .mint
     case .indigo: return .indigo
     }
-  }
-}
-
-struct SelectableColorQuery: EntityQuery {
-  typealias Entity = SelectableColor
-  
-  func entities(for identifiers: [Entity.ID]) async throws -> [Entity] {
-    return SelectableColor.allCases.filter {
-      identifiers.contains($0.id)
-    }
-  }
-  
-  func suggestedEntities() async throws -> [Entity] {
-    return SelectableColor.allCases
-  }
-  
-  func defaultResult() async -> Entity? {
-    return SelectableColor.default
   }
 }

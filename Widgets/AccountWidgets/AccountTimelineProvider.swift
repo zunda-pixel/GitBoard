@@ -33,11 +33,9 @@ struct AccountTimelineProvider: AppIntentTimelineProvider {
 
   }
   
-  func timeline(for configuration: AccountConfiguration, in context: Context) async -> Timeline<AccountEntry> {
-    let policy: TimelineReloadPolicy = .never
-        
+  func timeline(for configuration: AccountConfiguration, in context: Context) async -> Timeline<AccountEntry> {        
     guard let user = UserDefaults.shared[.currentUser] else {
-      return .init(entries: [.init(date: .now, user: nil, color: configuration.color.color, icon: nil)], policy: policy)
+      return .init(entries: [.init(date: .now, user: nil, color: configuration.color.color, icon: nil)], policy: .never)
     }
     
     let icon: ImageData?
@@ -49,6 +47,6 @@ struct AccountTimelineProvider: AppIntentTimelineProvider {
       icon = nil
     }
     
-    return .init(entries: [.init(date: .now, user: user, color: configuration.color.color, icon: icon)], policy: policy)
+    return .init(entries: [.init(date: .now, user: user, color: configuration.color.color, icon: icon)], policy: .atEnd)
   }
 }
