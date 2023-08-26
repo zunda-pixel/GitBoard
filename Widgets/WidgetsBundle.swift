@@ -3,7 +3,6 @@
 //
 
 import SwiftUI
-import GitBoardWidgets
 
 @main
 struct WidgetsBundle: WidgetBundle {
