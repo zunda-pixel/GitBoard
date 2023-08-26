@@ -16,40 +16,39 @@ struct AccountTimelineProvider: AppIntentTimelineProvider {
   }
   
   func snapshot(for configuration: AccountConfiguration, in context: Context) async -> AccountEntry {
-    let user = UserDefaults.shared[.currentUser]
-    
-    guard let user else {
+    guard let user = UserDefaults.shared[.currentUser] else {
       return .init(date: .now, user: nil, color: configuration.color.color, icon: nil)
     }
     
-    let response = try? await URLSession.shared.data(from: user.avatarURL)
+    let icon: ImageData?
     
-    guard let data = response?.0 else {
-      return .init(date: .now, user: user, color: configuration.color.color, icon: nil)
+    do {
+      let (data, _) = try await URLSession.shared.data(from: user.avatarURL)
+      icon = ImageData(data: data)
+    } catch {
+      icon = nil
     }
     
-    let image = ImageData(data: data)
-    
-    return .init(date: .now, user: user, color: configuration.color.color, icon: image)
+    return .init(date: .now, user: user, color: configuration.color.color, icon: icon)
+
   }
   
   func timeline(for configuration: AccountConfiguration, in context: Context) async -> Timeline<AccountEntry> {
     let policy: TimelineReloadPolicy = .never
-    
-    let user = UserDefaults.shared[.currentUser]
-    
-    guard let user else {
+        
+    guard let user = UserDefaults.shared[.currentUser] else {
       return .init(entries: [.init(date: .now, user: nil, color: configuration.color.color, icon: nil)], policy: policy)
     }
     
+    let icon: ImageData?
+    
     do {
       let (data, _) = try await URLSession.shared.data(from: user.avatarURL)
-      
-      let icon = ImageData(data: data)
-      
-      return .init(entries: [.init(date: .now, user: user, color: configuration.color.color, icon: icon)], policy: policy)
+      icon = ImageData(data: data)
     } catch {
-      return .init(entries: [.init(date: .now, user: user, color: configuration.color.color, icon: nil)], policy: policy)
+      icon = nil
     }
+    
+    return .init(entries: [.init(date: .now, user: user, color: configuration.color.color, icon: icon)], policy: policy)
   }
 }
