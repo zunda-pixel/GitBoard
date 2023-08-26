@@ -40,7 +40,7 @@ struct AccountWidgets: Widget {
 #Preview(as: .systemSmall) {
   AccountWidgets()
 } timeline: {
-  AccountEntry(user: .zunda, color: .cyan, icon: nil)
+  AccountEntry(date: .now, user: .zunda, color: .cyan, icon: nil)
 }
 
 #if os(macOS)
