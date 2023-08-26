@@ -24,12 +24,8 @@ extension Image {
   #endif
 }
 
-public struct AccountWidgets: Widget {
+struct AccountWidgets: Widget {
   let kind: String = "Account Widgets"
-  
-  public init() {
-    
-  }
   
   var widgetFamilies: [WidgetFamily] {
     #if os(macOS)
@@ -39,7 +35,7 @@ public struct AccountWidgets: Widget {
     #endif
   }
   
-  public var body: some WidgetConfiguration {
+  var body: some WidgetConfiguration {
     StaticConfiguration(
       kind: kind,
       provider: AccountTimelineProvider()
