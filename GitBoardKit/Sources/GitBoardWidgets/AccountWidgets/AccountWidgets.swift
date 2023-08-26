@@ -4,11 +4,7 @@
 
 import SwiftUI
 import WidgetKit
-import AppIntents
-import Defaults
-import GitBoardData
 import GitHubData
-import GitBoardUI
 
 #if os(macOS)
 typealias ImageData = NSImage
@@ -26,91 +22,6 @@ extension Image {
     self.init(uiImage: image)
   }
   #endif
-}
-
-struct AccountEntry: TimelineEntry {
-  let date: Date
-  let user: GitHubData.User?
-  let color: Color = .yellow
-  
-  init(user: GitHubData.User?) {
-    self.date = .now
-    self.user = user
-  }
-}
-
-struct AccountTimelineProvider: TimelineProvider {
-  typealias Entry = AccountEntry
-  
-  func placeholder(in context: Context) -> Entry {
-    .init(user: Default(.currentUser).wrappedValue)
-  }
-  
-  func getSnapshot(in context: Context, completion: @escaping (Entry) -> Void) {
-    completion(.init(user: Default(.currentUser).wrappedValue))
-  }
-  
-  func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-    completion(.init(entries: [.init(user: Default(.currentUser).wrappedValue)], policy: .atEnd))
-  }
-}
-
-struct AccountEntryView: View {
-  let entry: AccountEntry
-  let iconRoundWidth: CGFloat = 10
-  let lineWidth: CGFloat = 10
-  let viewCornerRadius: CGFloat = 24
-  
-  var body: some View {
-    if let user = entry.user {
-      accountView(user: user)
-    } else {
-      Text("Open to Login")
-    }
-  }
-  
-  func accountView(user: GitHubData.User) -> some View {
-    VStack(alignment: .center, spacing: 0) {
-      let imageData = try? Data(contentsOf: user.avatarURL)
-      if let imageData,
-         let image = ImageData(data: imageData) {
-        Image(image: image)
-          .resizable()
-          .scaledToFit()
-          .overlay {
-            UserProfileImageShape(
-              type: user.type,
-              cornerSize: .init(width: iconRoundWidth * 2, height: iconRoundWidth * 2)
-            )
-            .stroke(.yellow, lineWidth: iconRoundWidth)
-            .padding(iconRoundWidth)
-          }
-          .clipShape(
-            UserProfileImageShape(
-              type: user.type,
-              cornerSize: .init(width: iconRoundWidth * 2, height: iconRoundWidth * 2)
-            )
-          )
-      } else {
-        Text("Image Nothing")
-      }
-      
-      if let userName = user.userName {
-        Text(userName)
-          .bold()
-        
-        Text(user.userID)
-          .foregroundStyle(.secondary)
-      } else {
-        Text(user.userID)
-          .bold()
-      }
-    }
-    .frame(
-      maxWidth: .infinity,
-      maxHeight: .infinity
-    )
-  }
 }
 
 public struct AccountWidgets: Widget {
@@ -154,7 +65,7 @@ public struct AccountWidgets: Widget {
 #Preview(as: .systemSmall) {
   AccountWidgets()
 } timeline: {
-  AccountEntry(user: .zunda)
+  AccountEntry(user: .zunda, color: .cyan, icon: nil)
 }
 
 extension GitHubData.User {
