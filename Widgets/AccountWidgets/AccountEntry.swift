@@ -11,11 +11,4 @@ struct AccountEntry: TimelineEntry {
   let user: GitHubData.User?
   let color: Color
   let icon: ImageData?
-  
-  init(user: GitHubData.User?, color: Color, icon: ImageData?) {
-    self.date = .now
-    self.user = user
-    self.color = color
-    self.icon = icon
-  }
 }
