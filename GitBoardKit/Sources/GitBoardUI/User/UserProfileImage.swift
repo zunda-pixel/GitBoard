@@ -41,21 +41,3 @@ struct UserProfileImage: View {
     )
   }
 }
-
-private struct UserProfileImageShape: Shape {
-  let type: UserType
-  let cornerSize: CGSize
-
-  func path(in rect: CGRect) -> Path {
-    switch type {
-    case .organization:
-      RoundedRectangle(cornerSize: cornerSize).path(in: rect)
-    case .user:
-      Circle().path(in: rect)
-    case .mannequin:  // TODO 謎
-      Circle().path(in: rect)
-    case .bot:
-      Circle().path(in: rect)
-    }
-  }
-}
