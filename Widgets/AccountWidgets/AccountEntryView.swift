@@ -18,6 +18,7 @@ struct AccountEntryView: View {
       accountView(user: user)
     } else {
       Text("Open to Login")
+        .bold()
     }
   }
   

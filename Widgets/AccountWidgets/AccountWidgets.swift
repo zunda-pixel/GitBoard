@@ -6,24 +6,6 @@ import SwiftUI
 import WidgetKit
 import GitHubData
 
-#if os(macOS)
-typealias ImageData = NSImage
-#else
-typealias ImageData = UIImage
-#endif
-
-extension Image {
-  #if os(macOS)
-  init(image: ImageData) {
-    self.init(nsImage: image)
-  }
-  #else
-  init(image: ImageData) {
-    self.init(uiImage: image)
-  }
-  #endif
-}
-
 struct AccountWidgets: Widget {
   let kind: String = "Account Widgets"
   
@@ -36,10 +18,7 @@ struct AccountWidgets: Widget {
   }
   
   var body: some WidgetConfiguration {
-    StaticConfiguration(
-      kind: kind,
-      provider: AccountTimelineProvider()
-    ) { entry in
+    AppIntentConfiguration(kind: kind, provider: AccountTimelineProvider()) { entry in
       AccountEntryView(entry: entry)
         .padding(10)
         .containerBackground(for: .widget) {
@@ -62,6 +41,24 @@ struct AccountWidgets: Widget {
   AccountWidgets()
 } timeline: {
   AccountEntry(user: .zunda, color: .cyan, icon: nil)
+}
+
+#if os(macOS)
+typealias ImageData = NSImage
+#else
+typealias ImageData = UIImage
+#endif
+
+extension Image {
+  #if os(macOS)
+  init(image: ImageData) {
+    self.init(nsImage: image)
+  }
+  #else
+  init(image: ImageData) {
+    self.init(uiImage: image)
+  }
+  #endif
 }
 
 extension GitHubData.User {
