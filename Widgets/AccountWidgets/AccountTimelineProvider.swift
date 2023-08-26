@@ -11,12 +11,12 @@ struct AccountTimelineProvider: AppIntentTimelineProvider {
   typealias Intent = AccountConfiguration
   
   func placeholder(in context: Context) -> AccountEntry {
-    let user = Default(.currentUser).wrappedValue
+    let user = UserDefaults.shared[.currentUser]
     return .init(date: .now, user: user, color: SelectableColor.default.color, icon: nil)
   }
   
   func snapshot(for configuration: AccountConfiguration, in context: Context) async -> AccountEntry {
-    let user = await Default(.currentUser).wrappedValue
+    let user = UserDefaults.shared[.currentUser]
     
     guard let user else {
       return .init(date: .now, user: nil, color: configuration.color.color, icon: nil)
@@ -36,22 +36,20 @@ struct AccountTimelineProvider: AppIntentTimelineProvider {
   func timeline(for configuration: AccountConfiguration, in context: Context) async -> Timeline<AccountEntry> {
     let policy: TimelineReloadPolicy = .never
     
-    let user = await Default(.currentUser).wrappedValue
+    let user = UserDefaults.shared[.currentUser]
     
     guard let user else {
-      // No User
       return .init(entries: [.init(date: .now, user: nil, color: configuration.color.color, icon: nil)], policy: policy)
     }
     
-    let response = try? await URLSession.shared.data(from: user.avatarURL)
-    
-    guard let data = response?.0 else {
-      // Failed to load Icon Data
+    do {
+      let (data, _) = try await URLSession.shared.data(from: user.avatarURL)
+      
+      let icon = ImageData(data: data)
+      
+      return .init(entries: [.init(date: .now, user: user, color: configuration.color.color, icon: icon)], policy: policy)
+    } catch {
       return .init(entries: [.init(date: .now, user: user, color: configuration.color.color, icon: nil)], policy: policy)
     }
-    
-    let icon = ImageData(data: data)
-    
-    return .init(entries: [.init(date: .now, user: user, color: configuration.color.color, icon: icon)], policy: policy)
   }
 }

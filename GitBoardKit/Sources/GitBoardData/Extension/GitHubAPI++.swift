@@ -9,7 +9,7 @@ import Valet
 
 extension GitHubAPI {
   public init() {
-    guard let user = Default(.currentUser).wrappedValue else {
+    guard let user = UserDefaults.shared[.currentUser] else {
       self.init(type: .withoutToken)
       return
     }
