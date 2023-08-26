@@ -16,13 +16,29 @@ enum SelectableColor: String, CaseIterable, AppEntity {
   
   case red
   case blue
+  case yellow
+  case green
+  case orange
+  case brown
+  case purple
+  case cyan
+  case mint
+  case indigo
   
-  static let `default`: Self = .red
+  static let `default`: SelectableColor = .cyan
   
   var color: Color {
     switch self {
     case .blue: return .blue
     case .red: return .red
+    case .yellow:  return .yellow
+    case .green:  return .green
+    case .orange:  return .orange
+    case .brown:  return .brown
+    case .purple:  return .purple
+    case .cyan:  return .cyan
+    case .mint: return .mint
+    case .indigo: return .indigo
     }
   }
 }

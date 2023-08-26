@@ -25,10 +25,10 @@ struct AccountWidgets: Widget {
           LinearGradient(
             colors: [
               entry.color,
-              entry.color.opacity(0.5)
+              entry.color.opacity(0.6)
             ],
-            startPoint: .top,
-            endPoint: .bottom
+            startPoint: .bottom,
+            endPoint: .top
           )
         }
     }

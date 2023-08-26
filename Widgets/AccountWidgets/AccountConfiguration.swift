@@ -6,10 +6,12 @@ import SwiftUI
 import AppIntents
 
 struct AccountConfiguration: WidgetConfigurationIntent {
-  static var title: LocalizedStringResource = "Configuration"
-  static var description = IntentDescription("This is an example widget.")
-
-  // An example configurable parameter.
-  @Parameter(title: "Widget Color", default: SelectableColor.red)
-  var color: SelectableColor
+  static var title: LocalizedStringResource = "Account"
+  static var description = IntentDescription("Shows Account Module")
+  
+  @Parameter(
+    title: "Widget Color",
+    description: "Selected Color is showed in background",
+    default: SelectableColor.cyan
+  ) var color: SelectableColor
 }
