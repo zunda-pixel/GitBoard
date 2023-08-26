@@ -91,6 +91,7 @@
 		2E6B42D82A9A52700073A458 /* AccountEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountEntryView.swift; sourceTree = "<group>"; };
 		2E6B42DA2A9A52730073A458 /* AccountTimelineProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTimelineProvider.swift; sourceTree = "<group>"; };
 		2E6B42DC2A9A52770073A458 /* AccountWidgets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountWidgets.swift; sourceTree = "<group>"; };
+		2E925E7B2A9A972C0035A065 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		2ECB861B2A9A5AD000CC7314 /* AccountConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountConfiguration.swift; sourceTree = "<group>"; };
 		2ECB861D2A9A5B4B00CC7314 /* SelectableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableColor.swift; sourceTree = "<group>"; };
 		2EE60ACC2A50659200B58478 /* GitBoardKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GitBoardKit; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 		2E61C0C42A4C7EE6009C6552 = {
 			isa = PBXGroup;
 			children = (
+				2E925E7A2A9A97050035A065 /* ci_scripts */,
 				2EE60ACC2A50659200B58478 /* GitBoardKit */,
 				2E61C0CF2A4C7EE6009C6552 /* GitBoard */,
 				2E5929682A9796CF00BDFEE5 /* Widgets */,
@@ -181,6 +183,14 @@
 				2E6B42DC2A9A52770073A458 /* AccountWidgets.swift */,
 			);
 			path = AccountWidgets;
+			sourceTree = "<group>";
+		};
+		2E925E7A2A9A97050035A065 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				2E925E7B2A9A972C0035A065 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 		2EDF18AD2A507B24000C5684 /* Frameworks */ = {
