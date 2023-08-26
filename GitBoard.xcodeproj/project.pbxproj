@@ -82,7 +82,7 @@
 		2E59296F2A9796D200BDFEE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E5929712A9796D200BDFEE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E5929722A9796D200BDFEE5 /* Widgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widgets.entitlements; sourceTree = "<group>"; };
-		2E61C0CD2A4C7EE6009C6552 /* GitBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E61C0CD2A4C7EE6009C6552 /* GitBoardApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitBoardApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E61C0D02A4C7EE6009C6552 /* GitBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitBoardApp.swift; sourceTree = "<group>"; };
 		2E61C0D62A4C7EE7009C6552 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E61C0D82A4C7EE7009C6552 /* GitBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GitBoard.entitlements; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		2E61C0CE2A4C7EE6009C6552 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2E61C0CD2A4C7EE6009C6552 /* GitBoard.app */,
+				2E61C0CD2A4C7EE6009C6552 /* GitBoardApp.app */,
 				2E5929632A9796CF00BDFEE5 /* WidgetsExtension.appex */,
 			);
 			name = Products;
@@ -216,9 +216,9 @@
 			productReference = 2E5929632A9796CF00BDFEE5 /* WidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		2E61C0CC2A4C7EE6009C6552 /* GitBoard */ = {
+		2E61C0CC2A4C7EE6009C6552 /* GitBoardApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E61C0DE2A4C7EE7009C6552 /* Build configuration list for PBXNativeTarget "GitBoard" */;
+			buildConfigurationList = 2E61C0DE2A4C7EE7009C6552 /* Build configuration list for PBXNativeTarget "GitBoardApp" */;
 			buildPhases = (
 				2E61C0C92A4C7EE6009C6552 /* Sources */,
 				2E61C0CA2A4C7EE6009C6552 /* Frameworks */,
@@ -231,12 +231,12 @@
 			dependencies = (
 				2E5929742A9796D200BDFEE5 /* PBXTargetDependency */,
 			);
-			name = GitBoard;
+			name = GitBoardApp;
 			packageProductDependencies = (
 				2EDF18AE2A507B24000C5684 /* GitBoardUI */,
 			);
 			productName = GitBoard;
-			productReference = 2E61C0CD2A4C7EE6009C6552 /* GitBoard.app */;
+			productReference = 2E61C0CD2A4C7EE6009C6552 /* GitBoardApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -270,7 +270,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2E61C0CC2A4C7EE6009C6552 /* GitBoard */,
+				2E61C0CC2A4C7EE6009C6552 /* GitBoardApp */,
 				2E5929622A9796CF00BDFEE5 /* WidgetsExtension */,
 			);
 		};
@@ -535,6 +535,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GitBoard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GitBoard;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -575,6 +576,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GitBoard/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GitBoard;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -621,7 +623,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2E61C0DE2A4C7EE7009C6552 /* Build configuration list for PBXNativeTarget "GitBoard" */ = {
+		2E61C0DE2A4C7EE7009C6552 /* Build configuration list for PBXNativeTarget "GitBoardApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2E61C0DF2A4C7EE7009C6552 /* Debug */,
