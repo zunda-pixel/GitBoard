@@ -14,7 +14,7 @@ struct DiscussionsView: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
   @Environment(\.modelContext) var modelContext
-  @Query var discussions: [GitBoardData.Discussion]
+  @Query(sort: [SortDescriptor(\GitBoardData.Discussion.updatedAt)]) var discussions: [GitBoardData.Discussion]
 
   func populate() async {
     do {
