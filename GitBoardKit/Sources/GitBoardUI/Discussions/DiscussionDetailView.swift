@@ -6,8 +6,9 @@ import Emoji
 import GitHubAPI
 import MarkdownUI
 import SwiftUI
+import GitBoardData
 
-struct DiscussionDetailView: View {
+struct DiscussionDetailView<Discussion: DiscussionProtocol>: View {
   @Environment(NavigationRouter.self) var router
 
   let repository: Repository
@@ -105,5 +106,5 @@ struct DiscussionDetailView: View {
 }
 
 #Preview{
-  DiscussionDetailView(repository: .sample, discussion: .sample)
+  DiscussionDetailView(repository: .sample, discussion: GitHubData.Discussion.sample)
 }
