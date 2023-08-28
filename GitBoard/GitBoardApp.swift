@@ -14,6 +14,7 @@ struct GitBoardApp: App {
       ContentView()
         .modelContainer(for: [
           GitBoardData.User.self,
+          GitBoardData.Discussion.self,
         ])
     }
   }

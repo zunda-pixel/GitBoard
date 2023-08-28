@@ -5,6 +5,7 @@
 import GitHubData
 import Observation
 import SwiftUI
+import GitBoardData
 
 @Observable
 final class NavigationRouter {
@@ -45,7 +46,7 @@ extension NavigationRouter {
 
     // Discussion
     case discussions(repository: GitHubData.Repository)
-    case discussionDetail(repository: GitHubData.Repository, discussion: GitHubData.Discussion)
+    case discussionDetail(repository: GitHubData.Repository, discussion: GitBoardData.Discussion)
     case discussionDetailOnline(repository: GitHubData.Repository, discussionNumber: Int)
 
     case license(ownerID: String, repositoryName: String)
