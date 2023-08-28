@@ -6,19 +6,12 @@ import SwiftUI
 import WidgetKit
 import GitHubData
 
-struct AccountWidgets: Widget {
-  let kind: String = "Account Widgets"
-  
-  var widgetFamilies: [WidgetFamily] {
-    #if os(macOS)
-    [.systemSmall]
-    #else
-    [.systemSmall, .accessoryRectangular]
-    #endif
-  }
-  
+struct AccountWidgets: Widget {  
   var body: some WidgetConfiguration {
-    AppIntentConfiguration(kind: kind, provider: AccountTimelineProvider()) { entry in
+    AppIntentConfiguration(
+      kind: "Account Widgets",
+      provider: AccountTimelineProvider()
+    ) { entry in
       AccountEntryView(entry: entry)
         .padding(10)
         .containerBackground(for: .widget) {
@@ -33,7 +26,7 @@ struct AccountWidgets: Widget {
         }
     }
     .contentMarginsDisabled()
-    .supportedFamilies(widgetFamilies)
+    .supportedFamilies([.systemSmall])
   }
 }
 
