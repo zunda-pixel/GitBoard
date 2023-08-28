@@ -6,6 +6,7 @@ import GitBoardData
 import GitHubAPI
 import SwiftUI
 import Valet
+import WidgetKit
 
 struct LoginView<Content: View>: View {
   @Environment(\.openURL) var openURL
@@ -41,6 +42,8 @@ struct LoginView<Content: View>: View {
       Valet.shared.setAccessToken(userID: me.id, accessToken: accessToken)
 
       currentUser = me
+      
+      WidgetCenter.shared.reloadAllTimelines()
     } catch {
       errorHandle.error = .init(error: error)
     }

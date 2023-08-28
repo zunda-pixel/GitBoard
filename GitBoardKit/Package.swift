@@ -31,6 +31,7 @@ let package = Package(
     .package(url: "https://github.com/gonzalezreal/swift-markdown-ui", .upToNextMajor(from: "2.1.0")),
     .package(url: "https://github.com/zunda-pixel/Emoji-Swift", .upToNextMajor(from: "1.0.0")),
     .package(url: "https://github.com/square/Valet", .upToNextMajor(from: "4.2.0")),
+    .package(url: "https://github.com/zunda-pixel/GenEnvCode", branch: "main"),
   ],
   targets: [
     .target(

@@ -50,8 +50,6 @@ struct SearchUsersView: View {
         let newUser = GitBoardData.User.from(user: user)
         modelContext.insert(newUser)
       }
-
-      try modelContext.save()
     }
   }
 
