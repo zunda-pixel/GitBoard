@@ -16,4 +16,4 @@ EOL
 
 cd GitBoardKit
 
-swift package plugin --allow-writing-to-directory Sources generate-env Env ../${env_file} Sources/GitBoardData/Env/Env.swift
+swift package plugin --allow-writing-to-directory Sources generate-env SecureEnv ../${env_file} Sources/GitBoardData/Env/SecureEnv.swift
