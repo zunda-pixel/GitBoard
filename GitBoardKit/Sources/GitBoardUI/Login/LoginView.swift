@@ -21,8 +21,8 @@ struct LoginView<Content: View>: View {
 
   func accessToken(code: String) async throws -> String {
     let oauth = OAuth(
-      clientID: Env.clientID,
-      clientSecret: Env.clientSecret,
+      clientID: SecureEnv.clientID,
+      clientSecret: SecureEnv.clientSecret,
       code: code
     )
     let authorized = try await oauth.authorize()
@@ -51,7 +51,7 @@ struct LoginView<Content: View>: View {
 
   var body: some View {
     Button {
-      let url = OAuthRequest(clientID: Env.clientID, scopes: Scope.allCases).authorizingURL()
+      let url = OAuthRequest(clientID: SecureEnv.clientID, scopes: Scope.allCases).authorizingURL()
       openURL(url)
     } label: {
       label
