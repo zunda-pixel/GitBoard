@@ -11,15 +11,15 @@ enum SelectableColor: String, CaseIterable, AppEnum {
   static var caseDisplayRepresentations: [SelectableColor : DisplayRepresentation] {
     return [
       .red: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .blue: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .yellow: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .green: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .orange: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .brown: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .purple: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .cyan: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .mint: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
-      .indigo: .init(title: .init(stringLiteral: "Red"), image: .init(systemName: "paintbrush")),
+      .blue: .init(title: .init(stringLiteral: "Blue"), image: .init(systemName: "paintbrush")),
+      .yellow: .init(title: .init(stringLiteral: "Yellow"), image: .init(systemName: "paintbrush")),
+      .green: .init(title: .init(stringLiteral: "Green"), image: .init(systemName: "paintbrush")),
+      .orange: .init(title: .init(stringLiteral: "Orange"), image: .init(systemName: "paintbrush")),
+      .brown: .init(title: .init(stringLiteral: "Brown"), image: .init(systemName: "paintbrush")),
+      .purple: .init(title: .init(stringLiteral: "Purple"), image: .init(systemName: "paintbrush")),
+      .cyan: .init(title: .init(stringLiteral: "Cyan"), image: .init(systemName: "paintbrush")),
+      .mint: .init(title: .init(stringLiteral: "Mint"), image: .init(systemName: "paintbrush")),
+      .indigo: .init(title: .init(stringLiteral: "Indigo"), image: .init(systemName: "paintbrush")),
     ]
   }
     
