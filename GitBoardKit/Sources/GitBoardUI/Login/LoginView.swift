@@ -42,7 +42,7 @@ struct LoginView<Content: View>: View {
       Valet.shared.setAccessToken(userID: me.id, accessToken: accessToken)
 
       currentUser = me
-      
+
       WidgetCenter.shared.reloadAllTimelines()
     } catch {
       errorHandle.error = .init(error: error)

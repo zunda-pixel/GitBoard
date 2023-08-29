@@ -2,9 +2,8 @@
 //  UserProfileImageShape.swift
 //
 
-import SwiftUI
 import GitHubData
-
+import SwiftUI
 
 public struct UserProfileImageShape: Shape {
   public let type: UserType
@@ -14,7 +13,7 @@ public struct UserProfileImageShape: Shape {
     self.type = type
     self.cornerSize = cornerSize
   }
-  
+
   public func path(in rect: CGRect) -> Path {
     switch type {
     case .organization:

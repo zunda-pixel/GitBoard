@@ -9,7 +9,7 @@ extension Env {
   static var appIdentifierPrefix: String {
     var teamID = Bundle.main.infoDictionary!["AppIdentifierPrefix"] as! String
     if teamID.last == "." {
-      teamID.removeLast() // remove [.] dot
+      teamID.removeLast()  // remove [.] dot
     }
     return teamID
   }

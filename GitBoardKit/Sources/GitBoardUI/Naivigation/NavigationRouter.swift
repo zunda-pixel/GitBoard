@@ -2,10 +2,10 @@
 //  NavigationRouter.swift
 //
 
+import GitBoardData
 import GitHubData
 import Observation
 import SwiftUI
-import GitBoardData
 
 @Observable
 final class NavigationRouter {
