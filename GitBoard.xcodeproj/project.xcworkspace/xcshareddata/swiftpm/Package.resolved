@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GenEnvCode",
       "state" : {
-        "branch" : "add-swift-argument-parser",
-        "revision" : "175be4b597cfa5d826ad1375d4ce06ea77e76073"
+        "branch" : "clean-up",
+        "revision" : "0ffdac32e7ad6358e85f1265584f1218dd8344e7"
       }
     },
     {
