@@ -19,7 +19,6 @@
 		2E6B42DF2A9A53130073A458 /* AccountEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B42D82A9A52700073A458 /* AccountEntryView.swift */; };
 		2E6B42E02A9A53170073A458 /* AccountTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B42DA2A9A52730073A458 /* AccountTimelineProvider.swift */; };
 		2E6B42E12A9A531A0073A458 /* AccountWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6B42DC2A9A52770073A458 /* AccountWidgets.swift */; };
-		2E6B42E42A9A53480073A458 /* GitBoardUI in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 2E6B42E22A9A53480073A458 /* GitBoardUI */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2ECB861A2A9A53C800CC7314 /* GitBoardUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2E6B42E22A9A53480073A458 /* GitBoardUI */; };
 		2ECB861C2A9A5AD000CC7314 /* AccountConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB861B2A9A5AD000CC7314 /* AccountConfiguration.swift */; };
 		2ECB861E2A9A5B4B00CC7314 /* SelectableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB861D2A9A5B4B00CC7314 /* SelectableColor.swift */; };
@@ -47,17 +46,6 @@
 				2E5929752A9796D200BDFEE5 /* WidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E59297C2A9798F600BDFEE5 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2E6B42E42A9A53480073A458 /* GitBoardUI in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2EDF18B02A507B24000C5684 /* Embed Frameworks */ = {
@@ -212,7 +200,6 @@
 				2E59295F2A9796CF00BDFEE5 /* Sources */,
 				2E5929602A9796CF00BDFEE5 /* Frameworks */,
 				2E5929612A9796CF00BDFEE5 /* Resources */,
-				2E59297C2A9798F600BDFEE5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
