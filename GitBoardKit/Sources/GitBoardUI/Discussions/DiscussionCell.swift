@@ -3,9 +3,9 @@
 //
 
 import Emoji
+import GitBoardData
 import GitHubAPI
 import SwiftUI
-import GitBoardData
 
 struct DiscussionCell<Discussion: DiscussionProtocol>: View {
   let discussion: Discussion

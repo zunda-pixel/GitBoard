@@ -14,7 +14,7 @@ public struct Category: Codable {
   public let name: String
   public let slug: String
   public let updateAt: Date?
-  
+
   public init(
     createdAt: Date,
     _description: String,
@@ -34,7 +34,7 @@ public struct Category: Codable {
     self.slug = slug
     self.updateAt = updateAt
   }
-  
+
   public init(category: GitHubData.Category) {
     self.createdAt = category.createdAt
     self._description = category.description

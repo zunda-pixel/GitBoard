@@ -3,18 +3,19 @@
 //
 
 import Emoji
+import GitBoardData
 import GitHubAPI
 import MarkdownUI
-import SwiftUI
-import GitBoardData
 import SwiftData
+import SwiftUI
 
 struct DiscussionsView: View {
   let repository: Repository
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
   @Environment(\.modelContext) var modelContext
-  @Query(sort: [SortDescriptor(\GitBoardData.Discussion.updatedAt)]) var discussions: [GitBoardData.Discussion]
+  @Query(sort: [SortDescriptor(\GitBoardData.Discussion.updatedAt)])
+  var discussions: [GitBoardData.Discussion]
 
   func populate() async {
     do {
@@ -25,12 +26,12 @@ struct DiscussionsView: View {
         orderBy: .updatedAt,
         direction: .desc
       )
-      
+
       for discussion in discussions {
         let newDiscussion = GitBoardData.Discussion.discussion(discussion: discussion)
         modelContext.insert(newDiscussion)
       }
-      
+
     } catch {
       errorHandle.error = .init(error: error)
     }

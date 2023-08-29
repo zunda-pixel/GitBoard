@@ -14,7 +14,7 @@ public struct Label: Codable {
   public let resourcePath: String
   public let updatedAt: Date
   public let url: URL
-  
+
   public init(
     name: String,
     color: String,
@@ -34,7 +34,7 @@ public struct Label: Codable {
     self.updatedAt = updatedAt
     self.url = url
   }
-  
+
   public init(label: GitHubData.Discussion.Label) {
     self.name = label.name
     self.color = label.color

@@ -8,7 +8,7 @@ import GitHubData
 public protocol DiscussionProtocol {
   associatedtype Category: CategoryProtocol
   associatedtype CollectionComment: RandomAccessCollection<GitHubData.Discussion.Comment>
-  
+
   var category: Category { get }
   var title: String { get }
   var createdAt: Date { get }
@@ -24,17 +24,17 @@ public protocol CategoryProtocol {
 }
 
 extension GitHubData.Discussion: DiscussionProtocol {
-  
+
 }
 
 extension GitHubData.Category: CategoryProtocol {
-  
+
 }
 
 extension GitBoardData.Category: CategoryProtocol {
-  
+
 }
 
 extension GitBoardData.Discussion: DiscussionProtocol {
-  
+
 }

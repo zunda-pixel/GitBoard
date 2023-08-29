@@ -3,10 +3,10 @@
 //
 
 import Emoji
+import GitBoardData
 import GitHubAPI
 import MarkdownUI
 import SwiftUI
-import GitBoardData
 
 struct DiscussionDetailView<Discussion: DiscussionProtocol>: View {
   @Environment(NavigationRouter.self) var router

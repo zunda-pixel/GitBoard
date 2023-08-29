@@ -3,8 +3,8 @@
 //
 
 import Foundation
-import SwiftData
 import GitHubData
+import SwiftData
 
 @Model
 final public class Discussion {
@@ -44,7 +44,7 @@ final public class Discussion {
   public var labels: [Label]
   public var reactions: [GitHubData.Discussion.Reaction]
   public var poll: GitHubData.Discussion.Poll?
-  
+
   public init(
     discussionID: String,
     number: Int,
@@ -118,7 +118,7 @@ final public class Discussion {
     self.reactions = reactions
     self.poll = poll
   }
-  
+
   public init(discussion: GitHubData.Discussion) {
     self.discussionID = discussion.id
     self.number = discussion.number
@@ -156,7 +156,7 @@ final public class Discussion {
     self.reactions = discussion.reactions
     self.poll = discussion.poll
   }
-  
+
   public static func discussion(discussion: GitHubData.Discussion) -> Self {
     self.init(discussion: discussion)
   }
