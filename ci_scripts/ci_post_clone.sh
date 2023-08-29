@@ -14,8 +14,6 @@ clientID=${CLIENT_ID}
 clientSecret=${CLIENT_SECRET}
 EOL
 
-projectPath=$(pwd)
-
 cd GitBoardKit
 
 swift package plugin --allow-writing-to-directory Sources generate-env Env ../${env_file} Sources/GitBoardData/Env/Env.swift
