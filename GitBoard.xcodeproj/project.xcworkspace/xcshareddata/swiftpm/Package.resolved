@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GenEnvCode",
       "state" : {
-        "branch" : "main",
-        "revision" : "5918f7eeb81ad1f429808911b3fd774bfcb8c097"
+        "branch" : "add-swift-argument-parser",
+        "revision" : "1bb7a5329b5c38409cfab8bd403d42f2491d078c"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms",
       "state" : {
-        "branch" : "main",
-        "revision" : "fc8fdfd4dcc6d05f9d603c581fcbba643cb676df"
+        "revision" : "b14b7f4c528c942f121c8b860b9410b2bf57825e",
+        "version" : "1.0.0"
       }
     },
     {
