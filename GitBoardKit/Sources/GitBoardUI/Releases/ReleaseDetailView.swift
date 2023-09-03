@@ -4,6 +4,7 @@
 
 import GitHubAPI
 import SwiftUI
+import MarkdownUI
 
 struct ReleaseDetailView: View {
   @Environment(NavigationRouter.self) var router
@@ -23,6 +24,7 @@ struct ReleaseDetailView: View {
 
           Text(repository.owner!.userID)
         }
+        .bold()
         .contentShape(.rect)
         .onTapGesture {
           router.items.append(.userDetail(user: repository.owner!))
@@ -31,6 +33,7 @@ struct ReleaseDetailView: View {
         Text("/").foregroundStyle(.secondary)
 
         Text(repository.name)
+          .bold()
           .contentShape(.rect)
           .onTapGesture {
             router.items.append(.repositoryDetail(repository: repository))
@@ -69,7 +72,7 @@ struct ReleaseDetailView: View {
       }
 
       if let body = release.body {
-        Text(LocalizedStringKey(body))
+        Markdown(.init(body))
       }
 
       ScrollView(.horizontal) {
@@ -123,9 +126,13 @@ struct ReleaseDetailView: View {
   }
 }
 
-#Preview{
-  ReleaseDetailView(
-    repository: .sample,
-    release: .sample
-  )
+#Preview {
+  NavigationStack {
+    ReleaseDetailView(
+      repository: .sample,
+      release: .sample
+    )
+  }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }

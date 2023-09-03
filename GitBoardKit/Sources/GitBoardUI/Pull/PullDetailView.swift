@@ -27,6 +27,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
           .bold()
         
         Text("/")
+          .foregroundStyle(.secondary)
         
         Text(repository.owner!.userID)
           .bold()
