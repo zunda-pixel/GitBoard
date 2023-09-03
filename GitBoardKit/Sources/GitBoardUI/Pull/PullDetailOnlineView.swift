@@ -29,6 +29,7 @@ struct PullDetailOnlineView: View {
   var body: some View {
     let viewState = RepositoryPullDetailViewState(pull: pull ?? .sample)
     PullDetailView(viewState: viewState)
+      .id(self.pull) // idをtaskの後につけると2重でtaskが発生してしまうので、Topで設定している
       .redacted(reason: pull == nil ? .placeholder : [])
       .task {
         await populate()
@@ -36,6 +37,12 @@ struct PullDetailOnlineView: View {
   }
 }
 
-#Preview{
-  PullCell(pull: .sample)
+#Preview {
+  PullDetailOnlineView(
+    ownerID: "apple",
+    repositoryName: "swift",
+    pullNumber: 67644
+  )
+    .environment(ErrorHandle())
+    .environment(NavigationRouter())
 }
