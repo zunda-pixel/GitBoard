@@ -16,6 +16,7 @@ struct IssueDetailOnlineView: View {
   @State var repository: Repository?
 
   func populate() async {
+    // TODO Sendable
     let ownerID = ownerID
     let repositoryName = repositoryName
     let issueNumber = issueNumber
@@ -40,7 +41,13 @@ struct IssueDetailOnlineView: View {
   }
 
   var body: some View {
-    IssueDetailView(issue: issue ?? .sample, repository: repository ?? .sample)
+    let viewState = RepositoryIssueDetailViewState(
+      issue: issue ?? .sample,
+      repository: repository ?? .sample
+    )
+
+    IssueDetailView(viewState: viewState)
+      .id(issue)
       .redacted(reason: issue == nil || repository == nil ? .placeholder : [])
       .task {
         await populate()
@@ -48,6 +55,14 @@ struct IssueDetailOnlineView: View {
   }
 }
 
-#Preview{
-  IssueCell(issue: .sample)
+#Preview {
+  NavigationStack {
+    IssueDetailOnlineView(
+      ownerID: "apple",
+      repositoryName: "swift",
+      issueNumber: 67815
+    )
+  }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }

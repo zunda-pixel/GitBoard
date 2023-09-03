@@ -37,7 +37,8 @@ extension View {
           .navigationTitle("Issues")
           .navigationBarTitleDisplayMode()
       case .issueDetail(let issue, let repository):
-        IssueDetailView(issue: issue, repository: repository)
+        let viewState = RepositoryIssueDetailViewState(issue: issue, repository: repository)
+        IssueDetailView(viewState: viewState)
           .navigationTitle("Issue #\(issue.number)")
           .navigationBarTitleDisplayMode()
       case .issueDetailOnline(let ownerID, let repositoryName, let issueNumber):
