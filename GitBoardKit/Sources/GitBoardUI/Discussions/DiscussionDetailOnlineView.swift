@@ -28,9 +28,21 @@ struct DiscussionDetailOnlineView: View {
 
   var body: some View {
     DiscussionDetailView(repository: repository, discussion: discussion ?? .sample)
+      .id(discussion)
       .redacted(reason: discussion == nil ? .placeholder : [])
       .task {
         await populate()
       }
   }
+}
+
+#Preview {
+  NavigationStack {
+    DiscussionDetailOnlineView(
+      repository: .nodejs,
+      discussionNumber: 36423
+    )
+  }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }

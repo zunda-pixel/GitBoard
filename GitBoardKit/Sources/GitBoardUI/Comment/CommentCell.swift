@@ -57,7 +57,7 @@ struct CommentCell: View {
   }
 
   var reaction: some View {
-    HStack(alignment: .center, spacing: 0) {
+    HStack(alignment: .center, spacing: 10) {
       if comment.reactions.eyesCount > 0 {
         Label("\(comment.reactions.eyesCount)", systemImage: "eye.circle")
       }
@@ -88,6 +88,7 @@ struct CommentCell: View {
 
 #Preview{
   CommentCell(comment: .sample)
+    .environment(NavigationRouter())
 }
 
 extension AuthorAssociation {

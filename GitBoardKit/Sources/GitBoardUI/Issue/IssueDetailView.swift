@@ -238,7 +238,7 @@ private extension GitHubData.Issue {
   )
 }
 
-private extension GitHubData.Repository {
+extension GitHubData.Repository {
   static let swift: GitHubData.Repository = .init(
     id: 123,
     nodeID: "",

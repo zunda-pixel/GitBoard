@@ -4,7 +4,7 @@
 
 import Emoji
 import GitBoardData
-import GitHubAPI
+import GitHubData
 import SwiftUI
 
 struct DiscussionCell<Discussion: DiscussionProtocol>: View {
@@ -40,4 +40,8 @@ struct DiscussionCell<Discussion: DiscussionProtocol>: View {
       Text(discussion.category.emoji.emojiUnescapedString)
     }
   }
+}
+
+#Preview {
+  DiscussionCell(discussion: GitHubData.Discussion.sample)
 }

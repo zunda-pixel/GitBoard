@@ -36,3 +36,7 @@ struct DiscussionCommentCell: View {
     }
   }
 }
+
+#Preview {
+  DiscussionCommentCell(comment: .sample)
+}

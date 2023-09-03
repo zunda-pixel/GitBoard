@@ -45,7 +45,7 @@ struct ReleaseDetailOnlineView: View {
   .environment(NavigationRouter())
 }
 
-private extension GitHubData.Repository {
+extension GitHubData.Repository {
   static let nodejs: Repository = .init(
     id: 123,
     nodeID: "",
