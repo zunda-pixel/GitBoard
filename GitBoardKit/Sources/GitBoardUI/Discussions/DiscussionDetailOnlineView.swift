@@ -27,7 +27,11 @@ struct DiscussionDetailOnlineView: View {
   }
 
   var body: some View {
-    DiscussionDetailView(repository: repository, discussion: discussion ?? .sample)
+    let viewState = RepositoryDiscussionDetailViewState(
+      repository: repository,
+      discussion: discussion ?? .sample
+    )
+    DiscussionDetailView(viewState: viewState)
       .id(discussion)
       .redacted(reason: discussion == nil ? .placeholder : [])
       .task {

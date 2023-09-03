@@ -115,7 +115,11 @@ extension View {
           .navigationTitle("Discussions")
           .navigationBarTitleDisplayMode()
       case .discussionDetail(let repository, let discussion):
-        DiscussionDetailView(repository: repository, discussion: discussion)
+        let viewState = RepositoryDiscussionDetailViewState(
+          repository: repository,
+          discussion: discussion
+        )
+        DiscussionDetailView(viewState: viewState)
           .navigationTitle("Discussion \(discussion.title)")
           .navigationBarTitleDisplayMode()
       case .discussionDetailOnline(let repository, let discussionNumber):
