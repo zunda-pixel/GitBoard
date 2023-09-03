@@ -5,6 +5,7 @@
 import Algorithms
 import GitHubAPI
 import SwiftUI
+import MarkdownUI
 
 struct PullDetailView<ViewState: PullDetailViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
@@ -141,6 +142,16 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       }
       .listRow()
 
+      if let body = viewState.pull.body {
+        VStack(alignment: .leading, spacing: 0) {
+          Markdown(.init(body))
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          Divider()
+        }
+        .listRow()
+      }
+      
       comments
     }
     .listStyle(.plain)
@@ -153,11 +164,13 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
   }
 }
 
-#Preview{
+#Preview {
   NavigationStack {
     let viewState = RepositoryPullDetailViewState(pull: .sample)
     PullDetailView(viewState: viewState)
   }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }
 
 extension View {
