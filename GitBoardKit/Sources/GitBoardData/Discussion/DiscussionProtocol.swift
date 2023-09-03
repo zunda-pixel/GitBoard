@@ -7,12 +7,11 @@ import GitHubData
 
 public protocol DiscussionProtocol {
   associatedtype Category: CategoryProtocol
-  associatedtype CollectionComment: RandomAccessCollection<GitHubData.Discussion.Comment>
-
+  
   var category: Category { get }
   var title: String { get }
   var createdAt: Date { get }
-  var comments: CollectionComment { get }
+  var commentsCount: Int { get }
   var author: GitHubData.Discussion.User? { get }
   var updatedAt: Date { get }
   var body: String { get }

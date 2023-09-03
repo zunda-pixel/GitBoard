@@ -700,9 +700,6 @@ extension Discussion {
     viewerDidAuthor: true,
     viewerHasUpvoted: true,
     viewerSubscription: .subscribed,
-    comments: [
-      .sample
-    ],
     category: .sample,
     labels: [
       .sample
@@ -710,7 +707,8 @@ extension Discussion {
     reactions: [
       .sample
     ],
-    poll: .sample
+    poll: .sample,
+    commentsCount: 12
   )
 }
 

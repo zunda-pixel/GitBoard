@@ -22,7 +22,7 @@ struct DiscussionCell<Discussion: DiscussionProtocol>: View {
             .bold()
 
           Spacer()
-          Text("\(Image(systemName: "bubble")) \(discussion.comments.count)")
+          Text("\(Image(systemName: "bubble")) \(discussion.commentsCount)")
             .font(.caption)
             .padding(.horizontal, 7)
             .padding(.vertical, 3)
