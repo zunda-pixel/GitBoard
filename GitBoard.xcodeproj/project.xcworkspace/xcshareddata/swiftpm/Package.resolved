@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
-        "revision" : "0f5a23fcbd83eb72f6d405aa85bbfacaffb99b03",
-        "version" : "7.2.0"
+        "revision" : "957d80773f841923ac5a2778442d3f6a7e75a975",
+        "version" : "7.2.1"
       }
     },
     {
@@ -33,7 +33,7 @@
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
         "branch" : "develop/add-user-api",
-        "revision" : "9680caa69432666f01f31f7cd4181771bb28236e"
+        "revision" : "46d8eac15ec78a221077d8b43f1b6194f4d6f434"
       }
     },
     {
@@ -93,7 +93,7 @@
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-syntax.git",
+      "location" : "https://github.com/apple/swift-syntax",
       "state" : {
         "revision" : "2c49d66d34dfd6f8130afdba889de77504b58ec0",
         "version" : "508.0.1"
