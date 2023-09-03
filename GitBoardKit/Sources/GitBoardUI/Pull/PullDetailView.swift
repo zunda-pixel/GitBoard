@@ -22,7 +22,15 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       )
       .frame(width: 40, height: 40)
 
-      Text("\(repository.name) / \(repository.owner!.userID)")
+      HStack(alignment: .center, spacing: 3) {
+        Text(repository.name)
+          .bold()
+        
+        Text("/")
+        
+        Text(repository.owner!.userID)
+          .bold()
+      }
 
       Text("#\(viewState.pull.number)")
         .foregroundStyle(.secondary)
@@ -77,7 +85,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       repository
         .font(.caption)
 
-      Text(viewState.pull.title)
+      Markdown(.init(viewState.pull.title))      
         .fixedSize(horizontal: false, vertical: true)
         .bold()
 
