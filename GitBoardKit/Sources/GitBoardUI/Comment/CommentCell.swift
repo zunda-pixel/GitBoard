@@ -4,6 +4,7 @@
 
 import GitHubAPI
 import SwiftUI
+import MarkdownUI
 
 struct CommentCell: View {
   @Environment(NavigationRouter.self) var router
@@ -78,7 +79,7 @@ struct CommentCell: View {
     VStack(alignment: .leading, spacing: 10) {
       header
 
-      Text(comment.body)
+      Markdown(.init(comment.body))
 
       reaction
     }
