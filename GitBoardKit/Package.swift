@@ -31,7 +31,6 @@ let package = Package(
     .package(url: "https://github.com/zunda-pixel/swift-markdown-ui", branch: "xcode-15"), // TODO
     .package(url: "https://github.com/zunda-pixel/Emoji-Swift", .upToNextMajor(from: "1.0.0")),
     .package(url: "https://github.com/square/Valet", .upToNextMajor(from: "4.2.0")),
-    .package(url: "https://github.com/zunda-pixel/GenEnvCode", .upToNextMajor(from: "1.0.1")),
   ],
   targets: [
     .target(
