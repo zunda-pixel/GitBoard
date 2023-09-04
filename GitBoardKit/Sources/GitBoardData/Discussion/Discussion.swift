@@ -11,6 +11,7 @@ final public class Discussion {
   @Attribute(.unique)
   public var discussionID: String
   public var number: Int
+  public var repositoryID: Repository.ID
   public var url: URL
   public var author: GitHubData.Discussion.User?
   public var createdAt: Date
@@ -49,6 +50,7 @@ final public class Discussion {
   public init(
     discussionID: String,
     number: Int,
+    repositoryID: Repository.ID,
     url: URL,
     author: GitHubData.Discussion.User?,
     createdAt: Date,
@@ -86,6 +88,7 @@ final public class Discussion {
   ) {
     self.discussionID = discussionID
     self.number = number
+    self.repositoryID = repositoryID
     self.url = url
     self.author = author
     self.createdAt = createdAt
@@ -122,9 +125,10 @@ final public class Discussion {
     self.poll = poll
   }
 
-  public init(discussion: GitHubData.Discussion) {
+  public init(discussion: GitHubData.Discussion, repositoryID: Repository.ID) {
     self.discussionID = discussion.id
     self.number = discussion.number
+    self.repositoryID = repositoryID
     self.url = discussion.url
     self.author = discussion.author
     self.createdAt = discussion.createdAt
@@ -161,7 +165,7 @@ final public class Discussion {
     self.poll = discussion.poll
   }
 
-  public static func discussion(discussion: GitHubData.Discussion) -> Self {
-    self.init(discussion: discussion)
+  public static func discussion(discussion: GitHubData.Discussion, repositoryID: Repository.ID) -> Self {
+    self.init(discussion: discussion, repositoryID: repositoryID)
   }
 }

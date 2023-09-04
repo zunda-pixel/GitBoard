@@ -18,8 +18,7 @@ struct DiscussionDetailOnlineView: View {
       self.discussion = try await GitHubAPI().discussion(
         ownerID: repository.owner!.userID,
         repositoryName: repository.name,
-        discussionNumber: discussionNumber,
-        itemLast: 100
+        discussionNumber: discussionNumber
       )
     } catch {
       errorHandle.error = .init(error: error)

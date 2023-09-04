@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
-        "revision" : "957d80773f841923ac5a2778442d3f6a7e75a975",
-        "version" : "7.2.1"
+        "revision" : "11b6adbfcb784a71bc9076c0e83ecd67952060e8",
+        "version" : "7.3.0"
       }
     },
     {
@@ -33,7 +33,7 @@
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
         "branch" : "develop/add-user-api",
-        "revision" : "90f73f3dc77556d7e14054026caea9267013dba6"
+        "revision" : "f5d24705edd5ebfbe77b3f1a091b839b38bcd5a0"
       }
     },
     {

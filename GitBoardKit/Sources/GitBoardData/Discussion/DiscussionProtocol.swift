@@ -5,9 +5,10 @@
 import Foundation
 import GitHubData
 
-public protocol DiscussionProtocol {
+public protocol DiscussionProtocol: Identifiable {
   associatedtype Category: CategoryProtocol
   
+  var number: Int { get }
   var category: Category { get }
   var title: String { get }
   var createdAt: Date { get }

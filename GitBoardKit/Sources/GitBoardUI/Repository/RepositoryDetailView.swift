@@ -194,6 +194,7 @@ struct RepositoryDetailView: View {
     List {
       Section {
         repositoryView
+          .padding(15)
           .listRow()
       }
 

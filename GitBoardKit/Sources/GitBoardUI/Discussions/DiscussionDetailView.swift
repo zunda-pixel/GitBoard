@@ -10,7 +10,25 @@ import SwiftUI
 
 struct DiscussionDetailView<ViewState: DiscussionDetailViewState>: View {
   @Environment(NavigationRouter.self) var router
+  @Environment(ErrorHandle.self) var errorHandle
+  
   @State var viewState: ViewState
+  
+  func populate() async {
+    do {
+      try await viewState.populateComments()
+    } catch {
+      errorHandle.error = .init(error: error)
+    }
+  }
+
+  func populateMore(id: GitHubData.Discussion.Comment.ID) async {
+    do {
+      try await viewState.populateMoreComments(id: id)
+    } catch {
+      errorHandle.error = .init(error: error)
+    }
+  }
   
   @ViewBuilder
   var header: some View {
@@ -45,6 +63,24 @@ struct DiscussionDetailView<ViewState: DiscussionDetailViewState>: View {
     }
     .font(.caption)
   }
+  
+  @ViewBuilder
+  var comments: some View {
+    ForEach(viewState.comments) { comment in
+      VStack(alignment: .leading, spacing: 0) {
+        DiscussionCommentCell(comment: comment)
+          .padding(10)
+          .frame(maxWidth: .infinity, alignment: .leading)
+
+        Divider()
+      }
+      .listRow()
+      .task {
+        await populateMore(id: comment.id)
+      }
+    }
+  }
+
 
   var body: some View {
     List {
@@ -87,19 +123,15 @@ struct DiscussionDetailView<ViewState: DiscussionDetailViewState>: View {
       .frame(maxWidth: .infinity, alignment: .leading)
       .listRow()
 
-      ForEach(viewState.comments) { comment in
-        VStack(alignment: .leading, spacing: 0) {
-          Divider()
-          DiscussionCommentCell(comment: comment)
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-          Divider()
-        }
-        .listRow()
-      }
+      comments
     }
     .listStyle(.plain)
+    .task {
+      await populate()
+    }
+    .refreshable {
+      await populate()
+    }
   }
 }
 
