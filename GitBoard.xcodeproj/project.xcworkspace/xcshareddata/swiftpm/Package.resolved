@@ -12,10 +12,10 @@
     {
       "identity" : "emoji-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/zunda-pixel/Emoji-Swift",
+      "location" : "https://github.com/safx/Emoji-Swift",
       "state" : {
-        "revision" : "a828c332a267ee16245d78c8fe316f4ba15eb89e",
-        "version" : "1.0.0"
+        "branch" : "master",
+        "revision" : "32be066636e3273c9938dd35e9e8d2373480a03c"
       }
     },
     {
