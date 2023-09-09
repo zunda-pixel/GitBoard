@@ -5,7 +5,6 @@
 import Emoji
 import GitBoardData
 import GitHubAPI
-import MarkdownUI
 import SwiftData
 import SwiftUI
 

@@ -5,7 +5,6 @@
 import Emoji
 import GitBoardData
 import GitHubAPI
-import MarkdownUI
 import SwiftUI
 
 struct DiscussionDetailView<ViewState: DiscussionDetailViewState>: View {
@@ -117,7 +116,7 @@ struct DiscussionDetailView<ViewState: DiscussionDetailViewState>: View {
           }
         }
 
-        Markdown(viewState.discussion.body)
+        MarkdownView(source: viewState.discussion.body)
       }
       .padding()
       .frame(maxWidth: .infinity, alignment: .leading)

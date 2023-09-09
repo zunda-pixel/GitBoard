@@ -4,7 +4,6 @@
 
 import GitHubAPI
 import SwiftUI
-import MarkdownUI
 
 struct IssueDetailView<ViewState: IssueDetailViewState>: View {
   @Environment(NavigationRouter.self) var router
@@ -113,7 +112,7 @@ struct IssueDetailView<ViewState: IssueDetailViewState>: View {
       
       if let body = viewState.issue.body {
         VStack(alignment: .leading, spacing: 0) {
-          Markdown(.init(body))
+          MarkdownView(source: body)
             .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
           Divider()

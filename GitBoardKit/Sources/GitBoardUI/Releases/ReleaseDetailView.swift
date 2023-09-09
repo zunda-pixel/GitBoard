@@ -4,7 +4,6 @@
 
 import GitHubAPI
 import SwiftUI
-import MarkdownUI
 
 struct ReleaseDetailView: View {
   @Environment(NavigationRouter.self) var router
@@ -72,7 +71,7 @@ struct ReleaseDetailView: View {
       }
 
       if let body = release.body {
-        Markdown(.init(body))
+        MarkdownView(source: body)
       }
 
       ScrollView(.horizontal) {

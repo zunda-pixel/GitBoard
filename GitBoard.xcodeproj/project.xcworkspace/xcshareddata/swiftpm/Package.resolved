@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "markdownview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zunda-pixel/MarkdownView",
+      "state" : {
+        "branch" : "main",
+        "revision" : "6c56dee053ab22819f3f52701e91db10613ef4a7"
+      }
+    },
+    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms",
@@ -43,6 +52,15 @@
       "state" : {
         "revision" : "8f4d2753f0e4778c76d5f05ad16c74f707390531",
         "version" : "1.2.3"
+      }
+    },
+    {
+      "identity" : "swift-cmark",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-cmark.git",
+      "state" : {
+        "branch" : "gfm",
+        "revision" : "3bc2f3e25df0cecc5dc269f7ccae65d0f386f06a"
       }
     },
     {
@@ -64,12 +82,12 @@
       }
     },
     {
-      "identity" : "swift-markdown-ui",
+      "identity" : "swift-markdown",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/zunda-pixel/swift-markdown-ui",
+      "location" : "https://github.com/apple/swift-markdown",
       "state" : {
-        "branch" : "xcode-15",
-        "revision" : "a61b28261d240b0774c0fff57c77d943e2dcb0a1"
+        "branch" : "main",
+        "revision" : "3d4b36cff09f785adf5efb190d458a3d44e6df87"
       }
     },
     {
