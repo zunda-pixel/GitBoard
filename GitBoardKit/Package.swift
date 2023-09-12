@@ -28,7 +28,7 @@ let package = Package(
     .package(url: "https://github.com/apple/swift-algorithms", .upToNextMajor(from: "1.0.0")),
     .package(url: "https://github.com/apple/swift-format", .upToNextMajor(from: "508.0.1")),
     .package(url: "https://github.com/sindresorhus/Defaults", .upToNextMajor(from: "7.2.0")),
-    .package(url: "https://github.com/zunda-pixel/MarkdownView", branch: "main"), // TODO
+    .package(url: "https://github.com/zunda-pixel/MarkdownView", branch: "main"),
     .package(url: "https://github.com/safx/Emoji-Swift", branch: "master"),
     .package(url: "https://github.com/square/Valet", .upToNextMajor(from: "4.2.0")),
   ],
