@@ -3,7 +3,6 @@
 //
 
 import GitHubAPI
-import MarkdownUI
 import SwiftUI
 
 struct DiscussionCommentCell: View {
@@ -32,7 +31,7 @@ struct DiscussionCommentCell: View {
         }
       }
 
-      Markdown(comment.body)
+      MarkdownView(source: comment.body)
     }
   }
 }

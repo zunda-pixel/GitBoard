@@ -5,7 +5,6 @@
 import Algorithms
 import GitHubAPI
 import SwiftUI
-import MarkdownUI
 
 struct PullDetailView<ViewState: PullDetailViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
@@ -86,7 +85,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       repository
         .font(.caption)
 
-      Markdown(.init(viewState.pull.title))      
+      MarkdownView(source: viewState.pull.title)   
         .fixedSize(horizontal: false, vertical: true)
         .bold()
 
@@ -153,7 +152,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
 
       if let body = viewState.pull.body {
         VStack(alignment: .leading, spacing: 0) {
-          Markdown(.init(body))
+          MarkdownView(source: body)
             .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
           Divider()
