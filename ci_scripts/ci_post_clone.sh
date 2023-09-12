@@ -9,14 +9,9 @@ brew install zunda-pixel/selene/selene
 # change directory to project top from ci_scripts
 cd ..
 
-env_file=".env"
-touch $env_file
-
-cat > $env_file <<EOL
+cat > .env <<EOL
 clientID=${CLIENT_ID}
 clientSecret=${CLIENT_SECRET}
 EOL
 
-cd GitBoardKit
-
-selene SecureEnv .env /GitBoardData/Sources/Env/SecureEnv.swift
+selene SecureEnv .env ./GitBoardKit/Sources/GitBoardData/Env/SecureEnv.swift
