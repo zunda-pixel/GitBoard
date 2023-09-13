@@ -22,19 +22,3 @@ public protocol CategoryProtocol {
   var name: String { get }
   var emoji: String { get }
 }
-
-extension GitHubData.Discussion: DiscussionProtocol {
-
-}
-
-extension GitHubData.Category: CategoryProtocol {
-
-}
-
-extension GitBoardData.Category: CategoryProtocol {
-
-}
-
-extension GitBoardData.Discussion: DiscussionProtocol {
-
-}

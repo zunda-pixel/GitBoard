@@ -169,3 +169,19 @@ final public class Discussion {
     self.init(discussion: discussion, repositoryID: repositoryID)
   }
 }
+
+extension GitHubData.Discussion: DiscussionProtocol {
+
+}
+
+extension GitHubData.Category: CategoryProtocol {
+
+}
+
+extension GitBoardData.Category: CategoryProtocol {
+
+}
+
+extension GitBoardData.Discussion: DiscussionProtocol {
+
+}
