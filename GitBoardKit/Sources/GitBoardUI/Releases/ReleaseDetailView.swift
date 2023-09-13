@@ -11,6 +11,7 @@ struct ReleaseDetailView: View {
   let repository: Repository
   let release: Release
 
+  @MainActor
   var header: some View {
     VStack(alignment: .leading, spacing: 10) {
       HStack(alignment: .center, spacing: 10) {

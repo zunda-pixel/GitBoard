@@ -9,6 +9,7 @@ import SwiftUI
 
 @Observable
 final class NavigationRouter {
+  @MainActor
   var items: [Item] = []
 }
 

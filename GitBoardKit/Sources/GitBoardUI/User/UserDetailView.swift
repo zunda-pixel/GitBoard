@@ -27,6 +27,7 @@ struct UserDetailView<User: UserProtocol>: View {
     }
   }
 
+  @MainActor
   var userProfile: some View {
     VStack(alignment: .leading, spacing: 10) {
       userProfileAndName
@@ -79,6 +80,7 @@ struct UserDetailView<User: UserProtocol>: View {
     }
   }
 
+  @MainActor
   var userView: some View {
     VStack(alignment: .center, spacing: 10) {
       HStack(alignment: .center, spacing: 0) {
@@ -95,7 +97,8 @@ struct UserDetailView<User: UserProtocol>: View {
       .buttonStyle(.bordered)
     }
   }
-
+  
+  @MainActor
   var repositoryNavigation: some View {
     Label {
       HStack(alignment: .center, spacing: 5) {

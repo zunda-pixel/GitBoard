@@ -29,6 +29,7 @@ struct DiscussionDetailView<ViewState: DiscussionDetailViewState>: View {
     }
   }
   
+  @MainActor
   @ViewBuilder
   var header: some View {
     HStack(alignment: .center, spacing: 10) {

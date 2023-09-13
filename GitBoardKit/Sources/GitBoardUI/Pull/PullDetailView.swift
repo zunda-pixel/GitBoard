@@ -54,6 +54,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
     }
   }
 
+  @MainActor
   @ViewBuilder
   var merge: some View {
     if let head = viewState.pull.head.label,
@@ -80,6 +81,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
     }
   }
 
+  @MainActor
   var header: some View {
     VStack(alignment: .leading, spacing: 10) {
       repository

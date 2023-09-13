@@ -32,6 +32,7 @@ struct IssueDetailView<ViewState: IssueDetailViewState>: View {
       }
   }
 
+  @MainActor
   var header: some View {
     VStack(alignment: .leading, spacing: 15) {
       HStack(alignment: .center, spacing: 15) {

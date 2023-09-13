@@ -11,6 +11,7 @@ struct CommentCell: View {
   let comment: Comment
   @State var isPresentedPopOver = false
 
+  @MainActor
   var header: some View {
     HStack(alignment: .center, spacing: 10) {
       UserProfileImage(
