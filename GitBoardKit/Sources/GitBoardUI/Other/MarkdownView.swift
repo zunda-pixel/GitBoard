@@ -20,7 +20,7 @@ struct MarkdownView: View {
   var body: some View {
     LazyVStack(alignment: .leading, spacing: 5) {
       ForEach(contents.indexed(), id: \.index) { _, content in
-        MarkupContentView(content: content, listDepth: 0)
+        MarkupContentView(content: content)
       }
     }
   }

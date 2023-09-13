@@ -33,7 +33,7 @@
       "location" : "https://github.com/zunda-pixel/MarkdownView",
       "state" : {
         "branch" : "main",
-        "revision" : "447b03707c3f5641045b5baef600dc34c8684fdc"
+        "revision" : "bdb5eee5add1a097880c1f21ff173ec73bb7db64"
       }
     },
     {
@@ -102,7 +102,7 @@
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-syntax",
+      "location" : "https://github.com/apple/swift-syntax.git",
       "state" : {
         "revision" : "2c49d66d34dfd6f8130afdba889de77504b58ec0",
         "version" : "508.0.1"
