@@ -14,31 +14,11 @@ struct ReleaseDetailView: View {
   @MainActor
   var header: some View {
     VStack(alignment: .leading, spacing: 10) {
-      HStack(alignment: .center, spacing: 10) {
-        HStack(alignment: .center, spacing: 10) {
-          UserProfileImage(
-            avatarURL: repository.owner!.avatarURL,
-            type: repository.owner!.type
-          )
-          .frame(width: 30, height: 30)
-
-          Text(repository.owner!.userID)
-        }
-        .bold()
-        .contentShape(.rect)
-        .onTapGesture {
-          router.items.append(.userDetail(user: repository.owner!))
-        }
-
-        Text("/").foregroundStyle(.secondary)
-
-        Text(repository.name)
-          .bold()
-          .contentShape(.rect)
-          .onTapGesture {
-            router.items.append(.repositoryDetail(repository: repository))
-          }
-      }
+      IconRepositoryUserName(
+        owner: repository.owner!,
+        repository: repository,
+        imageSize: 30
+      )
 
       Text(release.name)
         .font(.title)

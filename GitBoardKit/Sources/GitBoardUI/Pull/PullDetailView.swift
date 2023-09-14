@@ -15,22 +15,11 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
   var repository: some View {
     HStack(alignment: .center, spacing: 10) {
       let repository = viewState.pull.base.repository!
-      UserProfileImage(
-        avatarURL: repository.owner!.avatarURL,
-        type: repository.owner!.type
+      IconRepositoryUserName(
+        owner: repository.owner!,
+        repository: repository,
+        imageSize: 40
       )
-      .frame(width: 40, height: 40)
-
-      HStack(alignment: .center, spacing: 3) {
-        Text(repository.name)
-          .bold()
-        
-        Text("/")
-          .foregroundStyle(.secondary)
-        
-        Text(repository.owner!.userID)
-          .bold()
-      }
 
       Text("#\(viewState.pull.number)")
         .foregroundStyle(.secondary)

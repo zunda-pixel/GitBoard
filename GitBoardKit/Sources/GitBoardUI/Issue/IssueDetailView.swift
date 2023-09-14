@@ -36,16 +36,11 @@ struct IssueDetailView<ViewState: IssueDetailViewState>: View {
   var header: some View {
     VStack(alignment: .leading, spacing: 15) {
       HStack(alignment: .center, spacing: 15) {
-        UserProfileImage(
-          avatarURL: viewState.repository.owner!.avatarURL,
-          type: viewState.repository.owner!.type
+        IconRepositoryUserName(
+          owner: viewState.repository.owner!,
+          repository: viewState.repository,
+          imageSize: 30
         )
-        .frame(width: 30, height: 30)
-        .onTapGesture {
-          router.items.append(.userDetail(user: viewState.repository.owner!))
-        }
-
-        Text("\(viewState.repository.owner!.userID) / \(viewState.repository.name)")
 
         Text("#\(viewState.issue.number)")
           .foregroundStyle(.secondary)
