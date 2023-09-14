@@ -138,13 +138,28 @@ struct UserDetailView<User: UserProtocol>: View {
   var body: some View {
     List {
       Section {
-        userView
-          .listRow()
-      }
+        VStack(alignment: .leading, spacing: 0) {
+          userView
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          
+          Divider()
 
+        }
+        .listRow()
+      }
+      
       Section("Links") {
-        repositoryNavigation
-          .listRow()
+        VStack(alignment: .leading, spacing: 0) {
+          repositoryNavigation
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          
+          Divider()
+        }
+        .listRow()
       }
     }
     .listStyle(.plain)
