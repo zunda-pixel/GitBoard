@@ -5,58 +5,92 @@
 import Emoji
 import GitBoardData
 import GitHubAPI
-import MarkdownUI
 import SwiftUI
 
-struct DiscussionDetailView<Discussion: DiscussionProtocol>: View {
+struct DiscussionDetailView<ViewState: DiscussionDetailViewState>: View {
   @Environment(NavigationRouter.self) var router
+  @Environment(ErrorHandle.self) var errorHandle
+  
+  @State var viewState: ViewState
+  
+  func populate() async {
+    do {
+      try await viewState.populateComments()
+    } catch {
+      errorHandle.error = .init(error: error)
+    }
+  }
 
-  let repository: Repository
-  let discussion: Discussion
-
+  func populateMore(id: GitHubData.Discussion.Comment.ID) async {
+    do {
+      try await viewState.populateMoreComments(id: id)
+    } catch {
+      errorHandle.error = .init(error: error)
+    }
+  }
+  
+  @MainActor
   @ViewBuilder
   var header: some View {
     HStack(alignment: .center, spacing: 10) {
       UserProfileImage(
-        avatarURL: repository.owner!.avatarURL,
-        type: repository.owner!.type
+        avatarURL: viewState.repository.owner!.avatarURL,
+        type: viewState.repository.owner!.type
       )
       .frame(width: 15, height: 15)
       .onTapGesture {
-        router.items.append(.userDetail(user: repository.owner!))
+        router.items.append(.userDetail(user: viewState.repository.owner!))
       }
 
       HStack(alignment: .center, spacing: 3) {
-        Text(repository.owner!.userID)
+        Text(viewState.repository.owner!.userID)
           .bold()
           .contentShape(.rect)
           .onTapGesture {
-            router.items.append(.userDetail(user: repository.owner!))
+            router.items.append(.userDetail(user: viewState.repository.owner!))
           }
 
         Text("/")
           .foregroundStyle(.secondary)
 
-        Text(repository.name)
+        Text(viewState.repository.name)
           .bold()
           .contentShape(.rect)
           .onTapGesture {
-            router.items.append(.repositoryDetail(repository: repository))
+            router.items.append(.repositoryDetail(repository: viewState.repository))
           }
       }
     }
     .font(.caption)
   }
+  
+  @ViewBuilder
+  var comments: some View {
+    ForEach(viewState.comments) { comment in
+      VStack(alignment: .leading, spacing: 0) {
+        DiscussionCommentCell(comment: comment)
+          .padding(10)
+          .frame(maxWidth: .infinity, alignment: .leading)
+
+        Divider()
+      }
+      .listRow()
+      .task {
+        await populateMore(id: comment.id)
+      }
+    }
+  }
+
 
   var body: some View {
     List {
       VStack(alignment: .leading, spacing: 20) {
-        Text(discussion.title)
+        Text(viewState.discussion.title)
           .font(.title)
           .bold()
         HStack(alignment: .center, spacing: 4) {
-          Text(discussion.category.emoji.emojiUnescapedString)
-          Text(discussion.category.name)
+          Text(viewState.discussion.category.emoji.emojiUnescapedString)
+          Text(viewState.discussion.category.name)
         }
         .bold()
         .foregroundStyle(.secondary)
@@ -72,39 +106,40 @@ struct DiscussionDetailView<Discussion: DiscussionProtocol>: View {
       .listRow()
 
       VStack(alignment: .leading, spacing: 0) {
-        if let author = discussion.author {
+        if let author = viewState.discussion.author {
           HStack(alignment: .center, spacing: 10) {
             UserProfileImage(avatarURL: author.avatarUrl, type: .user)
               .frame(width: 40, height: 40)
 
             Text(author.login)
 
-            Text(discussion.updatedAt, style: .date)
+            Text(viewState.discussion.updatedAt, style: .date)
           }
         }
 
-        Markdown(discussion.body)
+        MarkdownView(source: viewState.discussion.body)
       }
       .padding()
       .frame(maxWidth: .infinity, alignment: .leading)
       .listRow()
 
-      ForEach(discussion.comments) { comment in
-        VStack(alignment: .leading, spacing: 0) {
-          Divider()
-          DiscussionCommentCell(comment: comment)
-            .padding()
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-          Divider()
-        }
-        .listRow()
-      }
+      comments
     }
     .listStyle(.plain)
+    .task {
+      await populate()
+    }
+    .refreshable {
+      await populate()
+    }
   }
 }
 
-#Preview{
-  DiscussionDetailView(repository: .sample, discussion: GitHubData.Discussion.sample)
+#Preview {
+  NavigationStack {
+    let viewState = RepositoryDiscussionDetailViewState(repository: .sample, discussion: GitHubData.Discussion.sample)
+    DiscussionDetailView(viewState: viewState)
+  }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }

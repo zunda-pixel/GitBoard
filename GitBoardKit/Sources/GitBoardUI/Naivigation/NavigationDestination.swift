@@ -37,7 +37,8 @@ extension View {
           .navigationTitle("Issues")
           .navigationBarTitleDisplayMode()
       case .issueDetail(let issue, let repository):
-        IssueDetailView(issue: issue, repository: repository)
+        let viewState = RepositoryIssueDetailViewState(issue: issue, repository: repository)
+        IssueDetailView(viewState: viewState)
           .navigationTitle("Issue #\(issue.number)")
           .navigationBarTitleDisplayMode()
       case .issueDetailOnline(let ownerID, let repositoryName, let issueNumber):
@@ -65,11 +66,11 @@ extension View {
           .navigationBarTitleDisplayMode()
       case .releaseDetail(let repository, let release):
         ReleaseDetailView(repository: repository, release: release)
-          .navigationTitle("Release")
+          .navigationTitle("Release #\(release.id)")
           .navigationBarTitleDisplayMode()
       case .releaseDetailOnline(let repository, let releaseID):
         ReleaseDetailOnlineView(repository: repository, releaseID: releaseID)
-          .navigationTitle("Release")
+          .navigationTitle("Release #\(releaseID)")
           .navigationBarTitleDisplayMode()
       case .license(let ownerID, let repositoryName):
         let viewState = LicenseViewState(ownerID: ownerID, repositoryName: repositoryName)
@@ -114,7 +115,11 @@ extension View {
           .navigationTitle("Discussions")
           .navigationBarTitleDisplayMode()
       case .discussionDetail(let repository, let discussion):
-        DiscussionDetailView(repository: repository, discussion: discussion)
+        let viewState = RepositoryDiscussionDetailViewState(
+          repository: repository,
+          discussion: discussion
+        )
+        DiscussionDetailView(viewState: viewState)
           .navigationTitle("Discussion \(discussion.title)")
           .navigationBarTitleDisplayMode()
       case .discussionDetailOnline(let repository, let discussionNumber):

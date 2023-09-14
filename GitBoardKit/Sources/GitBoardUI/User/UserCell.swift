@@ -2,7 +2,6 @@
 //  UserCell.swift
 //
 
-import CachedAsyncImage
 import GitBoardData
 import GitHubAPI
 import SwiftUI

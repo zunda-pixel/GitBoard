@@ -18,8 +18,7 @@ struct DiscussionDetailOnlineView: View {
       self.discussion = try await GitHubAPI().discussion(
         ownerID: repository.owner!.userID,
         repositoryName: repository.name,
-        discussionNumber: discussionNumber,
-        itemLast: 100
+        discussionNumber: discussionNumber
       )
     } catch {
       errorHandle.error = .init(error: error)
@@ -27,10 +26,26 @@ struct DiscussionDetailOnlineView: View {
   }
 
   var body: some View {
-    DiscussionDetailView(repository: repository, discussion: discussion ?? .sample)
+    let viewState = RepositoryDiscussionDetailViewState(
+      repository: repository,
+      discussion: discussion ?? .sample
+    )
+    DiscussionDetailView(viewState: viewState)
+      .id(discussion)
       .redacted(reason: discussion == nil ? .placeholder : [])
       .task {
         await populate()
       }
   }
+}
+
+#Preview {
+  NavigationStack {
+    DiscussionDetailOnlineView(
+      repository: .nodejs,
+      discussionNumber: 36423
+    )
+  }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }

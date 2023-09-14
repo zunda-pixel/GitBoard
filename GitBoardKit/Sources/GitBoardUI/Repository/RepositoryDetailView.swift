@@ -10,6 +10,7 @@ struct RepositoryDetailView: View {
 
   let repository: Repository
 
+  @MainActor
   var repositoryView: some View {
     VStack(alignment: .leading, spacing: 5) {
       HStack(alignment: .center, spacing: 10) {
@@ -109,6 +110,7 @@ struct RepositoryDetailView: View {
     }
   }
 
+  @MainActor
   @ViewBuilder
   var links: some View {
     Section("Links") {
@@ -194,6 +196,7 @@ struct RepositoryDetailView: View {
     List {
       Section {
         repositoryView
+          .padding(15)
           .listRow()
       }
 

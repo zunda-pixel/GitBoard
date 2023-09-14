@@ -5,26 +5,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
-        "revision" : "0f5a23fcbd83eb72f6d405aa85bbfacaffb99b03",
-        "version" : "7.2.0"
+        "revision" : "11b6adbfcb784a71bc9076c0e83ecd67952060e8",
+        "version" : "7.3.0"
       }
     },
     {
       "identity" : "emoji-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/zunda-pixel/Emoji-Swift",
+      "location" : "https://github.com/safx/Emoji-Swift",
       "state" : {
-        "revision" : "a828c332a267ee16245d78c8fe316f4ba15eb89e",
-        "version" : "1.0.0"
-      }
-    },
-    {
-      "identity" : "genenvcode",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/zunda-pixel/GenEnvCode",
-      "state" : {
-        "revision" : "a22345481214285d516e9eb0628ebd04bd5f1144",
-        "version" : "1.0.1"
+        "branch" : "master",
+        "revision" : "32be066636e3273c9938dd35e9e8d2373480a03c"
       }
     },
     {
@@ -33,7 +24,16 @@
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
         "branch" : "develop/add-user-api",
-        "revision" : "9680caa69432666f01f31f7cd4181771bb28236e"
+        "revision" : "f5d24705edd5ebfbe77b3f1a091b839b38bcd5a0"
+      }
+    },
+    {
+      "identity" : "markdownview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zunda-pixel/MarkdownView",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e875c40797a328604d8455a5587154d74aa617bb"
       }
     },
     {
@@ -55,6 +55,15 @@
       }
     },
     {
+      "identity" : "swift-cmark",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-cmark.git",
+      "state" : {
+        "branch" : "gfm",
+        "revision" : "3bc2f3e25df0cecc5dc269f7ccae65d0f386f06a"
+      }
+    },
+    {
       "identity" : "swift-format",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-format",
@@ -73,12 +82,12 @@
       }
     },
     {
-      "identity" : "swift-markdown-ui",
+      "identity" : "swift-markdown",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/zunda-pixel/swift-markdown-ui",
+      "location" : "https://github.com/zunda-pixel/swift-markdown",
       "state" : {
-        "branch" : "xcode-15",
-        "revision" : "a61b28261d240b0774c0fff57c77d943e2dcb0a1"
+        "branch" : "main",
+        "revision" : "9f7f7f6aac55b61b604be4aa15d1bb5191cad3da"
       }
     },
     {

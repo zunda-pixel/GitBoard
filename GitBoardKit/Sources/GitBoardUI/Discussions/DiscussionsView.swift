@@ -5,7 +5,6 @@
 import Emoji
 import GitBoardData
 import GitHubAPI
-import MarkdownUI
 import SwiftData
 import SwiftUI
 
@@ -14,21 +13,30 @@ struct DiscussionsView: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
   @Environment(\.modelContext) var modelContext
-  @Query(sort: [SortDescriptor(\GitBoardData.Discussion.updatedAt)])
-  var discussions: [GitBoardData.Discussion]
+  @Query var discussions: [GitBoardData.Discussion]
 
+  init(repository: Repository) {
+    self.repository = repository
+    let predicate = #Predicate<GitBoardData.Discussion> { $0.repositoryID == repository.id }
+    self._discussions = .init(
+      filter: predicate,
+      sort: \.updatedAt,
+      order: .reverse
+    )
+  }
+  
   func populate() async {
     do {
       let discussions = try await GitHubAPI().discussions(
         ownerID: repository.owner!.userID,
         repositoryName: repository.name,
-        last: 100,
+        first: 30,
         orderBy: .updatedAt,
         direction: .desc
       )
 
       for discussion in discussions {
-        let newDiscussion = GitBoardData.Discussion.discussion(discussion: discussion)
+        let newDiscussion = GitBoardData.Discussion.discussion(discussion: discussion, repositoryID: repository.id)
         modelContext.insert(newDiscussion)
       }
 

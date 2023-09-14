@@ -4,12 +4,14 @@
 
 import GitHubAPI
 import SwiftUI
+import MarkdownView
 
 struct CommentCell: View {
   @Environment(NavigationRouter.self) var router
   let comment: Comment
   @State var isPresentedPopOver = false
 
+  @MainActor
   var header: some View {
     HStack(alignment: .center, spacing: 10) {
       UserProfileImage(
@@ -56,7 +58,7 @@ struct CommentCell: View {
   }
 
   var reaction: some View {
-    HStack(alignment: .center, spacing: 0) {
+    HStack(alignment: .center, spacing: 10) {
       if comment.reactions.eyesCount > 0 {
         Label("\(comment.reactions.eyesCount)", systemImage: "eye.circle")
       }
@@ -78,7 +80,7 @@ struct CommentCell: View {
     VStack(alignment: .leading, spacing: 10) {
       header
 
-      Text(comment.body)
+      MarkdownView(source: comment.body)
 
       reaction
     }
@@ -87,6 +89,7 @@ struct CommentCell: View {
 
 #Preview{
   CommentCell(comment: .sample)
+    .environment(NavigationRouter())
 }
 
 extension AuthorAssociation {

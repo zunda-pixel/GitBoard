@@ -11,31 +11,14 @@ struct ReleaseDetailView: View {
   let repository: Repository
   let release: Release
 
+  @MainActor
   var header: some View {
     VStack(alignment: .leading, spacing: 10) {
-      HStack(alignment: .center, spacing: 10) {
-        HStack(alignment: .center, spacing: 10) {
-          UserProfileImage(
-            avatarURL: repository.owner!.avatarURL,
-            type: repository.owner!.type
-          )
-          .frame(width: 30, height: 30)
-
-          Text(repository.owner!.userID)
-        }
-        .contentShape(.rect)
-        .onTapGesture {
-          router.items.append(.userDetail(user: repository.owner!))
-        }
-
-        Text("/").foregroundStyle(.secondary)
-
-        Text(repository.name)
-          .contentShape(.rect)
-          .onTapGesture {
-            router.items.append(.repositoryDetail(repository: repository))
-          }
-      }
+      IconRepositoryUserName(
+        owner: repository.owner!,
+        repository: repository,
+        imageSize: 30
+      )
 
       Text(release.name)
         .font(.title)
@@ -69,7 +52,7 @@ struct ReleaseDetailView: View {
       }
 
       if let body = release.body {
-        Text(LocalizedStringKey(body))
+        MarkdownView(source: body)
       }
 
       ScrollView(.horizontal) {
@@ -123,9 +106,13 @@ struct ReleaseDetailView: View {
   }
 }
 
-#Preview{
-  ReleaseDetailView(
-    repository: .sample,
-    release: .sample
-  )
+#Preview {
+  NavigationStack {
+    ReleaseDetailView(
+      repository: .sample,
+      release: .sample
+    )
+  }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }

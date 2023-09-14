@@ -15,13 +15,11 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
   var repository: some View {
     HStack(alignment: .center, spacing: 10) {
       let repository = viewState.pull.base.repository!
-      UserProfileImage(
-        avatarURL: repository.owner!.avatarURL,
-        type: repository.owner!.type
+      IconRepositoryUserName(
+        owner: repository.owner!,
+        repository: repository,
+        imageSize: 40
       )
-      .frame(width: 40, height: 40)
-
-      Text("\(repository.name) / \(repository.owner!.userID)")
 
       Text("#\(viewState.pull.number)")
         .foregroundStyle(.secondary)
@@ -45,6 +43,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
     }
   }
 
+  @MainActor
   @ViewBuilder
   var merge: some View {
     if let head = viewState.pull.head.label,
@@ -71,12 +70,13 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
     }
   }
 
+  @MainActor
   var header: some View {
     VStack(alignment: .leading, spacing: 10) {
       repository
         .font(.caption)
 
-      Text(viewState.pull.title)
+      MarkdownView(source: viewState.pull.title)   
         .fixedSize(horizontal: false, vertical: true)
         .bold()
 
@@ -141,6 +141,16 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       }
       .listRow()
 
+      if let body = viewState.pull.body {
+        VStack(alignment: .leading, spacing: 0) {
+          MarkdownView(source: body)
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          Divider()
+        }
+        .listRow()
+      }
+      
       comments
     }
     .listStyle(.plain)
@@ -153,11 +163,13 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
   }
 }
 
-#Preview{
+#Preview {
   NavigationStack {
     let viewState = RepositoryPullDetailViewState(pull: .sample)
     PullDetailView(viewState: viewState)
   }
+  .environment(ErrorHandle())
+  .environment(NavigationRouter())
 }
 
 extension View {

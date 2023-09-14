@@ -13,9 +13,11 @@ struct NotificationCell: View {
     switch notification.subject.type {
     case .issue:
       Image(systemName: "dot.circle")
+        .imageScale(.large)
         .foregroundStyle(.green)
     case .release:
       Image(systemName: "tag")
+        .imageScale(.large)
         .foregroundStyle(.blue)
         .rotation3DEffect(
           .degrees(180),
@@ -23,9 +25,11 @@ struct NotificationCell: View {
         )
     case .pullRequest:
       Image(systemName: "arrow.triangle.merge")
+        .imageScale(.large)
         .foregroundStyle(.purple)
     case .discussion:
       Image(systemName: "bubble.left.and.bubble.right")
+        .imageScale(.large)
         .foregroundStyle(.gray)
     }
   }

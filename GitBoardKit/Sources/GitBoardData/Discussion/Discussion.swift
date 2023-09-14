@@ -11,6 +11,7 @@ final public class Discussion {
   @Attribute(.unique)
   public var discussionID: String
   public var number: Int
+  public var repositoryID: Repository.ID
   public var url: URL
   public var author: GitHubData.Discussion.User?
   public var createdAt: Date
@@ -39,6 +40,7 @@ final public class Discussion {
   public var viewerDidAuthor: Bool
   public var viewerHasUpvoted: Bool
   public var viewerSubscription: GitHubData.SubscriptionState
+  public var commentsCount: Int
   public var comments: [GitHubData.Discussion.Comment]
   public var category: Category
   public var labels: [Label]
@@ -48,6 +50,7 @@ final public class Discussion {
   public init(
     discussionID: String,
     number: Int,
+    repositoryID: Repository.ID,
     url: URL,
     author: GitHubData.Discussion.User?,
     createdAt: Date,
@@ -76,6 +79,7 @@ final public class Discussion {
     viewerDidAuthor: Bool,
     viewerHasUpvoted: Bool,
     viewerSubscription: GitHubData.SubscriptionState,
+    commentsCount: Int,
     comments: [GitHubData.Discussion.Comment],
     category: Category,
     labels: [Label],
@@ -84,6 +88,7 @@ final public class Discussion {
   ) {
     self.discussionID = discussionID
     self.number = number
+    self.repositoryID = repositoryID
     self.url = url
     self.author = author
     self.createdAt = createdAt
@@ -112,6 +117,7 @@ final public class Discussion {
     self.viewerDidAuthor = viewerDidAuthor
     self.viewerHasUpvoted = viewerHasUpvoted
     self.viewerSubscription = viewerSubscription
+    self.commentsCount = commentsCount
     self.comments = comments
     self.category = category
     self.labels = labels
@@ -119,9 +125,10 @@ final public class Discussion {
     self.poll = poll
   }
 
-  public init(discussion: GitHubData.Discussion) {
+  public init(discussion: GitHubData.Discussion, repositoryID: Repository.ID) {
     self.discussionID = discussion.id
     self.number = discussion.number
+    self.repositoryID = repositoryID
     self.url = discussion.url
     self.author = discussion.author
     self.createdAt = discussion.createdAt
@@ -150,14 +157,31 @@ final public class Discussion {
     self.viewerDidAuthor = discussion.viewerDidAuthor
     self.viewerHasUpvoted = discussion.viewerHasUpvoted
     self.viewerSubscription = discussion.viewerSubscription
-    self.comments = discussion.comments
+    self.commentsCount = discussion.commentsCount
+    self.comments = []
     self.category = .init(category: discussion.category)
     self.labels = discussion.labels.map { .init(label: $0) }
     self.reactions = discussion.reactions
     self.poll = discussion.poll
   }
 
-  public static func discussion(discussion: GitHubData.Discussion) -> Self {
-    self.init(discussion: discussion)
+  public static func discussion(discussion: GitHubData.Discussion, repositoryID: Repository.ID) -> Self {
+    self.init(discussion: discussion, repositoryID: repositoryID)
   }
+}
+
+extension GitHubData.Discussion: DiscussionProtocol {
+
+}
+
+extension GitHubData.Category: CategoryProtocol {
+
+}
+
+extension GitBoardData.Category: CategoryProtocol {
+
+}
+
+extension GitBoardData.Discussion: DiscussionProtocol {
+
 }

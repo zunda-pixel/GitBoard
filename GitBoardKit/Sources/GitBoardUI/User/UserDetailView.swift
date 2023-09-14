@@ -27,6 +27,7 @@ struct UserDetailView<User: UserProtocol>: View {
     }
   }
 
+  @MainActor
   var userProfile: some View {
     VStack(alignment: .leading, spacing: 10) {
       userProfileAndName
@@ -79,6 +80,7 @@ struct UserDetailView<User: UserProtocol>: View {
     }
   }
 
+  @MainActor
   var userView: some View {
     VStack(alignment: .center, spacing: 10) {
       HStack(alignment: .center, spacing: 0) {
@@ -95,7 +97,8 @@ struct UserDetailView<User: UserProtocol>: View {
       .buttonStyle(.bordered)
     }
   }
-
+  
+  @MainActor
   var repositoryNavigation: some View {
     Label {
       HStack(alignment: .center, spacing: 5) {
@@ -135,13 +138,28 @@ struct UserDetailView<User: UserProtocol>: View {
   var body: some View {
     List {
       Section {
-        userView
-          .listRow()
-      }
+        VStack(alignment: .leading, spacing: 0) {
+          userView
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          
+          Divider()
 
+        }
+        .listRow()
+      }
+      
       Section("Links") {
-        repositoryNavigation
-          .listRow()
+        VStack(alignment: .leading, spacing: 0) {
+          repositoryNavigation
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+          
+          Divider()
+        }
+        .listRow()
       }
     }
     .listStyle(.plain)
