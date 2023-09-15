@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
-        "revision" : "11b6adbfcb784a71bc9076c0e83ecd67952060e8",
-        "version" : "7.3.0"
+        "revision" : "3efef5a28ebdbbe922d4a2049493733ed14475a6",
+        "version" : "7.3.1"
       }
     },
     {
@@ -33,7 +33,16 @@
       "location" : "https://github.com/zunda-pixel/MarkdownView",
       "state" : {
         "branch" : "main",
-        "revision" : "e875c40797a328604d8455a5587154d74aa617bb"
+        "revision" : "9dced0f141bb7cfedb7e15904d1dc5689cf7d856"
+      }
+    },
+    {
+      "identity" : "nuke",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Nuke",
+      "state" : {
+        "revision" : "3f666f120b63ea7de57d42e9a7c9b47f8e7a290b",
+        "version" : "12.1.6"
       }
     },
     {
@@ -124,15 +133,6 @@
       "state" : {
         "revision" : "93784c59434dbca8e8a9e4b700d0d6d94551da6a",
         "version" : "0.5.2"
-      }
-    },
-    {
-      "identity" : "swiftui-cached-async-image",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/lorenzofiamingo/swiftui-cached-async-image",
-      "state" : {
-        "revision" : "467a3d17479887943ab917a379e62bbaff60ac8a",
-        "version" : "2.1.1"
       }
     },
     {
