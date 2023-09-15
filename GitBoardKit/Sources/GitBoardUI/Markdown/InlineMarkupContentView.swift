@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MarkdownView
-import CachedAsyncImage
+import NukeUI
 
 struct InlineMarkupContentView: View {
   @Environment(\.font) var font
@@ -45,23 +45,27 @@ struct InlineMarkupContentView: View {
           {
             if let link {
               Link(destination: link) {
-                CachedAsyncImage(url: imageURL) { image in
+                LazyImage(url: imageURL) { state in
+                  if let image = state.image {
+                    image
+                      .resizable()
+                      .scaledToFit()
+                      .frame(maxWidth: imageMaxWidth)
+                  } else {
+                    Text(title)
+                  }
+                }
+              }
+            } else {
+              LazyImage(url: imageURL) { state in
+                if let image = state.image {
                   image
                     .resizable()
                     .scaledToFit()
                     .frame(maxWidth: imageMaxWidth)
-                } placeholder: {
+                } else {
                   Text(title)
                 }
-              }
-            } else {
-              CachedAsyncImage(url: imageURL) { image in
-                image
-                  .resizable()
-                  .scaledToFit()
-                  .frame(maxWidth: imageMaxWidth)
-              } placeholder: {
-                Text(title)
               }
             }
           }

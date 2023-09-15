@@ -5,6 +5,7 @@
 import WidgetKit
 import Defaults
 import GitBoardUI
+import Nuke
 
 struct AccountTimelineProvider: AppIntentTimelineProvider {
   typealias Entry = AccountEntry
@@ -20,11 +21,10 @@ struct AccountTimelineProvider: AppIntentTimelineProvider {
       return .init(date: .now, user: nil, color: configuration.color.color, icon: nil)
     }
     
-    let icon: ImageData?
+    let icon: PlatformImage?
     
     do {
-      let (data, _) = try await URLSession.shared.data(from: user.avatarURL)
-      icon = ImageData(data: data)
+      icon = try await ImagePipeline.shared.image(for: user.avatarURL)
     } catch {
       icon = nil
     }
@@ -38,11 +38,10 @@ struct AccountTimelineProvider: AppIntentTimelineProvider {
       return .init(entries: [.init(date: .now, user: nil, color: configuration.color.color, icon: nil)], policy: .never)
     }
     
-    let icon: ImageData?
+    let icon: PlatformImage?
     
     do {
-      let (data, _) = try await URLSession.shared.data(from: user.avatarURL)
-      icon = ImageData(data: data)
+      icon = try await ImagePipeline.shared.image(for: user.avatarURL)
     } catch {
       icon = nil
     }

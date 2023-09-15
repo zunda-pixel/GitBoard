@@ -2,7 +2,7 @@
 //  UserProfileImage.swift
 //
 
-import CachedAsyncImage
+import NukeUI
 import GitHubAPI
 import SwiftUI
 
@@ -22,12 +22,14 @@ struct UserProfileImage: View {
   }
 
   var body: some View {
-    CachedAsyncImage(url: avatarURL) { image in
-      image
-        .resizable()
-    } placeholder: {
-      Image(systemName: "person")
-        .resizable()
+    LazyImage(url: avatarURL) { state in
+      if let image = state.image {
+        image
+          .resizable()
+      } else {
+        Image(systemName: "person")
+          .resizable()
+      }
     }
     .overlay {
       UserProfileImageShape(
