@@ -55,7 +55,7 @@ extension GitHubData.Repository {
     owner: .vercel,
     organization: nil,
     htmlURL: .applicationDirectory,
-    description: nil,
+    _description: nil,
     isFork: false,
     url: .applicationDirectory,
     forksURL: .applicationDirectory,

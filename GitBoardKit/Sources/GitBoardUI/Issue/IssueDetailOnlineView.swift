@@ -16,7 +16,6 @@ struct IssueDetailOnlineView: View {
   @State var repository: Repository?
 
   func populate() async {
-    // TODO Sendable
     let ownerID = ownerID
     let repositoryName = repositoryName
     let issueNumber = issueNumber

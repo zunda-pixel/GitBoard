@@ -32,7 +32,7 @@ struct RepositoryDetailView: View {
         .font(.largeTitle)
         .bold()
 
-      if let description = repository.description {
+      if let description = repository._description {
         Text(description)
       }
 

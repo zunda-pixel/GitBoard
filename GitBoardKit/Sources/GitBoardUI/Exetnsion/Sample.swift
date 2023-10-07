@@ -213,7 +213,7 @@ extension Repository {
     owner: .apple,
     organization: .apple,
     htmlURL: URL(string: "https://github.com")!,
-    description: "Swift",
+    _description: "Swift",
     isFork: false,
     url: URL(string: "https://github.com")!,
     forksURL: URL(string: "https://github.com")!,
@@ -372,24 +372,24 @@ extension Issue {
       labels: [
         .init(
           id: 111, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "bug",
-          color: "ff11bb", isDefault: true, description: "description"),
+          color: "ff11bb", isDefault: true, _description: "description"),
         .init(
           id: 222, nodeID: "nodeID", url: URL(string: "https://github.com")!, name: "existentials",
-          color: "2211bb44", isDefault: true, description: "description"),
+          color: "2211bb44", isDefault: true, _description: "description"),
         .init(
           id: 333, nodeID: "nodeID", url: URL(string: "https://github.com")!,
           name: "existential member accesses", color: "9211bb44", isDefault: true,
-          description: "description"),
+          _description: "description"),
         .init(
           id: 444, nodeID: "nodeID", url: URL(string: "https://github.com")!,
-          name: "inout parameters", color: "22114b44", isDefault: true, description: "description"),
+          name: "inout parameters", color: "22114b44", isDefault: true, _description: "description"),
         .init(
           id: 555, nodeID: "nodeID", url: URL(string: "https://github.com")!,
-          name: "variadic generics", color: "2499bb94", isDefault: true, description: "description"),
+          name: "variadic generics", color: "2499bb94", isDefault: true, _description: "description"),
         .init(
           id: 666, nodeID: "nodeID", url: URL(string: "https://github.com")!,
           name: "multi-statement closures", color: "9911bb44", isDefault: true,
-          description: "description"),
+          _description: "description"),
       ],
       state: .closed,
       locked: false,
@@ -422,7 +422,7 @@ extension PerformGitHubApp {
       nodeID: "nodeID",
       owner: .apple,
       name: "name",
-      description: "description",
+      _description: "description",
       externalURL: URL(string: "https://github.com")!,
       htmlURL: URL(string: "https://github.com")!,
       createdAt: .now,
@@ -461,7 +461,7 @@ extension Label {
       name: "name",
       color: "11334455",
       isDefault: true,
-      description: "description"
+      _description: "description"
     )
   }
 }
@@ -564,7 +564,7 @@ extension ParentTeam {
       nodeID: "nodeID",
       membersURL: URL(string: "https://github.com")!,
       name: "TeamName",
-      description: "description",
+      _description: "description",
       permission: .pull,
       privacy: .closed,
       notificationSetting: .enabled,
@@ -583,7 +583,7 @@ extension Team {
       nodeID: "nodeID",
       name: "TeamName",
       slug: "slug",
-      description: "description",
+      _description: "description",
       privacy: .closed,
       notificationSetting: .enabled,
       permission: .pull,
@@ -614,7 +614,7 @@ extension Milestone {
       state: .closed,
       number: 42,
       title: "backlog",
-      description: "",
+      _description: "",
       url: URL(string: "https://github.com")!,
       htmlURL: URL(string: "https://github.com")!,
       labelsURL: URL(string: "https://github.com")!,
@@ -726,7 +726,7 @@ extension Discussion.Label {
     name: "API and Webhooks",
     color: "e0023d",
     createdAt: .now,
-    description: "",
+    _description: "",
     isDefault: false,
     resourcePath: "/community/community/labels/API%20and%20Webhooks",
     updatedAt: .now,
@@ -751,7 +751,7 @@ extension Discussion.Poll {
 extension GitHubData.Category {
   static let sample = Category(
     createdAt: .now,
-    description:
+    _description:
       "Conversations related to getting started on using GitHub and the community. For beginners of GitHub, Community on Discussions, and those new to different areas of the product alike!",
     emoji: ":new:",
     emojiHTML: """

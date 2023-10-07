@@ -32,7 +32,7 @@ struct LabelCell: View {
         name: "Label Name",
         color: "ef77ffff",
         isDefault: false,
-        description: "description"
+        _description: "description"
       )
     )
   }

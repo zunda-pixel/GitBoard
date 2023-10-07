@@ -42,8 +42,8 @@ final public class Discussion {
   public var viewerSubscription: GitHubData.SubscriptionState
   public var commentsCount: Int
   public var comments: [GitHubData.Discussion.Comment]
-  public var category: Category
-  public var labels: [Label]
+  public var category: GitHubData.Category
+  public var labels: [GitHubData.Discussion.Label]
   public var reactions: [GitHubData.Discussion.Reaction]
   public var poll: GitHubData.Discussion.Poll?
 
@@ -81,8 +81,8 @@ final public class Discussion {
     viewerSubscription: GitHubData.SubscriptionState,
     commentsCount: Int,
     comments: [GitHubData.Discussion.Comment],
-    category: Category,
-    labels: [Label],
+    category: GitHubData.Category,
+    labels: [GitHubData.Discussion.Label],
     reactions: [GitHubData.Discussion.Reaction],
     poll: GitHubData.Discussion.Poll?
   ) {
@@ -159,8 +159,8 @@ final public class Discussion {
     self.viewerSubscription = discussion.viewerSubscription
     self.commentsCount = discussion.commentsCount
     self.comments = []
-    self.category = .init(category: discussion.category)
-    self.labels = discussion.labels.map { .init(label: $0) }
+    self.category = discussion.category
+    self.labels = discussion.labels
     self.reactions = discussion.reactions
     self.poll = discussion.poll
   }
@@ -170,18 +170,14 @@ final public class Discussion {
   }
 }
 
+extension GitBoardData.Discussion: DiscussionProtocol {
+
+}
+
 extension GitHubData.Discussion: DiscussionProtocol {
 
 }
 
 extension GitHubData.Category: CategoryProtocol {
-
-}
-
-extension GitBoardData.Category: CategoryProtocol {
-
-}
-
-extension GitBoardData.Discussion: DiscussionProtocol {
 
 }
