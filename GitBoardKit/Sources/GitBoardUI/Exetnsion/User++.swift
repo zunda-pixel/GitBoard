@@ -17,7 +17,7 @@ extension GitHubData.User: RawRepresentable {
   public var rawValue: String {
     let encoder = JSONEncoder.github
     let data = try! encoder.encode(self)
-    return String(data: data, encoding: .utf8)!
+    return String(decoding: data, as: UTF8.self)
   }
 }
 

@@ -23,7 +23,7 @@ let package = Package(
   ],
   dependencies: [
     .package(url: "https://github.com/zunda-pixel/GitHubKit", branch: "develop/add-user-api"),
-    .package(url: "https://github.com/lorenzofiamingo/swiftui-cached-async-image", .upToNextMajor(from: "2.1.1")),
+    .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "12.1.6")),
     .package(url: "https://github.com/zunda-pixel/ToastView", branch: "main"),
     .package(url: "https://github.com/apple/swift-algorithms", .upToNextMajor(from: "1.0.0")),
     .package(url: "https://github.com/apple/swift-format", .upToNextMajor(from: "508.0.1")),
@@ -38,7 +38,8 @@ let package = Package(
       dependencies: [
         .target(name: "GitBoardData"),
         .product(name: "ToastView", package: "ToastView"),
-        .product(name: "CachedAsyncImage", package: "swiftui-cached-async-image"),
+        .product(name: "Nuke", package: "Nuke"),
+        .product(name: "NukeUI", package: "Nuke"),
         .product(name: "Algorithms", package: "swift-algorithms"),
         .product(name: "Defaults", package: "Defaults"),
         .product(name: "MarkdownView", package: "MarkdownView"),

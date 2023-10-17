@@ -43,7 +43,7 @@ struct RepositoryCell: View {
       Text(repository.name)
         .bold()
 
-      if let description = repository.description {
+      if let description = repository._description {
         Text(description)
           .foregroundStyle(.secondary)
       }

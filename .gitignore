@@ -22,3 +22,4 @@ xcuserdata/
 
 DerivedData
 GitBoardKit/Sources/GitBoardData/Env/LocalSecureEnv.swift
+.DS_Store

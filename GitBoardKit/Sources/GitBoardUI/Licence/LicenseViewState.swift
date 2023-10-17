@@ -33,7 +33,7 @@ final class LicenseViewState {
     switch license.encoding {
     case .base64:
       let data = Data(base64Encoded: license.content, options: .ignoreUnknownCharacters)!
-      return String(data: data, encoding: .utf8)!
+      return String(decoding: data, as: UTF8.self)
     }
   }
 }

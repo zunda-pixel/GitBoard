@@ -1,13 +1,10 @@
 //
-//  File 2.swift
-//  
-//
-//  Created by zunda on 2023/09/13.
+//  InlineMarkupContentView.swift
 //
 
 import SwiftUI
 import MarkdownView
-import CachedAsyncImage
+import NukeUI
 
 struct InlineMarkupContentView: View {
   @Environment(\.font) var font
@@ -32,6 +29,34 @@ struct InlineMarkupContentView: View {
       return compressedMultiContents
     }
   }
+  
+  @MainActor
+  @ViewBuilder
+  func image(imageURL: URL, title: String) -> some View {
+    LazyImage(url: imageURL) { state in
+      switch state.result {
+      case .success(let result):
+          #if os(macOS)
+          Image(nsImage: result.image)
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: imageMaxWidth)
+          #else
+          Image(uiImage: result.image)
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: imageMaxWidth)
+          #endif
+      case .failure(_):
+        Text(title)
+      case .none:
+        ProgressView(value: state.progress.fraction, total: Float(state.progress.total)) {
+          Text(title)
+            .frame(maxWidth: .infinity)
+        }
+      }
+    }
+  }
 
   var body: some View {
     ForEach(contents.indexed(), id: \.index) { _, element in
@@ -45,24 +70,10 @@ struct InlineMarkupContentView: View {
           {
             if let link {
               Link(destination: link) {
-                CachedAsyncImage(url: imageURL) { image in
-                  image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: imageMaxWidth)
-                } placeholder: {
-                  Text(title)
-                }
+                image(imageURL: imageURL, title: title)
               }
             } else {
-              CachedAsyncImage(url: imageURL) { image in
-                image
-                  .resizable()
-                  .scaledToFit()
-                  .frame(maxWidth: imageMaxWidth)
-              } placeholder: {
-                Text(title)
-              }
+              image(imageURL: imageURL, title: title)
             }
           }
         case .inlineHTML(let html, let link):

@@ -243,7 +243,7 @@ extension GitHubData.Repository {
     owner: .apple,
     organization: nil,
     htmlURL: .applicationDirectory,
-    description: nil,
+    _description: nil,
     isFork: false,
     url: .applicationDirectory,
     forksURL: .applicationDirectory,

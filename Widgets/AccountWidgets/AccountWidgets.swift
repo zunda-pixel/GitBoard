@@ -5,6 +5,7 @@
 import SwiftUI
 import WidgetKit
 import GitHubData
+import Nuke
 
 struct AccountWidgets: Widget {  
   var body: some WidgetConfiguration {
@@ -33,22 +34,16 @@ struct AccountWidgets: Widget {
 #Preview(as: .systemSmall) {
   AccountWidgets()
 } timeline: {
-  AccountEntry(date: .now, user: .zunda, color: .cyan, icon: ImageData(data: .sampleIcon))
+  AccountEntry(date: .now, user: .zunda, color: .cyan, icon: PlatformImage(data: .sampleIcon))
 }
-
-#if os(macOS)
-typealias ImageData = NSImage
-#else
-typealias ImageData = UIImage
-#endif
 
 extension Image {
   #if os(macOS)
-  init(image: ImageData) {
+  init(image: PlatformImage) {
     self.init(nsImage: image)
   }
   #else
-  init(image: ImageData) {
+  init(image: PlatformImage) {
     self.init(uiImage: image)
   }
   #endif
