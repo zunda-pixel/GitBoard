@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-        "branch" : "develop/add-user-api",
-        "revision" : "4493969178cec2ea716dbdf79d699d096de07b48"
+        "branch" : "main",
+        "revision" : "57326e34a6d59c90f9cbc1602ed6c43f258e0045"
       }
     },
     {

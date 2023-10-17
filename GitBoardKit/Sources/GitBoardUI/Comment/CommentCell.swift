@@ -8,7 +8,7 @@ import MarkdownView
 
 struct CommentCell: View {
   @Environment(NavigationRouter.self) var router
-  let comment: Comment
+  let comment: Issue.Comment
   @State var isPresentedPopOver = false
 
   @MainActor

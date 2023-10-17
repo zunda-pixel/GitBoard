@@ -71,7 +71,7 @@ struct IssueDetailView<ViewState: IssueDetailViewState>: View {
     }
   }
 
-  func populateMore(id: Comment.ID) async {
+  func populateMore(id: Issue.Comment.ID) async {
     do {
       try await viewState.populateMoreComments(id: id)
     } catch {
