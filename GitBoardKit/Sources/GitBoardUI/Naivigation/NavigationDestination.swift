@@ -71,15 +71,29 @@ extension View {
           .navigationTitle("Release #\(release.id)")
           .navigationBarTitleDisplayMode()
       case .releaseDetailOnline(let repository, let releaseID):
-        ReleaseDetailOnlineView(repository: repository, releaseID: releaseID)
+        let viewState = RepositoryReleaseDetailOnlineViewState(
+          repository: repository,
+          releaseID: releaseID
+        )
+        ReleaseDetailOnlineView(viewState: viewState)
           .navigationTitle("Release #\(releaseID)")
           .navigationBarTitleDisplayMode()
       case .releaseDetailOnlineWithoutRepoisitoryAndRelease(let ownerID, let repositoryName, let releaseID):
-        ReleaseDetailOnlineView(ownerID: ownerID, repositoryName: repositoryName, releaseID: releaseID)
+        let viewState = RepositoryReleaseDetailOnlineViewState(
+          ownerID: ownerID,
+          repositoryName: repositoryName,
+          releaseID: releaseID
+        )
+        ReleaseDetailOnlineView(viewState: viewState)
           .navigationTitle("Release #\(releaseID)")
           .navigationBarTitleDisplayMode()
       case .releaseDetailOnlineWithoutRepository(let ownerID, let repositoryName, let release):
-        ReleaseDetailOnlineView(ownerID: ownerID, repositoryName: repositoryName, release: release)
+        let viewState = RepositoryReleaseDetailOnlineViewState(
+          ownerID: ownerID,
+          repositoryName: repositoryName,
+          release: release
+        )
+        ReleaseDetailOnlineView(viewState: viewState)
           .navigationTitle("Release #\(release.id)")
           .navigationBarTitleDisplayMode()
       case .license(let ownerID, let repositoryName):
