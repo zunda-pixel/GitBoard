@@ -15,6 +15,27 @@ struct IssueDetailOnlineView: View {
   @State var issue: Issue?
   @State var repository: Repository?
 
+  init(ownerID: String, repositoryName: String, issueNumber: Int) {
+    self.ownerID = ownerID
+    self.repositoryName = repositoryName
+    self.issueNumber = issueNumber
+  }
+  
+  init(ownerID: String, repositoryName: String, issue: Issue) {
+    self.ownerID = ownerID
+    self.repositoryName = repositoryName
+    self.issueNumber = issue.number
+    self.issue = issue
+  }
+  
+  init(repository: Repository, issue: Issue) {
+    self.ownerID = repository.owner!.userID
+    self.repositoryName = repository.name
+    self.issueNumber = issue.number
+    self.repository = repository
+    self.issue = issue
+  }
+  
   func populate() async {
     let ownerID = ownerID
     let repositoryName = repositoryName
