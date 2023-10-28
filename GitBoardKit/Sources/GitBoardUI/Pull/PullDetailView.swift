@@ -132,32 +132,38 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
   }
 
   var body: some View {
-    List {
-      VStack(alignment: .leading, spacing: 0) {
-        header
-          .padding(10)
-          .frame(maxWidth: .infinity, alignment: .leading)
-        Divider()
-      }
-      .listRow()
-
-      if let body = viewState.pull.body {
+    ScrollViewReader { reader in
+      List {
         VStack(alignment: .leading, spacing: 0) {
-          MarkdownView(source: body)
+          header
             .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
           Divider()
         }
         .listRow()
+        
+        if let body = viewState.pull.body {
+          VStack(alignment: .leading, spacing: 0) {
+            MarkdownView(source: body)
+              .padding(10)
+              .frame(maxWidth: .infinity, alignment: .leading)
+            Divider()
+          }
+          .listRow()
+        }
+        
+        comments
       }
-      
-      comments
+      .listStyle(.plain)
+      .refreshable {
+        await populate()
+        
+        if let scrollToCommentID = viewState.scrollToCommentID {
+          reader.scrollTo(scrollToCommentID)
+        }
+      }
     }
-    .listStyle(.plain)
     .task {
-      await populate()
-    }
-    .refreshable {
       await populate()
     }
   }
@@ -165,7 +171,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
 
 #Preview {
   NavigationStack {
-    let viewState = RepositoryPullDetailViewState(pull: .sample)
+    let viewState = RepositoryPullDetailViewState(pull: .sample, commentID: nil)
     PullDetailView(viewState: viewState)
   }
   .environment(ErrorHandle())

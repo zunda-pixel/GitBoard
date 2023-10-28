@@ -24,7 +24,7 @@
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
         "branch" : "main",
-        "revision" : "57326e34a6d59c90f9cbc1602ed6c43f258e0045"
+        "revision" : "d3da576b94f2678cb1f630da77a0779d73ad1576"
       }
     },
     {
@@ -96,7 +96,7 @@
       "location" : "https://github.com/zunda-pixel/swift-markdown",
       "state" : {
         "branch" : "main",
-        "revision" : "f8323166efad37c1234150a9af30f54a15220cd6"
+        "revision" : "e24de91f08241df8a08d5b674d16659fd930d888"
       }
     },
     {

@@ -42,7 +42,7 @@ struct PullsView<ViewState: PullsViewState>: View {
           await populateMore(id: pull.id)
         }
         .onTapGesture {
-          router.items.append(.pullDetail(pull: pull))
+          router.items.append(.pullDetail(pull: pull, commentID: nil))
         }
       }
     }

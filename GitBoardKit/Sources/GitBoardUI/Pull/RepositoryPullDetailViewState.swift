@@ -8,11 +8,14 @@ import SwiftUI
 @Observable
 final class RepositoryPullDetailViewState: PullDetailViewState {
   let pull: Pull
+  let scrollToCommentID: Issue.Comment.ID?
+
   var _comments: [Issue.Comment] = []
   var page: Int = 1
 
-  init(pull: Pull) {
+  init(pull: Pull, commentID: Issue.Comment.ID?) {
     self.pull = pull
+    self.scrollToCommentID = commentID
   }
 
   func populateComments() async throws {
