@@ -6,7 +6,7 @@ import SwiftData
 import SwiftUI
 
 extension View {
-  func navigationDestination(modelContext: ModelContext) -> some View {
+  func navigationDestination() -> some View {
     self.navigationDestination(for: NavigationRouter.Item.self) { item in
       switch item {
       case .searchUsers(let query):

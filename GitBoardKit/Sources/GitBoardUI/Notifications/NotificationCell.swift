@@ -4,9 +4,10 @@
 
 import GitHubAPI
 import SwiftUI
+import GitBoardData
 
 struct NotificationCell: View {
-  let notification: GitHubData.Notification
+  let notification: GitBoardData.Notification
 
   @ViewBuilder
   var stateImage: some View {
@@ -87,6 +88,6 @@ struct NotificationCell: View {
   }
 }
 
-#Preview{
-  NotificationCell(notification: .sample)
+#Preview {
+  NotificationCell(notification: GitBoardData.Notification(notification: .sample))
 }
