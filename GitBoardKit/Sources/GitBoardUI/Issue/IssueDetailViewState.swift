@@ -9,14 +9,14 @@ import GitHubData
 protocol IssueDetailViewState: Observable {
   var issue: GitHubData.Issue { get }
   var repository: GitHubData.Repository { get }
-  var comments: [GitHubData.Comment] { get }
-  var _comments: [GitHubData.Comment] { get }
+  var comments: [GitHubData.Issue.Comment] { get }
+  var _comments: [GitHubData.Issue.Comment] { get }
   func populateComments() async throws
-  func populateMoreComments(id: GitHubData.Comment.ID) async throws
+  func populateMoreComments(id: GitHubData.Issue.Comment.ID) async throws
 }
 
 extension IssueDetailViewState {
-  var comments: [GitHubData.Comment] {
+  var comments: [GitHubData.Issue.Comment] {
     _comments.lazy
       .uniqued(keyPath: \.id)
       .sorted(using: KeyPathComparator(\.createdAt, order: .forward))

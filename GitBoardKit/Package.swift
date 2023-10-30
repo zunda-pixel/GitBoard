@@ -22,7 +22,7 @@ let package = Package(
     ),
   ],
   dependencies: [
-    .package(url: "https://github.com/zunda-pixel/GitHubKit", branch: "develop/add-user-api"),
+    .package(url: "https://github.com/zunda-pixel/GitHubKit", branch: "main"),
     .package(url: "https://github.com/kean/Nuke", .upToNextMajor(from: "12.1.6")),
     .package(url: "https://github.com/zunda-pixel/ToastView", branch: "main"),
     .package(url: "https://github.com/apple/swift-algorithms", .upToNextMajor(from: "1.0.0")),

@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
-        "branch" : "develop/add-user-api",
-        "revision" : "4493969178cec2ea716dbdf79d699d096de07b48"
+        "branch" : "main",
+        "revision" : "3861a3fa3ce2764540a6857dc914cfb3ee931fc6"
       }
     },
     {
@@ -96,7 +96,7 @@
       "location" : "https://github.com/zunda-pixel/swift-markdown",
       "state" : {
         "branch" : "main",
-        "revision" : "f8323166efad37c1234150a9af30f54a15220cd6"
+        "revision" : "e24de91f08241df8a08d5b674d16659fd930d888"
       }
     },
     {

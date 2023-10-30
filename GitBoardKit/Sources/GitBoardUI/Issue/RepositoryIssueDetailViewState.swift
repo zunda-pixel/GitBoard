@@ -10,7 +10,7 @@ import GitHubAPI
 final class RepositoryIssueDetailViewState: IssueDetailViewState {
   let issue: GitHubData.Issue
   let repository: GitHubData.Repository
-  var _comments: [GitHubData.Comment] = []
+  var _comments: [GitHubData.Issue.Comment] = []
   var page = 1
   
   init(
@@ -31,7 +31,7 @@ final class RepositoryIssueDetailViewState: IssueDetailViewState {
     )
   }
   
-  func populateMoreComments(id: GitHubData.Comment.ID) async throws {
+  func populateMoreComments(id: GitHubData.Issue.Comment.ID) async throws {
     guard id == self.comments.last?.id else { return }
     self.page += 1
 

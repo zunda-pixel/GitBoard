@@ -31,8 +31,7 @@ struct HomeNavigationView: View {
 
   var body: some View {
     NavigationStack(path: $router.items) {
-      List {
-      }
+      EventsView()
       .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
       .listStyle(.plain)
       .navigationDestination(modelContext: modelContext)

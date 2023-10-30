@@ -41,12 +41,14 @@ extension View {
         IssueDetailView(viewState: viewState)
           .navigationTitle("Issue #\(issue.number)")
           .navigationBarTitleDisplayMode()
-      case .issueDetailOnline(let ownerID, let repositoryName, let issueNumber):
-        IssueDetailOnlineView(
-          ownerID: ownerID,
-          repositoryName: repositoryName,
-          issueNumber: issueNumber
-        )
+      case .issueDetailOnline(let ownerID, let repositoryName, let issue):
+        let viewState = RepositoryIssueDetailOnlineViewState(ownerID: ownerID, repositoryName: repositoryName, issue: issue)
+        IssueDetailOnlineView(viewState: viewState)
+        .navigationTitle("Issue #\(issue.number)")
+        .navigationBarTitleDisplayMode()
+      case .issueDetailOnlineWithoutIssue(let ownerID, let repositoryName, let issueNumber):
+        let viewState = RepositoryIssueDetailOnlineViewState(ownerID: ownerID, repositoryName: repositoryName, issueNumber: issueNumber)
+        IssueDetailOnlineView(viewState: viewState)
         .navigationTitle("Issue #\(issueNumber)")
         .navigationBarTitleDisplayMode()
       case .repositoryPulls(let ownerID, let repositoryName):
@@ -69,8 +71,30 @@ extension View {
           .navigationTitle("Release #\(release.id)")
           .navigationBarTitleDisplayMode()
       case .releaseDetailOnline(let repository, let releaseID):
-        ReleaseDetailOnlineView(repository: repository, releaseID: releaseID)
+        let viewState = RepositoryReleaseDetailOnlineViewState(
+          repository: repository,
+          releaseID: releaseID
+        )
+        ReleaseDetailOnlineView(viewState: viewState)
           .navigationTitle("Release #\(releaseID)")
+          .navigationBarTitleDisplayMode()
+      case .releaseDetailOnlineWithoutRepoisitoryAndRelease(let ownerID, let repositoryName, let releaseID):
+        let viewState = RepositoryReleaseDetailOnlineViewState(
+          ownerID: ownerID,
+          repositoryName: repositoryName,
+          releaseID: releaseID
+        )
+        ReleaseDetailOnlineView(viewState: viewState)
+          .navigationTitle("Release #\(releaseID)")
+          .navigationBarTitleDisplayMode()
+      case .releaseDetailOnlineWithoutRepository(let ownerID, let repositoryName, let release):
+        let viewState = RepositoryReleaseDetailOnlineViewState(
+          ownerID: ownerID,
+          repositoryName: repositoryName,
+          release: release
+        )
+        ReleaseDetailOnlineView(viewState: viewState)
+          .navigationTitle("Release #\(release.id)")
           .navigationBarTitleDisplayMode()
       case .license(let ownerID, let repositoryName):
         let viewState = LicenseViewState(ownerID: ownerID, repositoryName: repositoryName)
@@ -87,8 +111,8 @@ extension View {
         UsersView(viewState: viewState)
           .navigationTitle("Following")
           .navigationBarTitleDisplayMode()
-      case .pullDetail(let pull):
-        let viewState = RepositoryPullDetailViewState(pull: pull)
+      case .pullDetail(let pull, let commentID):
+        let viewState = RepositoryPullDetailViewState(pull: pull, commentID: commentID)
         PullDetailView(viewState: viewState)
           .navigationTitle("Pull #\(pull.number)")
           .navigationBarTitleDisplayMode()

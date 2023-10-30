@@ -27,7 +27,7 @@ struct PullDetailOnlineView: View {
   }
 
   var body: some View {
-    let viewState = RepositoryPullDetailViewState(pull: pull ?? .sample)
+    let viewState = RepositoryPullDetailViewState(pull: pull ?? .sample, commentID: nil)
     PullDetailView(viewState: viewState)
       .id(self.pull) // idをtaskの後につけると2重でtaskが発生してしまうので、Topで設定している
       .redacted(reason: pull == nil ? .placeholder : [])

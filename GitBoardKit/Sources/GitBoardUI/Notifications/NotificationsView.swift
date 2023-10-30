@@ -43,7 +43,7 @@ struct NotificationsView: View {
           guard let number = Int(stringNumber) else { return }
           switch notification.subject.type {
           case .issue:
-            item = .issueDetailOnline(
+            item = .issueDetailOnlineWithoutIssue(
               ownerID: notification.repository.owner!.userID,
               repositoryName: notification.repository.name,
               issueNumber: number

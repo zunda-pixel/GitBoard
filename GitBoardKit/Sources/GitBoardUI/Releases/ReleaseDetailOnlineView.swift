@@ -5,41 +5,28 @@
 import GitHubAPI
 import SwiftUI
 
-struct ReleaseDetailOnlineView: View {
+struct ReleaseDetailOnlineView<ViewState: ReleaseDetailOnlineViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
-
-  let repository: Repository
-  let releaseID: Int
-
-  @State var release: Release? = nil
-
-  func populate() async {
-    do {
-      self.release = try await GitHubAPI().release(
-        ownerID: repository.owner!.userID,
-        repositoryName: repository.name,
-        releaseID: releaseID
-      )
-    } catch {
-      errorHandle.error = .init(error: error)
-    }
-  }
+  @State var viewState: ViewState
 
   var body: some View {
-    ReleaseDetailView(repository: repository, release: release ?? .sample)
-      .redacted(reason: release == nil ? .placeholder : [])
+    ReleaseDetailView(repository: viewState.repository ?? .sample, release: viewState.release ?? .sample)
+      .redacted(reason: viewState.repository == nil || viewState.release == nil ? .placeholder : [])
       .task {
-        await populate()
+        do {
+          try await viewState.populate()
+        } catch let newError {
+          errorHandle.error = .init(error: newError)
+        }
       }
   }
 }
 
 #Preview{
   NavigationStack {
-    ReleaseDetailOnlineView(
-      repository: .nodejs,
-      releaseID: 117697944
-    )
+    let viewState = RepositoryReleaseDetailOnlineViewState(ownerID: "nodejs", repositoryName: "node", releaseID: 117697944)
+    
+    ReleaseDetailOnlineView(viewState: viewState)
   }
   .environment(ErrorHandle())
   .environment(NavigationRouter())

@@ -15,7 +15,7 @@ extension Asset {
       name: "name",
       url: URL(string: "https://github.com")!,
       browserDownloadURL: URL(string: "https://github.com")!,
-      contentType: .zip,
+      contentType: "zip",
       size: 1231,
       downloadCount: 32,
       createdAt: .now,
@@ -427,7 +427,7 @@ extension PerformGitHubApp {
       htmlURL: URL(string: "https://github.com")!,
       createdAt: .now,
       updatedAt: .now,
-      permissions: .init(admin: true, maintain: false, push: true, triage: true, pull: true),
+      permissions: .init(admin: true, maintain: false, push: true, triage: true, pull: true, issues: "write", metadata: "read"),
       installationsCount: 312,
       clientID: "clientID",
       clientSecret: "clientSecret",
@@ -517,9 +517,9 @@ extension Pull {
   }
 }
 
-extension Comment {
-  static var sample: Comment {
-    Comment(
+extension Issue.Comment {
+  static var sample: Issue.Comment {
+    Issue.Comment(
       id: Int.random(in: Int.min...Int.max),
       nodeID: "nodeID",
       url: URL(string: "https://github.com")!,

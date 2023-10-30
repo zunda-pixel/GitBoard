@@ -29,12 +29,15 @@ extension NavigationRouter {
     // Issues
     case issue(ownerID: String, repository: GitHubData.Repository)
     case issueDetail(issue: GitHubData.Issue, repository: GitHubData.Repository)
-    case issueDetailOnline(ownerID: String, repositoryName: String, issueNumber: Int)
+    case issueDetailOnline(ownerID: String, repositoryName: String, issue: Issue)
+    case issueDetailOnlineWithoutIssue(ownerID: String, repositoryName: String, issueNumber: Int)
 
     // Release
     case releases(repository: GitHubData.Repository)
     case releaseDetail(repository: GitHubData.Repository, release: GitHubData.Release)
     case releaseDetailOnline(repository: GitHubData.Repository, releaseID: Int)
+    case releaseDetailOnlineWithoutRepository(ownerID: String, repositoryName: String, release: GitHubData.Release)
+    case releaseDetailOnlineWithoutRepoisitoryAndRelease(ownerID: String, repositoryName: String, releaseID: Int)
 
     // Follow
     case following(userID: String)
@@ -42,7 +45,7 @@ extension NavigationRouter {
 
     // Pull
     case repositoryPulls(ownerID: String, repositoryName: String)
-    case pullDetail(pull: Pull)
+    case pullDetail(pull: Pull, commentID: Pull.Comment.ID?)
     case pullDetailOnline(ownerID: String, repositoryName: String, pullNumber: Int)
 
     // Discussion
