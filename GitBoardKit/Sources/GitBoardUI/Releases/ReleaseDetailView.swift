@@ -20,9 +20,11 @@ struct ReleaseDetailView: View {
         imageSize: 30
       )
 
-      Text(release.name)
-        .font(.title)
-        .bold()
+      if let name = release.name {
+        Text(name)
+          .font(.title)
+          .bold()
+      }
 
       if release.prerelease {
         Text("Pre-release")

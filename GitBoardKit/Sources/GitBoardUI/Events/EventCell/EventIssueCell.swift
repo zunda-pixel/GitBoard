@@ -8,7 +8,7 @@ import GitHubData
 struct EventIssueCell: View {
   @Environment(NavigationRouter.self) var router
 
-  let action: String
+  let action: RepositoryAction
   let issue: Issue
   
   var ownerID: String { issue.url.pathComponents[1] }

@@ -8,7 +8,7 @@ import GitHubData
 struct EventReleaseCell: View {
   @Environment(NavigationRouter.self) var router
 
-  let action: String
+  let action: ReleaseAction
   let release: Release
 
   var ownerID: String { release.htmlURL.pathComponents[1] }
@@ -17,7 +17,11 @@ struct EventReleaseCell: View {
   var body: some View {
     Label {
       VStack(alignment: .leading) {
-        Text("Release \(action) \(release.name)")
+        if let name = release.name {
+          Text("Release \(action.rawValue) \(name)")
+        } else {
+          Text("Release \(action.rawValue)")
+        }
 
         Text("\(ownerID) / \(repositoryName)")
           .foregroundStyle(.secondary)

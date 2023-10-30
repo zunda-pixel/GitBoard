@@ -8,7 +8,7 @@ import GitHubData
 struct EventIssueCommentCell: View {
   @Environment(NavigationRouter.self) var router
   
-  let action: String
+  let action: CommentAction
   let issue: Issue
   let comment: Issue.Comment
   

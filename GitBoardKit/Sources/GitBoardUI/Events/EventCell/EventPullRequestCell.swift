@@ -8,7 +8,7 @@ import GitHubData
 struct EventPullRequestCell: View {
   @Environment(NavigationRouter.self) var router
 
-  let action: String
+  let action: RepositoryAction
   let number: Int
   let pullRequest: Pull
   
@@ -27,7 +27,7 @@ struct EventPullRequestCell: View {
       }
     } icon: {
       Image(systemName: "arrow.triangle.merge")
-        .foregroundStyle(action == "opened" ? .green : .purple)
+        .foregroundStyle(action == .opened ? .green : .purple)
     }
     .onTapGesture {
       router.items.append(.pullDetail(pull: pullRequest, commentID: nil))

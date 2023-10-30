@@ -8,7 +8,7 @@ import GitHubData
 struct EventPullRequestReviewCell: View {
   @Environment(NavigationRouter.self) var router
   
-  let action: String
+  let action: CommentAction
   let review: Pull.Review
   let pull: Pull
   
@@ -21,7 +21,7 @@ struct EventPullRequestReviewCell: View {
       }
     } icon: {
       Image(systemName: "checkmark")
-        .foregroundStyle(action == "opened" ? .green : .purple)
+        .foregroundStyle(action == .created ? .green : .purple)
     }
     .onTapGesture {
       router.items.append(.pullDetail(pull: pull, commentID: nil))

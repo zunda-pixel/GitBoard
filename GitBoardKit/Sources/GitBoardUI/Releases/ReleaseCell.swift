@@ -10,9 +10,11 @@ struct ReleaseCell: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
-      Text(release.name)
-        .font(.title2)
-        .bold()
+      if let name = release.name {
+        Text(name)
+          .font(.title2)
+          .bold()
+      }
 
       reactions(reaction: release.reactions)
 
