@@ -34,7 +34,7 @@ final public class User: Hashable, Identifiable {
   public var twoFactorAuthentication: Bool?
   public var plan: Plan?
 
-  public static func from(user: GitHubData.User) -> User {
+  public convenience init(user: GitHubData.User) {
     self.init(
       githubID: user.id,
       userID: user.userID,

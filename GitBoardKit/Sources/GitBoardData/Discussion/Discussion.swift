@@ -164,10 +164,6 @@ final public class Discussion {
     self.reactions = discussion.reactions
     self.poll = discussion.poll
   }
-
-  public static func discussion(discussion: GitHubData.Discussion, repositoryID: Repository.ID) -> Self {
-    self.init(discussion: discussion, repositoryID: repositoryID)
-  }
 }
 
 extension GitBoardData.Discussion: DiscussionProtocol {

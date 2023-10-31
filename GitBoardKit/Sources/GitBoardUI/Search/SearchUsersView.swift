@@ -47,7 +47,7 @@ struct SearchUsersView: View {
       if let foundUser = try modelContext.fetch(descriptor).first {
         foundUser.update(user: user)
       } else {
-        let newUser = GitBoardData.User.from(user: user)
+        let newUser = GitBoardData.User(user: user)
         modelContext.insert(newUser)
       }
     }
