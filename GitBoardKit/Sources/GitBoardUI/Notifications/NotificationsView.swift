@@ -90,7 +90,7 @@ struct NotificationsView: View {
           case .release:
             item = .releaseDetailOnline(
               repository: notification.repository,
-              releaseID: number
+              releaseID: .init(number)
             )
           case .discussion:
             item = .discussionDetailOnline(

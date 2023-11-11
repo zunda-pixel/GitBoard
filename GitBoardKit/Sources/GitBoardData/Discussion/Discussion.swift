@@ -126,7 +126,7 @@ final public class Discussion {
   }
 
   public init(discussion: GitHubData.Discussion, repositoryID: Repository.ID) {
-    self.discussionID = discussion.id
+    self.discussionID = discussion.id.rawValue
     self.number = discussion.number
     self.repositoryID = repositoryID
     self.url = discussion.url

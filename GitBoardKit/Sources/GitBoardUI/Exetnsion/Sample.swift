@@ -8,7 +8,7 @@ import GitHubAPI
 extension Asset {
   static var sample: Asset {
     Asset(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       label: "label",
       state: .open,
@@ -28,7 +28,7 @@ extension Asset {
 extension Release {
   static var sample: Release {
     Release(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       name: "name",
       url: URL(string: "https://github.com")!,
@@ -61,7 +61,7 @@ extension Release {
 extension User {
   static var sample: User {
     User(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       userID: "apple",
       userName: "apple",
       nodeID: "fadsfakjlk",
@@ -355,7 +355,7 @@ extension SecurityAnalytics {
 extension Issue {
   static var sample: Issue {
     Issue(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       number: 312,
       title: "[cxx-interop] div is not found on linux.",
       body: "Title",
@@ -417,7 +417,7 @@ extension Issue {
 extension PerformGitHubApp {
   static var sample: PerformGitHubApp {
     PerformGitHubApp(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       slug: "slug",
       nodeID: "nodeID",
       owner: .apple,
@@ -455,7 +455,7 @@ extension Reaction {
 extension Label {
   static var sample: Label {
     Label(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       url: URL(string: "https://github.com")!,
       name: "name",
@@ -469,7 +469,7 @@ extension Label {
 extension Pull {
   static var sample: Pull {
     Pull(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       number: 132,
       state: .open,
@@ -520,7 +520,7 @@ extension Pull {
 extension Issue.Comment {
   static var sample: Issue.Comment {
     Issue.Comment(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       url: URL(string: "https://github.com")!,
       body: "Type inference fails chaining call on the return value of @resultBuilder",
@@ -560,7 +560,7 @@ extension Branch {
 extension ParentTeam {
   static var sample: ParentTeam {
     ParentTeam(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       membersURL: URL(string: "https://github.com")!,
       name: "TeamName",
@@ -579,7 +579,7 @@ extension ParentTeam {
 extension Team {
   static var sample: Team {
     Team(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       name: "TeamName",
       slug: "slug",
@@ -609,7 +609,7 @@ extension SimplePull {
 extension Milestone {
   static var sample: Milestone {
     Milestone(
-      id: Int.random(in: Int.min...Int.max),
+      id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       state: .closed,
       number: 42,
@@ -665,7 +665,7 @@ extension Discussion.Comment {
 
 extension Discussion {
   static var sample = Discussion(
-    id: UUID().uuidString,
+    id: .init(UUID().uuidString),
     number: Int.random(in: Int.min...Int.max),
     url: URL(string: "https://githubc.com")!,
     author: .sample,

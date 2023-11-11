@@ -10,7 +10,7 @@ import Observation
 protocol PullDetailViewState: Observable {
   var pull: Pull { get }
   var comments: [Issue.Comment] { get }
-  var scrollToCommentID: Issue.Comment.ID? { get }
+  var scrollToCommentID: Pull.Comment.ID? { get }
   var _comments: [Issue.Comment] { get }
   func populateComments() async throws
   func populateMoreComments(id: Issue.Comment.ID) async throws

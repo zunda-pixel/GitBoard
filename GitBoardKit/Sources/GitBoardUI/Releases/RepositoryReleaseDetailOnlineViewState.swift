@@ -10,12 +10,12 @@ import GitHubAPI
 final class RepositoryReleaseDetailOnlineViewState: ReleaseDetailOnlineViewState, Sendable {
   let ownerID: String
   let repositoryName: String
-  let releaseID: Int
+  let releaseID: Release.ID
 
   var repository: Repository?
   var release: Release?
   
-  init(ownerID: String, repositoryName: String, releaseID: Int) {
+  init(ownerID: String, repositoryName: String, releaseID: Release.ID) {
     self.ownerID = ownerID
     self.repositoryName = repositoryName
     self.releaseID = releaseID
@@ -36,7 +36,7 @@ final class RepositoryReleaseDetailOnlineViewState: ReleaseDetailOnlineViewState
     self.release = release
   }
   
-  init(repository: Repository, releaseID: Int) {
+  init(repository: Repository, releaseID: Release.ID) {
     self.ownerID = repository.owner!.userID
     self.repositoryName = repository.name
     self.releaseID = releaseID
@@ -58,7 +58,7 @@ final class RepositoryReleaseDetailOnlineViewState: ReleaseDetailOnlineViewState
     return try await GitHubAPI().release(
       ownerID: ownerID,
       repositoryName: repositoryName,
-      releaseID: releaseID
+      releaseID: releaseID.rawValue
     )
   }
   

@@ -38,7 +38,7 @@ struct SearchUsersView: View {
 
     for user in response.users {
       let predicate: Predicate<GitBoardData.User> = #Predicate{
-        $0.githubID == user.id
+        $0.githubID == user.id.rawValue
       }
 
       var descriptor: FetchDescriptor<GitBoardData.User> = .init(predicate: predicate)

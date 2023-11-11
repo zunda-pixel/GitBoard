@@ -37,7 +37,7 @@ final public class Notification {
   
   public convenience init(notification: GitHubData.Notification) {
     self.init(
-      id: notification.id,
+      id: notification.id.rawValue,
       repository: notification.repository,
       subject: notification.subject,
       reason: notification.reason,

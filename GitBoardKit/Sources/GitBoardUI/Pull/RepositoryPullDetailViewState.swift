@@ -8,12 +8,12 @@ import SwiftUI
 @Observable
 final class RepositoryPullDetailViewState: PullDetailViewState {
   let pull: Pull
-  let scrollToCommentID: Issue.Comment.ID?
+  let scrollToCommentID: Pull.Comment.ID?
 
   var _comments: [Issue.Comment] = []
   var page: Int = 1
 
-  init(pull: Pull, commentID: Issue.Comment.ID?) {
+  init(pull: Pull, commentID: Pull.Comment.ID?) {
     self.pull = pull
     self.scrollToCommentID = commentID
   }

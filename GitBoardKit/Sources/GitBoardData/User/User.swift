@@ -36,7 +36,7 @@ final public class User: Hashable, Identifiable {
 
   public convenience init(user: GitHubData.User) {
     self.init(
-      githubID: user.id,
+      githubID: user.id.rawValue,
       userID: user.userID,
       userName: user.userName,
       avatarURL: user.avatarURL,

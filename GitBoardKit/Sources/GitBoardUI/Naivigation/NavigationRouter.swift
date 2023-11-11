@@ -35,9 +35,9 @@ extension NavigationRouter {
     // Release
     case releases(repository: GitHubData.Repository)
     case releaseDetail(repository: GitHubData.Repository, release: GitHubData.Release)
-    case releaseDetailOnline(repository: GitHubData.Repository, releaseID: Int)
+    case releaseDetailOnline(repository: GitHubData.Repository, releaseID: Release.ID)
     case releaseDetailOnlineWithoutRepository(ownerID: String, repositoryName: String, release: GitHubData.Release)
-    case releaseDetailOnlineWithoutRepoisitoryAndRelease(ownerID: String, repositoryName: String, releaseID: Int)
+    case releaseDetailOnlineWithoutRepoisitoryAndRelease(ownerID: String, repositoryName: String, releaseID: Release.ID)
 
     // Follow
     case following(userID: String)
