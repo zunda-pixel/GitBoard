@@ -466,9 +466,9 @@ extension Label {
   }
 }
 
-extension Pull {
-  static var sample: Pull {
-    Pull(
+extension PullRequest {
+  static var sample: PullRequest {
+    PullRequest(
       id: .init(Int.random(in: Int.min...Int.max)),
       nodeID: "nodeID",
       number: 132,
@@ -596,8 +596,8 @@ extension Team {
   }
 }
 
-extension SimplePull {
-  static let sample = SimplePull(
+extension SimplePullRequest {
+  static let sample = SimplePullRequest(
     url: URL(string: "https://github.com")!,
     htmlURL: URL(string: "https://github.com")!,
     diffURL: URL(string: "https://github.com")!,

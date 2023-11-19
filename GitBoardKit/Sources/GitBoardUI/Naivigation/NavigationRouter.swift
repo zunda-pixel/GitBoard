@@ -44,9 +44,9 @@ extension NavigationRouter {
     case followers(userID: String)
 
     // Pull
-    case repositoryPulls(ownerID: String, repositoryName: String)
-    case pullDetail(pull: Pull, commentID: Pull.Comment.ID?)
-    case pullDetailOnline(ownerID: String, repositoryName: String, pullNumber: Int)
+    case repositoryPullRequests(ownerID: String, repositoryName: String)
+    case pullRequestDetail(pullRequest: PullRequest, commentID: PullRequest.Comment.ID?)
+    case pullRequestDetailOnline(ownerID: String, repositoryName: String, pullNumber: Int)
 
     // Discussion
     case discussions(repository: GitHubData.Repository)

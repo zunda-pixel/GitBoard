@@ -51,9 +51,9 @@ extension View {
         IssueDetailOnlineView(viewState: viewState)
         .navigationTitle("Issue #\(issueNumber)")
         .navigationBarTitleDisplayMode()
-      case .repositoryPulls(let ownerID, let repositoryName):
-        let viewState = RepositoryPullsViewState(ownerID: ownerID, repositoryName: repositoryName)
-        PullsView(viewState: viewState)
+      case .repositoryPullRequests(let ownerID, let repositoryName):
+        let viewState = RepositoryPullRequestsViewState(ownerID: ownerID, repositoryName: repositoryName)
+        PullRequestsView(viewState: viewState)
           .navigationTitle("Pull Requests")
           .navigationBarTitleDisplayMode()
       case .contributors(let ownerID, let repositoryName):
@@ -111,13 +111,13 @@ extension View {
         UsersView(viewState: viewState)
           .navigationTitle("Following")
           .navigationBarTitleDisplayMode()
-      case .pullDetail(let pull, let commentID):
-        let viewState = RepositoryPullDetailViewState(pull: pull, commentID: commentID)
-        PullDetailView(viewState: viewState)
-          .navigationTitle("Pull #\(pull.number)")
+      case .pullRequestDetail(let pullRequest, let commentID):
+        let viewState = RepositoryPullRequestDetailViewState(pullRequest: pullRequest, commentID: commentID)
+        PullRequestDetailView(viewState: viewState)
+          .navigationTitle("Pull #\(pullRequest.number)")
           .navigationBarTitleDisplayMode()
-      case .pullDetailOnline(let ownerID, let repositoryName, let pullNumber):
-        PullDetailOnlineView(
+      case .pullRequestDetailOnline(let ownerID, let repositoryName, let pullNumber):
+        PullRequestDetailOnlineView(
           ownerID: ownerID,
           repositoryName: repositoryName,
           pullNumber: pullNumber

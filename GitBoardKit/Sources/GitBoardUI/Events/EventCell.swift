@@ -39,17 +39,17 @@ struct EventCell: View {
       fatalError()
     case .gollum(_):
       fatalError()
-    case .pullRequestReview(let action, let review, let pull):
+    case .pullRequestReview(let action, let review, let pullRequest):
       EventPullRequestReviewCell(
         action: action,
         review: review,
-        pull: pull
+        pullRequest: pullRequest
       )
-    case .pullRequestReviewComment(let action, let comment, let pull):
+    case .pullRequestReviewComment(let action, let comment, let pullRequest):
       EventPullRequestReviewCommentCell(
         action: action,
         comment: comment,
-        pull: pull
+        pullRequest: pullRequest
       )
     case .release(let action, let release):
       EventReleaseCell(

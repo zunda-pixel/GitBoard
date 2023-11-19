@@ -1,12 +1,12 @@
 //
-//  PullDetailView.swift
+//  PullRequestDetailView.swift
 //
 
 import Algorithms
 import GitHubAPI
 import SwiftUI
 
-struct PullDetailView<ViewState: PullDetailViewState>: View {
+struct PullRequestDetailView<ViewState: PullRequestDetailViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
 
@@ -14,26 +14,26 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
 
   var repository: some View {
     HStack(alignment: .center, spacing: 10) {
-      let repository = viewState.pull.base.repository!
+      let repository = viewState.pullRequest.base.repository!
       IconRepositoryUserName(
         owner: repository.owner!,
         repository: repository,
         imageSize: 40
       )
 
-      Text("#\(viewState.pull.number)")
+      Text("#\(viewState.pullRequest.number)")
         .foregroundStyle(.secondary)
     }
   }
 
   @ViewBuilder
   var pullState: some View {
-    switch viewState.pull.state {
+    switch viewState.pullRequest.state {
     case .open:
       Label("Open", systemImage: "arrow.triangle.swap")
         .labelView(color: .green)
     case .closed:
-      if viewState.pull.mergedAt != nil {
+      if viewState.pullRequest.mergedAt != nil {
         Label("Merged", systemImage: "arrow.triangle.merge")
           .labelView(color: .purple)
       } else {
@@ -46,15 +46,15 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
   @MainActor
   @ViewBuilder
   var merge: some View {
-    if let head = viewState.pull.head.label,
-      let base = viewState.pull.base.label
+    if let head = viewState.pullRequest.head.label,
+      let base = viewState.pullRequest.base.label
     {
       HStack(alignment: .center, spacing: 0) {
         Text(head)
           .labelView(color: .blue)
           .contentShape(.rect)
           .onTapGesture {
-            router.items.append(.repositoryDetail(repository: viewState.pull.head.repository!))
+            router.items.append(.repositoryDetail(repository: viewState.pullRequest.head.repository!))
           }
 
         Image(systemName: "arrow.right")
@@ -64,7 +64,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
           .labelView(color: .blue)
           .contentShape(.rect)
           .onTapGesture {
-            router.items.append(.repositoryDetail(repository: viewState.pull.base.repository!))
+            router.items.append(.repositoryDetail(repository: viewState.pullRequest.base.repository!))
           }
       }
     }
@@ -76,7 +76,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       repository
         .font(.caption)
 
-      MarkdownView(source: viewState.pull.title)   
+      MarkdownView(source: viewState.pullRequest.title)
         .fixedSize(horizontal: false, vertical: true)
         .bold()
 
@@ -90,7 +90,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
       .font(.caption)
 
       FlowLayout(alignment: .center, spacing: 10) {
-        ForEach(viewState.pull.labels) { label in
+        ForEach(viewState.pullRequest.labels) { label in
           LabelCell(label: label)
         }
       }
@@ -142,7 +142,7 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
         }
         .listRow()
         
-        if let body = viewState.pull.body {
+        if let body = viewState.pullRequest.body {
           VStack(alignment: .leading, spacing: 0) {
             MarkdownView(source: body)
               .padding(10)
@@ -171,8 +171,8 @@ struct PullDetailView<ViewState: PullDetailViewState>: View {
 
 #Preview {
   NavigationStack {
-    let viewState = RepositoryPullDetailViewState(pull: .sample, commentID: nil)
-    PullDetailView(viewState: viewState)
+    let viewState = RepositoryPullRequestDetailViewState(pullRequest: .sample, commentID: nil)
+    PullRequestDetailView(viewState: viewState)
   }
   .environment(ErrorHandle())
   .environment(NavigationRouter())

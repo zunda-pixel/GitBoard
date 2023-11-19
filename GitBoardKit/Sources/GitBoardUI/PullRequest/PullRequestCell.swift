@@ -5,17 +5,17 @@
 import GitHubAPI
 import SwiftUI
 
-struct PullCell: View {
-  let pull: Pull
+struct PullRequestCell: View {
+  let pullRequest: PullRequest
 
   @ViewBuilder
   var stateView: some View {
-    switch pull.state {
+    switch pullRequest.state {
     case .open:
       Image(systemName: "arrow.triangle.swap")
         .foregroundStyle(.green)
     case .closed:
-      if pull.mergedAt != nil {
+      if pullRequest.mergedAt != nil {
         Image(systemName: "arrow.triangle.merge")
           .foregroundStyle(.purple)
       } else {
@@ -26,14 +26,14 @@ struct PullCell: View {
   }
 
   var label: LocalizedStringKey {
-    switch pull.state {
+    switch pullRequest.state {
     case .open:
-      "#\(pull.number) opened \(pull.createdAt, format: .relative(presentation: .named)) by \(pull.user.userID)"
+      "#\(pullRequest.number) opened \(pullRequest.createdAt, format: .relative(presentation: .named)) by \(pullRequest.user.userID)"
     case .closed:
-      if let mergedAt = pull.mergedAt {
-        "#\(pull.number) by \(pull.user.userID) was merged \(mergedAt, format: .relative(presentation: .named))"
-      } else if let closedAt = pull.closedAt {
-        "#\(pull.number) by \(pull.user.userID) was closed \(closedAt, format: .relative(presentation: .named))"
+      if let mergedAt = pullRequest.mergedAt {
+        "#\(pullRequest.number) by \(pullRequest.user.userID) was merged \(mergedAt, format: .relative(presentation: .named))"
+      } else if let closedAt = pullRequest.closedAt {
+        "#\(pullRequest.number) by \(pullRequest.user.userID) was closed \(closedAt, format: .relative(presentation: .named))"
       } else {
         fatalError()
       }
@@ -43,10 +43,10 @@ struct PullCell: View {
   var body: some View {
     Label {
       VStack(alignment: .leading, spacing: 5) {
-        Text(pull.title)
+        Text(pullRequest.title)
           .bold()
         FlowLayout(alignment: .center, spacing: 10) {
-          ForEach(pull.labels) { label in
+          ForEach(pullRequest.labels) { label in
             LabelCell(label: label)
           }
         }
@@ -63,5 +63,5 @@ struct PullCell: View {
 }
 
 #Preview{
-  PullCell(pull: .sample)
+  PullRequestCell(pullRequest: .sample)
 }

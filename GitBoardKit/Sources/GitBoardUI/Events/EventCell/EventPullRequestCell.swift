@@ -10,7 +10,7 @@ struct EventPullRequestCell: View {
 
   let action: RepositoryAction
   let number: Int
-  let pullRequest: Pull
+  let pullRequest: PullRequest
   
   var body: some View {
     Label {
@@ -30,7 +30,7 @@ struct EventPullRequestCell: View {
         .foregroundStyle(action == .opened ? .green : .purple)
     }
     .onTapGesture {
-      router.items.append(.pullDetail(pull: pullRequest, commentID: nil))
+      router.items.append(.pullRequestDetail(pullRequest: pullRequest, commentID: nil))
     }
   }
 }

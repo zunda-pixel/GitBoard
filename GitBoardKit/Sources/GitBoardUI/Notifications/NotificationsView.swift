@@ -82,7 +82,7 @@ struct NotificationsView: View {
               issueNumber: number
             )
           case .pullRequest:
-            item = .pullDetailOnline(
+            item = .pullRequestDetailOnline(
               ownerID: notification.repository.owner!.userID,
               repositoryName: notification.repository.name,
               pullNumber: number

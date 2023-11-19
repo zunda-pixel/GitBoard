@@ -1,15 +1,15 @@
 //
-//  RepositoryPullsViewState.swift
+//  RepositoryPullRequestsViewState.swift
 //
 
 import GitHubAPI
 import SwiftUI
 
 @Observable
-final class RepositoryPullsViewState: PullsViewState {
+final class RepositoryPullRequestsViewState: PullRequestsViewState {
   let ownerID: String
   let repositoryName: String
-  var _pulls: [GitHubData.Pull] = []
+  var _pullRequests: [GitHubData.PullRequest] = []
   var page: Int = 1
 
   init(
@@ -23,7 +23,7 @@ final class RepositoryPullsViewState: PullsViewState {
   func populatePulls() async throws {
     page = 1
 
-    let newPulls = try await GitHubAPI().pulls(
+    let newPullRequests = try await GitHubAPI().pullRequests(
       ownerID: ownerID,
       repositoryName: repositoryName,
       state: .all,
@@ -35,25 +35,25 @@ final class RepositoryPullsViewState: PullsViewState {
       page: page
     )
 
-    _pulls = newPulls
+    _pullRequests = newPullRequests
   }
 
-  func populateMorePulls(id: Pull.ID) async throws {
-    guard id == pulls.last?.id else { return }
+  func populateMorePulls(id: PullRequest.ID) async throws {
+    guard id == pullRequests.last?.id else { return }
     page += 1
-
-    let newPulls = try await GitHubAPI().pulls(
+    
+    let newPullRequests = try await GitHubAPI().pullRequests(
       ownerID: ownerID,
       repositoryName: repositoryName,
       state: .all,
       head: nil,
-      branchName: nil,
+      branchName:  nil,
       sort: .created,
       direction: .desc,
       perPage: 30,
       page: page
     )
 
-    _pulls.append(contentsOf: newPulls)
+    _pullRequests.append(contentsOf: newPullRequests)
   }
 }
