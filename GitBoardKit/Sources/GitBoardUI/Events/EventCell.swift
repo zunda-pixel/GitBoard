@@ -12,7 +12,7 @@ struct EventCell: View {
     switch event.payload {
     case .push(_, _, _, _, _,_, _, _):
       fatalError()
-    case .pullRequest(let action, let number, let pullRequest):
+    case let .pullRequest(action, number, pullRequest):
       EventPullRequestCell(
         action: action,
         number: number,
@@ -20,43 +20,43 @@ struct EventCell: View {
       )
     case .create(_, _, _, _, _):
       fatalError()
-    case .issueComment(let action, let issue, let comment):
+    case let .issueComment(action, issue, comment):
       EventIssueCommentCell(
         action: action,
         issue: issue,
         comment: comment
       )
-    case .issue(let action, let issue):
+    case let .issue(action, issue):
       EventIssueCell(
         action: action,
         issue: issue
       )
     case .watch(_):
       fatalError()
-    case .fork(let repository):
+    case let .fork(repository):
       EventForkCell(repository: repository)
     case .delete(_, _, _):
       fatalError()
     case .gollum(_):
       fatalError()
-    case .pullRequestReview(let action, let review, let pullRequest):
+    case let .pullRequestReview(action, review, pullRequest):
       EventPullRequestReviewCell(
         action: action,
         review: review,
         pullRequest: pullRequest
       )
-    case .pullRequestReviewComment(let action, let comment, let pullRequest):
+    case let .pullRequestReviewComment(action, comment, pullRequest):
       EventPullRequestReviewCommentCell(
         action: action,
         comment: comment,
         pullRequest: pullRequest
       )
-    case .release(let action, let release):
+    case let .release(action, release):
       EventReleaseCell(
         action: action,
         release: release
       )
-    case .commitComment(let comment):
+    case let .commitComment(comment):
       EventCommitCommentCell(comment: comment)
     case .publicEvent:
       fatalError()

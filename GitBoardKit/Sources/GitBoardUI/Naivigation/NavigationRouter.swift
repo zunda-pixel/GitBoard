@@ -5,7 +5,6 @@
 import GitBoardData
 import GitHubData
 import Observation
-import SwiftUI
 
 @Observable
 final class NavigationRouter {
