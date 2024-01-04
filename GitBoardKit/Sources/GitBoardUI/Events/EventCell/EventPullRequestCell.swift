@@ -19,8 +19,6 @@ struct EventPullRequestCell: View {
         Text("\(repository.owner!.userID) / \(repository.name) #\(pullRequest.number) \(pullRequest.createdAt, format: .relative(presentation: .named))")
           .foregroundStyle(.secondary)
           .lineLimit(1)
-
-        Spacer()
         
         Text(pullRequest.title)
           .bold()
@@ -33,4 +31,9 @@ struct EventPullRequestCell: View {
       router.items.append(.pullRequestDetail(pullRequest: pullRequest, commentID: nil))
     }
   }
+}
+
+#Preview {
+  EventPullRequestCell(action: .closed, number: 12, pullRequest: .sample)
+    .environment(NavigationRouter())
 }
