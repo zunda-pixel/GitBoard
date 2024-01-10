@@ -24,7 +24,7 @@
       "location" : "https://github.com/zunda-pixel/GitHubKit",
       "state" : {
         "branch" : "main",
-        "revision" : "2ed0c30d7d8ce3f77736940888fe6fed4d2cfd19"
+        "revision" : "79c62ab0a7ed17db31e17c3933e0bdd840574e98"
       }
     },
     {
@@ -33,7 +33,7 @@
       "location" : "https://github.com/zunda-pixel/MarkdownView",
       "state" : {
         "branch" : "main",
-        "revision" : "277687757a33b560af7546d2f0ff8ca2010022b4"
+        "revision" : "7f11a24da8ef82bc45d4d57f5e3143a89f73764c"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke",
       "state" : {
-        "revision" : "1694798e876113d44f6ec6ead965d7286695981d",
-        "version" : "12.2.0"
+        "revision" : "15fde63470d782c897816a74bdd516a907e33147",
+        "version" : "12.3.0"
       }
     },
     {
@@ -96,7 +96,7 @@
       "location" : "https://github.com/zunda-pixel/swift-markdown",
       "state" : {
         "branch" : "main",
-        "revision" : "e24de91f08241df8a08d5b674d16659fd930d888"
+        "revision" : "1575af83f6caf5e0706e200a57c6611b72b54a7a"
       }
     },
     {
@@ -150,7 +150,7 @@
       "location" : "https://github.com/zunda-pixel/ToastView",
       "state" : {
         "branch" : "main",
-        "revision" : "8e5a24ac37087665a063aa05bb832c5f6955fceb"
+        "revision" : "880da62524b4e7f7511e203c9e4c39315eb27fab"
       }
     },
     {
