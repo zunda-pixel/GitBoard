@@ -31,6 +31,7 @@ let package = Package(
     .package(url: "https://github.com/zunda-pixel/MarkdownView", branch: "main"),
     .package(url: "https://github.com/safx/Emoji-Swift", branch: "master"),
     .package(url: "https://github.com/square/Valet", .upToNextMajor(from: "4.2.0")),
+    .package(url: "https://github.com/pointfreeco/swift-tagged", .upToNextMajor(from: "0.1.0")),
   ],
   targets: [
     .target(
@@ -62,6 +63,7 @@ let package = Package(
       name: "GitBoardData",
       dependencies: [
         .product(name: "GitHubAPI", package: "GitHubKit"),
+        .product(name: "Tagged", package: "swift-tagged"),
       ]
     ),
   ]
