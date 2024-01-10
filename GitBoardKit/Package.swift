@@ -47,6 +47,9 @@ let package = Package(
         .product(name: "Emoji", package: "Emoji-Swift"),
         .product(name: "Valet", package: "Valet"),
       ],
+      resources: [
+        .process("Resources"),
+      ],
       swiftSettings: [
         // https://github.com/uhooi/Loki/blob/main/LokiPackage/Package.swift
         .unsafeFlags(["-Xfrontend", "-warn-long-expression-type-checking=500"], .when(configuration: .debug)),

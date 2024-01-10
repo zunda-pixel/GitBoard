@@ -13,7 +13,7 @@ struct NotificationsNavigationView: View {
     NavigationStack(path: $router.items) {
       NotificationsView()
         .navigationDestination()
-        .navigationTitle("Notifications")
+        .navigationTitle(Text("NotificationsTab", bundle: .module))
     }
     .environment(router)
     .onTrigger(of: trigger) {

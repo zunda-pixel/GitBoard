@@ -34,7 +34,7 @@ struct HomeNavigationView: View {
       .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
       .listStyle(.plain)
       .navigationDestination()
-      .navigationTitle("Home")
+      .navigationTitle(Text("HomeTab", bundle: .module))
       .overlay {
         if isPresentedKeyboard {
           if query.trimmingCharacters(in: .whitespaces).isEmpty {

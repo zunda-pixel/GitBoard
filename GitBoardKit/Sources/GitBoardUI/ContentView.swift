@@ -64,8 +64,11 @@ public struct ContentView: View {
         tabContent(tab: tab, user: user)
           .tag(tab)
           .tabItem {
-            Label(tab.label.text, systemImage: tab.label.systemImage)
-              // https://stackoverflow.com/questions/70057749/why-swiftui-tabitem-systemimage-is-filled
+            Label {
+              Text(tab.label.text, bundle: .module)
+            } icon: {
+              Image(systemName: tab.label.systemImage)
+            }
               .environment(\.symbolVariants, tab == selectedTab ? .fill : .none)
           }
       }
@@ -79,7 +82,7 @@ public struct ContentView: View {
       NavigationSplitView {
         List(selection: bindingSelectedTabOptional) {
           ForEach(TabItem.allCases) { tab in
-            Text(tab.rawValue)
+            Text(tab.label.text, bundle: .module)
               .tag(tab)
           }
         }

@@ -2,7 +2,7 @@
 //  TabItem.swift
 //
 
-import Foundation
+import SwiftUI
 
 enum TabItem: String, CaseIterable, Identifiable {
   case home
@@ -11,14 +11,14 @@ enum TabItem: String, CaseIterable, Identifiable {
 
   var id: Self { self }
 
-  var label: (text: String, systemImage: String) {
+  var label: (text: LocalizedStringKey, systemImage: String) {
     switch self {
     case .home:
-      return ("Home", "house")
+      return ("HomeTab", "house")
     case .notifications:
-      return ("Notifications", "bell")
+      return ("NotificationsTab", "bell")
     case .profile:
-      return ("Profile", "person")
+      return ("ProfileTab", "person")
     }
   }
 }
