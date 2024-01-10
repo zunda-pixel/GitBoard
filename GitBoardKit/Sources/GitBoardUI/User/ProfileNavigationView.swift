@@ -15,7 +15,7 @@ struct ProfileNavigationView<User: UserProtocol>: View {
   var body: some View {
     NavigationStack(path: $router.items) {
       UserDetailView(user: user)
-        .navigationDestination(modelContext: modelContext)
+        .navigationDestination()
         .navigationTitle(user.userID)
         .navigationBarTitleDisplayMode()
     }

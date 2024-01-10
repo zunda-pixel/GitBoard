@@ -64,7 +64,7 @@ struct InlineMarkupContentView: View {
         switch content {
         case .attributedString(let string):
           Text(string)
-        case .image(let title, let source, let link):
+        case let .image(title, source, link):
           if let imageURL = source.map({ URL(string: $0) }),
             let imageURL
           {
@@ -76,7 +76,7 @@ struct InlineMarkupContentView: View {
               image(imageURL: imageURL, title: title)
             }
           }
-        case .inlineHTML(let html, let link):
+        case let .inlineHTML(html, link):
           if let link {
             SwiftUI.Link(destination: link) {
               WebView(html: html)

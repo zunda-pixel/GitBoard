@@ -9,13 +9,13 @@ struct EventPullRequestReviewCell: View {
   @Environment(NavigationRouter.self) var router
   
   let action: CommentAction
-  let review: Pull.Review
-  let pull: Pull
+  let review: PullRequest.Review
+  let pullRequest: PullRequest
   
   var body: some View {
     Label {
       VStack(alignment: .leading) {
-        Text("\(pull.base.repository!.owner!.userID) / \(pull.base.repository!.name) #\(pull.number)")
+        Text("\(pullRequest.base.repository!.owner!.userID) / \(pullRequest.base.repository!.name) #\(pullRequest.number)")
           .foregroundStyle(.secondary)
         Text("\(review.user.userID) \(review.state)")
       }
@@ -24,7 +24,7 @@ struct EventPullRequestReviewCell: View {
         .foregroundStyle(action == .created ? .green : .purple)
     }
     .onTapGesture {
-      router.items.append(.pullDetail(pull: pull, commentID: nil))
+      router.items.append(.pullRequestDetail(pullRequest: pullRequest, commentID: nil))
     }
   }
 }

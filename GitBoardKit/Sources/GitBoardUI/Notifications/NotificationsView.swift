@@ -4,23 +4,56 @@
 
 import GitHubAPI
 import SwiftUI
+import GitBoardData
+import SwiftData
 
 struct NotificationsView: View {
   @Environment(NavigationRouter.self) var router
   @Environment(ErrorHandle.self) var errorHandle
-  @State var viewState: NotificationsViewState
-
+  @Environment(\.modelContext) var modelContext
+  @Query var notifications: [GitBoardData.Notification]
+  @State var page: Int = 1
+  
   func populate() async {
     do {
-      try await viewState.populateNotifications()
+      page = 1
+
+      let newNotifications = try await GitHubAPI().notifications(
+        all: true,
+        participating: false,
+        since: nil,
+        before: nil,
+        perPage: 30,
+        page: page
+      )
+
+      for notification in newNotifications {
+        let newNotification = GitBoardData.Notification(notification: notification)
+        modelContext.insert(newNotification)
+      }
     } catch {
       errorHandle.error = .init(error: error)
     }
   }
 
-  func populateMore(id: GitHubData.Notification.ID) async {
+  func populateMore(id: String) async {
     do {
-      try await viewState.populateMoreNotifications(id: id)
+      guard id == notifications.last?.notificationID else { return }
+      page += 1
+
+      let newNotifications = try await GitHubAPI().notifications(
+        all: true,
+        participating: false,
+        since: nil,
+        before: nil,
+        perPage: 30,
+        page: page
+      )
+      
+      for notification in newNotifications {
+        let newNotification = GitBoardData.Notification(notification: notification)
+        modelContext.insert(newNotification)
+      }
     } catch {
       errorHandle.error = .init(error: error)
     }
@@ -28,7 +61,7 @@ struct NotificationsView: View {
 
   var body: some View {
     List {
-      ForEach(viewState.notifications) { notification in
+      ForEach(notifications) { notification in
         VStack(alignment: .leading, spacing: 0) {
           NotificationCell(notification: notification)
             .padding()
@@ -49,7 +82,7 @@ struct NotificationsView: View {
               issueNumber: number
             )
           case .pullRequest:
-            item = .pullDetailOnline(
+            item = .pullRequestDetailOnline(
               ownerID: notification.repository.owner!.userID,
               repositoryName: notification.repository.name,
               pullNumber: number
@@ -57,7 +90,7 @@ struct NotificationsView: View {
           case .release:
             item = .releaseDetailOnline(
               repository: notification.repository,
-              releaseID: number
+              releaseID: .init(number)
             )
           case .discussion:
             item = .discussionDetailOnline(
@@ -69,7 +102,7 @@ struct NotificationsView: View {
           router.items.append(item)
         }
         .task {
-          await populateMore(id: notification.id)
+          await populateMore(id: notification.notificationID)
         }
       }
     }
@@ -85,8 +118,7 @@ struct NotificationsView: View {
 
 #Preview{
   NavigationStack {
-    let viewState = NotificationsViewState()
-    NotificationsView(viewState: viewState)
+    NotificationsView()
   }
   .environment(ErrorHandle())
 }

@@ -136,7 +136,7 @@ struct RepositoryDetailView: View {
         .contentShape(.rect)
         .onTapGesture {
           router.items.append(
-            .repositoryPulls(
+            .repositoryPullRequests(
               ownerID: repository.owner!.userID,
               repositoryName: repository.name
             ))

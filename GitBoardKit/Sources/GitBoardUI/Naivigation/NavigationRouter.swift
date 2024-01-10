@@ -5,7 +5,6 @@
 import GitBoardData
 import GitHubData
 import Observation
-import SwiftUI
 
 @Observable
 final class NavigationRouter {
@@ -35,18 +34,18 @@ extension NavigationRouter {
     // Release
     case releases(repository: GitHubData.Repository)
     case releaseDetail(repository: GitHubData.Repository, release: GitHubData.Release)
-    case releaseDetailOnline(repository: GitHubData.Repository, releaseID: Int)
+    case releaseDetailOnline(repository: GitHubData.Repository, releaseID: Release.ID)
     case releaseDetailOnlineWithoutRepository(ownerID: String, repositoryName: String, release: GitHubData.Release)
-    case releaseDetailOnlineWithoutRepoisitoryAndRelease(ownerID: String, repositoryName: String, releaseID: Int)
+    case releaseDetailOnlineWithoutRepoisitoryAndRelease(ownerID: String, repositoryName: String, releaseID: Release.ID)
 
     // Follow
     case following(userID: String)
     case followers(userID: String)
 
     // Pull
-    case repositoryPulls(ownerID: String, repositoryName: String)
-    case pullDetail(pull: Pull, commentID: Pull.Comment.ID?)
-    case pullDetailOnline(ownerID: String, repositoryName: String, pullNumber: Int)
+    case repositoryPullRequests(ownerID: String, repositoryName: String)
+    case pullRequestDetail(pullRequest: PullRequest, commentID: PullRequest.Comment.ID?)
+    case pullRequestDetailOnline(ownerID: String, repositoryName: String, pullNumber: Int)
 
     // Discussion
     case discussions(repository: GitHubData.Repository)

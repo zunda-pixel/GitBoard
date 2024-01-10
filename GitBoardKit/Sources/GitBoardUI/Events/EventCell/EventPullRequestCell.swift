@@ -10,7 +10,7 @@ struct EventPullRequestCell: View {
 
   let action: RepositoryAction
   let number: Int
-  let pullRequest: Pull
+  let pullRequest: PullRequest
   
   var body: some View {
     Label {
@@ -19,8 +19,6 @@ struct EventPullRequestCell: View {
         Text("\(repository.owner!.userID) / \(repository.name) #\(pullRequest.number) \(pullRequest.createdAt, format: .relative(presentation: .named))")
           .foregroundStyle(.secondary)
           .lineLimit(1)
-
-        Spacer()
         
         Text(pullRequest.title)
           .bold()
@@ -30,7 +28,12 @@ struct EventPullRequestCell: View {
         .foregroundStyle(action == .opened ? .green : .purple)
     }
     .onTapGesture {
-      router.items.append(.pullDetail(pull: pullRequest, commentID: nil))
+      router.items.append(.pullRequestDetail(pullRequest: pullRequest, commentID: nil))
     }
   }
+}
+
+#Preview {
+  EventPullRequestCell(action: .closed, number: 12, pullRequest: .sample)
+    .environment(NavigationRouter())
 }

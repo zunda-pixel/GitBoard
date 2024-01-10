@@ -14,44 +14,44 @@ struct MarkupContentView: View {
 
   var body: some View {
     switch content {
-    case .text(let text):
+    case let .text(text):
       SwiftUI.Text(text)
     case .thematicBreak:
       Divider()
-    case .inlineCode(let code):
+    case let .inlineCode(code):
       InlineCodeView(code: code)
-    case .strong(let children):
+    case let .strong(children):
       InlineMarkupContentView(inlineContents: children)
         .bold()
-    case .strikethrough(let children):
+    case let .strikethrough(children):
       InlineMarkupContentView(inlineContents: children)
         .strikethrough(pattern: .dash, color: .secondary)
-    case .emphasis(let children):
+    case let .emphasis(children):
       InlineMarkupContentView(inlineContents: children)
         .italic()
-    case .doxygenParameter(let name, let children):
+    case let .doxygenParameter(name, children):
       DoxygenParameterView(name: name, children: children)
-    case .doxygenReturns(let children):
+    case let .doxygenReturns(children):
       DoxygenReturnsView(children: children)
-    case .blockDirective(let name, let arguments, let children):
+    case let .blockDirective(name, arguments, children):
       BlockDirectiveView(name: name, arguments: arguments, children: children)
-    case .htmlBlock(let html):
+    case let .htmlBlock(html):
       WebView(html: html)
-    case .codeBlock(let language, let sourceCode):
+    case let .codeBlock(language, sourceCode):
       CodeBlockView(language: language, sourceCode: sourceCode)
-    case .link(let destination, let title, let children):
+    case let .link(destination, title, children):
       LinkView(destination: destination, title: title, children: children)
-    case .heading(let level, let children):
+    case let .heading(level, children):
       HeadingView(level: level, children: children)
-    case .paragraph(let children):
+    case let .paragraph(children):
       InlineMarkupContentView(inlineContents: children)
-    case .blockQuote(let kind, let children):
+    case let .blockQuote(kind, children):
       BlockQuoteView(kind: kind, children: children)
-    case .orderedList(let startIndex, let items):
+    case let .orderedList(startIndex, items):
       OrderedListView(startIndex: startIndex, items: items)
-    case .unorderedList(let items):
+    case let .unorderedList(items):
       UnorderedListView(items: items)
-    case .table(let head, let body):
+    case let .table(head, body):
       TableView(headItems: head, bodyItems: body)
     case .softBreak:
       EmptyView()

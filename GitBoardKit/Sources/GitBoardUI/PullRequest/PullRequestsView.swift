@@ -1,12 +1,12 @@
 //
-//  PullRequestsView.swift
+//  PullRequestRequestsView.swift
 //
 
 import Algorithms
 import GitHubAPI
 import SwiftUI
 
-struct PullsView<ViewState: PullsViewState>: View {
+struct PullRequestsView<ViewState: PullRequestsViewState>: View {
   @Environment(ErrorHandle.self) var errorHandle
   @Environment(NavigationRouter.self) var router
 
@@ -20,7 +20,7 @@ struct PullsView<ViewState: PullsViewState>: View {
     }
   }
 
-  func populateMore(id: Pull.ID) async {
+  func populateMore(id: PullRequest.ID) async {
     do {
       try await viewState.populateMorePulls(id: id)
     } catch {
@@ -30,19 +30,19 @@ struct PullsView<ViewState: PullsViewState>: View {
 
   var body: some View {
     List {
-      ForEach(viewState.pulls) { pull in
+      ForEach(viewState.pullRequests) { pullRequest in
         VStack(alignment: .leading, spacing: 0) {
-          PullCell(pull: pull)
+          PullRequestCell(pullRequest: pullRequest)
             .padding(10)
             .frame(maxWidth: .infinity, alignment: .leading)
           Divider()
         }
         .listRow()
         .task {
-          await populateMore(id: pull.id)
+          await populateMore(id: pullRequest.id)
         }
         .onTapGesture {
-          router.items.append(.pullDetail(pull: pull, commentID: nil))
+          router.items.append(.pullRequestDetail(pullRequest: pullRequest, commentID: nil))
         }
       }
     }
@@ -58,8 +58,8 @@ struct PullsView<ViewState: PullsViewState>: View {
 
 #Preview{
   NavigationStack {
-    let viewState = RepositoryPullsViewState(ownerID: "apple", repositoryName: "swift")
-    PullsView(viewState: viewState)
+    let viewState = RepositoryPullRequestsViewState(ownerID: "apple", repositoryName: "swift")
+    PullRequestsView(viewState: viewState)
   }
   .environment(ErrorHandle())
   .environment(NavigationRouter())

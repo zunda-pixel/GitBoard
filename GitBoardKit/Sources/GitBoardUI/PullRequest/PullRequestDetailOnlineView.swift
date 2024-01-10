@@ -1,22 +1,22 @@
 //
-//  PullDetailOnlineView.swift
+//  PullRequestDetailOnlineView.swift
 //
 
 import GitHubAPI
 import SwiftUI
 
-struct PullDetailOnlineView: View {
+struct PullRequestDetailOnlineView: View {
   @Environment(ErrorHandle.self) var errorHandle
 
   let ownerID: String
   let repositoryName: String
   let pullNumber: Int
 
-  @State var pull: Pull? = nil
+  @State var pullRequest: PullRequest? = nil
 
   func populate() async {
     do {
-      self.pull = try await GitHubAPI().pull(
+      self.pullRequest = try await GitHubAPI().pullRequest(
         ownerID: ownerID,
         repositoryName: repositoryName,
         pullNumber: pullNumber
@@ -27,10 +27,10 @@ struct PullDetailOnlineView: View {
   }
 
   var body: some View {
-    let viewState = RepositoryPullDetailViewState(pull: pull ?? .sample, commentID: nil)
-    PullDetailView(viewState: viewState)
-      .id(self.pull) // idをtaskの後につけると2重でtaskが発生してしまうので、Topで設定している
-      .redacted(reason: pull == nil ? .placeholder : [])
+    let viewState = RepositoryPullRequestDetailViewState(pullRequest: pullRequest ?? .sample, commentID: nil)
+    PullRequestDetailView(viewState: viewState)
+      .id(self.pullRequest) // idをtaskの後につけると2重でtaskが発生してしまうので、Topで設定している
+      .redacted(reason: pullRequest == nil ? .placeholder : [])
       .task {
         await populate()
       }
@@ -38,7 +38,7 @@ struct PullDetailOnlineView: View {
 }
 
 #Preview {
-  PullDetailOnlineView(
+  PullRequestDetailOnlineView(
     ownerID: "apple",
     repositoryName: "swift",
     pullNumber: 67644

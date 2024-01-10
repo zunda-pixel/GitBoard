@@ -36,7 +36,7 @@ struct DiscussionsView: View {
       )
 
       for discussion in discussions {
-        let newDiscussion = GitBoardData.Discussion.discussion(discussion: discussion, repositoryID: repository.id)
+        let newDiscussion = GitBoardData.Discussion(discussion: discussion, repositoryID: repository.id)
         modelContext.insert(newDiscussion)
       }
 
