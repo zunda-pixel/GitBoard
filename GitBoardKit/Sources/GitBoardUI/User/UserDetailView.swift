@@ -145,14 +145,14 @@ struct UserDetailView<User: UserProtocol>: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
             .frame(maxWidth: .infinity, alignment: .leading)
-          
-          Divider()
-
         }
         .listRow()
       }
+
       Section {
         VStack(alignment: .leading, spacing: 0) {
+          Divider()
+
           repositoryNavigation
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
