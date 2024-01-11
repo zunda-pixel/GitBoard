@@ -57,8 +57,9 @@ struct UserDetailView<User: UserProtocol>: View {
           Image(systemName: "person.2")
 
           HStack(alignment: .center, spacing: 5) {
-            Text("\(followerCount)").bold()
-            Text("followers")
+            Text("\(followerCount)")
+              .bold()
+            Text("followers.\(followerCount)", bundle: .module)
               .foregroundStyle(.secondary)
           }
           .contentShape(.rect)
@@ -67,8 +68,9 @@ struct UserDetailView<User: UserProtocol>: View {
           }
 
           HStack(alignment: .center, spacing: 5) {
-            Text("\(followingCount)").bold()
-            Text("following")
+            Text("\(followingCount)")
+              .bold()
+            Text("following.\(followingCount)", bundle: .module)
               .foregroundStyle(.secondary)
           }
           .contentShape(.rect)
@@ -102,7 +104,7 @@ struct UserDetailView<User: UserProtocol>: View {
   var repositoryNavigation: some View {
     Label {
       HStack(alignment: .center, spacing: 5) {
-        Text("Repositories")
+        Text("Repositories", bundle: .module)
         Spacer()
 
         var count: Int {
@@ -149,8 +151,7 @@ struct UserDetailView<User: UserProtocol>: View {
         }
         .listRow()
       }
-      
-      Section("Links") {
+      Section {
         VStack(alignment: .leading, spacing: 0) {
           repositoryNavigation
             .padding(.horizontal, 20)
@@ -160,6 +161,8 @@ struct UserDetailView<User: UserProtocol>: View {
           Divider()
         }
         .listRow()
+      } header: {
+        Text("Links", bundle: .module)
       }
     }
     .listStyle(.plain)

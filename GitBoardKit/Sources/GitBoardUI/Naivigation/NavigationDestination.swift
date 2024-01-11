@@ -11,17 +11,17 @@ extension View {
       switch item {
       case let .searchUsers(query):
         SearchUsersView(query: query)
-          .navigationTitle("Search User")
+          .navigationTitle(Text("SearchUser", bundle: .module))
           .navigationBarTitleDisplayMode()
       case let .searchRepositories(query):
         let viewState = SearchRepositoriesViewState(query: query)
         RepositoriesView(viewState: viewState)
-          .navigationTitle("Repositories")
+          .navigationTitle(Text("Repositories", bundle: .module))
           .navigationBarTitleDisplayMode()
       case let .userRepositories(ownerID):
         let viewState = UserRepositoriesViewState(ownerID: ownerID)
         RepositoriesView(viewState: viewState)
-          .navigationTitle("Repositories")
+          .navigationTitle(Text("Repositories", bundle: .module))
           .navigationBarTitleDisplayMode()
       case let .userDetail(user):
         UserDetailView(user: user)
@@ -136,7 +136,7 @@ extension View {
           .navigationBarTitleDisplayMode()
       case let .discussions(repository):
         DiscussionsView(repository: repository)
-          .navigationTitle("Discussions")
+          .navigationTitle(Text("Discussions", bundle: .module))
           .navigationBarTitleDisplayMode()
       case let .discussionDetail(repository, discussion):
         let viewState = RepositoryDiscussionDetailViewState(
@@ -144,11 +144,11 @@ extension View {
           discussion: discussion
         )
         DiscussionDetailView(viewState: viewState)
-          .navigationTitle("Discussion \(discussion.title)")
+          .navigationTitle(Text("Discussion.\(discussion.title)", bundle: .module))
           .navigationBarTitleDisplayMode()
       case let .discussionDetailOnline(repository, discussionNumber):
         DiscussionDetailOnlineView(repository: repository, discussionNumber: discussionNumber)
-          .navigationTitle("Discussion")
+          .navigationTitle(Text("Discussion", bundle: .module))
           .navigationBarTitleDisplayMode()
       }
     }

@@ -14,11 +14,12 @@ struct HomeNavigationView: View {
 
   func label(
     _ titleKey: LocalizedStringKey,
+    bundle: Bundle,
     systemImage: String
   ) -> some View {
     Label {
       HStack(alignment: .center, spacing: 0) {
-        Text(titleKey)
+        Text(titleKey, bundle: bundle)
         Spacer()
         Image(systemName: "chevron.right")
           .foregroundStyle(.secondary)
@@ -31,7 +32,7 @@ struct HomeNavigationView: View {
   var body: some View {
     NavigationStack(path: $router.items) {
       EventsView()
-      .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: "Search GitHub")
+      .searchable(text: $query, isPresented: $isPresentedKeyboard, prompt: Text("SearchGitHub", bundle: .module))
       .listStyle(.plain)
       .navigationDestination()
       .navigationTitle(Text("HomeTab", bundle: .module))
@@ -39,14 +40,12 @@ struct HomeNavigationView: View {
         if isPresentedKeyboard {
           if query.trimmingCharacters(in: .whitespaces).isEmpty {
             VStack(alignment: .center, spacing: 40) {
-              Text("Find your stuff.")
+              Text("FindYourStuff", bundle: .module)
                 .bold()
                 .font(.title)
 
-              Text(
-                "Search all of GitHub for People, Repositories, Organizations, Issues, and Pull Requests."
-              )
-              .foregroundStyle(.secondary)
+              Text("SearchAllOfGitHub", bundle: .module)
+                .foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background(.background)
@@ -54,13 +53,13 @@ struct HomeNavigationView: View {
             List {
               let query = query.trimmingCharacters(in: .whitespaces)
 
-              label("Search Users", systemImage: "person.2")
+              label("SearchUsers", bundle: .module, systemImage: "person.2")
                 .contentShape(.rect)
                 .onTapGesture {
                   router.items.append(.searchUsers(query: query))
                 }
 
-              label("Search Repositories", systemImage: "book.pages")
+              label("SearchRepositories", bundle: .module, systemImage: "book.pages")
                 .contentShape(.rect)
                 .onTapGesture {
                   router.items.append(.searchRepositories(query: query))
